@@ -11,7 +11,7 @@ import { BrowserRouter as Router,
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import Too_panjai from "./pages/Too-panjai";
-import Navbar from "./Navbar/Navbar";  //forth
+import Navbar from "./components/Navbar/Navbar";  //forth
 
 function App() {
   return (
