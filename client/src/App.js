@@ -11,10 +11,12 @@ import { BrowserRouter as Router,
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import Too_panjai from "./pages/Too-panjai";
+import Navbar from "./Navbar/Navbar";  //forth
 
 function App() {
   return (
     <Router>
+    <Navbar></Navbar>
       <Switch>
         <Route exact path="/" component={Homepage}/>
         <Route exact path="/Login" component={Login}/>
