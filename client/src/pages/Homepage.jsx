@@ -8,7 +8,7 @@ import { BrowserRouter as Router,
     Link, 
     Redirect
 } from "react-router-dom";
-//----------------------------------------------------------------------
+/*----------------------------------------------------------------------*/
 function Homepage() {
     return (
         <div>
