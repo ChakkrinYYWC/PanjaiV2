@@ -20,11 +20,11 @@
 }
 
 .nav-menu {
-    padding: 35px;
+    padding: 120px;
     margin: 10px;
     display: grid;
     grid-template-columns: repeat(7,auto);
-    grid-gap:15px;
+    grid-gap:30px;
     list-style: none;
     text-align: center;
 }
