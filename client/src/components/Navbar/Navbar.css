@@ -20,7 +20,7 @@
 }
 
 .nav-menu {
-    padding: 125px;
+    padding: 120px;
     margin: 10px;
     display: grid;
     grid-template-columns: repeat(7,auto);
@@ -156,7 +156,7 @@
         font-size: 1.2rem;
     
     }
-    
+
     li.itemlist{
         padding-top: 10px;
         padding-bottom: 10px;
