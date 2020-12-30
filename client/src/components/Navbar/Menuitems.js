@@ -1,39 +1,36 @@
 const Menuitems = [
     {
         title: 'หน้าแรก',
-        url: '#',
+        href: '#',
         cName: 'nav-links'
     },
     {
         title: 'ตู้ปันใจ',
-        url: '#',
+        href: '#',
         cName: 'nav-links'
     },
     {
         title: 'หมวดหมู่',
-        url: '#',
+        href: '#',
         cName: 'nav-links'
     },
     {
         title: 'เกี่ยวกับเรา',
-        url: '#',
+        href: '#',
         cName: 'nav-links'
     },
     {
         title: 'วิธีใช้',
-        url: '#',
+        href: '#',
         cName: 'nav-links'
     },
     {
         title: 'ข้อมูลส่วนตัว',
-        url: '#',
+        href: '#',
         cName: 'nav-links'
-    },
-    {
-        title: 'สมัครสมาชิก',
-        url: '#',
-        cName: 'nav-links-mobile'
-    },
+    }
+ 
+  
 ]
 
 export default Menuitems
