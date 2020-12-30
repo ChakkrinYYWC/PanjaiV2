@@ -19,6 +19,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.3",
     "butter-toast": "^3.3.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
