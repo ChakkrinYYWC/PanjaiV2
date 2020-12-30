@@ -9,7 +9,7 @@ function Login() {
 
 
     const checkUser = () => {
-        Axios.post('http://localhost:3001/checkUser',{
+        Axios.post('http://localhost:3001/authenticate/login',{
             username: username,
             password: password,
         })

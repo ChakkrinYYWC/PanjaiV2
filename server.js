@@ -7,12 +7,14 @@ const express = require("express"),
     methodOverride = require('method-override'),
     cors = require('cors'),
     axios = require('axios');
+    fileUpload = require('express-fileupload');
 
 const user = require('./model/user');
 var postPanjaiRoutes = require('./routes/PostController')
 var authenticate = require('./routes/index')
 
 const app = express();
+app.use(fileUpload());
 app.use(cors({origin:'http://localhost:3000'}))
 app.use(bodyParser.json())
 app.use(methodOverride("_method"));
