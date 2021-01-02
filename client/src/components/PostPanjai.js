@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as action from '../action/postPanjai'
 import { Divider, Grid, Paper, Typography, withStyles, List, ListItem, ListItemText, Button } from '@material-ui/core';
-import PostPanjaiFrom from './PostPanjaiForm';
+import PostPanjaiForm from './PostPanjaiForm'
 import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep } from "@material-ui/icons";
 import moment from 'moment';
@@ -43,12 +43,12 @@ const PostPanjai = ({ classes, ...props }) => {
             props.deletePostMessage(id, onSuccess)
     }
 
-
     return (
+        <>
         <Grid container>
             <Grid item xs={5}>
                 <Paper className={classes.paper}>
-                    <PostPanjaiFrom {...{ currentId, setCurrentId }} />
+                    <PostPanjaiForm {...{ currentId, setCurrentId }} />
                 </Paper>
             </Grid>
             <Grid item xs={7}>
@@ -101,6 +101,7 @@ const PostPanjai = ({ classes, ...props }) => {
                 </Paper>
             </Grid>
         </Grid>
+    </>
     );
 }
 

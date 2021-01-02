@@ -16,14 +16,15 @@
     justify-content: start;
     cursor: pointer;
     font-family: 'Mali', cursive;
+
 }
 
 .nav-menu {
-    padding: 35px;
+    padding: 120px;
     margin: 10px;
     display: grid;
     grid-template-columns: repeat(7,auto);
-    grid-gap:15px;
+    grid-gap:30px;
     list-style: none;
     text-align: center;
 }
@@ -38,7 +39,7 @@
 .nav-links:hover{
     background-color: rgb(152, 175, 219);
     border-radius: 6px;
-    /* transition: all 0.2s ease-out; */
+ 
     color: white;
    
 
@@ -54,9 +55,7 @@
     color: white;
 }
 
-/* .nav-links-mobile{
-    display: none;
-} */
+
 
 .menu-icon{
     display: none;
@@ -78,8 +77,7 @@
  @media screen and (max-width: 700px) {
     .NavbarItems {
         position: relative;
-        /* display: grid;
-        grid-template-columns: 1fr 50px 50px 50px 100px; */
+       
    
     }
     .position-search{
@@ -104,13 +102,8 @@
         margin-top: 20px;
 
     }
+   
     
-    /* .dropdown{
-        left: 50px;
-    }
-    .noti{
-        left: 150px;
-    } */
     .nav-menu.active{
         background: rgba(53, 40, 194, 0.685);
         padding: 1.2rem;
@@ -163,28 +156,7 @@
         font-size: 1.2rem;
     
     }
-    /* .nav-links-mobile{
-        display: none;
-        text-align: center;
-        padding: 0.2rem;
-        margin: 2rem auto;
-        border-radius: 6px;
-        width: 40%;
-        background: cornflowerblue;
-        text-decoration: none;
-        color: white;
-        font-size: 13px;
 
-    }
-    .nav-links-mobile:hover{
-        background:  rgb(145, 144, 226);
-        color: rgb(236, 241, 234);
-        transition: 250ms;
-
-    } */
-    /* .nav-links-mobile{
-        display: none;
-    } */
     li.itemlist{
         padding-top: 10px;
         padding-bottom: 10px;

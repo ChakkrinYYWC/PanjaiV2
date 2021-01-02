@@ -11,6 +11,7 @@ const express = require("express"),
 
 const user = require('./model/user');
 var postPanjaiRoutes = require('./routes/PostController')
+var postFDTRoutes = require('./routes/PostFDT')
 var authenticate = require('./routes/index')
 
 const app = express();
@@ -42,6 +43,7 @@ passport.deserializeUser(user.deserializeUser());
 
 app.use('/authenticate',authenticate)
 app.use('/Too-Panjai',postPanjaiRoutes)
+app.use('/Foundation',postFDTRoutes)
 
 // app.post('/signin/facebook', async (req, res) => {
 //     console.log('Request -->', req.body.user)
