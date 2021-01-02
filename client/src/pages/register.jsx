@@ -13,8 +13,9 @@ function Register() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [CPassword, setCPassword] = useState("");
-    const [file, setFile] = useState("");
-    console.log(file)
+    const [file, setFile] = useState('');
+    const [filename, setFilename] = useState('Choose File');
+
 
     const addUser = () => {
         const fd = new FormData();
@@ -22,10 +23,10 @@ function Register() {
         fd.append('image',file, file.name);
         console.log(fd)
         Axios.post('http://localhost:3001/authenticate/register',{
-        username: username,
-        password: password,
-        CPassword: CPassword,
-        content: image
+            username: username,
+            password: password,
+            CPassword: CPassword,
+            content: image
         })
     }
 
@@ -39,6 +40,21 @@ function Register() {
     //     //     />
     //     // })
     // }
+
+    const onChange = e => {
+        setFile(e.target.files[0]);
+        setFilename(e.target.files[0].name);
+    };
+
+    const onSubmit = async e => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('file', file);
+        console.log(file)
+        const res = await Axios.post('/register', formData, {
+        });
+    };
+
 
     const onPasswordIncorrect = () => {
         const onSuccess = () => {
@@ -71,7 +87,7 @@ function Register() {
         <h1>Register</h1>
         <h6>Please register.</h6>
         <div>
-            <form>
+            <form onSubmit={onSubmit}>
                 <div>
                     <label>Username:</label>
                     <input
@@ -106,10 +122,14 @@ function Register() {
                     />
                 </div>
                 <div>
-                    <FileUpload/>
+                    <input
+                        type='file'
+                        id='customFile'
+                        onChange={onChange}
+                    />
                 </div>
                 <div>
-                    <button onClick={Submit}>Register</button>
+                    <button type="submit" onClick={Submit}>Register</button>
                 </div>
             </form>
         </div>
