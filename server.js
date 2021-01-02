@@ -7,6 +7,7 @@ const express = require("express"),
     methodOverride = require('method-override'),
     cors = require('cors'),
     axios = require('axios');
+    fileUpload = require('express-fileupload');
 
 const user = require('./model/user');
 var postPanjaiRoutes = require('./routes/PostController')
@@ -14,6 +15,7 @@ var postFDTRoutes = require('./routes/PostFDT')
 var authenticate = require('./routes/index')
 
 const app = express();
+app.use(fileUpload());
 app.use(cors({origin:'http://localhost:3000'}))
 app.use(bodyParser.json())
 app.use(methodOverride("_method"));
@@ -40,9 +42,7 @@ passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
 
 app.use('/authenticate',authenticate)
-app.use('/Too-Panjai',postPanjaiRoutes, (req, res) =>{
-    console.log('*****************************************************************');
-})
+app.use('/Too-Panjai',postPanjaiRoutes)
 app.use('/Foundation',postFDTRoutes)
 
 // app.post('/signin/facebook', async (req, res) => {
