@@ -37,7 +37,7 @@ class Navbar extends Component {
                         })}
 
                         <li className="itemlist">
-                            <Link to="/" className="hidden">สมัครสมาชิก</Link>
+                            <Link to="/" className="hidden">เข้าสู่ระบบ</Link>
                         </li>
                     </ul>
 
@@ -50,7 +50,7 @@ class Navbar extends Component {
                     <span class="noti">
                         <span type="button" href="" className="bell"><i class="fas fa-bell"></i></span>
                     </span>
-                    <div type="button" href="" className="nav-links-mobile">สมัครสมาชิก</div>
+                    <div type="button" href="" className="nav-links-mobile">เข้าสู่ระบบ</div>
 
                 </nav>
             </div>
