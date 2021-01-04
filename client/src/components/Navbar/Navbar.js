@@ -5,7 +5,6 @@ import Menuitems from "./Menuitems"
 import './Navbar.css'
 
 
-
 class Navbar extends Component {
     state = { clicked: false }
 
@@ -17,7 +16,7 @@ class Navbar extends Component {
     render() {
         return (
 
-            <div> 
+            <div>
                 <nav className="NavbarItems">
                     <h1 className="navbar-logo">ปันใจ <i class="fab fa-gratipay"></i></h1>
                     <div className="menu-icon" onClick={this.handleClick}>
@@ -30,7 +29,6 @@ class Navbar extends Component {
                                     <Link className={item.cName} to={item.href}>
                                         {item.title}
                                     </Link>
-
                                 </li>
 
                             )
