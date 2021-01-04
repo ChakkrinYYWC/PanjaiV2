@@ -82,7 +82,7 @@ body {
     color: white;
     width: 100px;
     font-family: 'Mali', cursive;
-    padding: 10px;
+    padding: 5px 8px;
     
 }
 .button:hover{
@@ -95,6 +95,9 @@ body {
     font-weight: bold;
     color: #2e2e2e;
     margin-bottom: 45px;
+}
+.EditProfile{
+    justify-self: center;
 }
 
 
