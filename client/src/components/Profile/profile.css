@@ -12,78 +12,6 @@ body {
     color: #000000;
 
 }
-/* กรอบข้อความ ไม่่ใช้แล้ว */
-/* .box {
-    width: 80%;
-    height: 100%;
-    display: inline-block;
-    margin: 0 10%;
-    box-shadow: 0 27px 87px rgba(0, 0, 0, 0.0.37);
-    
-    overflow: hidden;
-    
-} */
-
-/* .box img {
-    float: left;
-    width: 45%;
-    padding: 70px 70px 70px 35px;
-}
-
-.box-text {
-    width: 55%;
-    float: left;
-    padding: 70px 70px 70px 35px;
-    
-}
-
-.box-text h1 {
-    font-style: 48px;
-    font-weight: bold;
-    color: #2e2e2e;
-    margin-bottom: 45px;
-    font-family: 'Mali', cursive;
-}
-
-.box-text p {
-    font-style: 24px;
-    font-weight: 300;
-    color: #2e2e2e;
-    line-height: 30px;
-    letter-spacing: 0.25px;
-    margin-bottom: 15px;
-    font-family: 'Mali', cursive;
-
-}
-.box-text span {
-    font-style: 24px;
-    font-weight: 900;
-    color: #2e2e2e;
-    line-height: 30px;
-    letter-spacing: 0.25px;
-    margin-bottom: 15px;
-    font-family: 'Mali', cursive;
-    
-
-}
-
-.button {
-    background-color:rgba(78, 63, 207, 0.89);
-    color: white;
-    width: 100px;
-    font-family: 'Mali', cursive;
-    
-}
-.button:hover{
-    background-color:rgb(152, 175, 219);
-}
-
-.Like{
-    float : right;
-    font-size: 40px;
-    color:#FF69B4;
-    margin-right: 120px;
-} */
 
 
 .box{
@@ -110,7 +38,7 @@ body {
 }
 .box img {
     
-    padding: 70px 70px 70px 35px;
+    padding: 70px 70px 20px 35px;
 }
 
 .box-text {
