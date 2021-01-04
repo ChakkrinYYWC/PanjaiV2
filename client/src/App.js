@@ -12,17 +12,20 @@ import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import Too_panjai from "./pages/Too-panjai";
 import Navbar from "./components/Navbar/Navbar";  //forth
+import Profile from "./components/Profile/profile"; //june
 import register from "./pages/register";
+
 
 function App() {
   return (
     <Router>
     <Navbar></Navbar>
       <Switch>
-        <Route exact path="/" component={Homepage}/>
-        <Route exact path="/login" component={Login}/>
-        <Route exact path="/register" component={register}/>
-        <Route exact path="/Too_panjai" component={Too_panjai}/>
+        <Route exact={true} path="/" component={Homepage}/>
+        <Route path="/Login" component={Login}/>
+        <Route path="/Register" component={register}/>
+        <Route path="/Too_panjai" component={Too_panjai}/>
+        <Route path="/profile" component={Profile}/>
       </Switch>
     </Router>
   );

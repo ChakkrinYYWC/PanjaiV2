@@ -1,32 +1,32 @@
 const Menuitems = [
     {
         title: 'หน้าแรก',
-        href: '#',
+        href: '/',
         cName: 'nav-links'
     },
     {
         title: 'ตู้ปันใจ',
-        href: '#',
+        href: '/',
         cName: 'nav-links'
     },
     {
         title: 'หมวดหมู่',
-        href: '#',
+        href: '/',
         cName: 'nav-links'
     },
     {
         title: 'เกี่ยวกับเรา',
-        href: '#',
+        href: '/',
         cName: 'nav-links'
     },
     {
         title: 'วิธีใช้',
-        href: '#',
+        href: '/',
         cName: 'nav-links'
     },
     {
         title: 'ข้อมูลส่วนตัว',
-        href: '#',
+        href: '/profile',
         cName: 'nav-links'
     }
  
