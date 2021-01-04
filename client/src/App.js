@@ -25,7 +25,7 @@ function App() {
         <Route path="/Login" component={Login}/>
         <Route path="/Too_panjai" component={Too_panjai}/>
         <Route path="/profile" component={Profile}/>
-        </Switch>
+      </Switch>
     </Router>
   );
 }
