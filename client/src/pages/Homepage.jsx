@@ -13,7 +13,8 @@ function Homepage() {
     return (
         <div>
             <div>Welcome</div>
-            <Link to="/Login">Login</Link><br/>
+            <Link to="/login">Login</Link><br/>
+            <Link to="/register">Register</Link><br/>
             <Link to="/Too_panjai">Too panjai</Link>
         </div>
     )

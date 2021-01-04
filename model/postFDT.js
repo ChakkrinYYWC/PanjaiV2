@@ -1,15 +1,15 @@
 const   mongoose = require('mongoose')
 const passportLocalMongoose = require('passport-local-mongoose');
 
-var PostPanjai = mongoose.model('PostPanjai',{
+var PostFDT = mongoose.model('PostFDT',{
     title : String,
     message : String,
     Timestamp : { type: Date, default: Date.now },
     image: String,
-    contect: String,
-    location:String,
-    // imageFile: String
-},'PostPanjai')
+    item: String,
+    n_item: Number
+    
+},'PostFDT')
 
-// hi bro
-module.exports = { PostPanjai }
+
+module.exports = { PostFDT }

@@ -13,6 +13,8 @@ import Login from "./pages/Login";
 import Too_panjai from "./pages/Too-panjai";
 import Navbar from "./components/Navbar/Navbar";  //forth
 import Profile from "./components/Profile/profile"; //june
+import register from "./pages/register";
+
 
 function App() {
   return (
@@ -23,8 +25,7 @@ function App() {
         <Route path="/Login" component={Login}/>
         <Route path="/Too_panjai" component={Too_panjai}/>
         <Route path="/profile" component={Profile}/>
-        
-      </Switch>
+        </Switch>
     </Router>
   );
 }

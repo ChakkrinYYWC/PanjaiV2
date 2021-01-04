@@ -16,6 +16,7 @@ class Navbar extends Component {
 
     render() {
         return (
+
             <div> 
                 <nav className="NavbarItems">
                     <h1 className="navbar-logo">ปันใจ <i class="fab fa-gratipay"></i></h1>

@@ -1,12 +1,14 @@
 
 .NavbarItems {
-    background: rgba(78, 63, 207, 0.89) ;
-    height: 60px;
+    background: rgba(108, 96, 209, 0.925) ;
+    height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 13px;
+    font-size: 15px;
     font-family: 'Mali', cursive;
+
+    text-shadow: 2px 2px 4px #49347a;
    
 }
 
@@ -16,10 +18,13 @@
     justify-content: start;
     cursor: pointer;
     font-family: 'Mali', cursive;
+    text-shadow: 2px 2px 4px #49347a;
+    font-weight: bold;
+
 }
 
 .nav-menu {
-    padding: 35px;
+    padding: 120px;
     margin: 10px;
     display: grid;
     grid-template-columns: repeat(7,auto);
@@ -38,7 +43,7 @@
 .nav-links:hover{
     background-color: rgb(152, 175, 219);
     border-radius: 6px;
-    /* transition: all 0.2s ease-out; */
+ 
     color: white;
    
 
@@ -54,9 +59,7 @@
     color: white;
 }
 
-/* .nav-links-mobile{
-    display: none;
-} */
+
 
 .menu-icon{
     display: none;
@@ -75,11 +78,10 @@
     display: none;
 }
 
- @media screen and (max-width: 700px) {
+ @media screen and (max-width: 1024px) {
     .NavbarItems {
         position: relative;
-        /* display: grid;
-        grid-template-columns: 1fr 50px 50px 50px 100px; */
+       
    
     }
     .position-search{
@@ -98,19 +100,14 @@
         width: 100%;
         height: 250px;
         position: absolute;
-        top:40px;
+        top:50px;
         opacity: 1;
         transition: all 0.5s ease;
         margin-top: 20px;
 
     }
+   
     
-    /* .dropdown{
-        left: 50px;
-    }
-    .noti{
-        left: 150px;
-    } */
     .nav-menu.active{
         background: rgba(53, 40, 194, 0.685);
         padding: 1.2rem;
@@ -143,7 +140,7 @@
 
     .navbar-logo{
         position: absolute;
-        top: 18px;
+        top: 22px;
         left: 20px;
         
     }
@@ -151,7 +148,7 @@
     .menu-icon{
         display: block;
         position: absolute;
-        top: 5px;
+        top: 10px;
         right: 10px;
         transform: translate(-100%, 60%);
         font-size: 1.0rem;
@@ -163,28 +160,7 @@
         font-size: 1.2rem;
     
     }
-    /* .nav-links-mobile{
-        display: none;
-        text-align: center;
-        padding: 0.2rem;
-        margin: 2rem auto;
-        border-radius: 6px;
-        width: 40%;
-        background: cornflowerblue;
-        text-decoration: none;
-        color: white;
-        font-size: 13px;
 
-    }
-    .nav-links-mobile:hover{
-        background:  rgb(145, 144, 226);
-        color: rgb(236, 241, 234);
-        transition: 250ms;
-
-    } */
-    /* .nav-links-mobile{
-        display: none;
-    } */
     li.itemlist{
         padding-top: 10px;
         padding-bottom: 10px;

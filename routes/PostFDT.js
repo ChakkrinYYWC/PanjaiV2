@@ -5,27 +5,27 @@ const fs = require('fs')
 const multer = require('multer')
 const path = require('path')
 
-var { PostPanjai } = require('../model/postPanjai')
+var { PostFDT } = require('../model/postFDT')
 
 const storage = multer.diskStorage({
     destination: './public/uploads',
-    filename: function(req, file, cb) {
-        cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 
-const imageFilter = function(req, file, cb){
+const imageFilter = function (req, file, cb) {
     var ext = path.extname(file.originalname);
-    if(ext !== '.png' && ext !== '.gif' && ext !== '.jpg' && ext !== '.jpeg'){
+    if (ext !== '.png' && ext !== '.gif' && ext !== '.jpg' && ext !== '.jpeg') {
         return cb(new Error('Only image is allowed'), false)
-        }
-        cb(null, true);
+    }
+    cb(null, true);
 };
 
-const upload = multer({storage: storage, fileFilter: imageFilter});
+const upload = multer({ storage: storage, fileFilter: imageFilter });
 
 router.get('/', (req, res) => {
-    PostPanjai.find((err, docs) => {
+    PostFDT.find((err, docs) => {
         if (!err)
             res.send(docs)
         else
@@ -34,12 +34,11 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', upload.single('image'), (req, res) => {
-    console.log(req.file.filename);
-    var newRecord = new PostPanjai({
+    var newRecord = new PostFDT({
         title: req.body.title,
         message: req.body.message,
-        contect: req.body.contect,
-        location: req.body.location,
+        item: req.body.item,
+        n_item: req.body.n_item,
         image: req.file.filename
     })
     console.log(newRecord)
@@ -58,11 +57,11 @@ router.put('/:id', (req, res) => {
     var updatedRecord = {
         title: req.body.title,
         message: req.body.message,
-        contect: req.body.contect,
-        location: req.body.location
+        item: req.body.item,
+        n_item: req.body.n_item
     }
 
-    PostPanjai.findByIdAndUpdate(req.params.id, { $set: updatedRecord }, { new: true }, (err, docs) => {
+    PostFDT.findByIdAndUpdate(req.params.id, { $set: updatedRecord }, { new: true }, (err, docs) => {
         if (!err)
             res.send(docs)
         else
@@ -74,7 +73,7 @@ router.delete('/:id', (req, res) => {
     if (!ObjectID.isValid(req.params.id))
         return res.status(400).send('No #4 : ' + req.params.id)
 
-    PostPanjai.findByIdAndRemove(req.params.id, (err, docs) => {
+    PostFDT.findByIdAndRemove(req.params.id, (err, docs) => {
         if (!err)
             res.send(docs)
         else
