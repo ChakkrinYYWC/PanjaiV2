@@ -2,7 +2,7 @@ import React, { useEffect, useState, Component, useRef } from "react";
 import { TextField, withStyles, Button } from "@material-ui/core";
 import useForm from "./useForm";
 import { connect } from "react-redux";
-import * as actions from "../action/postPanjai";
+import * as actions from "../../action/postPanjai";
 import ButterToast, { Cinnamon } from "butter-toast";
 import { AssignmentTurnedIn } from "@material-ui/icons";
 import axios from 'axios'
@@ -159,7 +159,7 @@ import axios from 'axios'
 // }
 
 
-// function FileUpload() {
+// export default function FileUpload() {
 
 //     const [file, setFile] = useState(''); // storing the uploaded file
 
@@ -210,7 +210,7 @@ const initialFieldValues = {
     message: '',
     contect: '',
     location: '',
-    imageFile: null,
+    image: null,
     imageSrc: defaultImageSrc
 }
 
@@ -227,12 +227,17 @@ const styles = theme => ({
     },
     postBtn: {
         width: "50%"
+    },
+    test: {
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
     }
 })
 
 const PostPanjaiForm = ({ classes, ...props }) => {
 
-    const [file, setFile] = useState();
+    const [file, setFile] = useState('');
+    const el = useRef();
+    const [progress, setProgess] = useState(0);
 
 
     useEffect(() => {
@@ -296,9 +301,8 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
     const showPreview = e => {
         if (e.target.files && e.target.files[0]) {
-            let imageFile = e.target.files[0];
-            console.log(imageFile);
-            setFile(imageFile); 
+            setFile(e.target.files[0]);
+            console.log(file);
             // const reader = new FileReader();
             // reader.onload = x => {
             //     setValues({
@@ -332,95 +336,103 @@ const PostPanjaiForm = ({ classes, ...props }) => {
     //     setFile(file); // storing file
     // }
 
-    const uploadFile = () => {
-        //e.preventDefault()
+    const uploadFile = e => {
+        e.preventDefault()
+        const onSuccess = () => {
+            ButterToast.raise({
+                content: <Cinnamon.Crisp title="ตู้ปันใจ"
+                    content="Submitted successfully"
+                    scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+                    icon={<AssignmentTurnedIn />}
+                />
+            })
+            resetForm()
+        }
+
         const formData = new FormData();
         formData.append('image', file); // appending file
-        formData.append('title', values.title)
-        formData.append('message', values.message)
-        formData.append('contect', values.contect)
-        formData.append('location', values.location)
+        formData.append('title', values.title);
+        formData.append('message', values.message);
+        formData.append('contect', values.contect);
+        formData.append('location', values.location);
 
-        axios.post('http://localhost:3001/Too-Panjai', formData, {
-            onUploadProgress: (ProgressEvent) => {
-                let progress = Math.round(
-                    ProgressEvent.loaded / ProgressEvent.total * 100) + '%';
-                //setProgess(progress);
-            }
-        }).then(res => {
-            console.log(res);
-        }).catch(err => console.log(err))
-        
-        // const onSuccess = () => {
-        //     ButterToast.raise({
-        //         content: <Cinnamon.Crisp title="ตู้ปันใจ"
-        //             content="Submitted successfully"
-        //             scheme={Cinnamon.Crisp.SCHEME_PURPLE}
-        //             icon={<AssignmentTurnedIn />}
-        //         />
-        //     })
-        //     resetForm()
-        // }
+        props.createPostPanjai(formData, onSuccess) //ส่งค่าไปserver
+
+        // axios.post('http://localhost:3001/Too-Panjai', formData, {
+        //     onUploadProgress: (ProgressEvent) => {
+        //         let progress = Math.round(
+        //         ProgressEvent.loaded / ProgressEvent.total * 100) + '%';
+        //         //setProgess(progress);
+        //     }
+        // }).then(res => {
+        //     console.log(res);
+        // }).catch(err => console.log(err))
 
     }
 
     return (
-        <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
-        // onSubmit={handleSubmit}
-        >
+        <div>
 
-            <img src={values.imageSrc} className='card-img-top' />
+            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
+                onSubmit={uploadFile}
+            >
+                {/* <img src={values.imageSrc} className='card-img-top' /> */}
+                
+                <input type='file'
+                    accept='image/*'
+                    className="form-control-file"
+                    value={values.image}
+                    onChange={showPreview}
+                    id="image-uploader"
+                />
 
-            <input type='file' accept='image/*' className="form-control-file"
-                // value={values.imageFile}
-                onChange={showPreview} id="image-uploader" />
+                <TextField
+                    name="title"
+                    variant="outlined"
+                    label="ชื่อ"
+                    fullWidth
+                    value={values.title}
+                    onChange={handleInputChange}
+                />
+                <TextField
+                    name="message"
+                    variant="outlined"
+                    label="ข้อมูล"
+                    fullWidth
+                    multiline
+                    rows={4}
+                    value={values.message}
+                    onChange={handleInputChange}
+                />
+                <TextField
+                    name="contect"
+                    variant="outlined"
+                    label="เบอร์โทรศัพท์"
+                    fullWidth
+                    multiline
+                    value={values.contect}
+                    onChange={handleInputChange}
+                />
+                <TextField
+                    name="location"
+                    variant="outlined"
+                    label="ใส่ชื่อจังหวัด"
+                    fullWidth
+                    multiline
+                    value={values.location}
+                    onChange={handleInputChange}
+                />
+                <Button
+                    //onClick={uploadFile}
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    type="submit"
+                    className={classes.postBtn}
+                >โพสต์</Button>
 
-            <TextField
-                name="title"
-                variant="outlined"
-                label="ชื่อ"
-                fullWidth
-                value={values.title}
-                onChange={handleInputChange}
-            />
-            <TextField
-                name="message"
-                variant="outlined"
-                label="ข้อมูล"
-                fullWidth
-                multiline
-                rows={4}
-                value={values.message}
-                onChange={handleInputChange}
-            />
-            <TextField
-                name="contect"
-                variant="outlined"
-                label="เบอร์โทรศัพท์"
-                fullWidth
-                multiline
-                value={values.contect}
-                onChange={handleInputChange}
-            />
-            <TextField
-                name="location"
-                variant="outlined"
-                label="ใส่ชื่อจังหวัด"
-                fullWidth
-                multiline
-                value={values.location}
-                onChange={handleInputChange}
-            />
-            <Button
-                onClick={uploadFile}
-                variant="contained"
-                color="primary"
-                size="large"
-                type="submit"
-                className={classes.postBtn}
-            >โพสต์</Button>
-
-        </form>
+            </form>
+        </div>
     );
 }
 

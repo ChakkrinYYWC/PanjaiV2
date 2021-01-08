@@ -2,7 +2,7 @@ import Axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { Provider } from "react-redux";
-import PostPanjai from "../components/PostPanjai";
+import PostPanjai from "../components/PostPanjai/PostPanjai";
 import { store } from "../action/store";
 import { Container, AppBar, Typography } from "@material-ui/core";
 import ButterToast, { POS_RIGHT, POS_TOP } from "butter-toast";
@@ -18,7 +18,9 @@ function Too_panjai() {
                 ตู้ปันใจ
                 </Typography>
             </AppBar>
+
             <PostPanjai />
+            
             <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
             </Container>
         </Provider>

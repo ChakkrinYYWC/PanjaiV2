@@ -1,12 +1,14 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
-import * as action from '../action/postPanjai'
+import * as action from '../../action/postPanjai'
 import { Divider, Grid, Paper, Typography, withStyles, List, ListItem, ListItemText, Button } from '@material-ui/core';
 import PostPanjaiForm from './PostPanjaiForm'
 import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep } from "@material-ui/icons";
 import moment from 'moment';
+import api from '../../action/api'
 import {Img} from 'react-image';
+
 
 const styles = theme => ({
     paper: {
@@ -44,13 +46,15 @@ const PostPanjai = ({ classes, ...props }) => {
     }
 
     return (
-        <>
-        <Grid container>
-            <Grid item xs={5}>
+        <div>
+        <Grid container> 
+
+            <Grid item xs={5} >
                 <Paper className={classes.paper}>
                     <PostPanjaiForm {...{ currentId, setCurrentId }} />
                 </Paper>
             </Grid>
+            
             <Grid item xs={7}>
                 <Paper className={classes.paper}>
                     <List>
@@ -67,7 +71,7 @@ const PostPanjai = ({ classes, ...props }) => {
                                                     ข้อมูล : {record.message}
                                                 </div>
                                                 <div>
-                                                    <img src={record.image}/>
+                                                    <img src={'http://localhost:3001/image/'+record.image}/>
                                                 </div>
                                                 <div>
                                                     เวลาที่ลง : {moment(record.Timestamp).calendar()}                              
@@ -101,7 +105,7 @@ const PostPanjai = ({ classes, ...props }) => {
                 </Paper>
             </Grid>
         </Grid>
-    </>
+    </div>
     );
 }
 
