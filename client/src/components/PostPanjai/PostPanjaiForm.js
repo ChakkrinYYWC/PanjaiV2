@@ -1,12 +1,10 @@
 import React, { useEffect, useState, Component, useRef } from "react";
-import { TextField, withStyles, Button, colors } from "@material-ui/core";
+import { TextField, withStyles, Button, colors, IconButton } from "@material-ui/core";
 import useForm from "./useForm";
 import { connect } from "react-redux";
 import * as actions from "../../action/postPanjai";
 import ButterToast, { Cinnamon } from "butter-toast";
-import { AssignmentTurnedIn } from "@material-ui/icons";
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import { AssignmentTurnedIn, PhotoCamera } from "@material-ui/icons";
 import axios from 'axios'
 
 const defaultImageSrc = '/img/picture-28117_960_720.png'

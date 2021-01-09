@@ -14,6 +14,7 @@ import Too_panjai from "./pages/Too-panjai";
 import Navbar from "./components/Navbar/Navbar";  //forth
 import Profile from "./components/Profile/profile"; //june
 import register from "./pages/register";
+import Foundation from './pages/Foundation';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Login" component={Login}/>
         <Route path="/Register" component={register}/>
         <Route path="/Too_panjai" component={Too_panjai}/>
+        <Route path="/Foundation" component={Foundation}/>
         <Route path="/profile" component={Profile}/>
       </Switch>
     </Router>
