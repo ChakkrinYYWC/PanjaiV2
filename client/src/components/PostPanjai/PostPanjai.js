@@ -7,7 +7,6 @@ import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep } from "@material-ui/icons";
 import moment from 'moment';
 import api from '../../action/api'
-import {Img} from 'react-image';
 
 
 const styles = theme => ({
