@@ -6,7 +6,7 @@ import PostPanjaiForm from './PostPanjaiForm'
 import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep } from "@material-ui/icons";
 import moment from 'moment';
-import {Img} from 'react-image';
+import { Img } from 'react-image';
 
 const styles = theme => ({
     paper: {
@@ -18,7 +18,26 @@ const styles = theme => ({
     },
     actionDiv: {
         textAlign: "center"
-    }
+    },
+    test: {
+        background: 'rgba(187, 130, 44, 0.925)',
+        borderRadius: 5,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+        height: 'auto',
+        padding: '30px 30px',
+        marginBlock: '15px',
+    },
+    // test1: {
+    //     background: '#f9a825',
+    //     borderRadius: 5,
+    //     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    //     color: 'white',
+    //     height: 'auto',
+    //     padding: '10px 10px',
+    //     marginBlock: '15px',
+    // }
+    
 })
 
 const PostPanjai = ({ classes, ...props }) => {
@@ -45,63 +64,66 @@ const PostPanjai = ({ classes, ...props }) => {
 
     return (
         <>
-        <Grid container>
-            <Grid item xs={5}>
-                <Paper className={classes.paper}>
-                    <PostPanjaiForm {...{ currentId, setCurrentId }} />
-                </Paper>
+            <Grid container>
+                <Grid item xs={8}>
+                <Paper className={classes.test}>
+                        <PostPanjaiForm {...{ currentId, setCurrentId }} />
+                    </Paper>
+                </Grid>
             </Grid>
-            <Grid item xs={7}>
-                <Paper className={classes.paper}>
-                    <List>
-                        {
-                            props.postPanjaiList.map((record, index) => {
-                                return (
-                                    <Fragment key={index}>
-                                        <ListItem>
-                                            <ListItemText>
-                                                <Typography variant='h5'>
-                                                    {record.title}
-                                                </Typography>
-                                                <div>
-                                                    ข้อมูล : {record.message}
-                                                </div>
-                                                <div>
-                                                    <img src={record.image}/>
-                                                </div>
-                                                <div>
-                                                    เวลาที่ลง : {moment(record.Timestamp).calendar()}                              
-                                                </div>
-                                                <div>
-                                                    โทร : {record.contect}
-                                                </div>
-                                                <div>
-                                                    {record.location}
-                                                </div>
-                                                <div className={classes.actionDiv}>
-                                                    <Button variant="contained" color="primary" size="small"
-                                                        className={classes.smMargin}
-                                                        onClick={() => setCurrentId(record._id)}>
-                                                        แก้ไข
+            <Grid container spacing={2}>
+                    {/* ฝั่งขวา ใช้ classes.ชื่ออื่่น */}
+                            {
+                                props.postPanjaiList.map((record, index) => {
+                                    return (
+                                        <Grid item xs={12} sm={4} >
+                                        <Paper className={classes.test1}>
+                                        <Fragment key={index}>
+                                            <ListItem>
+                                                <ListItemText>
+                                                    <Typography variant='h5'>
+                                                        {record.title}
+                                                    </Typography>
+                                                    <div>
+                                                        ข้อมูล : {record.message}  
+                                                    </div>
+                                                    <div>
+                                                        <img src={record.image} />
+                                                    </div>
+                                                    <div>
+                                                        เวลาที่ลง : {moment(record.Timestamp).calendar()}
+                                                    </div>
+                                                    <div>
+                                                        โทร : {record.contect}
+                                                    </div>
+                                                    <div>
+                                                        {record.location}
+                                                    </div>
+                                                    <div className={classes.botton1}>
+                                                        <Button variant="contained" color="primary" size="small"
+                                                            className={classes.smMargin}
+                                                            // จำเป็น
+                                                            onClick={() => setCurrentId(record._id)}>
+                                                            แก้ไข
                                                     </Button>
-                                                    <Button variant="contained" color="secondary" size="small"
-                                                        className={classes.smMargin}
-                                                        onClick={() => onDelete(record._id)}>
-                                                        ลบ
+                                                        <Button variant="contained" color="secondary" size="small"
+                                                            className={classes.smMargin}
+                                                            onClick={() => onDelete(record._id)}>
+                                                            ลบ
                                                     </Button>
-                                                </div>
-                                            </ListItemText>
-                                        </ListItem>
-                                        <Divider component='li' />
-                                    </Fragment>
-                                )
-                            })
-                        }
-                    </List>
-                </Paper>
+                                                    </div>
+                                                    {/* รูปแบบช่อง */}
+                                                </ListItemText>
+                                            </ListItem>
+                                            <Divider component='li' />
+                                        </Fragment>
+                                        </Paper>
+                                        </Grid>
+                                    )
+                                })
+                            }
             </Grid>
-        </Grid>
-    </>
+        </>
     );
 }
 

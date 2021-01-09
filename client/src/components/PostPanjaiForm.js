@@ -1,11 +1,251 @@
 import React, { useEffect, useState, Component, useRef } from "react";
-import { TextField, withStyles, Button } from "@material-ui/core";
+import { TextField, withStyles, Button, colors } from "@material-ui/core";
 import useForm from "./useForm";
 import { connect } from "react-redux";
 import * as actions from "../action/postPanjai";
 import ButterToast, { Cinnamon } from "butter-toast";
 import { AssignmentTurnedIn } from "@material-ui/icons";
 import axios from 'axios'
+
+// const defaultImageSrc = '/img/image-1609160068242.jpg'
+
+// const initialFieldValues = {
+//     title: '',
+//     message: '',
+//     contect: '',
+//     location: '',
+//     imageFile: null,
+//     imageSrc: defaultImageSrc
+// }
+
+// const styles = theme => ({
+//     root: {
+//         '& .MuiTextField-root': {
+//             margin: theme.spacing(1)
+//         },
+//     },
+//     form: {
+//         display: 'flex',
+//         flexWrap: 'wrap',
+//         justifyContent: 'center'
+//     },
+//     postBtn: {
+//         width: "50%"
+//     },
+//     topic: {
+//         color: 'red'
+//     }
+// })
+
+// const PostPanjaiForm = ({ classes, ...props }) => {
+
+//     const [file, setFile] = useState();
+
+
+//     useEffect(() => {
+//         if (props.currentId != 0) {
+//             setValues({
+//                 ...props.postPanjaiList.find(x => x._id == props.currentId)
+//             })
+//             setErrors({})
+//         }
+//     }, [props.currentId])
+
+//     const validate = () => {
+//         let temp = { ...errors }
+//         temp.title = values.title ? "" : "กรุณาใส่ข้อมูล."
+//         temp.message = values.message ? "" : "กรุณาใส่ข้อมูล."
+//         temp.contect = values.contect ? "" : "กรุณาใส่ข้อมูล."
+//         temp.location = values.location ? "" : "กรุณาใส่ข้อมูล."
+//         setErrors({
+//             ...temp
+//         })
+//         return Object.values(temp).every(x => x == "")
+//     }
+
+//     // const handleSubmit = e => {
+//     //     e.preventDefault()
+//     //     const onSuccess = () => {
+//     //         ButterToast.raise({
+//     //             content: <Cinnamon.Crisp title="ตู้ปันใจ"
+//     //                 content="Submitted successfully"
+//     //                 scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+//     //                 icon={<AssignmentTurnedIn />}
+//     //             />
+//     //         })
+//     //         resetForm()
+//     //     }
+//     //     if (validate()) {
+//     //         if (props.currentId == 0)
+//     //             // {
+//     //             //     const formData = new FormData()
+//     //             //     formData.append('title', values.title)
+//     //             //     formData.append('message', values.message)
+//     //             //     formData.append('contect', values.contect)
+//     //             //     formData.append('location', values.location)
+//     //             //     formData.append('imageFile', values.imageFile)
+//     //             //     props.createPostPanjai(formData, onSuccess)
+//     //             // }
+//     //             props.createPostPanjai(values, onSuccess)
+//     //         else
+//     //             props.updatePostPanjai(props.currentId, values, onSuccess)
+//     //     }
+//     // }
+
+//     var {
+//         values,
+//         setValues,
+//         errors,
+//         setErrors,
+//         handleInputChange,
+//         resetForm
+//     } = useForm(initialFieldValues, props.setCurrentId)
+
+//     const showPreview = e => {
+//         if (e.target.files && e.target.files[0]) {
+//             let imageFile = e.target.files[0];
+//             console.log(imageFile);
+//             setFile(imageFile); 
+//             // const reader = new FileReader();
+//             // reader.onload = x => {
+//             //     setValues({
+//             //         ...values,
+//             //         imageFile,
+//             //         imageSrc: x.target.result
+//             //     })
+//             // }
+//             // reader.readAsDataURL(imageFile)
+//         }
+//         else {
+//             let ima = defaultImageSrc
+//             setFile(ima
+//                 // {
+//                 // ...values,
+//                 // imageFile: null,
+//                 // imageSrc: defaultImageSrc
+//                 // }
+//             )
+//         }
+//     }
+
+//     // const el = useRef();
+//     // const [file, setFile, data] = useState();
+//     // const [progress, setProgess] = useState(0);
+
+//     // const handleChange = (e) => {
+//     //     setProgess(0)
+//     //     const file = e.target.files[0]; // accessing file
+//     //     console.log(file);
+//     //     setFile(file); // storing file
+//     // }
+
+//     const uploadFile = () => {
+//         //e.preventDefault()
+//         const formData = new FormData();
+//         formData.append('image', file); // appending file
+//         formData.append('title', values.title)
+//         formData.append('message', values.message)
+//         formData.append('contect', values.contect)
+//         formData.append('location', values.location)
+
+//         axios.post('http://localhost:3001/Too-Panjai', formData, {
+//             onUploadProgress: (ProgressEvent) => {
+//                 let progress = Math.round(
+//                     ProgressEvent.loaded / ProgressEvent.total * 100) + '%';
+//                 //setProgess(progress);
+//             }
+//         }).then(res => {
+//             console.log(res);
+//         }).catch(err => console.log(err))
+        
+//         // const onSuccess = () => {
+//         //     ButterToast.raise({
+//         //         content: <Cinnamon.Crisp title="ตู้ปันใจ"
+//         //             content="Submitted successfully"
+//         //             scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+//         //             icon={<AssignmentTurnedIn />}
+//         //         />
+//         //     })
+//         //     resetForm()
+//         // }
+
+//     }
+
+//     return (
+        
+//             <>
+//             {/* <img src={values.imageSrc} className='card-img-top' /> */}
+
+//             <input type='file' accept='image/*' className="form-control-file"
+//                 // value={values.imageFile}
+//                 onChange={showPreview} id="image-uploader" />
+
+//             <TextField
+//                 // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
+//                 InputProps={{style: {backgroundColor:"white",color:'black', border:'3px', margin:'1rem 0 1rem 0'}}}
+//                 name="title"
+//                 variant="filled"
+//                 label="ชื่อ"
+//                 fullWidth
+//                 value={values.title}
+//                 onChange={handleInputChange}
+//             />
+//             <TextField
+//                 name="message"
+//                 variant="filled"
+//                 InputProps={{style: {backgroundColor:"white",color:'black', border:'3px', margin:'0 0 1rem 0'}}}
+//                 label="ข้อมูล"
+//                 fullWidth
+//                 multiline
+//                 rows={4}
+//                 value={values.message}
+//                 onChange={handleInputChange}
+//             />
+//             <TextField
+//                 name="contect"
+//                 variant="filled"
+//                 InputProps={{style: {backgroundColor:"white",color:'black', border:'3px', margin:'0 0 1rem 0'}}}
+//                 label="เบอร์โทรศัพท์"
+//                 fullWidth
+//                 multiline
+//                 value={values.contect}
+//                 onChange={handleInputChange}
+//             />
+//             <TextField
+//                 name="location"
+//                 variant="filled"
+//                 InputProps={{style: {backgroundColor:"white",color:'black', border:'3px', margin:'0 0 1rem 0'}}}
+//                 label="ใส่ชื่อจังหวัด"
+//                 fullWidth
+//                 multiline
+//                 value={values.location}
+//                 onChange={handleInputChange}
+//             />
+//             <Button
+//                 onClick={uploadFile}
+//                 variant="contained"
+//                 color="primary"
+//                 size="large"
+//                 type="submit"
+//                 className={classes.postBtn}
+//             >โพสต์</Button>
+//             </>
+
+//     );
+// }
+
+
+// const mapStateToProps = state => ({
+//     postPanjaiList: state.postPanjai.list
+// })
+
+// const mapActionToProps = {
+//     createPostPanjai: actions.create,
+//     updatePostPanjai: actions.update
+// }
+
+// export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(PostPanjaiForm));
+
 
 // const defaultImageSrc = '/img/image-1609160068242.jpg'
 
@@ -202,242 +442,6 @@ import axios from 'axios'
 // }
 
 // export default FileUpload;
-
-const defaultImageSrc = '/img/image-1609160068242.jpg'
-
-const initialFieldValues = {
-    title: '',
-    message: '',
-    contect: '',
-    location: '',
-    imageFile: null,
-    imageSrc: defaultImageSrc
-}
-
-const styles = theme => ({
-    root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1)
-        },
-    },
-    form: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center'
-    },
-    postBtn: {
-        width: "50%"
-    }
-})
-
-const PostPanjaiForm = ({ classes, ...props }) => {
-
-    const [file, setFile] = useState();
-
-
-    useEffect(() => {
-        if (props.currentId != 0) {
-            setValues({
-                ...props.postPanjaiList.find(x => x._id == props.currentId)
-            })
-            setErrors({})
-        }
-    }, [props.currentId])
-
-    const validate = () => {
-        let temp = { ...errors }
-        temp.title = values.title ? "" : "กรุณาใส่ข้อมูล."
-        temp.message = values.message ? "" : "กรุณาใส่ข้อมูล."
-        temp.contect = values.contect ? "" : "กรุณาใส่ข้อมูล."
-        temp.location = values.location ? "" : "กรุณาใส่ข้อมูล."
-        setErrors({
-            ...temp
-        })
-        return Object.values(temp).every(x => x == "")
-    }
-
-    // const handleSubmit = e => {
-    //     e.preventDefault()
-    //     const onSuccess = () => {
-    //         ButterToast.raise({
-    //             content: <Cinnamon.Crisp title="ตู้ปันใจ"
-    //                 content="Submitted successfully"
-    //                 scheme={Cinnamon.Crisp.SCHEME_PURPLE}
-    //                 icon={<AssignmentTurnedIn />}
-    //             />
-    //         })
-    //         resetForm()
-    //     }
-    //     if (validate()) {
-    //         if (props.currentId == 0)
-    //             // {
-    //             //     const formData = new FormData()
-    //             //     formData.append('title', values.title)
-    //             //     formData.append('message', values.message)
-    //             //     formData.append('contect', values.contect)
-    //             //     formData.append('location', values.location)
-    //             //     formData.append('imageFile', values.imageFile)
-    //             //     props.createPostPanjai(formData, onSuccess)
-    //             // }
-    //             props.createPostPanjai(values, onSuccess)
-    //         else
-    //             props.updatePostPanjai(props.currentId, values, onSuccess)
-    //     }
-    // }
-
-    var {
-        values,
-        setValues,
-        errors,
-        setErrors,
-        handleInputChange,
-        resetForm
-    } = useForm(initialFieldValues, props.setCurrentId)
-
-    const showPreview = e => {
-        if (e.target.files && e.target.files[0]) {
-            let imageFile = e.target.files[0];
-            console.log(imageFile);
-            setFile(imageFile); 
-            // const reader = new FileReader();
-            // reader.onload = x => {
-            //     setValues({
-            //         ...values,
-            //         imageFile,
-            //         imageSrc: x.target.result
-            //     })
-            // }
-            // reader.readAsDataURL(imageFile)
-        }
-        else {
-            let ima = defaultImageSrc
-            setFile(ima
-                // {
-                // ...values,
-                // imageFile: null,
-                // imageSrc: defaultImageSrc
-                // }
-            )
-        }
-    }
-
-    // const el = useRef();
-    // const [file, setFile, data] = useState();
-    // const [progress, setProgess] = useState(0);
-
-    // const handleChange = (e) => {
-    //     setProgess(0)
-    //     const file = e.target.files[0]; // accessing file
-    //     console.log(file);
-    //     setFile(file); // storing file
-    // }
-
-    const uploadFile = () => {
-        //e.preventDefault()
-        const formData = new FormData();
-        formData.append('image', file); // appending file
-        formData.append('title', values.title)
-        formData.append('message', values.message)
-        formData.append('contect', values.contect)
-        formData.append('location', values.location)
-
-        axios.post('http://localhost:3001/Too-Panjai', formData, {
-            onUploadProgress: (ProgressEvent) => {
-                let progress = Math.round(
-                    ProgressEvent.loaded / ProgressEvent.total * 100) + '%';
-                //setProgess(progress);
-            }
-        }).then(res => {
-            console.log(res);
-        }).catch(err => console.log(err))
-        
-        // const onSuccess = () => {
-        //     ButterToast.raise({
-        //         content: <Cinnamon.Crisp title="ตู้ปันใจ"
-        //             content="Submitted successfully"
-        //             scheme={Cinnamon.Crisp.SCHEME_PURPLE}
-        //             icon={<AssignmentTurnedIn />}
-        //         />
-        //     })
-        //     resetForm()
-        // }
-
-    }
-
-    return (
-        <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
-        // onSubmit={handleSubmit}
-        >
-
-            <img src={values.imageSrc} className='card-img-top' />
-
-            <input type='file' accept='image/*' className="form-control-file"
-                // value={values.imageFile}
-                onChange={showPreview} id="image-uploader" />
-
-            <TextField
-                name="title"
-                variant="outlined"
-                label="ชื่อ"
-                fullWidth
-                value={values.title}
-                onChange={handleInputChange}
-            />
-            <TextField
-                name="message"
-                variant="outlined"
-                label="ข้อมูล"
-                fullWidth
-                multiline
-                rows={4}
-                value={values.message}
-                onChange={handleInputChange}
-            />
-            <TextField
-                name="contect"
-                variant="outlined"
-                label="เบอร์โทรศัพท์"
-                fullWidth
-                multiline
-                value={values.contect}
-                onChange={handleInputChange}
-            />
-            <TextField
-                name="location"
-                variant="outlined"
-                label="ใส่ชื่อจังหวัด"
-                fullWidth
-                multiline
-                value={values.location}
-                onChange={handleInputChange}
-            />
-            <Button
-                onClick={uploadFile}
-                variant="contained"
-                color="primary"
-                size="large"
-                type="submit"
-                className={classes.postBtn}
-            >โพสต์</Button>
-
-        </form>
-    );
-}
-
-
-const mapStateToProps = state => ({
-    postPanjaiList: state.postPanjai.list
-})
-
-const mapActionToProps = {
-    createPostPanjai: actions.create,
-    updatePostPanjai: actions.update
-}
-
-export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(PostPanjaiForm));
-
-
-
 
 // const styles = theme => ({
 //     root: {
