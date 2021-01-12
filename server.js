@@ -6,16 +6,18 @@ const express = require("express"),
     passportLocalMongoose = require('passport-local-mongoose'),
     methodOverride = require('method-override'),
     cors = require('cors'),
+    logger = require('morgan'),
     axios = require('axios');
-    fileUpload = require('express-fileupload');
+    // fileUpload = require('express-fileupload');
 
 const user = require('./model/user');
 var postPanjaiRoutes = require('./routes/PostController')
 var postFDTRoutes = require('./routes/PostFDT')
-var authenticate = require('./routes/index')
+var sumting = require('./routes/authen')
 
 const app = express();
-app.use(fileUpload());
+// app.use(fileUpload());
+app.use(express.static(__dirname + '/public'));
 app.use(cors({origin:'http://localhost:3000'}))
 app.use(bodyParser.json())
 app.use(methodOverride("_method"));
@@ -41,7 +43,7 @@ passport.use(new passportLocal(user.authenticate()));
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
 
-app.use('/authenticate',authenticate)
+app.use('/authenticate',sumting)
 app.use('/Too-Panjai',postPanjaiRoutes)
 app.use('/Foundation',postFDTRoutes)
 
