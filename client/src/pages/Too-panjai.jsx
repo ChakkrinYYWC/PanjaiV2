@@ -14,12 +14,14 @@ const useStyles = makeStyles({
     primary: {
         background: 'white',
         padding: '10px 10px 10px 20px',
-        marginBlock: '15px'
+        marginBlock: '15px',
+        // boxShadow: '0 5px 6px 5px rgba(187, 130, 44, 0.925)',
     },
     toopanjaitext: {
         color: 'rgba(187, 130, 44, 0.925)',
         fontFamily: 'mali',
-        fontSize: '36px'
+        fontSize: '30px'
+        
     }
 
 
@@ -30,14 +32,14 @@ function Too_panjai() {
     return (
         <Provider store={store}>
             <Container maxWidth="lg">
-                <AppBar position="static" className={classes.primary}>
+                <div position="static" className={classes.primary}>
                     <Typography
                         variant="h2"
                         align="center">
                         {/* ข้อความ */}
                         <span className={classes.toopanjaitext}>ตู้ปันใจ</span>
                     </Typography>
-                </AppBar>
+                </div>
                 <PostPanjai />
                 <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
             </Container>

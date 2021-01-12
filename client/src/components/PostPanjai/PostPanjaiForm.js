@@ -1,15 +1,15 @@
 import React, { useEffect, useState, Component, useRef } from "react";
-import { TextField, withStyles, Button, colors } from "@material-ui/core";
+import { TextField, withStyles, Button, Grid } from "@material-ui/core";
 import useForm from "./useForm";
 import { connect } from "react-redux";
 import * as actions from "../../action/postPanjai";
 import ButterToast, { Cinnamon } from "butter-toast";
-import { AssignmentTurnedIn } from "@material-ui/icons";
+import { AssignmentTurnedIn, Repeat } from "@material-ui/icons";
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import axios from 'axios'
 
-const defaultImageSrc = '/img/picture-28117_960_720.png'
+const defaultImageSrc = '/0112.png'
 
 const initialFieldValues = {
     title: '',
@@ -31,7 +31,11 @@ const styles = theme => ({
         justifyContent: 'center'
     },
     postBtn: {
-        width: "50%"
+        width: "20%",
+        padding: '10px 10px 10px 20px',
+        fontFamily: 'mali',
+        fontSize: '20px',
+        background: 'rgba(187, 130, 44, 0.925)'
     },
     topic: {
         color: 'red'
@@ -40,9 +44,29 @@ const styles = theme => ({
         display: 'none',
     },
     imgpreview: {
-        width: "50%",
+        width: "15%",
+        marginLeft: '500px'
+        
+    },
+    primary: {
+        background: 'white',
+        padding: '10px 10px 10px 20px',
+        marginBlock: '15px',
+        boxShadow: '0 5px 6px 5px rgba(187, 130, 44, 0.925)',
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+    color1: {
+        color: '#a13800',
+        marginLeft: '550px'
     }
+
 })
+
+
 
 const PostPanjaiForm = ({ classes, ...props }) => {
 
@@ -142,70 +166,109 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                 <img src={src} alt={alt} className={classes.imgpreview} />
             </div>
 
-            <input
-                accept="image/*"
-                className={classes.input}
-                id="icon-button-file"
-                type="file"
-                onChange={showPreview}
-            />
-            <label htmlFor="icon-button-file">
-                <IconButton color="primary" aria-label="upload picture" component="span">
-                    <PhotoCamera />
-                </IconButton>
-            </label>
+            <Grid item xs={12} >
+                <input
+                    accept="image/*"
+                    className={classes.input}
+                    id="icon-button-file"
+                    type="file"
+                    onChange={showPreview}
+                />
+                <label htmlFor="icon-button-file" >
+                    <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1} >
+                        <PhotoCamera />
+                    </IconButton>
+                </label>
+            </Grid>
 
-            <TextField
-                // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
-                InputProps={{ style: { backgroundColor: "white", color: 'black', border: '3px', margin: '1rem 0 1rem 0' } }}
-                name="title"
-                variant="filled"
-                label="ชื่อ"
-                fullWidth
-                value={values.title}
-                onChange={handleInputChange}
-                {...(errors.title && { error: true, helperText: errors.title })}
-            />
-            <TextField
-                name="message"
-                variant="filled"
-                InputProps={{ style: { backgroundColor: "white", color: 'black', border: '3px', margin: '0 0 1rem 0' } }}
-                label="ข้อมูล"
-                fullWidth
-                multiline
-                rows={4}
-                value={values.message}
-                onChange={handleInputChange}
-                {...(errors.message && { error: true, helperText: errors.message })}
-            />
-            <TextField
-                name="contect"
-                variant="filled"
-                InputProps={{ style: { backgroundColor: "white", color: 'black', border: '3px', margin: '0 0 1rem 0' } }}
-                label="เบอร์โทรศัพท์"
-                fullWidth
-                multiline
-                value={values.contect}
-                onChange={handleInputChange}
-                {...(errors.contect && { error: true, helperText: errors.contect })}
-            />
-            <TextField
-                name="location"
-                variant="filled"
-                InputProps={{ style: { backgroundColor: "white", color: 'black', border: '3px', margin: '0 0 1rem 0' } }}
-                label="ใส่ชื่อจังหวัด"
-                fullWidth
-                multiline
-                value={values.location}
-                onChange={handleInputChange}
-                {...(errors.location && { error: true, helperText: errors.location })}
-            />
+
+            <Grid item xs={12} sm={6} 
+            container
+                direction="row"
+                justify="center"
+                alignItems="center"
+            >
+                <TextField
+                    // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
+                    InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                    name="title"
+                    variant="filled"
+                    label="ชื่อ"
+                    fullWidth
+                    className={classes.paper}
+                    value={values.title}
+                    onChange={handleInputChange}
+                    {...(errors.title && { error: true, helperText: errors.title })}
+                />
+            </Grid>
+
+
+            <Grid item xs={12} sm={6}
+            container
+            direction="row"
+             justify="center"
+             alignItems="center" >
+
+                <TextField
+                    name="message"
+                    variant="filled"
+                    InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                    label="ข้อมูล"
+                    fullWidth
+                    multiline
+                    // rows={4}
+                    value={values.message}
+                    onChange={handleInputChange}
+                    {...(errors.message && { error: true, helperText: errors.message })}
+                />
+            </Grid>
+            <Grid item xs={12} sm={6}
+            container
+            direction="row"
+             justify="center"
+             alignItems="center" >
+
+                <TextField
+                    name="contect"
+                    variant="filled"
+                    InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                    label="เบอร์โทรศัพท์"
+                    fullWidth
+                    multiline
+                    value={values.contect}
+                    onChange={handleInputChange}
+                    {...(errors.contect && { error: true, helperText: errors.contect })}
+                />
+            </Grid>
+
+            <Grid item xs={12} sm={6} 
+            container
+                 direction="row"
+                justify="center"
+                alignItems="center"
+            >
+
+                <TextField
+                    name="location"
+                    variant="filled"
+                    InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                    label="ใส่ชื่อจังหวัด"
+                    fullWidth
+                    multiline
+                    value={values.location}
+                    onChange={handleInputChange}
+                    {...(errors.location && { error: true, helperText: errors.location })}
+                />
+            </Grid>
+
+
             <Button
                 variant="contained"
                 color="primary"
                 size="large"
                 type="submit"
                 className={classes.postBtn}
+
             >โพสต์</Button>
         </form>
 
