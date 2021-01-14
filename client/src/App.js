@@ -12,7 +12,7 @@ import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import Too_panjai from "./pages/Too-panjai";
 import Navbar from "./components/Navbar/Navbar";  //forth
-import Profile from "./components/Profile/profile"; //june
+import Profile from "./pages/userInformation"; //june
 import register from "./pages/register";
 import Foundation from './pages/Foundation';
 

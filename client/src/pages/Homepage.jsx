@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import Foundation from './Foundation'
+import Home from '../components/homepage/Homepage'
 
 import {
     BrowserRouter as Router,
@@ -15,13 +16,14 @@ import {
 function Homepage() {
 
     return (
-        <div>
-            <div>Welcome</div>
-            <Link to="/login">Login</Link><br />
+        <>
+            {/* <Link to="/login">Login</Link><br />
             <Link to="/register">Register</Link><br />
-            <Link to="/Too_panjai">Too panjai</Link><br />
+            <Link to="/Too_panjai">Too panjai</Link><br /> */}
             <Foundation/>
-        </div>
+            <Home/>
+        </>
+           
     )
 }
 

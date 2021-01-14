@@ -6,14 +6,14 @@ const express = require("express"),
     passportLocalMongoose = require('passport-local-mongoose'),
     methodOverride = require('method-override'),
     cors = require('cors'),
+    logger = require('morgan'),
     axios = require('axios');
     path = require('path')
-
 
 const user = require('./model/user');
 var postPanjaiRoutes = require('./routes/PostController')
 var postFDTRoutes = require('./routes/PostFDT')
-var authenticate = require('./routes/index')
+var authenticate = require('./routes/authen')
 
 const app = express();
 
@@ -66,6 +66,9 @@ app.use('/Foundation', postFDTRoutes)
 //     } catch (error) {}
 // })
 
+
+
+// dew is hear
 app.listen(3001, function (req, res) {
     console.log('Panjai has started!');
 });

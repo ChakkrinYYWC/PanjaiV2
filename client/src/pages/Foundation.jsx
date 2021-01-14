@@ -7,8 +7,7 @@ import { Fab, makeStyles, withStyles, Typography, IconButton, Dialog, Button, Te
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
-import PanjaiForm from '../components/PostPanjai/PostPanjaiForm'
-import Panjai from '../components/PostPanjai/PostPanjai'
+
 
 
 const styles = theme => ({
@@ -75,20 +74,6 @@ function Foundation({ classes, ...props }) {
             </Dialog>
 
         </Provider>
-
-        // <Provider store={store}>
-        //     <Fab size="small" color="secondary" aria-label="add" className={classes.margin} onClick={handleClickOpen}>
-        //         <AddIcon />
-        //     </Fab>
-
-        //     <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-        //         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        //             Post Foundation
-        //         </DialogTitle>
-        //         <PostFDT />
-        //         <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
-        //     </Dialog>
-        // </Provider>
     );
 }
 

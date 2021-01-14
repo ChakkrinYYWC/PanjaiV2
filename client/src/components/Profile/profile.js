@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import './profile.css'
 import { Link } from 'react-router-dom';
 
-class profile extends Component {
+function profile() {
 
-    render() {
         return (
             <div className="container">
                 <div className="box">
@@ -48,6 +47,6 @@ class profile extends Component {
     }
 
 
-}
 
-export default profile
+
+export default profile;
