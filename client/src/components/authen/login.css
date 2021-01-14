@@ -1,0 +1,83 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  font-family: 'Mali', cursive;
+  padding: 10px;
+}
+
+.grid-container > div {
+  
+  /* text-align: center; */
+  padding: 20px 0;
+  font-size: 20px;
+}
+
+.form-group {
+  padding: 5px;
+}
+
+.form-group > input  { 
+  width: 70%;
+  padding: 5px 10px;
+}
+
+/* /*/
+.item1{
+  margin: 15px 20px 0px 20px;
+  align-self: center;
+}
+
+.item1 > img {
+  width: 100%;
+}
+.item2{
+  margin: 10%;
+  padding: 30px 50px;
+}
+
+
+.button-login{
+  padding: 5px;
+
+  
+}
+
+
+
+
+@media screen and (max-width: 1024px ) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    font-family: 'Mali', cursive;
+
+  }
+
+  .item1 {
+    padding: 0px !important;
+  order :1;
+
+  }
+  .item2 {
+    
+    margin: 0 5%;
+    padding: 0px;
+    order :3;
+  }
+
+  .form-group > input  { 
+    width: 100%;
+    padding: 2px 10px;
+    font-family: 'Mali', cursive;
+
+  }
+ 
+}
+
+.btn {
+  background-color: rgba(108, 96, 209, 0.925) ;
+  color: aliceblue;
+}
+
+
+

@@ -5,6 +5,8 @@ import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep } from "@material-ui/icons";
 import { TextField, withStyles, Button } from "@material-ui/core";
 import { Link, Redirect } from 'react-router-dom';
+import loginImg from "../img/login.svg";
+import "./login.css";
 
 const styles = theme => ({
     container: {
@@ -39,38 +41,56 @@ function LoginFrom() {
 
 /*-----------------------------------------------------------*/
     return (
-        <div className="container">
-            <h1>Login</h1>
-            <div>
+        <div className="grid-container" >
+            <div className="item1">
+                <div className="image">
+                     <img src={loginImg} />
+                </div>
+            </div>
+
+            <div className="item2">
+                <h1>เข้าสู่ระบบ</h1><br/>
                 <form>
-                    <div>
-                        <label>Username:</label>
+                
+                    <div className="form-group">
+                        <label>ชื่อผู้ใช้:</label><br />
                         <input
                         type="text"
-                        placeholder="Enter name"
+                        placeholder="ชื่อผู้ใช้"
                         onChange={(event) =>{
                             setUsername(event.target.value)
                         }}
                         >
                         </input>
                     </div>
-                    <div>
-                        <label>Password:</label>
+
+                    <div className="form-group">
+                        <label>รหัสผ่าน:</label><br />
                         <input
                         type="password"
-                        placeholder="Enter Password"
+                        placeholder="รหัสผ่าน"
                         onChange={(event) =>{
                             setPassword(event.target.value)
                         }}
                         >
                         </input>
                     </div>
-                    <div>
-                        <button type='submit' onClick={uploadFile}>Register</button>
+
+                    <div className="button-login">
+                        <button type='submit' className="btn btn-lg" onClick={uploadFile}>เข้าสู่ระบบ</button>
                     </div>
                 </form>
+                <div>
+                 <br />
+                     <h5>
+                        <a href="/">ลืมรหัสผ่าน</a> | <a href="/">สมัครสมาชิก</a>
+                    </h5>
+                </div>
             </div>
+
+
         </div>
+       
     )
 }
 
