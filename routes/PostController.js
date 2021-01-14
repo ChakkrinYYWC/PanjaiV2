@@ -8,24 +8,24 @@ const path = require('path')
 var { PostPanjai } = require('../model/postPanjai')
 
 const storage = multer.diskStorage({
-    destination: './public/uploads',
-    filename: function(req, file, cb) {
-        cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    destination: './public/uploads/Too-Panjai',
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 
-const imageFilter = function(req, file, cb){
+const imageFilter = function (req, file, cb) {
     var ext = path.extname(file.originalname);
-    if(ext !== '.png' && ext !== '.gif' && ext !== '.jpg' && ext !== '.jpeg'){
+    if (ext !== '.png' && ext !== '.gif' && ext !== '.jpg' && ext !== '.jpeg') {
         return cb(new Error('Only image is allowed'), false)
-        }
-        cb(null, true);
+    }
+    cb(null, true);
 };
 
-const upload = multer({storage: storage, fileFilter: imageFilter});
+const upload = multer({ storage: storage, fileFilter: imageFilter });
 
 router.get('/', (req, res) => {
-    PostPanjai.find((err, docs) => {
+    PostPanjai.find({}, (err, docs) => {
         if (!err)
             res.send(docs)
         else
@@ -34,7 +34,10 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', upload.single('image'), (req, res) => {
-    console.log(req.file.filename);
+    console.log('#1' + req.body.title);
+    console.log('#2' + req.body.message);
+    console.log('#3' + req.body.contect);
+    console.log('#4' + req.file.filename);
     var newRecord = new PostPanjai({
         title: req.body.title,
         message: req.body.message,
