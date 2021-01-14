@@ -46,8 +46,8 @@ const styles = theme => ({
         display: 'none',
     },
     imgpreview: {
-        width: "15%",
-        marginLeft: '500px'
+        width: "20%",
+        marginLeft: '140px'
         
     },
     primary: {
@@ -63,7 +63,7 @@ const styles = theme => ({
     },
     color1: {
         color: '#a13800',
-        marginLeft: '550px'
+        marginLeft: '150px'
     }
 
 })
