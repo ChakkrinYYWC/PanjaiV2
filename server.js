@@ -47,9 +47,7 @@ app.get('/image/:image', (req, res) => {
     res.sendFile(path.resolve(__dirname, './public/uploads/Too-Panjai/'+ req.params.image))
 })
 app.use('/authenticate', authenticate)
-app.use('/Too-Panjai', postPanjaiRoutes, (req, res) => {
-    console.log('welcome to too-panjai')
-})
+app.use('/Too-Panjai', postPanjaiRoutes)
 app.use('/Foundation', postFDTRoutes)
 
 // app.post('/signin/facebook', async (req, res) => {

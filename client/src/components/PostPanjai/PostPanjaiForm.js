@@ -1,12 +1,14 @@
 import React, { useEffect, useState, Component, useRef } from "react";
-import { TextField, withStyles, Button, Grid } from "@material-ui/core";
+import { TextField, withStyles, Button, colors, IconButton, Grid } from "@material-ui/core";
 import useForm from "./useForm";
 import { connect } from "react-redux";
 import * as actions from "../../action/postPanjai";
 import ButterToast, { Cinnamon } from "butter-toast";
 import { AssignmentTurnedIn, Repeat } from "@material-ui/icons";
-import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
+
+
 import axios from 'axios'
 
 const defaultImageSrc = '/0112.png'
@@ -52,7 +54,7 @@ const styles = theme => ({
         background: 'white',
         padding: '10px 10px 10px 20px',
         marginBlock: '15px',
-        boxShadow: '0 5px 6px 5px rgba(187, 130, 44, 0.925)',
+        boxShadow: '0 2px 3px 2px rgba(187, 130, 44, 0.925)',
     },
     paper: {
         padding: theme.spacing(2),

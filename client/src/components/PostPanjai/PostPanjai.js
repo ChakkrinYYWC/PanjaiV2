@@ -1,17 +1,15 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as action from '../../action/postPanjai'
-import { Divider, Grid, Paper, Typography, withStyles, List, ListItem, ListItemText, Button,makeStyles } from '@material-ui/core';
+import { Divider, Grid, Paper, Typography, withStyles, List, ListItem, ListItemText, Button, makeStyles } from '@material-ui/core';
 import PostPanjaiForm from './PostPanjaiForm'
 import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep } from "@material-ui/icons";
 import moment from 'moment';
-import InputLabel from '@material-ui/core/InputLabel';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 
 
@@ -66,9 +64,20 @@ const styles = theme => ({
     },
     color1: {
         color: '#a13800'
-    }
+    },
+    judjudjud: {
+        marginLeft: '325px'
+
+    },
 
 })
+const options = [
+    'แก้ไข',
+    'ลบโพสต์'
+    
+];
+
+const ITEM_HEIGHT = 48;
 
 const PostPanjai = ({ classes, ...props }) => {
 
@@ -92,10 +101,21 @@ const PostPanjai = ({ classes, ...props }) => {
             props.deletePostMessage(id, onSuccess)
     }
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <>
             <Grid container justify="center">
-                <Grid item lg={12}>
+                <Grid item lg={4}>
                     {/* กรอบโพส */}
                     <Paper className={classes.post1}>
                         <PostPanjaiForm {...{ currentId, setCurrentId }} />
@@ -112,10 +132,44 @@ const PostPanjai = ({ classes, ...props }) => {
                                     <Fragment key={index}>
                                         <ListItem>
                                             <ListItemText>
+                                                {/* จุด3จุด */}
                                                 
+                                                <span>
+                                                    <IconButton
+                                                        aria-label="more"
+                                                        aria-controls="long-menu"
+                                                        aria-haspopup="true"
+                                                        onClick={handleClick}
+                                                        className={classes.judjudjud}
+                                                    >
+                                                        <MoreVertIcon />
+                                                    </IconButton>
+                                                    <Menu
+                                                        id="long-menu"
+                                                        anchorEl={anchorEl}
+                                                        keepMounted
+                                                        open={open}
+                                                        onClose={handleClose}
+                                                        PaperProps={{
+                                                            style: {
+                                                                maxHeight: ITEM_HEIGHT * 4.5,
+                                                                width: '20ch',
+                                                            },
+                                                        }}
+                                                    >
+                                                        {options.map((option) => (
+                                                            <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+                                                                {option}
+                                                            </MenuItem>
+                                                        ))}
+                                                    </Menu>
+
+                                                </span>
                                                 <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
                                                     {record.title}
+
                                                 </Typography>
+
 
                                                 <div className={classes.frontpost}>
                                                     ข้อมูล : {record.message}
