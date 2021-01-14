@@ -6,7 +6,7 @@ const Menuitems = [
     },
     {
         title: 'ตู้ปันใจ',
-        href: '/',
+        href: '/Too_panjai',
         cName: 'nav-links'
     },
     {
