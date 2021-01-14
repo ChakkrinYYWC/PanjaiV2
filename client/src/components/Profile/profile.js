@@ -7,11 +7,7 @@ function profile() {
         return (
             <div className="container">
                 <div className="box">
-                    <section>
-                        <div className="box-img">
-                            <img src="https://www.newtv.co.th/images/content/ct_20200712061446119.jpg"></img>
-                        </div>
-                    </section>
+                    
 
                     <section>
                         <div className="box-text">
