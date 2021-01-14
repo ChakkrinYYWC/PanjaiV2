@@ -1,0 +1,228 @@
+
+  /* .carousel-item {
+    position: relative;
+  }
+
+  .carousel { 
+    position: relative;
+  } */
+  
+  .d-block{
+    height: 610px;
+  }
+
+
+/*Category*/
+.category{
+  background-color: rgb(255, 236, 179);
+  height: 620px;
+  width: 100%;
+  margin: 0;
+  font-family: 'Mali', cursive;
+}
+
+.cardd{
+  width: 195px;
+  height: 190px;
+  text-align: center;
+  border-radius: 100px;
+  /* box-shadow: 5px 40px 2px 0 rgba(250, 250, 249, 0.808); */
+  
+}
+
+.cardd Img{
+  height: 170px;
+  width: 170px;
+
+}
+.cardd img {
+ margin-inline: 10px;
+}
+
+.CardTitle{
+  color:rgba(110, 76, 26, 0.925);
+  font-size: 19px;
+  text-decoration-line: none;
+  
+}
+.CardTitle:hover{
+  color:rgba(253, 253, 253, 0.925);
+  background-color: rgba(161, 128, 79, 0.925) ;
+  border-radius: 10px;
+  font-size: 18px;
+  text-decoration-line: none;
+  padding: 2px;
+  font-size: 20px;
+}
+
+
+.row{
+  padding-bottom: 50px;
+  padding-right: 400px;
+  padding-left: 400px;
+ 
+  
+}
+/* tupanjai */
+.tupanjai{
+  
+  background-color:rgba(177, 146, 99, 0.925) ;
+  height: 550px;
+  width: 100%;
+  margin: 0;
+  font-family: 'Mali', cursive;
+
+}
+
+.tupanjai .row{
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+}
+
+.tpjj{
+  text-align: center;
+  padding-top: 190px;
+}
+
+.tpjj p{
+  font-size: 25px;
+  color: white;
+  text-shadow: 2px 2px 4px  rgba(43, 18, 2, 0.925);
+}
+.tpjj a{
+  font-size: 45px;
+  font-family: 'Chonburi', cursive;
+  color: rgba(77, 50, 9, 0.925);
+  text-decoration-line: none;
+ 
+  font-weight: bold;
+  text-shadow: 5px 5px 2px rgba(231, 229, 226, 0.925);
+}
+.tpjj .tpj:hover{
+  font-size: 55px;
+  
+}
+
+.tpjj .far{
+  color: white;
+  text-shadow: none;
+  font-size: 40px;
+}
+
+
+  /*รอยยิ้ม*/
+  h1, p {
+    font-size: 15px;
+    margin-top: 15px;
+    padding: 0px;
+    font-family: 'Mali', cursive;
+    color: rgb(32, 17, 6);
+  }
+
+  h2 {
+    font-size: 30px;
+    margin: 70px;
+    text-align: center;
+    font-family: 'Mali', cursive;
+    font-weight: bold;
+    color: rgb(151, 114, 85);
+    
+  }
+
+  h3{
+    padding: 30px;
+    font-size: 40px;
+    text-align: center;
+  
+    font-weight: bold;
+    color: rgba(141, 90, 18, 0.925);
+  
+  }
+
+ 
+ .card{
+     background-image: src("./01.jpg"); 
+  }   
+
+  ul.card-stacks {
+
+    list-style-type: none;
+    margin: 0px 450px 0px;
+    padding: 0px;
+    position: relative;
+    cursor: pointer;
+    height:670px;
+
+  }
+
+  ul.card-stacks li.stack {
+    position: absolute;
+    left: 0px;
+    transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.02);
+  }
+
+  ul.card-stacks li.stack ul.cards-down li.card {
+    transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.22);
+    left: 0px;
+    transition-delay: 0.4s;
+    background: #FFF;
+    overflow: hidden;
+    height: 210px;
+    width: 210px;
+    border-radius:10px;
+    position: absolute;
+    top: 0px;
+    box-shadow: 3px 4px 2px 0 rgba(85, 52, 4, 0.925);
+  }
+  ul.card-stacks li.stack ul.cards-down li.card img {
+    max-width: 100%;
+    height: 80%;
+  }
+  
+  ul.card-stacks li.stack ul.cards-down li.card div.content {
+    padding: 5px 5px;
+  }
+
+  ul.card-stacks li.stack ul.cards-down li.card.card-1 {
+    z-index: 10;
+    transform: rotateZ(-2deg);
+  }
+
+  ul.card-stacks li.stack ul.cards-down li.card.card-2 {
+    z-index: 9;
+    transform: rotateZ(-7deg);
+  }
+
+  ul.card-stacks li.stack ul.cards-down li.card.card-3 {
+    z-index: 8;
+    transform: rotateZ(5deg);
+  }
+
+  ul.card-stacks.transition li.stack.stack-1 {
+    left: 0px;
+  }
+
+  ul.card-stacks.transition li.stack.stack-2 {
+    left: 220px;
+  }
+
+  ul.card-stacks.transition li.stack.stack-3 {
+    left: 440px;
+  }
+
+  ul.card-stacks.transition li.stack ul.cards-down li.card {
+    transform: rotateZ(0deg);
+  }
+
+  ul.card-stacks.transition li.stack ul.cards-down li.card.card-1 {
+    top: 440px;
+  }
+
+  ul.card-stacks.transition li.stack ul.cards-down li.card.card-2 {
+    top: 220px;
+  }
+ 
+
+
+  

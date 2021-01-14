@@ -1,31 +1,31 @@
 
 .NavbarItems {
-    background: rgba(108, 96, 209, 0.925) ;
-    height: 70px;
+    background: rgba(161, 128, 79, 0.925) ;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
+    font-size: 18px;
     font-family: 'Mali', cursive;
-
-    text-shadow: 2px 2px 4px #49347a;
-   
+    text-shadow: 2px 2px 4px  rgba(214, 176, 119, 0.925);
+    /* text-shadow: 2px 2px 4px  rgba(187, 130, 44, 0.925);
+    */
 }
 
 .navbar-logo{
-    font-size: 23px;
+    font-size: 30px;
     color: white;
     justify-content: start;
     cursor: pointer;
     font-family: 'Mali', cursive;
-    text-shadow: 2px 2px 4px #49347a;
+    text-shadow: 3px 3px 4px rgba(43, 28, 7, 0.925);
     font-weight: bold;
 
 }
 
 .nav-menu {
     padding: 120px;
-    margin: 10px;
+    margin: 25px;
     display: grid;
     grid-template-columns: repeat(7,auto);
     grid-gap:30px;
@@ -39,17 +39,21 @@
     padding: 0.2rem 0.9rem;
 
 }
+.nav-links-mobile{
+    background-color:rgba(110, 76, 26, 0.925);
+    border-radius: 15px;
+}
 
 .nav-links:hover{
-    background-color: rgb(152, 175, 219);
-    border-radius: 6px;
- 
+    background-color: rgba(110, 76, 26, 0.925);
+    border-radius: 15px;
+    
     color: white;
    
 
 }
 .nav-links-mobile:hover{
-    background-color: rgb(152, 175, 219);
+    background-color:rgba(110, 76, 26, 0.925);
     border-radius: 6px;
    
     transition: all 0.2s ease-out;
@@ -100,20 +104,22 @@
         width: 100%;
         height: 250px;
         position: absolute;
-        top:50px;
+        top:60px;
         opacity: 1;
         transition: all 0.5s ease;
         margin-top: 20px;
 
     }
-   
+    .carousel {
+        z-index: 1;
+    }
     
     .nav-menu.active{
-        background: rgba(53, 40, 194, 0.685);
+       background:  rgba(161, 128, 79, 0.925) ;
         padding: 1.2rem;
         display: table;
         width: 100%; 
-
+        z-index: 10;
     }
     .nav-links-mobile{
         display:none;
@@ -122,17 +128,20 @@
     .hidden{
         display:inline-block;
         color: white;
+       
+        border-radius: 10px;
     
     }
     .hidden:hover{
         color: white;
-        background-color: rgb(152, 175, 219);
-        border-radius: 6px;
+        background-color:rgba(85, 52, 4, 0.925);
+        border-radius: 10px;
+        
         transition: all 0.2s ease-out;
     }
     .nav-links:hover{
-        background-color: rgb(152, 175, 219);
-        border-radius: 6px;
+        background-color: rgba(85, 52, 4, 0.925);
+        border-radius: 15px;
         width: 200px;
         color: white;
     
@@ -140,7 +149,7 @@
 
     .navbar-logo{
         position: absolute;
-        top: 22px;
+        top: 10px;
         left: 20px;
         
     }
@@ -148,7 +157,7 @@
     .menu-icon{
         display: block;
         position: absolute;
-        top: 10px;
+        top: 15px;
         right: 10px;
         transform: translate(-100%, 60%);
         font-size: 1.0rem;

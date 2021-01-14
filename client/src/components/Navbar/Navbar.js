@@ -35,7 +35,7 @@ class Navbar extends Component {
                         })}
 
                         <li className="itemlist">
-                            <Link to="/" className="hidden">เข้าสู่ระบบ</Link>
+                            <Link to="/profile" className="hidden">เข้าสู่ระบบ</Link>
                         </li>
                     </ul>
 
