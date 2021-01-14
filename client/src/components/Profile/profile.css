@@ -19,6 +19,7 @@ body {
     display: grid;
     grid-template-columns: 40% 60%;
     grid-gap: 1rem;
+    
 }
 .box-img img{
     width: 100%;
@@ -36,16 +37,13 @@ body {
     color:#FF69B4;
     margin-right: 120px;
 }
-.box img {
-    
-    padding: 70px 70px 20px 35px;
-}
+
 
 .box-text {
     
     padding: 70px 70px 70px 35px;
     
-}
+    
 
 .box-text h1 {
     font-style: 48px;
@@ -63,6 +61,8 @@ body {
     letter-spacing: 0.25px;
     margin-bottom: 15px;
     font-family: 'Mali', cursive;
+    
+}
 
 }
 .box-text span {
@@ -78,7 +78,7 @@ body {
 }
 
 .button {
-    background-color:rgba(108, 96, 209, 0.925);
+    background-color:rgba(187, 130, 44, 0.925);
     color: white;
     width: 100px;
     font-family: 'Mali', cursive;
@@ -86,7 +86,7 @@ body {
     
 }
 .button:hover{
-    background-color:rgb(152, 175, 219);
+    background-color:rgba(85, 52, 4, 0.925);
 }
 
 .Post{

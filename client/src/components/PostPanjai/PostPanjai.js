@@ -66,7 +66,7 @@ const styles = theme => ({
         color: '#a13800'
     },
     judjudjud: {
-        marginLeft: '325px'
+        marginLeft: '90px'
 
     },
 
@@ -74,7 +74,7 @@ const styles = theme => ({
 const options = [
     'แก้ไข',
     'ลบโพสต์'
-    
+
 ];
 
 const ITEM_HEIGHT = 48;
@@ -132,97 +132,107 @@ const PostPanjai = ({ classes, ...props }) => {
                                     <Fragment key={index}>
                                         <ListItem>
                                             <ListItemText>
-                                                {/* จุด3จุด */}
-                                                
-                                                <span>
-                                                    <IconButton
-                                                        aria-label="more"
-                                                        aria-controls="long-menu"
-                                                        aria-haspopup="true"
-                                                        onClick={handleClick}
-                                                        className={classes.judjudjud}
-                                                    >
-                                                        <MoreVertIcon />
-                                                    </IconButton>
-                                                    <Menu
-                                                        id="long-menu"
-                                                        anchorEl={anchorEl}
-                                                        keepMounted
-                                                        open={open}
-                                                        onClose={handleClose}
-                                                        PaperProps={{
-                                                            style: {
-                                                                maxHeight: ITEM_HEIGHT * 4.5,
-                                                                width: '20ch',
-                                                            },
-                                                        }}
-                                                    >
-                                                        {options.map((option) => (
-                                                            <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                                                                {option}
-                                                            </MenuItem>
-                                                        ))}
-                                                    </Menu>
 
-                                                </span>
-                                                <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
-                                                    {record.title}
+                                                <Grid container>
+                                                    <Grid item xs={8}>
+                                                        <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
+                                                            {record.title}
 
-                                                </Typography>
+                                                        </Typography>
+                                                    </Grid>
+                                                    <Grid item sm={4}>
+                                                            {/* จุด3จุด */}
 
+                                                    <span>
+                                                        <IconButton
+                                                            aria-label="more"
+                                                            aria-controls="long-menu"
+                                                            aria-haspopup="true"
+                                                            onClick={handleClick}
+                                                            className={classes.judjudjud}
+                                                        >
+                                                            <MoreVertIcon />
+                                                        </IconButton>
+                                                        <Menu
+                                                            id="long-menu"
+                                                            anchorEl={anchorEl}
+                                                            keepMounted
+                                                            open={open}
+                                                            onClose={handleClose}
+                                                            PaperProps={{
+                                                                style: {
+                                                                    maxHeight: ITEM_HEIGHT * 4.5,
+                                                                    width: '20ch',
+                                                                },
+                                                            }}
+                                                        >
+                                                            {options.map((option) => (
+                                                                <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+                                                                    {option}
+                                                                </MenuItem>
+                                                            ))}
+                                                        </Menu>
 
-                                                <div className={classes.frontpost}>
-                                                    ข้อมูล : {record.message}
-                                                </div>
-                                                <Grid container justify="center">
-                                                    <div className={classes.frampicture} >
-                                                        <img src={'http://localhost:3001/image/' + record.image} className={classes.picture} />
-                                                    </div>
+                                                    </span>
+                                                    </Grid>
                                                 </Grid>
-                                                <div className={classes.frontpost}>
-                                                    เวลาที่ลง : {moment(record.Timestamp).calendar()}
-                                                </div>
-                                                <div className={classes.frontpost}>
-                                                    โทร : {record.contect}
-                                                </div>
-                                                <div className={classes.frontpost}>
-                                                    {record.location}
-                                                </div>
-                                                <Grid container justify="center">
-                                                    <div className={classes.botton1}>
-                                                        <Button variant="contained" color="primary" size="small"
-                                                            className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น
-                                                            onClick={() => setCurrentId(record._id)}>
-                                                            แก้ไข
-                                                    </Button>
-                                                        <Button variant="contained" color="secondary" size="small"
-                                                            className={`${classes.smMargin1} ${classes.frontpost}`}
-                                                            onClick={() => onDelete(record._id)}>
-                                                            ลบ
-                                                    </Button>
-                                                    </div></Grid>
+                                                   
+                                                    
 
-                                                {/* รูปแบบช่อง */}
+
+
+                                                    <div className={classes.frontpost}>
+                                                        ข้อมูล : {record.message}
+                                                    </div>
+                                                    <Grid container justify="center">
+                                                        <div className={classes.frampicture} >
+                                                            <img src={'http://localhost:3001/image/' + record.image} className={classes.picture} />
+                                                        </div>
+                                                    </Grid>
+                                                    <div className={classes.frontpost}>
+                                                        เวลาที่ลง : {moment(record.Timestamp).calendar()}
+                                                    </div>
+                                                    <div className={classes.frontpost}>
+                                                        โทร : {record.contect}
+                                                    </div>
+                                                    <div className={classes.frontpost}>
+                                                        {record.location}
+                                                    </div>
+                                                    <Grid container justify="center">
+                                                        <div className={classes.botton1}>
+                                                            <Button variant="contained" color="primary" size="small"
+                                                                className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น
+                                                                onClick={() => setCurrentId(record._id)}>
+                                                                แก้ไข
+                                                    </Button>
+                                                            <Button variant="contained" color="secondary" size="small"
+                                                                className={`${classes.smMargin1} ${classes.frontpost}`}
+                                                                onClick={() => onDelete(record._id)}>
+                                                                ลบ
+                                                    </Button>
+                                                        </div></Grid>
+
+                                                    {/* รูปแบบช่อง */}
                                             </ListItemText>
                                         </ListItem>
-                                        <Divider component='li' />
+                                            <Divider component='li' />
                                     </Fragment>
                                 </Paper>
                             </Grid>
                         )
                     })
                 }
-            </Grid>
+                            </Grid>
         </>
     );
 }
 
 const mapStateToProps = state => ({
-    postPanjaiList: state.postPanjai.list
+                postPanjaiList: state.postPanjai.list
 })
 
 const mapActionToProps = {
-    fetchAllPostPanjai: action.fetchAll,
+                fetchAllPostPanjai: action.fetchAll,
     deletePostMessage: action.Delete
 }
 
