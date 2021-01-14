@@ -1,14 +1,9 @@
 import Axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
-import ButterToast, { Cinnamon } from "butter-toast";
-import { DeleteSweep } from "@material-ui/icons";
-import { TextField, withStyles, Button } from "@material-ui/core";
 import { Link, Redirect } from 'react-router-dom';
-import FileUpload from "../components/FileUpload";
-import useForm from "../components/useForm";
 
-function Register() {
+function RegisterFrom() {
 /*------------------------------------------------------------*/
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
@@ -18,8 +13,13 @@ function Register() {
 
     const uploadFile = (event) => {
         event.preventDefault()
+        console.log(file)
+        console.log(username)
+        console.log(password)
+        console.log(Email)
         if (password !== CPassword){
             window.alert('Confirm password incorrect!')
+            //window.location.href = "http://localhost:3000/Login"
             return <Redirect to='/' />
         }
         else{
@@ -28,7 +28,7 @@ function Register() {
             formData.append('username', username)
             formData.append('password', password)
             formData.append('email', Email)
-            //console.log(formData)
+            console.log(formData)
             Axios.post('/authenticate/register', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -109,4 +109,4 @@ function Register() {
     )
 }
 
-export default Register;
+export default RegisterFrom;

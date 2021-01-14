@@ -1,6 +1,4 @@
 
-function secret() {
-    return 'jdfugbidfugbj';
-}
-
-module.exports = secret;
+module.exports = {
+    secret: 'PanjaiWebDonations',
+};

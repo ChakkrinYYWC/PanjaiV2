@@ -7,11 +7,17 @@ const cors = require('cors');
 const axios = require('axios');
 const multer = require('multer');
 const path = require('path');
-const jwtSecret = require('../config/jwtConfig');
 const jwt = require('jsonwebtoken');
-const router = require("./PostController");
+
 const server = express.Router();
+
+//export files
+const middleware = require('../middleware/mdw');
+const jwtConfig = require("../config/jwtConfig");
+
+//model
 const user = require('../model/user');
+
 const storage = multer.diskStorage({
     destination: './public/uploads/IDcard',
     filename: function(req, file, cb) {
@@ -26,7 +32,7 @@ const imageFilter = function(req, file, cb){
         cb(null, true);
 };
 const upload = multer({storage: storage, fileFilter: imageFilter});
-const secret = 'kjsfdgdjhbdg'; // should not be here
+
 /*-------------------------------------------------------------------------------*/
 // server.get('/user',async (req, res)=>{
 //     let response = await user.find({})
@@ -48,20 +54,21 @@ server.get('/login', (req, res) => {
 })
 
 server.post("/login", function(req, res, next){
-    console.log('username: '+req.body.username)
-    console.log('password: '+req.body.password)
+    //console.log('username: '+req.body.username)
+    //console.log('password: '+req.body.password)
+    //console.log('token: '+req.body.PanjaiToken)
     passport.authenticate('local', function(err, Userdata) {
         if (err) { 
             return next(err); 
         }
-        const token = jwt.sign({ id: Userdata.username }, secret);
+        const token = jwt.sign({ id: Userdata.username }, jwtConfig.secret);
         //console.log("token: " + token)
         user.findByIdAndUpdate(Userdata, {accessToken:token}, function(error,update){
             if(error){
                 console.log(error)
             }else{
-                console.log(update);
-                res.send(update)
+                //console.log(update);
+                res.send(update.accessToken)
             }
         })
     })(req, res, next);
@@ -87,7 +94,7 @@ server.get('/register', (req, res) => {
     })
 })
 server.post("/register", upload.single('IDcard'), function(req, res){
-    console.log('filename: '+req.file.filename)
+    // console.log('filename: '+req.file.filename)
     user.register(new user({username: req.body.username, idcard: req.file.filename, email: req.body.email, accessToken: null}), req.body.password,function(error, user){
         if(error){
             console.log(error);
@@ -99,6 +106,7 @@ server.post("/register", upload.single('IDcard'), function(req, res){
           //res.redirect('/')
         
         })
+        console.log('user created')
     })
 })
 server.get("/regisimage/:idcard", function(req, res){
