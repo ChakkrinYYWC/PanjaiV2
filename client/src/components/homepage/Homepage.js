@@ -18,9 +18,15 @@ import {
 
 
 function Homepage() {
+
+    const [display,setDisplay] = useState(false)
+
+    const Handledisplay = () => {
+        setDisplay(!display);
+    }
+
     return (
         <div>
-    
     
             {/* ----------------------slideshow------------------------------------------------*/}
             <Carousel>
@@ -53,7 +59,6 @@ function Homepage() {
                     />
                 </Carousel.Item>
             </Carousel>
-
 
             {/* <div id="demo" className="carousel slide" data-ride="carousel">
 
@@ -167,7 +172,9 @@ function Homepage() {
             </div>
             {/* ----------------------------รอยยิ้ม------------------------------------------ */}
             <div className="card">
-                <ul class="card-stacks">
+                <ul className={display? "card-stacks transition" : "card-stacks"}
+                onClick={Handledisplay}
+                >
                     <li class="title">
                         <h2>" รอยยิ้มแห่งความสุข<i class="far fa-smile-wink"></i> "</h2>
                     </li>
@@ -208,7 +215,7 @@ function Homepage() {
                             </li>
                             <li class="card card-3"><img src="https://obs.line-scdn.net/0hmdaLuIDjMktcNRmSeHxNHGZjMSRvWSFIOANjSABbbH8kViEeaFMpJX83b3t4UHUVMgB_KHs0KXohUiUZYVIp/w644" />
                                 <div class="content">
-                                    <center><p>" ขอบคุณนะคะ "</p></center>
+                                    <center><p>" ขอบคุณนะคะ5 "</p></center>
                                 </div>
                             </li>
                         </ul>
@@ -216,13 +223,12 @@ function Homepage() {
                 </ul>
             </div>
         </div>
-
     )
 }
 
-$('ul.card-stacks').on('click', function () {
-    $(this).toggleClass('transition');
-});
+// $('ul.card-stacks').on('click', function () {
+//     $(this).toggleClass('transition');
+// });
 
 
 export default Homepage;
