@@ -42,6 +42,7 @@
 .nav-links-mobile{
     background-color:rgba(110, 76, 26, 0.925);
     border-radius: 15px;
+    padding: 0.2rem 0.9rem;
 }
 
 .nav-links:hover{
@@ -56,6 +57,7 @@
     background-color:rgba(110, 76, 26, 0.925);
     border-radius: 6px;
    
+    color: white;
     transition: all 0.2s ease-out;
 }
 

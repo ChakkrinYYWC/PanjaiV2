@@ -48,8 +48,8 @@ class Navbar extends Component {
                     <span class="noti">
                         <span type="button" href="" className="bell"><i class="fas fa-bell"></i></span>
                     </span>
-                    <div type="button" href="/Login" className="nav-links-mobile">เข้าสู่ระบบ</div>
-
+                    <Link to="/Login" className="nav-links-mobile"> เข้าสู่ระบบ</Link>
+                    {/* <div type="button" href="Login" className="nav-links-mobile">เข้าสู่ระบบ</div> */}
                 </nav>
             </div>
         )
