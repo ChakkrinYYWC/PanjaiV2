@@ -6,9 +6,6 @@ import * as actions from "../../action/postPanjai";
 import ButterToast, { Cinnamon } from "butter-toast";
 import { AssignmentTurnedIn, Repeat } from "@material-ui/icons";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-
-
-
 import axios from 'axios'
 
 const defaultImageSrc = '/0112.png'
