@@ -2,6 +2,8 @@ import Axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import loginImg from "../img/login.svg";
+import "./login.css";
 
 function RegisterFrom() {
 /*------------------------------------------------------------*/
@@ -42,70 +44,80 @@ function RegisterFrom() {
     }
 
     return (
-        <div className="container">
-        <h1>Register</h1>
-        <h6>Please register.</h6>
-        <div>
-            <form>
-                <div>
-                    <label>Username:</label>
-                    <input
-                    type="text"
-                    name="Username"
-                    placeholder="Enter name"
-                    onChange={(event) =>{
-                        setUsername(event.target.value)
-                    }}
-                    />
+        <div className="grid-container">
+            <div className="item1">
+                <div className="image">
+                    <img src={loginImg} />
                 </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                    type="password"
-                    name="Password"
-                    placeholder="Enter Password"
-                    onChange={(event) =>{
-                        setPassword(event.target.value)
-                    }}
-                    />
-                </div>
-                <div>
-                    <label>Confirm password:</label>
-                    <input
-                    type="password"
-                    name="CPassword"
-                    placeholder="Enter Password"
-                    onChange={(event) =>{
-                        setCPassword(event.target.value)
-                    }}
-                    />
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input
-                    type="email"
-                    name="email"
-                    placeholder="Enter email"
-                    onChange={(event) =>{
-                        setEmail(event.target.value)
-                    }}
-                    />
-                </div>
-                <div>
-                    <input
-                        type='file'
-                        id='customFile'
+            </div>
+
+            <div className="item2">
+                <h1>สมัครสมาชิก</h1><br/>
+                <form>
+                    <div className="form-group">
+                        <label>ชื่อผู้ใช้:</label><br />
+                        <input
+                        type="text"
+                        name="Username"
+                        placeholder="ชื่อผู้ใช้"
                         onChange={(event) =>{
-                            setFile(event.target.files[0])
+                            setUsername(event.target.value)
                         }}
-                    />
-                </div> 
-                <div>
-                    <button type="submit" onClick={uploadFile}>Register</button>
-                </div>
-            </form>
-        </div>
-        </div>
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label>รหัสผ่าน: </label><br/>
+                        <input
+                        type="password"
+                        name="Password"
+                        placeholder="รหัสผ่าน"
+                        onChange={(event) =>{
+                            setPassword(event.target.value)
+                        }}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label>ยืนยันรหัสผ่าน: </label><br/>
+                        <input
+                        type="password"
+                        name="CPassword"
+                        placeholder="รหัสผ่าน"
+                        onChange={(event) =>{
+                            setCPassword(event.target.value)
+                        }}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label>อีเมล: </label><br/>
+                        <input
+                        type="email"
+                        name="email"
+                        placeholder="อีเมล"
+                        onChange={(event) =>{
+                            setEmail(event.target.value)
+                        }}
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type='file'
+                            id='customFile'
+                            onChange={(event) =>{
+                                setFile(event.target.files[0])
+                            }}
+                        />
+                    </div> 
+                    <br/>
+                    <div>
+                        <button type="submit" className="btn btn-lg " onClick={uploadFile}>สมัครสมาชิก</button>
+                    </div>
+                </form>
+            </div>
+            </div>
     )
 }
 
