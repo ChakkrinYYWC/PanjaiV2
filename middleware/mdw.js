@@ -17,10 +17,10 @@ module.exports = {
         if(webToken !== DBToken){
             res.send('reLogin')
         } else {
+            console.log('webToken: '+webToken);
+            console.log('DBToken: '+DBToken);
             return next()
         }
-        console.log('webToken: '+webToken);
-        console.log('DBToken: '+DBToken);
     }
     // isLoggedin(req, res, next){
     //     if(req.isAuthenticated()){

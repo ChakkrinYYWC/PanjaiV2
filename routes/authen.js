@@ -59,15 +59,17 @@ server.post("/login", function(req, res, next){
     //console.log('token: '+req.body.PanjaiToken)
     passport.authenticate('local', function(err, Userdata) {
         if (err) { 
-            return next(err); 
+            console.log(err)
+            res.send(err); 
         }
         const token = jwt.sign({ id: Userdata.username }, jwtConfig.secret);
         //console.log("token: " + token)
         user.findByIdAndUpdate(Userdata, {accessToken:token}, function(error,update){
             if(error){
                 console.log(error)
+                res.send(err)
             }else{
-                //console.log(update);
+                console.log("User logged in");
                 res.send(update.accessToken)
             }
         })
@@ -85,7 +87,7 @@ server.post("/login", function(req, res, next){
 //     })(req, res, next);
 // });
 /*-------------------------------------------------------------------------------*/
-server.get('/register', (req, res) => {
+server.get('/register',middleware.isToken , (req, res) => {
     user.find((err, docs) => {
         if (!err)
             res.send(docs)
@@ -94,7 +96,8 @@ server.get('/register', (req, res) => {
     })
 })
 server.post("/register", upload.single('IDcard'), function(req, res){
-    // console.log('filename: '+req.file.filename)
+    console.log("hello")
+    console.log('filename: '+req.file.filename)
     user.register(new user({username: req.body.username, idcard: req.file.filename, email: req.body.email, accessToken: null}), req.body.password,function(error, user){
         if(error){
             console.log(error);
@@ -104,9 +107,8 @@ server.post("/register", upload.single('IDcard'), function(req, res){
         passport.authenticate('local')(req,res,function(){
           //req.flash('success','Welcome to our website ,'+ user.username)
           //res.redirect('/')
-        
+            console.log('user created')
         })
-        console.log('user created')
     })
 })
 server.get("/regisimage/:idcard", function(req, res){
