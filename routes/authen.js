@@ -34,16 +34,23 @@ const imageFilter = function(req, file, cb){
 const upload = multer({storage: storage, fileFilter: imageFilter});
 
 /*-------------------------------------------------------------------------------*/
-// server.get('/user',async (req, res)=>{
-//     let response = await user.find({})
-//     console.log(response)
-//     return res.send(response);
+// server.post('/isLogin',async (req, res)=>{
+//         console.log(req.body.PanjaiToken)
+//         if (req.body.PanjaiToken === undefined){
+//             console.log("user didn't login")
+//             res.send("noLogin")
+//         } else {
+//             user.find({accessToken: req.body.PanjaiToken}, function(err, found){
+//                 if(err){
+//                     console.log(err);
+//                 } else {
+//                     console.log("pass")
+//                     res.send("pass")
+//                 }
+//             })
+//         }
 // })
 /*-------------------------------------------------------------------------------*/
-// server.post("/login", passport.authenticate('local',{
-//     successRedirect: '/homepage',
-//     failureRedirect: '/login',
-// }))
 server.get('/login', (req, res) => {
     user.find((err, docs) => {
         if (!err)
@@ -59,15 +66,17 @@ server.post("/login", function(req, res, next){
     //console.log('token: '+req.body.PanjaiToken)
     passport.authenticate('local', function(err, Userdata) {
         if (err) { 
-            return next(err); 
+            console.log(err)
+            res.send(err); 
         }
         const token = jwt.sign({ id: Userdata.username }, jwtConfig.secret);
         //console.log("token: " + token)
         user.findByIdAndUpdate(Userdata, {accessToken:token}, function(error,update){
             if(error){
                 console.log(error)
+                res.send(err)
             }else{
-                //console.log(update);
+                console.log("User logged in");
                 res.send(update.accessToken)
             }
         })
@@ -93,8 +102,8 @@ server.get('/register', (req, res) => {
             console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
     })
 })
-server.post("/register", upload.single('IDcard'), function(req, res){
-    // console.log('filename: '+req.file.filename)
+server.post("/register",middleware.isLogin, upload.single('IDcard'), function(req, res){
+    console.log('filename: '+req.file.filename)
     user.register(new user({username: req.body.username, idcard: req.file.filename, email: req.body.email, accessToken: null}), req.body.password,function(error, user){
         if(error){
             console.log(error);
@@ -104,9 +113,8 @@ server.post("/register", upload.single('IDcard'), function(req, res){
         passport.authenticate('local')(req,res,function(){
           //req.flash('success','Welcome to our website ,'+ user.username)
           //res.redirect('/')
-        
+            console.log('user created')
         })
-        console.log('user created')
     })
 })
 server.get("/regisimage/:idcard", function(req, res){

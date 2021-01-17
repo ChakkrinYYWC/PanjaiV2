@@ -16,6 +16,8 @@ import {
     Redirect
 } from "react-router-dom";
 
+/*----------------------------------------------------------------------*/
+
 function Homepage() {
 
     const [display,setDisplay] = useState(false)
@@ -26,7 +28,6 @@ function Homepage() {
 
     return (
         <div>
-    
             {/* ----------------------slideshow------------------------------------------------*/}
             <Carousel>
                 <Carousel.Item>

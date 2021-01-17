@@ -13,6 +13,17 @@ function RegisterFrom() {
     const [Email, setEmail] = useState();
     const [file, setFile] = useState();
 
+    const PanjaiToken = localStorage.getItem('PanjaiToken');
+    Axios.post('/authenticate/register', PanjaiToken,{
+    }).then(res => {
+        console.log(res)
+        if(res.data === "noLogin"){
+            window.location.href = "http://localhost:3000/Login"
+        } else {
+            console.log(PanjaiToken)
+        }
+    }).catch(error => console.log(error))
+
     const uploadFile = (event) => {
         event.preventDefault()
         console.log(file)
@@ -30,17 +41,17 @@ function RegisterFrom() {
             formData.append('username', username)
             formData.append('password', password)
             formData.append('email', Email)
-            console.log(formData)
+            formData.append('PanjaiToken', PanjaiToken)
+            //console.log(JSON.stringify(formData))
             Axios.post('/authenticate/register', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             }).then(res => {
-                console.log(res.data.message);
-                window.alert("ERROR: "+res.data.message)
+                console.log(res);
+                window.alert("ERROR: "+res)
             }).catch(error => console.log(error))
         }
-        return <Redirect to="/login"></Redirect>
     }
 
     return (
@@ -57,48 +68,48 @@ function RegisterFrom() {
                     <div className="form-group">
                         <label>ชื่อผู้ใช้:</label><br />
                         <input
-                        type="text"
-                        name="Username"
-                        placeholder="ชื่อผู้ใช้"
-                        onChange={(event) =>{
-                            setUsername(event.target.value)
-                        }}
+                            type="text"
+                            name="Username"
+                            placeholder="ชื่อผู้ใช้"
+                            onChange={(event) =>{
+                                setUsername(event.target.value)
+                            }}
                         />
                     </div>
 
                     <div className="form-group">
                         <label>รหัสผ่าน: </label><br/>
                         <input
-                        type="password"
-                        name="Password"
-                        placeholder="รหัสผ่าน"
-                        onChange={(event) =>{
-                            setPassword(event.target.value)
-                        }}
+                            type="password"
+                            name="Password"
+                            placeholder="รหัสผ่าน"
+                            onChange={(event) =>{
+                                setPassword(event.target.value)
+                            }}
                         />
                     </div>
 
                     <div className="form-group">
                         <label>ยืนยันรหัสผ่าน: </label><br/>
                         <input
-                        type="password"
-                        name="CPassword"
-                        placeholder="รหัสผ่าน"
-                        onChange={(event) =>{
-                            setCPassword(event.target.value)
-                        }}
+                            type="password"
+                            name="CPassword"
+                            placeholder="รหัสผ่าน"
+                            onChange={(event) =>{
+                                setCPassword(event.target.value)
+                            }}
                         />
                     </div>
 
                     <div className="form-group">
                         <label>อีเมล: </label><br/>
                         <input
-                        type="email"
-                        name="email"
-                        placeholder="อีเมล"
-                        onChange={(event) =>{
-                            setEmail(event.target.value)
-                        }}
+                            type="email"
+                            name="email"
+                            placeholder="อีเมล"
+                            onChange={(event) =>{
+                                setEmail(event.target.value)
+                            }}
                         />
                     </div>
 
@@ -113,11 +124,11 @@ function RegisterFrom() {
                     </div> 
                     <br/>
                     <div>
-                        <button type="submit" className="btn btn-lg " onClick={uploadFile}>สมัครสมาชิก</button>
+                        <button className="btn btn-lg " onClick={uploadFile}>สมัครสมาชิก</button>
                     </div>
                 </form>
             </div>
-            </div>
+        </div>
     )
 }
 
