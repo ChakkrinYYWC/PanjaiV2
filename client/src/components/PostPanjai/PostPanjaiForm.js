@@ -45,7 +45,7 @@ const styles = theme => ({
     imgpreview: {
         width: "20%",
         marginLeft: '140px'
-        
+
     },
     primary: {
         background: 'white',
@@ -64,7 +64,6 @@ const styles = theme => ({
     }
 
 })
-
 
 
 const PostPanjaiForm = ({ classes, ...props }) => {
@@ -141,7 +140,6 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         if (validate()) {
             if (props.currentId == 0) {
                 const formData = new FormData();
-
                 formData.append('image', file); // appending file
                 formData.append('title', values.title);
                 formData.append('message', values.message);
@@ -156,122 +154,232 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
     }
 
-    return (
-
-        <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
-            onSubmit={handleSubmit}>
-
-            <div>
-                <img src={src} alt={alt} className={classes.imgpreview} />
-            </div>
-
-            <Grid item xs={12} >
-                <input
-                    accept="image/*"
-                    className={classes.input}
-                    id="icon-button-file"
-                    type="file"
-                    onChange={showPreview}
-                />
-                <label htmlFor="icon-button-file" >
-                    <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1} >
-                        <PhotoCamera />
-                    </IconButton>
-                </label>
-            </Grid>
+    const closeEdit = e => {
+        e.preventDefault()
+        resetForm()
+        props.setCurrentId(0);
+    }
+    
 
 
-            <Grid item xs={12} sm={6} 
-            container
-                direction="row"
-                justify="center"
-                alignItems="center"
-            >
-                <TextField
-                    // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
-                    InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
-                    name="title"
-                    variant="filled"
-                    label="ชื่อ"
-                    fullWidth
-                    className={classes.paper}
-                    value={values.title}
-                    onChange={handleInputChange}
-                    {...(errors.title && { error: true, helperText: errors.title })}
-                />
-            </Grid>
+    if (props.currentId == 0) {
+        return (
+            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
+                onSubmit={handleSubmit}>
+                <Grid item xs={12} >
+                    <div>
+                        <img src={src} alt={alt} className={classes.imgpreview} />
+                    </div>
+                    <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="icon-button-file"
+                        type="file"
+                        onChange={showPreview}
+                    />
+                    <label htmlFor="icon-button-file" >
+                        <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1} >
+                            <PhotoCamera />
+                        </IconButton>
+                    </label>
+                </Grid>
 
 
-            <Grid item xs={12} sm={6}
-            container
-            direction="row"
-             justify="center"
-             alignItems="center" >
-
-                <TextField
-                    name="message"
-                    variant="filled"
-                    InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
-                    label="ข้อมูล"
-                    fullWidth
-                    multiline
-                    // rows={4}
-                    value={values.message}
-                    onChange={handleInputChange}
-                    {...(errors.message && { error: true, helperText: errors.message })}
-                />
-            </Grid>
-            <Grid item xs={12} sm={6}
-            container
-            direction="row"
-             justify="center"
-             alignItems="center" >
-
-                <TextField
-                    name="contect"
-                    variant="filled"
-                    InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
-                    label="เบอร์โทรศัพท์"
-                    fullWidth
-                    multiline
-                    value={values.contect}
-                    onChange={handleInputChange}
-                    {...(errors.contect && { error: true, helperText: errors.contect })}
-                />
-            </Grid>
-
-            <Grid item xs={12} sm={6} 
-            container
-                 direction="row"
-                justify="center"
-                alignItems="center"
-            >
-
-                <TextField
-                    name="location"
-                    variant="filled"
-                    InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
-                    label="ใส่ชื่อจังหวัด"
-                    fullWidth
-                    multiline
-                    value={values.location}
-                    onChange={handleInputChange}
-                    {...(errors.location && { error: true, helperText: errors.location })}
-                />
-            </Grid>
+                <Grid item xs={12} sm={6}
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                >
+                    <TextField
+                        // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        name="title"
+                        variant="filled"
+                        label="ชื่อ"
+                        fullWidth
+                        className={classes.paper}
+                        value={values.title}
+                        onChange={handleInputChange}
+                        {...(errors.title && { error: true, helperText: errors.title })}
+                    />
+                </Grid>
 
 
-            <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                type="submit"
-                className={classes.postBtn}
+                <Grid item xs={12} sm={6}
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center" >
 
-            >โพสต์</Button>
-        </form>
+                    <TextField
+                        name="message"
+                        variant="filled"
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        label="ข้อมูล"
+                        fullWidth
+                        multiline
+                        // rows={4}
+                        value={values.message}
+                        onChange={handleInputChange}
+                        {...(errors.message && { error: true, helperText: errors.message })}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center" >
 
-    );
+                    <TextField
+                        name="contect"
+                        variant="filled"
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        label="เบอร์โทรศัพท์"
+                        fullWidth
+                        multiline
+                        value={values.contect}
+                        onChange={handleInputChange}
+                        {...(errors.contect && { error: true, helperText: errors.contect })}
+                    />
+                </Grid>
+
+                <Grid item xs={12} sm={6}
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                >
+
+                    <TextField
+                        name="location"
+                        variant="filled"
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        label="ใส่ชื่อจังหวัด"
+                        fullWidth
+                        multiline
+                        value={values.location}
+                        onChange={handleInputChange}
+                        {...(errors.location && { error: true, helperText: errors.location })}
+                    />
+                </Grid>
+
+
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    type="submit"
+                    className={classes.postBtn}
+
+                >โพสต์</Button>
+            </form>
+        );
+    } else {
+        return (
+            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
+                onSubmit={handleSubmit}>
+
+                <Grid item xs={12} sm={6}
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                >
+                    <TextField
+                        // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        name="title"
+                        variant="filled"
+                        label="ชื่อ"
+                        fullWidth
+                        className={classes.paper}
+                        value={values.title}
+                        onChange={handleInputChange}
+                        {...(errors.title && { error: true, helperText: errors.title })}
+                    />
+                </Grid>
+
+
+                <Grid item xs={12} sm={6}
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center" >
+
+                    <TextField
+                        name="message"
+                        variant="filled"
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        label="ข้อมูล"
+                        fullWidth
+                        multiline
+                        // rows={4}
+                        value={values.message}
+                        onChange={handleInputChange}
+                        {...(errors.message && { error: true, helperText: errors.message })}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center" >
+
+                    <TextField
+                        name="contect"
+                        variant="filled"
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        label="เบอร์โทรศัพท์"
+                        fullWidth
+                        multiline
+                        value={values.contect}
+                        onChange={handleInputChange}
+                        {...(errors.contect && { error: true, helperText: errors.contect })}
+                    />
+                </Grid>
+
+                <Grid item xs={12} sm={6}
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                >
+
+                    <TextField
+                        name="location"
+                        variant="filled"
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        label="ใส่ชื่อจังหวัด"
+                        fullWidth
+                        multiline
+                        value={values.location}
+                        onChange={handleInputChange}
+                        {...(errors.location && { error: true, helperText: errors.location })}
+                    />
+                </Grid>
+
+
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    type="submit"
+                    className={classes.postBtn}
+
+                >โพสต์</Button>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    size="large"
+                    onClick={closeEdit}
+                    className={classes.postBtn}
+
+                >ยกเลิก</Button>
+            </form>
+        );
+    }
+
 }
 
 

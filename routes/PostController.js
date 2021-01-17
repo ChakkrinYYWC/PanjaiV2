@@ -4,6 +4,7 @@ var ObjectID = require('mongoose').Types.ObjectId
 const fs = require('fs')
 const multer = require('multer')
 const path = require('path')
+// const middleware = require('../middleware/index');
 
 var { PostPanjai } = require('../model/postPanjai')
 
