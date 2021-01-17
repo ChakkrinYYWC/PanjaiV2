@@ -14,6 +14,15 @@ function RegisterFrom() {
     const [file, setFile] = useState();
 
     const PanjaiToken = localStorage.getItem('PanjaiToken');
+    Axios.post('/authenticate/register', PanjaiToken,{
+    }).then(res => {
+        console.log(res)
+        if(res.data === "noLogin"){
+            window.location.href = "http://localhost:3000/Login"
+        } else {
+            console.log(PanjaiToken)
+        }
+    }).catch(error => console.log(error))
 
     const uploadFile = (event) => {
         event.preventDefault()

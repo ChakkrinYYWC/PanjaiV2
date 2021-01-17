@@ -38,6 +38,7 @@ function LoginFrom() {
             console.log(res);
             localStorage.setItem('PanjaiToken', res.data);
             //window.alert("ERROR: "+res.data.message)
+            console.log(PanjaiToken)
         }).catch(error => console.log(error))
     }
 
