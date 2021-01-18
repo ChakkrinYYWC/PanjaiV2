@@ -139,9 +139,8 @@
   
   }
 
- 
- .card{
-    background-image: url("../homepage/image/01.jpg"); 
+  .card{
+    background-image: url("../img/01.jpg"); 
   }   
 
   ul.card-stacks {

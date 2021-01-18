@@ -102,7 +102,7 @@ server.get('/register', (req, res) => {
             console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
     })
 })
-server.post("/register",middleware.isLogin, upload.single('IDcard'), function(req, res){
+server.post("/register", upload.single('IDcard'), function(req, res){
     console.log('filename: '+req.file.filename)
     user.register(new user({username: req.body.username, idcard: req.file.filename, email: req.body.email, accessToken: null}), req.body.password,function(error, user){
         if(error){
