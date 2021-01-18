@@ -1,14 +1,7 @@
 
-  /* .carousel-item {
-    position: relative;
-  }
-
-  .carousel { 
-    position: relative;
-  } */
-  
   .d-block{
     height: 610px;
+    position: relative;;
   }
 
 
@@ -27,14 +20,13 @@
   text-align: center;
   border-radius: 100px;
   /* box-shadow: 5px 40px 2px 0 rgba(250, 250, 249, 0.808); */
-  
 }
 
 .cardd Img{
   height: 170px;
   width: 170px;
-
 }
+
 .cardd img {
  margin-inline: 10px;
 }
@@ -45,6 +37,7 @@
   text-decoration-line: none;
   
 }
+
 .CardTitle:hover{
   color:rgba(253, 253, 253, 0.925);
   background-color: rgba(161, 128, 79, 0.925) ;
@@ -55,14 +48,13 @@
   font-size: 20px;
 }
 
-
 .row{
   padding-bottom: 50px;
   padding-right: 400px;
   padding-left: 400px;
  
-  
 }
+
 /* tupanjai */
 .tupanjai{
   

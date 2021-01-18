@@ -23,19 +23,25 @@ const styles = theme => ({
         '& .MuiTextField-root': {
             margin: theme.spacing(1)
         },
+       
     },
     form: {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center'
     },
+    
     postBtn: {
+      
         width: "20%",
         padding: '10px 10px 10px 20px',
         fontFamily: 'mali',
         fontSize: '20px',
         background: 'rgba(187, 130, 44, 0.925)'
+  
+        
     },
+   
     topic: {
         color: 'red'
     },
