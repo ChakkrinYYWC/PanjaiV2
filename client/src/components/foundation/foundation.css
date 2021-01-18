@@ -1,5 +1,5 @@
 .bg{
-    background-color: rgb(211, 193, 181);
+    background-color:  rgba(241,203,107,0.48);
   
   }
 
@@ -9,10 +9,11 @@
     
   }
 
-  h2 {
-  
+  .head-h2 {
     text-align: center;
-    color: rgb(0, 0, 0);
+    margin: 0%;
+    padding: 1% 0% 2% 0%;
+    color: rgb(107,60,25);
     
   }
   
@@ -30,7 +31,7 @@
   
   .text-t{
     padding: 3% 3% 50px 3%;
-    background-color: rgba(49, 48, 48, 0.445);
+    background-color: rgba(168,137,92,0.75);
     color: white;
    
   }

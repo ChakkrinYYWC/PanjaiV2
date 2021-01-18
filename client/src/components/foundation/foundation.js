@@ -11,7 +11,7 @@ function Foundation() {
       <div className="App">
         <div className="bg">
           <div className="head">
-            <h2>
+            <h2 className="head-h2">
               <br />
               โครงการป้องกันและช่วยเหลือสถานการณ์แพร่ระบาดของโควิด-19
             </h2>
