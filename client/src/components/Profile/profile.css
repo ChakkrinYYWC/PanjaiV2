@@ -45,14 +45,14 @@ body {
 .box-text {
     
     padding: 30px 70px 30px 35px;
-    
+    font-family: 'Mali', cursive;
 }
 .box-text h1 {
     
     font-weight: bold;
     color: rgba(85, 52, 4, 0.925);
     margin-bottom: 45px;
-    font-family: 'Mali', cursive;
+    /* font-family: 'Mali', cursive; */
     font-size: 24px;
     text-align: center;
 }
@@ -64,7 +64,7 @@ body {
     line-height: 30px;
     letter-spacing: 0.25px;
     /* margin-bottom: 15px; */
-    font-family: 'Mali', cursive;
+    /* font-family: 'Mali', cursive; */
     
 }
 
@@ -76,7 +76,7 @@ body {
     line-height: 30px;
     letter-spacing: 0.25px;
     /* margin-bottom: 15px; */
-    font-family: 'Mali', cursive;
+    /* font-family: 'Mali', cursive; */
     font-size: 16px;
     
 

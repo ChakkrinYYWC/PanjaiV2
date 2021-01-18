@@ -77,7 +77,7 @@ server.post("/login", function(req, res, next){
                 res.send(err)
             }else{
                 console.log("User logged in");
-                res.send(update.accessToken)
+                res.send(update)
             }
         })
     })(req, res, next);
