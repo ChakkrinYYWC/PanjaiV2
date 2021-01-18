@@ -16,6 +16,7 @@ import {
     Redirect
 } from "react-router-dom";
 
+/*----------------------------------------------------------------------*/
 
 function Homepage() {
 
@@ -27,7 +28,6 @@ function Homepage() {
 
     return (
         <div>
-    
             {/* ----------------------slideshow------------------------------------------------*/}
             <Carousel>
                 <Carousel.Item>
@@ -175,6 +175,7 @@ function Homepage() {
                 <ul className={display? "card-stacks transition" : "card-stacks"}
                 onClick={Handledisplay}
                 >
+
                     <li class="title">
                         <h2>" รอยยิ้มแห่งความสุข<i class="far fa-smile-wink"></i> "</h2>
                     </li>
@@ -223,12 +224,13 @@ function Homepage() {
                 </ul>
             </div>
         </div>
-    )
+    );
 }
 
 // $('ul.card-stacks').on('click', function () {
 //     $(this).toggleClass('transition');
 // });
+
 
 
 export default Homepage;

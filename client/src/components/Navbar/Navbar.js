@@ -50,6 +50,7 @@ class Navbar extends Component {
                     </span>
                     <Link to="/Login" className="nav-links-mobile"> เข้าสู่ระบบ</Link>
                     {/* <div type="button" href="Login" className="nav-links-mobile">เข้าสู่ระบบ</div> */}
+
                 </nav>
             </div>
         )

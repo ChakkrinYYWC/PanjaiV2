@@ -1,26 +1,22 @@
 const   user = require('../model/user');
 
 module.exports = {
-    async isToken(req, res, next){
-        const webToken = req.body.PanjaiToken;
-        var DBToken;
-        //console.log(webToken)
-        await user.find({username: req.body.username}, function(err, found){
-            if(err){
-                console.log(err);
-            }
-            DBToken = found[0].accessToken;
-            console.log(found[0])
-        })
-        //user.find(user=> user.username == req.body.username )
-
-        if(webToken !== DBToken){
-            res.send('reLogin')
+    async isLogin(req, res, next){
+        console.log("Token: "+req.body.PanjaiToken)
+        if (req.body.PanjaiToken === undefined){
+            console.log("noLogin")
+            res.send("noLogin")
         } else {
-            return next()
+            user.find({accessToken: req.body.PanjaiToken}, function(err, found){
+                if(err){
+                    console.log("not found")
+                    console.log(err);
+                } else {
+                    console.log("pass")
+                    res.send("pass")
+                }
+            })
         }
-        console.log('webToken: '+webToken);
-        console.log('DBToken: '+DBToken);
     }
     // isLoggedin(req, res, next){
     //     if(req.isAuthenticated()){

@@ -8,7 +8,7 @@ const path = require('path')
 var { PostFDT } = require('../model/postFDT')
 
 const storage = multer.diskStorage({
-    destination: './public/uploads',
+    destination: './public/uploads/Foundation',
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
