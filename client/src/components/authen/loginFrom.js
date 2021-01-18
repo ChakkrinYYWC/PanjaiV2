@@ -51,7 +51,7 @@ function LoginFrom() {
                 </div>
             </div>
             <div className="item2">
-                <h1>เข้าสู่ระบบ</h1><br/>
+                <h3>เข้าสู่ระบบ</h3><br/>
                 <form>
                     <div className="form-group">
                         <label>ชื่อผู้ใช้:</label><br />

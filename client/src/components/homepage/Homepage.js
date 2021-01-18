@@ -92,7 +92,7 @@ function Homepage() {
 
             {/* ---------------------------------category------------------------------------- */}
             <div className="category">
-                <h3>ห ม ว ด ห มู่</h3>
+                <h3>ห ม ว ด ห มู่ มู ล นิ ธิ</h3>
                 <div className="row m-0">
                     <div className="column col-4">
                         <Card className="cardd">

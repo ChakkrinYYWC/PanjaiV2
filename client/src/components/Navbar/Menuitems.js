@@ -10,8 +10,8 @@ const Menuitems = [
         cName: 'nav-links'
     },
     {
-        title: 'หมวดหมู่',
-        href: '/',
+        title: 'หมวดหมู่มูลนิธิ',
+        href: '/Foundation',
         cName: 'nav-links'
     },
     {
