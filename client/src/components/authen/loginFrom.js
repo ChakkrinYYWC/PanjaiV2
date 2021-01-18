@@ -29,16 +29,19 @@ function LoginFrom() {
         // console.log(username)
         // console.log(password)
         const data = {username, password, PanjaiToken}
-        console.log(data)
+        //console.log(data)
         Axios.post('/authenticate/login', JSON.stringify(data), {
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
             console.log(res);
-            localStorage.setItem('PanjaiToken', res.data);
+            localStorage.setItem('PanjaiToken', res.data.accessToken);
+            localStorage.setItem('currentUser', res.data.username);
+            localStorage.setItem('currentUser_id', res.data._id);
+            localStorage.setItem('currentUser_email', res.data.email);
             //window.alert("ERROR: "+res.data.message)
-            console.log(PanjaiToken)
+            //console.log(PanjaiToken)
         }).catch(error => console.log(error))
     }
 
