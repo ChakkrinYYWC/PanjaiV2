@@ -11,7 +11,7 @@ const express = require("express"),
     path = require('path')
 
 const user = require('./model/user');
-var postPanjaiRoutes = require('./routes/PostController')
+var postPanjaiRoutes = require('./routes/PostPanjai')
 var postFDTRoutes = require('./routes/PostFDT')
 var authenticate = require('./routes/authen')
 
