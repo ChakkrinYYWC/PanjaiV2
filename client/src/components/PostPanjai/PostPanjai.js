@@ -4,12 +4,15 @@ import * as action from '../../action/postPanjai'
 import { Divider, Grid, Paper, Typography, withStyles, List, ListItem, ListItemText, Button, makeStyles } from '@material-ui/core';
 import PostPanjaiForm from './PostPanjaiForm'
 import ButterToast, { Cinnamon } from "butter-toast";
-import { DeleteSweep } from "@material-ui/icons";
+import { DeleteSweep,AccessAlarm, ThreeDRotation } from "@material-ui/icons";
 import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Icon from '@material-ui/core/Icon';
+
+
 
 
 
@@ -32,7 +35,7 @@ const styles = theme => ({
     post1: {
 
         borderRadius: 5,
-        boxShadow: '0 5px 6px 5px rgba(187, 130, 44, 0.925)',
+        boxShadow: '0 2px 3px 2px rgba(85, 52, 4, 0.925)',
         height: 'auto',
         padding: '30px 30px',
         marginBlock: '15px'
@@ -71,9 +74,11 @@ const styles = theme => ({
     },
 
 })
+
 const options = [
     'แก้ไข',
-    'ลบโพสต์'
+    'ลบโพสต์',
+    'รายงานโพสต์'
 
 ];
 
@@ -85,6 +90,11 @@ const PostPanjai = ({ classes, ...props }) => {
 
     useEffect(() => {
         props.fetchAllPostPanjai()
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+        });
     }, [])
 
     const onDelete = id => {
@@ -99,6 +109,15 @@ const PostPanjai = ({ classes, ...props }) => {
         }
         if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?'))
             props.deletePostMessage(id, onSuccess)
+    }
+
+    const ScrollToTop = id => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+        });
+        setCurrentId(id);
     }
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -141,98 +160,98 @@ const PostPanjai = ({ classes, ...props }) => {
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item sm={4}>
-                                                            {/* จุด3จุด */}
+                                                        {/* จุด3จุด */}
 
-                                                    <span>
-                                                        <IconButton
-                                                            aria-label="more"
-                                                            aria-controls="long-menu"
-                                                            aria-haspopup="true"
-                                                            onClick={handleClick}
-                                                            className={classes.judjudjud}
-                                                        >
-                                                            <MoreVertIcon />
-                                                        </IconButton>
-                                                        <Menu
-                                                            id="long-menu"
-                                                            anchorEl={anchorEl}
-                                                            keepMounted
-                                                            open={open}
-                                                            onClose={handleClose}
-                                                            PaperProps={{
-                                                                style: {
-                                                                    maxHeight: ITEM_HEIGHT * 4.5,
-                                                                    width: '20ch',
-                                                                },
-                                                            }}
-                                                        >
-                                                            {options.map((option) => (
-                                                                <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                                                                    {option}
-                                                                </MenuItem>
-                                                            ))}
-                                                        </Menu>
+                                                        <span>
+                                                            <IconButton
+                                                                aria-label="more"
+                                                                aria-controls="long-menu"
+                                                                aria-haspopup="true"
+                                                                onClick={handleClick}
+                                                                className={classes.judjudjud}
+                                                            >
+                                                                <MoreVertIcon />
+                                                            </IconButton>
+                                                            <Menu
+                                                                id="long-menu"
+                                                                anchorEl={anchorEl}
+                                                                keepMounted
+                                                                open={open}
+                                                                onClose={handleClose}
+                                                                PaperProps={{
+                                                                    style: {
+                                                                        maxHeight: ITEM_HEIGHT * 4.5,
+                                                                        width: '20ch',
+                                                                    },
+                                                                }}
+                                                            >
+                                                                {options.map((option) => (
+                                                                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+                                                                        {option}
+                                                                    </MenuItem>
+                                                                ))}
+                                                            </Menu>
 
-                                                    </span>
+                                                        </span>
                                                     </Grid>
                                                 </Grid>
-                                                   
-                                                    
 
 
 
-                                                    <div className={classes.frontpost}>
-                                                        ข้อมูล : {record.message}
-                                                    </div>
-                                                    <Grid container justify="center">
-                                                        <div className={classes.frampicture} >
-                                                            <img src={'http://localhost:3001/image/' + record.image} className={classes.picture} />
-                                                        </div>
-                                                    </Grid>
-                                                    <div className={classes.frontpost}>
-                                                        เวลาที่ลง : {moment(record.Timestamp).calendar()}
-                                                    </div>
-                                                    <div className={classes.frontpost}>
-                                                        โทร : {record.contect}
-                                                    </div>
-                                                    <div className={classes.frontpost}>
-                                                        {record.location}
-                                                    </div>
-                                                    <Grid container justify="center">
-                                                        <div className={classes.botton1}>
-                                                            <Button variant="contained" color="primary" size="small"
-                                                                className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น
-                                                                onClick={() => setCurrentId(record._id)}>
-                                                                แก้ไข
-                                                    </Button>
-                                                            <Button variant="contained" color="secondary" size="small"
-                                                                className={`${classes.smMargin1} ${classes.frontpost}`}
-                                                                onClick={() => onDelete(record._id)}>
-                                                                ลบ
-                                                    </Button>
-                                                        </div></Grid>
 
-                                                    {/* รูปแบบช่อง */}
+
+                                                <div className={classes.frontpost}>
+                                                    ข้อมูล : {record.message}
+                                                </div>
+                                                <Grid container justify="center">
+                                                    <div className={classes.frampicture} >
+                                                        <img src={'http://localhost:3001/image/' + record.image} className={classes.picture} />
+                                                    </div>
+                                                </Grid>
+                                                <div className={classes.frontpost}>
+                                                    เวลาที่ลง : {moment(record.Timestamp).calendar()}
+                                                </div>
+                                                <div className={classes.frontpost}>
+                                                    โทร : {record.contect}
+                                                </div>
+                                                <div className={classes.frontpost}>
+                                                    จังหวัด{record.location}
+                                                </div>
+                                                <Grid container justify="center">
+                                                    <div className={classes.botton1}>
+                                                        <Button variant="contained" color="primary" size="small"
+                                                            className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น
+                                                            onClick={() => ScrollToTop(record._id)}>
+                                                            แก้ไข
+                                                        </Button>
+                                                        <Button variant="contained" color="secondary" size="small"
+                                                            className={`${classes.smMargin1} ${classes.frontpost}`}
+                                                            onClick={() => onDelete(record._id)}>
+                                                            ลบ
+                                                        </Button>
+                                                    </div></Grid>
+
+                                                {/* รูปแบบช่อง */}
                                             </ListItemText>
                                         </ListItem>
-                                            <Divider component='li' />
+                                        <Divider component='li' />
                                     </Fragment>
                                 </Paper>
                             </Grid>
                         )
                     })
                 }
-                            </Grid>
+            </Grid>
         </>
     );
 }
 
 const mapStateToProps = state => ({
-                postPanjaiList: state.postPanjai.list
+    postPanjaiList: state.postPanjai.list
 })
 
 const mapActionToProps = {
-                fetchAllPostPanjai: action.fetchAll,
+    fetchAllPostPanjai: action.fetchAll,
     deletePostMessage: action.Delete
 }
 
