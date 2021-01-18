@@ -20,7 +20,9 @@ const useStyles = makeStyles({
     toopanjaitext: {
         color: 'rgba(187, 130, 44, 0.925)',
         fontFamily: 'mali',
-        fontSize: '30px'
+        fontSize: '30px',
+        fontWeight: 'bold'
+
         
     }
 
