@@ -83,7 +83,7 @@ function LoginFrom() {
                 <div>
                  <br />
                      <h5>
-                        <a href="/">ลืมรหัสผ่าน</a> | <a href="/">สมัครสมาชิก</a>
+                        <a href="/">ลืมรหัสผ่าน</a> | <a href="/Register">สมัครสมาชิก</a>
                     </h5>
                 </div>
             </div>
