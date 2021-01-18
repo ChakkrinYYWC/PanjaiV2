@@ -1,5 +1,4 @@
 const   mongoose = require('mongoose')
-const passportLocalMongoose = require('passport-local-mongoose');
 
 var PostPanjai = mongoose.model('PostPanjai',{
     title : String,
@@ -8,7 +7,13 @@ var PostPanjai = mongoose.model('PostPanjai',{
     image: String,
     contect: String,
     location:String,
-    // imageFile: String
+    creator: {
+        id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'user'
+        },
+        username: String
+    }
 },'PostPanjai')
 
 // hi bro
