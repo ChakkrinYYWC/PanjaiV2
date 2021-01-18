@@ -22,10 +22,16 @@ const styles = theme => ({
         padding: theme.spacing(2)
     },
     smMargin: {
+        "&:hover": {
+            backgroundColor: "rgba(85, 52, 4, 0.925)"
+          },
         margin: theme.spacing(1),
         background: 'rgba(187, 130, 44, 0.925)'
     },
     smMargin1: {
+        "&:hover": {
+            backgroundColor: "rgba(85, 52, 4, 0.925)"
+          },
         margin: theme.spacing(1),
         background: '#a13800'
     },
@@ -208,14 +214,14 @@ const PostPanjai = ({ classes, ...props }) => {
                                                         <img src={'http://localhost:3001/image/' + record.image} className={classes.picture} />
                                                     </div>
                                                 </Grid>
-                                                <div className={classes.frontpost}>
+                                                <div className={`${classes.color1} ${classes.frontpost}`}>
                                                     เวลาที่ลง : {moment(record.Timestamp).calendar()}
                                                 </div>
-                                                <div className={classes.frontpost}>
+                                                <div className={`${classes.color1} ${classes.frontpost}`}>
                                                     โทร : {record.contect}
                                                 </div>
-                                                <div className={classes.frontpost}>
-                                                    จังหวัด{record.location}
+                                                <div className={`${classes.color1} ${classes.frontpost}`}>
+                                                    จังหวัด : {record.location}
                                                 </div>
                                                 <Grid container justify="center">
                                                     <div className={classes.botton1}>

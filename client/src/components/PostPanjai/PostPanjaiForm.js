@@ -32,9 +32,35 @@ const styles = theme => ({
     },
     
     postBtn: {
+<<<<<<< HEAD
       
         width: "20%",
         padding: '10px 10px 10px 20px',
+=======
+        "&:hover": {
+            backgroundColor: "rgba(85, 52, 4, 0.925)"
+          },
+        width: "30%",
+        padding: '5px 5px 5px 5px',
+        fontFamily: 'mali',
+        fontSize: '20px',
+        background: 'rgba(187, 130, 44, 0.925)',
+        margin: '10px'
+
+
+    },
+    // postBtn: {
+    //     "&:hover": {
+    //         backgroundColor: "green"
+    //       }
+    // },
+    postBtn1: {
+        "&:hover": {
+            backgroundColor: "rgba(85, 52, 4, 0.925)"
+          },
+        width: "30%",
+        padding: '5px 5px 5px 5px',
+>>>>>>> 4df900f7a2a1c61b08c2331063893cabf4215ccb
         fontFamily: 'mali',
         fontSize: '20px',
         background: 'rgba(187, 130, 44, 0.925)'
@@ -68,6 +94,9 @@ const styles = theme => ({
     color1: {
         color: '#a13800',
         marginLeft: '150px'
+    },
+    paper: {
+        fontFamily: 'mali',
     }
 
 })
@@ -204,6 +233,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         name="title"
                         variant="filled"
                         label="ชื่อ"
+                        size="small"
                         fullWidth
                         className={classes.paper}
                         value={values.title}
@@ -225,6 +255,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
                         label="ข้อมูล"
                         fullWidth
+                        size="small"
                         multiline
                         // rows={4}
                         value={values.message}
@@ -244,6 +275,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
                         label="เบอร์โทรศัพท์"
                         fullWidth
+                        size="small"
                         multiline
                         value={values.contect}
                         onChange={handleInputChange}
@@ -261,9 +293,10 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="location"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        // InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
                         label="ใส่ชื่อจังหวัด"
                         fullWidth
+                        size="small"
                         multiline
                         value={values.location}
                         onChange={handleInputChange}
