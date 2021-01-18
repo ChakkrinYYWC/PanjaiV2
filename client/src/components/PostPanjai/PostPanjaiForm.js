@@ -32,14 +32,18 @@ const styles = theme => ({
     },
     
     postBtn: {
-      
-        width: "20%",
-        padding: '10px 10px 10px 20px',
-        fontFamily: 'mali',
-        fontSize: '20px',
+        "&:hover": {
+            backgroundColor: "rgba(85, 52, 4, 0.925)"
+        },
+        margin: theme.spacing(1),
         background: 'rgba(187, 130, 44, 0.925)'
-  
-        
+    },
+    postBtn1: {
+        "&:hover": {
+            backgroundColor: "rgba(85, 52, 4, 0.925)"
+        },
+        margin: theme.spacing(1),
+        background: '#a13800'
     },
    
     topic: {
@@ -77,6 +81,8 @@ const styles = theme => ({
 
 
 const PostPanjaiForm = ({ classes, ...props }) => {
+
+    const currentUser = localStorage.getItem('currentUser')
 
     const [{ alt, src }, setImg] = useState({
         src: defaultImageSrc,
@@ -155,9 +161,9 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                 formData.append('message', values.message);
                 formData.append('contect', values.contect);
                 formData.append('location', values.location);
+                formData.append('creator', currentUser) ;
 
                 props.createPostPanjai(formData, onSuccess) //ส่งค่าไปserver
-                // const currentUser = localStorage.setItem('currentUser', res.data);
             }
             else
                 props.updatePostPanjai(props.currentId, values, onSuccess)
@@ -268,7 +274,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="location"
                         variant="filled"
-                        // InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
                         label="ใส่ชื่อจังหวัด"
                         fullWidth
                         size="small"
