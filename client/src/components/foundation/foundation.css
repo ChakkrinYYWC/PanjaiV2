@@ -1,0 +1,46 @@
+.bg{
+    background-color: rgb(211, 193, 181);
+  }
+  .btn-flat {
+    background-color: purple;
+    color: white;
+  }
+  
+  .head{
+    text-align: center;
+    font-family: 'Mali', cursive;
+  }
+  
+  .head-h4{
+    text-align: center;
+    font-family: 'Mali', cursive;
+  }
+  .text{
+    padding: 0px 5% 0px 5%;
+  
+  
+  }
+  
+  .text-t{
+    padding: 3% 3% 0px 3%;
+    background-color: rgba(49, 48, 48, 0.445);
+    color: white;
+  }
+  
+  .button-donate{
+    text-align: center;
+    padding: 50px 
+  }
+  
+  .button-address{
+    text-align:right  ;
+  }
+  
+  .mid{
+    text-align: center;
+  }
+  
+  .app{
+    font-family: 'Mali', cursive;
+  
+  }
