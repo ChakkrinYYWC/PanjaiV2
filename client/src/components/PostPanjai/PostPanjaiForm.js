@@ -23,42 +23,25 @@ const styles = theme => ({
         '& .MuiTextField-root': {
             margin: theme.spacing(1)
         },
+       
     },
     form: {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center'
     },
-    postBtn: {
-        "&:hover": {
-            backgroundColor: "rgba(85, 52, 4, 0.925)"
-          },
-        width: "30%",
-        padding: '5px 5px 5px 5px',
-        fontFamily: 'mali',
-        fontSize: '20px',
-        background: 'rgba(187, 130, 44, 0.925)',
-        margin: '10px'
-
-
-    },
-    // postBtn: {
-    //     "&:hover": {
-    //         backgroundColor: "green"
-    //       }
-    // },
-    postBtn1: {
-        "&:hover": {
-            backgroundColor: "rgba(85, 52, 4, 0.925)"
-          },
-        width: "30%",
-        padding: '5px 5px 5px 5px',
-        fontFamily: 'mali',
-        fontSize: '20px',
-        background: 'rgba(187, 130, 44, 0.925)',
-        margin: '10px'
-    },
     
+    postBtn: {
+      
+        width: "20%",
+        padding: '10px 10px 10px 20px',
+        fontFamily: 'mali',
+        fontSize: '20px',
+        background: 'rgba(187, 130, 44, 0.925)'
+  
+        
+    },
+   
     topic: {
         color: 'red'
     },
