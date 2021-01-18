@@ -8,7 +8,7 @@ import { AssignmentTurnedIn, Repeat } from "@material-ui/icons";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import axios from 'axios'
 
-const defaultImageSrc = '/0112.png'
+const defaultImageSrc = '/image.png'
 
 const initialFieldValues = {
     title: '',
@@ -49,8 +49,9 @@ const styles = theme => ({
         display: 'none',
     },
     imgpreview: {
-        width: "20%",
-        marginLeft: '140px'
+        width: "30%",
+        marginLeft: '125px',
+        
 
     },
     primary: {
@@ -167,7 +168,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
     }
     
 
-
+// post
     if (props.currentId == 0) {
         return (
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
@@ -281,6 +282,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                 >โพสต์</Button>
             </form>
         );
+        // กดแก้่ไข
     } else {
         return (
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
@@ -379,7 +381,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     color="secondary"
                     size="large"
                     onClick={closeEdit}
-                    className={classes.postBtn}
+                    className={classes.postBtn1}
 
                 >ยกเลิก</Button>
             </form>

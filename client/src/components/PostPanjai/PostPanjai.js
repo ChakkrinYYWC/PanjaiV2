@@ -4,12 +4,15 @@ import * as action from '../../action/postPanjai'
 import { Divider, Grid, Paper, Typography, withStyles, List, ListItem, ListItemText, Button, makeStyles } from '@material-ui/core';
 import PostPanjaiForm from './PostPanjaiForm'
 import ButterToast, { Cinnamon } from "butter-toast";
-import { DeleteSweep } from "@material-ui/icons";
+import { DeleteSweep,AccessAlarm, ThreeDRotation } from "@material-ui/icons";
 import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Icon from '@material-ui/core/Icon';
+
+
 
 
 
@@ -32,7 +35,7 @@ const styles = theme => ({
     post1: {
 
         borderRadius: 5,
-        boxShadow: '0 5px 6px 5px rgba(187, 130, 44, 0.925)',
+        boxShadow: '0 2px 3px 2px rgba(85, 52, 4, 0.925)',
         height: 'auto',
         padding: '30px 30px',
         marginBlock: '15px'
@@ -71,6 +74,7 @@ const styles = theme => ({
     },
 
 })
+
 const options = [
     'แก้ไข',
     'ลบโพสต์',
