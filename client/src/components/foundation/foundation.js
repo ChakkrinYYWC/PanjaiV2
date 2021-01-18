@@ -1,16 +1,17 @@
-import "./App.css";
+import "./foundation.css";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
-import { Button } from 'react-bootstrap';
 
 
-function App() {
+
+
+function Foundation() {
     return (
       <div className="App">
         <div className="bg">
           <div className="head">
-            <h2>
+            <h2 className="head-h2">
               <br />
               โครงการป้องกันและช่วยเหลือสถานการณ์แพร่ระบาดของโควิด-19
             </h2>
@@ -53,10 +54,10 @@ function App() {
           <div className="text">
             <div className="text-t">
                 
-              <div className="button-address">
-                <Button input type="submit" size="sm">
+              <div >
+                <button className="button-address" >
                   ที่อยู่
-                </Button>
+                </button>
               </div>
   
               <h4 className="head-h4"><strong>มูลนิธิรามาธิบดี</strong></h4>
@@ -83,15 +84,18 @@ function App() {
                 <h5 className="mid"><strong>คำว่าให้ไม่สิ้นสุด</strong></h5>
               </h5>
   
-              <div className="button-donate">
-                <Button input type="submit" size="lg">
-                  บริจาค
-                </Button>
-             </div>
-  
+              
             </div>
             
           </div>
+
+
+          <div className="button-donate-div" >
+               <center><button className="button-donate" >
+                  บริจาค
+                </button> </center> 
+             </div>
+  
   
           
         </div>
@@ -99,5 +103,5 @@ function App() {
     );
   }
   
-  export default App;
+  export default Foundation;
   

@@ -63,7 +63,7 @@ function RegisterFrom() {
             </div>
 
             <div className="item2">
-                <h1>สมัครสมาชิก</h1><br/>
+                <h3>สมัครสมาชิก</h3><br/>
                 <form>
                     <div className="form-group">
                         <label>ชื่อผู้ใช้:</label><br />
