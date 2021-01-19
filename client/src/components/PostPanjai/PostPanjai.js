@@ -4,16 +4,14 @@ import * as action from '../../action/postPanjai'
 import { Divider, Grid, Paper, Typography, withStyles, List, ListItem, ListItemText, Button, makeStyles } from '@material-ui/core';
 import PostPanjaiForm from './PostPanjaiForm'
 import ButterToast, { Cinnamon } from "butter-toast";
-import { DeleteSweep,AccessAlarm, ThreeDRotation } from "@material-ui/icons";
+import { DeleteSweep, AccessAlarm, ThreeDRotation } from "@material-ui/icons";
 import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { If, Then,ElseIf, Else } from 'react-if-elseif-else-render';
 import Icon from '@material-ui/core/Icon';
-
-
-
 
 
 const styles = theme => ({
@@ -24,14 +22,14 @@ const styles = theme => ({
     smMargin: {
         "&:hover": {
             backgroundColor: "rgba(85, 52, 4, 0.925)"
-          },
+        },
         margin: theme.spacing(1),
         background: 'rgba(187, 130, 44, 0.925)'
     },
     smMargin1: {
         "&:hover": {
             backgroundColor: "rgba(85, 52, 4, 0.925)"
-          },
+        },
         margin: theme.spacing(1),
         background: '#a13800'
     },
@@ -75,7 +73,7 @@ const styles = theme => ({
         color: '#a13800'
     },
     judjudjud: {
-        marginLeft: '90px'
+        marginLeft: '75px'
 
     },
 
@@ -92,6 +90,7 @@ const ITEM_HEIGHT = 48;
 
 const PostPanjai = ({ classes, ...props }) => {
 
+    const currentUser = localStorage.getItem('currentUser')
     const [currentId, setCurrentId] = useState(0)
 
     useEffect(() => {
@@ -166,8 +165,8 @@ const PostPanjai = ({ classes, ...props }) => {
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item sm={4}>
-                                                        {/* จุด3จุด */}
 
+                                                        {/* จุด3จุด */}
                                                         <span>
                                                             <IconButton
                                                                 aria-label="more"
@@ -202,10 +201,6 @@ const PostPanjai = ({ classes, ...props }) => {
                                                     </Grid>
                                                 </Grid>
 
-
-
-
-
                                                 <div className={classes.frontpost}>
                                                     ข้อมูล : {record.message}
                                                 </div>
@@ -223,19 +218,57 @@ const PostPanjai = ({ classes, ...props }) => {
                                                 <div className={`${classes.color1} ${classes.frontpost}`}>
                                                     จังหวัด : {record.location}
                                                 </div>
+                                                <div className={`${classes.color1} ${classes.frontpost}`}>
+                                                    ผู้สร้าง : {record.creator}
+                                                </div>
+
                                                 <Grid container justify="center">
                                                     <div className={classes.botton1}>
-                                                        <Button variant="contained" color="primary" size="small"
-                                                            className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น
-                                                            onClick={() => ScrollToTop(record._id)}>
-                                                            แก้ไข
-                                                        </Button>
-                                                        <Button variant="contained" color="secondary" size="small"
-                                                            className={`${classes.smMargin1} ${classes.frontpost}`}
-                                                            onClick={() => onDelete(record._id)}>
-                                                            ลบ
-                                                        </Button>
-                                                    </div></Grid>
+
+                                                        <If condition={currentUser == record.creator}>
+                                                            <Then>
+                                                                <Button variant="contained" color="primary" size="small"
+                                                                    className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น
+                                                                    onClick={() => ScrollToTop(record._id)}>
+                                                                    แก้ไข
+                                                                </Button>
+                                                                <Button variant="contained" color="secondary" size="small"
+                                                                    className={`${classes.smMargin1} ${classes.frontpost}`}
+                                                                    onClick={() => onDelete(record._id)}>
+                                                                    ลบ
+                                                                </Button>
+                                                            </Then>
+
+                                                            <ElseIf condition={currentUser == 'admin'}>
+                                                                <Button variant="contained" color="primary" size="small"
+                                                                    className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น
+                                                                    onClick={() => ScrollToTop(record._id)}>
+                                                                    แก้ไข
+                                                                </Button>
+                                                                <Button variant="contained" color="secondary" size="small"
+                                                                    className={`${classes.smMargin1} ${classes.frontpost}`}
+                                                                    onClick={() => onDelete(record._id)}>
+                                                                    ลบ
+                                                                </Button>
+                                                            </ElseIf>
+                                                            
+                                                            <Else>
+                                                                <Button variant="contained" color="primary" size="small"
+                                                                    className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น
+                                                                >
+                                                                    ขอรับ
+                                                                </Button>
+                                                                <Button variant="contained" color="secondary" size="small"
+                                                                    className={`${classes.smMargin1} ${classes.frontpost}`}
+                                                                >
+                                                                    ถูกใจ
+                                                                </Button>
+                                                            </Else>
+                                                        </If>
+
+                                                    </div>
+                                                </Grid>
+
 
                                                 {/* รูปแบบช่อง */}
                                             </ListItemText>

@@ -7,13 +7,7 @@ var PostPanjai = mongoose.model('PostPanjai',{
     image: String,
     contect: String,
     location:String,
-    creator: {
-        id: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'user'
-        },
-        username: String
-    }
+    creator: String,
 },'PostPanjai')
 
 // hi bro
