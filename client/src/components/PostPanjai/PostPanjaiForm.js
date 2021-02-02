@@ -354,7 +354,6 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
                         label="เบอร์โทรศัพท์"
                         fullWidth
-                        multiline
                         value={values.contect}
                         onChange={handleInputChange}
                         {...(errors.contect && { error: true, helperText: errors.contect })}
