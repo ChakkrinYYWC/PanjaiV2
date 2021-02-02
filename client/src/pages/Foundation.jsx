@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PostFDT from "../components/PostFDT";
+import PostFDT from "../components/foundation/PostFDT";
 import { store } from "../action/store";
 import { Provider } from "react-redux";
 import ButterToast, { POS_RIGHT, POS_TOP } from "butter-toast";
@@ -8,8 +8,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import PageFoundation from '../components/foundation/foundation'
-
-
+import FDTform from '../components/foundation/FDTform'
+import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 
 const styles = theme => ({
     root: {
@@ -52,6 +52,7 @@ function Foundation({ classes, ...props }) {
 
     const [open, setOpen] = React.useState(false);
     const [currentId, setCurrentId] = useState(0)
+    const currentUser = localStorage.getItem('currentUser')
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -63,22 +64,32 @@ function Foundation({ classes, ...props }) {
 
 
     return (
-        <Provider store={store}>
-            <Fab size="small" color="primary" aria-label="add" onClick={handleClickOpen} >
-                <AddIcon />
-            </Fab>
+        <>
+            <If condition={currentUser == 'admin'}>
+                <Then>
+                    <Provider store={store}>
+                        <Fab size="small" color="primary" aria-label="add" onClick={handleClickOpen} >
+                            <AddIcon />
+                        </Fab>
 
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-                <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    Post Foundation
-               </DialogTitle>
-               <PostFDT {...{ currentId, setCurrentId }} />
-                <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
-            </Dialog>
-            
-        <PageFoundation/>
-        </Provider>
-        
+                        <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+                            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                                Post Foundation
+                        </DialogTitle>
+                            <PostFDT {...{ currentId, setCurrentId }} />
+                            <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
+                        </Dialog>
+                    </Provider>
+                    <FDTform />
+                    <PageFoundation />
+                </Then>
+                <Else>
+                    <FDTform />
+                    <PageFoundation />
+                </Else>
+            </If>
+        </>
+
     );
 }
 

@@ -132,7 +132,7 @@ function Homepage() {
                         <div className="tpjj">
                             <p>  สำหรับคนที่ต้องการสิ่งของหรือต้องการบริจาคสิ่งของ  </p>
                             <p>แต่ไม่รู้จะไปบริจาคที่ไหน สามารถบริจาคได้ที่ </p>
-                            <a className="tpj" type="button" href="profile"><i class="far fa-hand-point-right"></i> ตู้ปันใจ</a>
+                            <a className="tpj" type="button" href="Too_panjai"><i class="far fa-hand-point-right"></i> ตู้ปันใจ</a>
                         </div>
                     </div>
                 </div>

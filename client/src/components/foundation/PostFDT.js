@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import useForm from "./PostPanjai/useForm";
-import * as actions from "../action/postFDT";
+import useForm from "../PostPanjai/useForm";
+import * as actions from "../../action/postFDT";
 import { connect } from "react-redux";
 import { withStyles, Typography, IconButton, Button, TextField } from '@material-ui/core';
 import MuiDialogContent from '@material-ui/core/DialogContent';
