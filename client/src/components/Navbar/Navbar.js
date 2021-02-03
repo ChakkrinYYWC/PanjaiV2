@@ -87,7 +87,7 @@ class Navbar extends Component {
                         </Then>
                         <Else>
                             <Then>
-                                <Avatar>{currentUser.charAt(0).toUpperCase()}</Avatar>
+                                {/* <Avatar>{currentUser.charAt(0).toUpperCase()}</Avatar> */}
                                 <Link onClick={logout} className="nav-links-mobile"> ออกจากระบบ</Link>
                             </Then>
                         </Else>

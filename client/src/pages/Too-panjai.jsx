@@ -19,9 +19,10 @@ const useStyles = makeStyles({
     },
 
     toopanjaitext: {
-        color: 'rgba(187, 130, 44, 0.925)',
+        color: ' rgba(141, 90, 18, 0.925)',
         fontFamily: 'mali',
-        fontSize: '30px'
+        fontSize: '30px',
+        fontWeight: 'bold'
        
     }
 
@@ -38,7 +39,7 @@ function Too_panjai() {
                         variant="h2"
                         align="center">
                         {/* ข้อความ */}
-                        <span className={classes.toopanjaitext}>ตู้ปันใจ</span>
+                        <span className={classes.toopanjaitext}>ตู้ ปั น ใ จ</span>
                     </Typography>
                 </div>
                 <PostPanjai />
