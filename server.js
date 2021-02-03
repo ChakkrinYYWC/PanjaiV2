@@ -11,9 +11,10 @@ const express = require("express"),
     path = require('path')
 
 const user = require('./model/user');
-var postPanjaiRoutes = require('./routes/PostController')
+var postPanjaiRoutes = require('./routes/PostPanjai')
 var postFDTRoutes = require('./routes/PostFDT')
 var authenticate = require('./routes/authen')
+var findsomething = require('./routes/search')
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.get('/image/:image', (req, res) => {
 app.use('/authenticate', authenticate)
 app.use('/Too-Panjai', postPanjaiRoutes)
 app.use('/Foundation', postFDTRoutes)
+app.use('/search', findsomething)
 
 // app.post('/signin/facebook', async (req, res) => {
 //     console.log('Request -->', req.body.user)

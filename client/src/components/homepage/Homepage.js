@@ -20,7 +20,7 @@ import {
 
 function Homepage() {
 
-    const [display,setDisplay] = useState(false)
+    const [display, setDisplay] = useState(false)
 
     const Handledisplay = () => {
         setDisplay(!display);
@@ -34,65 +34,32 @@ function Homepage() {
                     <img
                         className="d-block w-100"
                         src="https://img.wongnai.com/p/1920x0/2021/01/04/5fbcd82c32974158b8b2c0aba5427bc4.jpg"
-                        alt="First slide"
                     />
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
                         src="/05.jpg"
-                        alt="Third slide"
                     />
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
                         src="/02.jpg"
-                        alt="Third slide"
                     />
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
                         src="/06.jpg"
-                        alt="Third slide"
                     />
                 </Carousel.Item>
-            </Carousel>
-
-            {/* <div id="demo" className="carousel slide" data-ride="carousel">
-
-                <ul className="carousel-indicators">
-                    <li data-target="#demo" data-slide-to="0" className="active"></li>
-                    <li data-target="#demo" data-slide-to="1"></li>
-                    <li data-target="#demo" data-slide-to="2"></li>
-                </ul>
-
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img src="https://img.wongnai.com/p/1920x0/2021/01/04/5fbcd82c32974158b8b2c0aba5427bc4.jpg" alt="Los Angeles"></img>
-                    </div>
-                        <div className="carousel-item">
-                            <img src="https://img.wongnai.com/p/1920x0/2020/01/15/d593f7cb890c47b78ea0862b774c75a7.jpg" alt="Chicago"></img>
-                         </div>
-                            <div className="carousel-item">
-                                <img src="https://img.wongnai.com/p/1920x0/2021/01/04/5fbcd82c32974158b8b2c0aba5427bc4.jpg" alt="New York"></img>
-                            </div>
-                </div>
-
-                <a className="carousel-control-prev" href="#demo" data-slide="prev">
-                            <span className="carousel-control-prev-icon"></span>
-                            </a>
-                            <a className="carousel-control-next" href="#demo" data-slide="next">
-                                <span className="carousel-control-next-icon"></span>
-                            </a>
-                
-            </div> */}
+            </Carousel> 
 
 
             {/* ---------------------------------category------------------------------------- */}
             <div className="category">
-                <h3>ห ม ว ด ห มู่</h3>
+                <h3>ห ม ว ด ห มู่ มู ล นิ ธิ</h3>
                 <div className="row m-0">
                     <div className="column col-4">
                         <Card className="cardd">
@@ -165,15 +132,15 @@ function Homepage() {
                         <div className="tpjj">
                             <p>  สำหรับคนที่ต้องการสิ่งของหรือต้องการบริจาคสิ่งของ  </p>
                             <p>แต่ไม่รู้จะไปบริจาคที่ไหน สามารถบริจาคได้ที่ </p>
-                            <a className="tpj" type="button" href="profile"><i class="far fa-hand-point-right"></i> ตู้ปันใจ</a>
+                            <a className="tpj" type="button" href="Too_panjai"><i class="far fa-hand-point-right"></i> ตู้ปันใจ</a>
                         </div>
                     </div>
                 </div>
             </div>
             {/* ----------------------------รอยยิ้ม------------------------------------------ */}
             <div className="card">
-                <ul className={display? "card-stacks transition" : "card-stacks"}
-                onClick={Handledisplay}
+                <ul className={display ? "card-stacks transition" : "card-stacks"}
+                    onClick={Handledisplay}
                 >
 
                     <li class="title">
@@ -216,7 +183,7 @@ function Homepage() {
                             </li>
                             <li class="card card-3"><img src="https://obs.line-scdn.net/0hmdaLuIDjMktcNRmSeHxNHGZjMSRvWSFIOANjSABbbH8kViEeaFMpJX83b3t4UHUVMgB_KHs0KXohUiUZYVIp/w644" />
                                 <div class="content">
-                                    <center><p>" ขอบคุณนะคะ5 "</p></center>
+                                    <center><p>" ขอบคุณนะคะ "</p></center>
                                 </div>
                             </li>
                         </ul>

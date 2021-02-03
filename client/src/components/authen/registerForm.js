@@ -14,15 +14,15 @@ function RegisterFrom() {
     const [file, setFile] = useState();
 
     const PanjaiToken = localStorage.getItem('PanjaiToken');
-    Axios.post('/authenticate/register', PanjaiToken,{
-    }).then(res => {
-        console.log(res)
-        if(res.data === "noLogin"){
-            window.location.href = "http://localhost:3000/Login"
-        } else {
-            console.log(PanjaiToken)
-        }
-    }).catch(error => console.log(error))
+    // Axios.post('/authenticate/register', PanjaiToken,{
+    // }).then(res => {
+    //     console.log(res)
+    //     if(res.data === "noLogin"){
+    //         window.location.href = "http://localhost:3000/Login"
+    //     } else {
+    //         console.log(PanjaiToken)
+    //     }
+    // }).catch(error => console.log(error))
 
     const uploadFile = (event) => {
         event.preventDefault()
@@ -63,7 +63,7 @@ function RegisterFrom() {
             </div>
 
             <div className="item2">
-                <h1>สมัครสมาชิก</h1><br/>
+                <h3>สมัครสมาชิก</h3><br/>
                 <form>
                     <div className="form-group">
                         <label>ชื่อผู้ใช้:</label><br />

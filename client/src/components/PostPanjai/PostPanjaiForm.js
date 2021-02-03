@@ -23,42 +23,29 @@ const styles = theme => ({
         '& .MuiTextField-root': {
             margin: theme.spacing(1)
         },
+       
     },
     form: {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center'
     },
+    
     postBtn: {
         "&:hover": {
             backgroundColor: "rgba(85, 52, 4, 0.925)"
-          },
-        width: "30%",
-        padding: '5px 5px 5px 5px',
-        fontFamily: 'mali',
-        fontSize: '20px',
-        background: 'rgba(187, 130, 44, 0.925)',
-        margin: '10px'
-
-
+        },
+        margin: theme.spacing(1),
+        background: 'rgba(187, 130, 44, 0.925)'
     },
-    // postBtn: {
-    //     "&:hover": {
-    //         backgroundColor: "green"
-    //       }
-    // },
     postBtn1: {
         "&:hover": {
             backgroundColor: "rgba(85, 52, 4, 0.925)"
-          },
-        width: "30%",
-        padding: '5px 5px 5px 5px',
-        fontFamily: 'mali',
-        fontSize: '20px',
-        background: 'rgba(187, 130, 44, 0.925)',
-        margin: '10px'
+        },
+        margin: theme.spacing(1),
+        background: '#a13800'
     },
-    
+   
     topic: {
         color: 'red'
     },
@@ -94,6 +81,8 @@ const styles = theme => ({
 
 
 const PostPanjaiForm = ({ classes, ...props }) => {
+
+    const currentUser = localStorage.getItem('currentUser')
 
     const [{ alt, src }, setImg] = useState({
         src: defaultImageSrc,
@@ -172,6 +161,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                 formData.append('message', values.message);
                 formData.append('contect', values.contect);
                 formData.append('location', values.location);
+                formData.append('creator', currentUser) ;
 
                 props.createPostPanjai(formData, onSuccess) //ส่งค่าไปserver
             }
@@ -284,7 +274,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="location"
                         variant="filled"
-                        // InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
                         label="ใส่ชื่อจังหวัด"
                         fullWidth
                         size="small"

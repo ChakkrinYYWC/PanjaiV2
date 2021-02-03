@@ -7,6 +7,7 @@ import { Fab, makeStyles, withStyles, Typography, IconButton, Dialog, Button, Te
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
+import PageFoundation from '../components/foundation/foundation'
 
 
 
@@ -40,6 +41,8 @@ const DialogTitle = withStyles(styles)((props) => {
                 </IconButton>
             ) : null}
         </MuiDialogTitle>
+
+
     );
 });
 
@@ -72,8 +75,10 @@ function Foundation({ classes, ...props }) {
                <PostFDT {...{ currentId, setCurrentId }} />
                 <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
             </Dialog>
-
+            
+        <PageFoundation/>
         </Provider>
+        
     );
 }
 

@@ -29,16 +29,19 @@ function LoginFrom() {
         // console.log(username)
         // console.log(password)
         const data = {username, password, PanjaiToken}
-        console.log(data)
+        //console.log(data)
         Axios.post('/authenticate/login', JSON.stringify(data), {
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
             console.log(res);
-            localStorage.setItem('PanjaiToken', res.data);
+            localStorage.setItem('PanjaiToken', res.data[0]);
+            localStorage.setItem('currentUser', res.data[1]);
+            localStorage.setItem('currentUser_id', res.data[2]);
+            localStorage.setItem('currentUser_email', res.data[3]);
             //window.alert("ERROR: "+res.data.message)
-            console.log(PanjaiToken)
+            //console.log(PanjaiToken)
         }).catch(error => console.log(error))
     }
 
@@ -51,7 +54,7 @@ function LoginFrom() {
                 </div>
             </div>
             <div className="item2">
-                <h1>เข้าสู่ระบบ</h1><br/>
+                <h3>เข้าสู่ระบบ</h3><br/>
                 <form>
                     <div className="form-group">
                         <label>ชื่อผู้ใช้:</label><br />
@@ -82,7 +85,7 @@ function LoginFrom() {
                 <div>
                 <br />
                     <h5>
-                        <a href="/">ลืมรหัสผ่าน</a> | <a href="/register">สมัครสมาชิก</a>
+                        <a href="/Register">ลืมรหัสผ่าน</a> | <a href="/Register">สมัครสมาชิก</a>
                     </h5>
                 </div>
             </div>

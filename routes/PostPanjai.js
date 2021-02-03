@@ -35,16 +35,13 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', upload.single('image'), (req, res) => {
-    console.log('#1' + req.body.title);
-    console.log('#2' + req.body.message);
-    console.log('#3' + req.body.contect);
-    console.log('#4' + req.file.filename);
     var newRecord = new PostPanjai({
         title: req.body.title,
         message: req.body.message,
         contect: req.body.contect,
         location: req.body.location,
-        image: req.file.filename
+        image: req.file.filename,
+        creator : req.body.creator
     })
     console.log(newRecord)
     newRecord.save((err, docs) => {
