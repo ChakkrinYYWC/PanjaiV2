@@ -27,14 +27,13 @@ function RegisterFrom() {
 
     const uploadFile = (event) => {
         event.preventDefault()
-        console.log(file)
-        console.log(username)
-        console.log(password)
-        console.log(Email)
+        // console.log(file)
+        // console.log(username)
+        // console.log(password)
+        // console.log(Email)
         if (password !== CPassword){
             window.alert('Confirm password incorrect!')
             //window.location.href = "http://localhost:3000/Login"
-            render(<Redirect to='/' />)
         }
         else{
             const formData = new FormData();
@@ -49,8 +48,13 @@ function RegisterFrom() {
                     'Content-Type': 'multipart/form-data'
                 }
             }).then(res => {
-                console.log(res);
-                window.alert("ERROR: "+res)
+                console.log(res)
+                if(res.data.name) {
+                    window.alert("Error: "+res.data.message)
+                    console.log("error")
+                } else {
+                    window.location.href = "http://localhost:3000/Login"
+                }
             }).catch(error => console.log(error))
         }
     }

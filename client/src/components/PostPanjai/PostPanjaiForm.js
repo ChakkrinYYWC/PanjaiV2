@@ -234,7 +234,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         name="message"
                         variant="filled"
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
-                        label="ข้อมูล"
+                        label="รายละเอียด"
                         fullWidth
                         size="small"
                         multiline
@@ -275,7 +275,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         name="location"
                         variant="filled"
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
-                        label="ใส่ชื่อจังหวัด"
+                        label="จังหวัด"
                         fullWidth
                         size="small"
                         multiline
@@ -354,7 +354,6 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
                         label="เบอร์โทรศัพท์"
                         fullWidth
-                        multiline
                         value={values.contect}
                         onChange={handleInputChange}
                         {...(errors.contect && { error: true, helperText: errors.contect })}
