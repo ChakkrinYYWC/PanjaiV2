@@ -1,6 +1,6 @@
 import { Search } from '@material-ui/icons';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import Axios from 'axios';
 import { Avatar } from "@material-ui/core";

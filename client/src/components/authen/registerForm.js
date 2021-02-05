@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
+import { render } from 'react-dom';
 import { Link, Redirect } from 'react-router-dom';
 import loginImg from "../img/login.svg";
 import "./login.css";
@@ -33,7 +34,7 @@ function RegisterFrom() {
         if (password !== CPassword){
             window.alert('Confirm password incorrect!')
             //window.location.href = "http://localhost:3000/Login"
-            return <Redirect to='/' />
+            render(<Redirect to='/' />)
         }
         else{
             const formData = new FormData();
