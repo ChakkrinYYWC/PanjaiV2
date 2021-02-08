@@ -1,103 +1,394 @@
-import "./foundation.css";
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Carousel from "react-bootstrap/Carousel";
+import React, { useEffect, useState, Fragment } from 'react';
+import { connect } from 'react-redux';
+import * as action from '../../action/postFDT'
+import { Divider, Grid, Paper, Typography, withStyles, List, ListItem, ListItemText, Button, makeStyles } from '@material-ui/core';
+import PostFDT from './PostFDT'
+import ShowFDT from './ShowFDT'
+import ButterToast, { Cinnamon } from "butter-toast";
+import { DeleteSweep, AccessAlarm, ThreeDRotation } from "@material-ui/icons";
+import moment from 'moment';
+import api from '../../action/api'
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
+import Icon from '@material-ui/core/Icon';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
+} from "react-router-dom";
 
 
-function Foundation() {
-    return (
-      <div className="App">
-        <div className="bg">
-          <div className="head">
-            <h2 className="head-h2">
-              <br />
-              โครงการป้องกันและช่วยเหลือสถานการณ์แพร่ระบาดของโควิด-19
-            </h2>
-            <br />
-          </div>
-  
-          <Carousel>
-            <Carousel.Item interval={1000}>
-              <img
-                width={800}
-                height={600}
-                className="d-block w-100"
-                src="https://www.ramafoundation.or.th/give/media/uploads/content/No%20buttom%20Website_2-01.jpg"
-                alt="First slide"
-              />
-            </Carousel.Item>
-  
-            <Carousel.Item interval={500}>
-              <img
-                width={800}
-                height={600}
-                className="d-block w-100"
-                src="https://www.ramafoundation.or.th/give/media/uploads/content/No%20buttom%20Website_2-01.jpg"
-                alt="Second slide"
-              />
-            </Carousel.Item>
-  
-            <Carousel.Item>
-              <img
-                width={800}
-                height={600}
-                className="d-block w-100"
-                src="https://www.ramafoundation.or.th/give/media/uploads/content/No%20buttom%20Website_2-01.jpg"
-                alt="Third slide"
-              />
-            </Carousel.Item>
-          </Carousel>
-          <br />
-  
-          <div className="text">
-            <div className="text-t">
-                
-              <div >
-                <button className="button-address" >
-                  ที่อยู่
-                </button>
-              </div>
-  
-              <h4 className="head-h4"><strong>มูลนิธิรามาธิบดี</strong></h4>
-              <h5><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                จากสถานการณ์การแพร่ระบาดของโควิด-19 ที่เกิดขึ้นทั่วโลกนั้น คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี มหาวิทยาลัยมหิดล ตระหนักถึงความสำคัญของการรักษาพยาบาล
-                และการให้ความรู้ที่ถูกต้องแก่สังคมเพื่อป้องกันการแพร่ระบาด <br/><br/>ตลอดจนการเตรียมความพร้อมของบุคลากร เครื่องมือแพทย์ ห้องผู้ป่วย เพื่อรับมือกับสถานการณ์ที่อาจเกิดขึ้นในอนาคตทั้งระยะสั้นและระยะยาว
-                หากมีจำนวนผู้ป่วยเพิ่มมากขึ้นดังเช่นในประเทศกลุ่มเสี่ยงในเอเชียและยุโรป<br/>
-                
-                <br/>ด้วยเหตุนี้ คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี และมูลนิธิรามาธิบดีฯ จึงได้จัดตั้งกองทุนพิเศษ "โครงการป้องกันและช่วยเหลือสถานการณ์แพร่ระบาดของโควิด-19" เพื่อสร้างความพร้อมและความคล่องตัวในการบริหารจัดการด้านต่างๆ
-  
-                <br/><br/>ที่จำเป็นต้องใช้งบประมาณเพิ่มเติมจากที่ได้รับการสนับสนุนจากภาครัฐ เป็นที่ทราบดีว่า ในสถานการณ์เช่นนี้ ประชาชนทุกคนต่างเผชิญกับความลำบาก หากแต่น้ำใจของท่านเพียงคนละเล็กละน้อย
-  
-                <br/><br/>สามารถแปรเปลี่ยนเป็นพลังการให้ที่ยิ่งใหญ่เพื่อช่วยเหลือชีวิตของพี่น้องชาวไทยด้วยกันต่อไป  ดังปณิธานที่ว่า<strong>"คำว่าให้...ไม่สิ้นสุด"</strong>
-  
-  
-                <br/><br/><strong>คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี และมูลนิธิรามาธิบดีฯ ขอเชิญทุกท่านร่วมบริจาคเงินสมทบทุนหรือช่วยบอกต่อโครงการป้องกันและช่วยเหลือสถานการณ์แพร่ระบาดของโควิด-19<br/>
-  
-                เพื่อผ่านวิกฤตนี้ไปด้วยกัน และเพื่อป้องกันการแพร่ระบาดขอเชิญบริจาคออนไลน์ ทางหน้าเว็บนี้</strong>
-  
-  
-    
-                <h5 className="mid"><br/>#รามาร่วมใจสู้ภัยโควิด</h5><br/>
-                <h5 className="mid"><strong>คำว่าให้ไม่สิ้นสุด</strong></h5>
-              </h5>
-  
-              
-            </div>
-            
-          </div>
+const styles = theme => ({
+  paper: {
+    margin: theme.spacing(3),
+    padding: theme.spacing(2)
+  },
+  smMargin: {
+    "&:hover": {
+      backgroundColor: "rgba(85, 52, 4, 0.925)"
+    },
+    margin: theme.spacing(1),
+    background: 'rgba(187, 130, 44, 0.925)'
+  },
+  smMargin1: {
+    "&:hover": {
+      backgroundColor: "rgba(85, 52, 4, 0.925)"
+    },
+    margin: theme.spacing(1),
+    background: '#a13800'
+  },
+  actionDiv: {
+    textAlign: "center"
+  },
+  post1: {
+
+    borderRadius: 5,
+    boxShadow: '0 2px 3px 2px rgba(85, 52, 4, 0.925)',
+    height: 'auto',
+    padding: '30px 30px',
+    marginBlock: '15px'
+
+  },
+  framepost: {
+    // background: '#f9a825',
+    borderRadius: 5,
+    boxShadow: '0 2px 3px 2px rgba(187, 130, 44, 0.925)',
+    color: 'rgba(187, 130, 44, 0.925)',
+    height: 'auto',
+    padding: '10px 10px',
+    marginBlock: '15px'
+  },
+  frampicture: {
+    padding: '10px 10px'
+
+  },
+  picture: {
+    height: '150px',
+    width: 'auto',
+    margin: '10px auto',
 
 
-          <div className="button-donate-div" >
-               <center><button className="button-donate" >
-                  บริจาค
-                </button> </center> 
-             </div>
-  
-        </div>
-      </div>
-    );
-  }
-  
-  export default Foundation;
-  
+  },
+  frontpost: {
+    fontFamily: 'mali',
+    borderRadius: '50px'
+  },
+  color1: {
+    color: '#a13800'
+  },
+  judjudjud: {
+    marginLeft: '75px'
+
+  },
+
+})
+
+const Foundation = ({ classes, ...props }) => {
+
+  const [currentId, setCurrentId] = useState(0)
+
+  useEffect(() => {
+    props.fetchAllPostFDT()
+  }, [])
+
+  // const senddata = id => {
+  //     props.fetchPostFDT(id)
+  // }
+
+  return (
+    <>
+      {/* <ShowFDT {...{ currentId, setCurrentId }} /> */}
+      <h2>เด็กและเยาวชน</h2>
+      <Grid container spacing={2}>
+        {
+          //props.postFDTList.map((record, index) => {
+          props.postFDTList.filter(fdt => fdt.category == 'เด็กและเยาวชน').map((record, index) => {
+            return (
+
+              <Grid item xs={12} sm={4}>
+                <Paper className={classes.framepost}>
+                  <Fragment key={index}>
+                    <ListItem>
+                      <ListItemText>
+                        <Grid container>
+                          <Grid item xs={8}>
+                            <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
+                              {record.title}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+
+                        {/*<div className={classes.frontpost}>
+                          ข้อมูล : {record.message}
+                        </div>
+                        <Grid container justify="center">
+                          <div className={classes.frampicture} >
+                            <img src={'http://localhost:3001/image/' + record.image} className={classes.picture} />
+                          </div>
+                        </Grid> */}
+                        <div className={classes.frontpost}>
+                          ต้องการรับบริจาค "{record.item}"
+                        </div>
+                        <div className={classes.frontpost}>
+                          จำนวน : {record.n_item}
+                        </div>
+                        {/* <div className={classes.frontpost}>
+                          หมวด : {record.category}
+                        </div> */}
+                        <div className={`${classes.color1} ${classes.frontpost}`}>
+                          เวลาที่ลง : {moment(record.Timestamp).calendar()}
+                        </div>
+                        <Button variant="contained" color="primary" size="small"
+                          className={`${classes.smMargin} ${classes.frontpost}`}
+                          href={'Foundation/'+record._id}
+                          // onClick={() => senddata(record._id)}
+                          >
+                          อ่านเพิ่มเติม
+                        </Button>
+                        {/* <Link to={'Foundation/'+record._id+'/show'}>FDT</Link> */}
+                      </ListItemText>
+                    </ListItem>
+                    <Divider component='li' />
+                  </Fragment>
+                </Paper>
+              </Grid>
+            );
+          })
+        }
+      </Grid>
+      <h2>ผู้สูงอายุ</h2>
+      <Grid container spacing={2}>
+        {
+          props.postFDTList.filter(fdt => fdt.category == 'ผู้สูงอายุ').map((record, index) => {
+            return (
+              <Grid item xs={12} sm={4}>
+                <Paper className={classes.framepost}>
+                  <Fragment key={index}>
+                    <ListItem>
+                      <ListItemText>
+                        <Grid container>
+                          <Grid item xs={8}>
+                            <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
+                              {record.title}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                        <div className={classes.frontpost}>
+                          ต้องการรับบริจาค "{record.item}"
+                        </div>
+                        <div className={classes.frontpost}>
+                          จำนวน : {record.n_item}
+                        </div>
+                        <div className={`${classes.color1} ${classes.frontpost}`}>
+                          เวลาที่ลง : {moment(record.Timestamp).calendar()}
+                        </div>
+                        <Button variant="contained" color="primary" size="small"
+                          className={`${classes.smMargin} ${classes.frontpost}`}
+                          href={'Foundation/'+record._id}
+                          // onClick={() => setCurrentId(record._id)}
+                        >
+                          อ่านเพิ่มเติม
+                        </Button>
+                      </ListItemText>
+                    </ListItem>
+                    <Divider component='li' />
+                  </Fragment>
+                </Paper>
+              </Grid>
+            );
+          })
+        }
+      </Grid>
+      <h2>สัตว์</h2>
+      <Grid container spacing={2}>
+        {
+          props.postFDTList.filter(fdt => fdt.category == 'สัตว์').map((record, index) => {
+            return (
+              <Grid item xs={12} sm={4}>
+                <Paper className={classes.framepost}>
+                  <Fragment key={index}>
+                    <ListItem>
+                      <ListItemText>
+                        <Grid container>
+                          <Grid item xs={8}>
+                            <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
+                              {record.title}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                        <div className={classes.frontpost}>
+                          ต้องการรับบริจาค "{record.item}"
+                        </div>
+                        <div className={classes.frontpost}>
+                          จำนวน : {record.n_item}
+                        </div>
+                        <div className={`${classes.color1} ${classes.frontpost}`}>
+                          เวลาที่ลง : {moment(record.Timestamp).calendar()}
+                        </div>
+                        <Button variant="contained" color="primary" size="small"
+                          className={`${classes.smMargin} ${classes.frontpost}`}
+                          href={'Foundation/'+record._id}
+                          // onClick={() => setCurrentId(record._id)}
+                        >
+                          อ่านเพิ่มเติม
+                        </Button>
+                      </ListItemText>
+                    </ListItem>
+                    <Divider component='li' />
+                  </Fragment>
+                </Paper>
+              </Grid>
+            );
+          })
+        }
+      </Grid>
+      <h2>ผู้พิการและผู้ป่วย</h2>
+      <Grid container spacing={2}>
+        {
+          props.postFDTList.filter(fdt => fdt.category == 'ผู้พิการและผู้ป่วย').map((record, index) => {
+            return (
+              <Grid item xs={12} sm={4}>
+                <Paper className={classes.framepost}>
+                  <Fragment key={index}>
+                    <ListItem>
+                      <ListItemText>
+                        <Grid container>
+                          <Grid item xs={8}>
+                            <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
+                              {record.title}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                        <div className={classes.frontpost}>
+                          ต้องการรับบริจาค "{record.item}"
+                        </div>
+                        <div className={classes.frontpost}>
+                          จำนวน : {record.n_item}
+                        </div>
+                        <div className={`${classes.color1} ${classes.frontpost}`}>
+                          เวลาที่ลง : {moment(record.Timestamp).calendar()}
+                        </div>
+                        <Button variant="contained" color="primary" size="small"
+                          className={`${classes.smMargin} ${classes.frontpost}`}
+                          href={'Foundation/'+record._id}
+                          // onClick={() => setCurrentId(record._id)}
+                        >
+                          อ่านเพิ่มเติม
+                        </Button>
+                      </ListItemText>
+                    </ListItem>
+                    <Divider component='li' />
+                  </Fragment>
+                </Paper>
+              </Grid>
+            );
+          })
+        }
+      </Grid>
+      <h2>สิ่งแวดล้อม</h2>
+      <Grid container spacing={2}>
+        {
+          props.postFDTList.filter(fdt => fdt.category == 'สิ่งแวดล้อม').map((record, index) => {
+            return (
+              <Grid item xs={12} sm={4}>
+                <Paper className={classes.framepost}>
+                  <Fragment key={index}>
+                    <ListItem>
+                      <ListItemText>
+                        <Grid container>
+                          <Grid item xs={8}>
+                            <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
+                              {record.title}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                        <div className={classes.frontpost}>
+                          ต้องการรับบริจาค "{record.item}"
+                        </div>
+                        <div className={classes.frontpost}>
+                          จำนวน : {record.n_item}
+                        </div>
+                        <div className={`${classes.color1} ${classes.frontpost}`}>
+                          เวลาที่ลง : {moment(record.Timestamp).calendar()}
+                        </div>
+                        <Button variant="contained" color="primary" size="small"
+                          className={`${classes.smMargin} ${classes.frontpost}`}
+                          href={'Foundation/'+record._id}
+                          // onClick={() => setCurrentId(record._id)}
+                        >
+                          อ่านเพิ่มเติม
+                        </Button>
+                      </ListItemText>
+                    </ListItem>
+                    <Divider component='li' />
+                  </Fragment>
+                </Paper>
+              </Grid>
+            );
+          })
+        }
+      </Grid>
+      <h2>อื่นๆ</h2>
+      <Grid container spacing={2}>
+        {
+          props.postFDTList.filter(fdt => fdt.category == 'อื่นๆ').map((record, index) => {
+            return (
+              <Grid item xs={12} sm={4}>
+                <Paper className={classes.framepost}>
+                  <Fragment key={index}>
+                    <ListItem>
+                      <ListItemText>
+                        <Grid container>
+                          <Grid item xs={8}>
+                            <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
+                              {record.title}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                        <div className={classes.frontpost}>
+                          ต้องการรับบริจาค "{record.item}"
+                        </div>
+                        <div className={classes.frontpost}>
+                          จำนวน : {record.n_item}
+                        </div>
+                        <div className={`${classes.color1} ${classes.frontpost}`}>
+                          เวลาที่ลง : {moment(record.Timestamp).calendar()}
+                        </div>
+                        <Button variant="contained" color="primary" size="small"
+                          className={`${classes.smMargin} ${classes.frontpost}`}
+                          href={'Foundation/'+record._id}
+                          // onClick={() => setCurrentId(record._id)}
+                        >
+                          อ่านเพิ่มเติม
+                        </Button>
+                      </ListItemText>
+                    </ListItem>
+                    <Divider component='li' />
+                  </Fragment>
+                </Paper>
+              </Grid>
+            );
+          })
+        }
+      </Grid>
+
+    </>
+  );
+}
+
+const mapStateToProps = state => ({
+  postFDTList: state.postFDT.list
+})
+
+const mapActionToProps = {
+  fetchAllPostFDT: action.fetchAll,
+  fetchPostFDT: action.fetchById,
+  deletePostMessage: action.Delete
+}
+
+export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(Foundation));

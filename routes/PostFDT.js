@@ -81,4 +81,15 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+
+// router.get('/:id', (req, res) => {
+//     console.log(req.params.id)
+//     PostFDT.findById(req.params.id, (err, docs) => {
+//         if (!err)
+//             res.send(docs)
+//         else
+//             console.log('Error #6 : ' + JSON.stringify(err, undefined, 2))
+//     })
+// })
+
 module.exports = router

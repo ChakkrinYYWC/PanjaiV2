@@ -4,7 +4,8 @@ export const ACTION_TYPES = {
     CREATE: 'CREATE',
     UPDATE: 'UPDATE',
     DELETE: 'DELETE',
-    FETCH_ALL: 'FETCH_ALL'
+    FETCH_ALL: 'FETCH_ALL',
+    FETCH_ById: 'FETCH_ById'
 }
 
 export const fetchAll = () => dispatch => {
@@ -43,6 +44,19 @@ export const update = (id,data, onSuccess) => dispatch => {
         })
         .catch(err => console.log(err))
 }
+
+export const fetchById = (id) => dispatch => {
+    api.postFDT().fetchById(id)
+        .then(res => {
+            console.log(res)
+            dispatch({
+                type: ACTION_TYPES.FETCH_ById,
+                payload: res.data
+            })
+        })
+        .catch(err => console.log(err))
+}
+
 
 
 export const Delete = (id, onSuccess) => dispatch => {

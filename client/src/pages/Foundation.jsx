@@ -79,13 +79,18 @@ function Foundation({ classes, ...props }) {
                             <PostFDT {...{ currentId, setCurrentId }} />
                             <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
                         </Dialog>
+
                     </Provider>
+
                     <FDTform />
                     <PageFoundation />
+
                 </Then>
                 <Else>
-                    <FDTform />
-                    <PageFoundation />
+                    <Provider store={store}>
+                        {/* <FDTform /> */}
+                        <PageFoundation {...{ currentId, setCurrentId }}/>
+                    </Provider>
                 </Else>
             </If>
         </>
