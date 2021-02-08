@@ -82,5 +82,8 @@ router.delete('/:id', (req, res) => {
             console.log('Error #5 : ' + JSON.stringify(err, undefined, 2))
     })
 })
+router.post('/addFav', (req, res) => {
+    console.log(req.body._id)
+})
 
 module.exports = router

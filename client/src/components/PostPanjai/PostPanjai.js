@@ -12,6 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { If, Then,ElseIf, Else } from 'react-if-elseif-else-render';
 import Icon from '@material-ui/core/Icon';
+import Axios from 'axios';
 
 
 const styles = theme => ({
@@ -135,6 +136,28 @@ const PostPanjai = ({ classes, ...props }) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const favoriteItem = id => {
+        console.log('id: '+id)
+        Axios.post('/Too-Panjai/addFav', id, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            console.log(res);
+            // if(res.data[0]) {
+            //     localStorage.setItem('PanjaiToken', res.data[0]);
+            //     localStorage.setItem('currentUser', res.data[1]);
+            //     localStorage.setItem('currentUser_id', res.data[2]);
+            //     localStorage.setItem('currentUser_email', res.data[3]);
+            //     window.location.href = "http://localhost:3000"
+            // } else {
+            //     window.alert("Username or password incorrect.")
+            // }
+            //window.alert("ERROR: "+res.data.message)
+            //console.log(PanjaiToken)
+        }).catch(error => console.log(error))
+    }
 
     return (
         <>
@@ -260,6 +283,7 @@ const PostPanjai = ({ classes, ...props }) => {
                                                                 </Button>
                                                                 <Button variant="contained" color="secondary" size="small"
                                                                     className={`${classes.smMargin1} ${classes.frontpost}`}
+                                                                    onClick={() => favoriteItem(record._id)}
                                                                 >
                                                                     ถูกใจ
                                                                 </Button>
