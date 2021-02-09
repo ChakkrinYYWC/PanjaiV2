@@ -1,6 +1,6 @@
 import { Search } from '@material-ui/icons';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import Axios from 'axios';
 import { Avatar } from "@material-ui/core";
@@ -19,12 +19,16 @@ const data = {currentUser_id}
 async function logout() {
     await Axios.post('/authenticate/logout', data, {
     }).then(res => {
-        console.log(res.data);
-        //window.alert(res.data)
-        localStorage.setItem('PanjaiToken', null);
-        localStorage.setItem('currentUser', null);
-        localStorage.setItem('currentUser_id', null);
-        localStorage.setItem('currentUser_email', null);
+        console.log(res);
+        if(res.data.name){
+            window.alert("Error")
+        } else {
+            localStorage.setItem('PanjaiToken', null);
+            localStorage.setItem('currentUser', null);
+            localStorage.setItem('currentUser_id', null);
+            localStorage.setItem('currentUser_email', null);
+            window.location.href = "http://localhost:3000"
+        }
     }).catch(error => console.log(error))
     console.log("currentUser_id#2: "+currentUser_id)
 }
@@ -87,7 +91,7 @@ class Navbar extends Component {
                         </Then>
                         <Else>
                             <Then>
-                                <Avatar>{currentUser.charAt(0).toUpperCase()}</Avatar>
+                                {/* <Avatar>{currentUser.charAt(0).toUpperCase()}</Avatar> */}
                                 <Link onClick={logout} className="nav-links-mobile"> ออกจากระบบ</Link>
                             </Then>
                         </Else>

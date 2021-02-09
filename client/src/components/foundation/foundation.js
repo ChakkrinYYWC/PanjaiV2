@@ -96,20 +96,14 @@ const Foundation = ({ classes, ...props }) => {
     props.fetchAllPostFDT()
   }, [])
 
-  // const senddata = id => {
-  //     props.fetchPostFDT(id)
-  // }
 
   return (
     <>
-      {/* <ShowFDT {...{ currentId, setCurrentId }} /> */}
       <h2>เด็กและเยาวชน</h2>
       <Grid container spacing={2}>
         {
-          //props.postFDTList.map((record, index) => {
           props.postFDTList.filter(fdt => fdt.category == 'เด็กและเยาวชน').map((record, index) => {
             return (
-
               <Grid item xs={12} sm={4}>
                 <Paper className={classes.framepost}>
                   <Fragment key={index}>
@@ -145,9 +139,9 @@ const Foundation = ({ classes, ...props }) => {
                         </div>
                         <Button variant="contained" color="primary" size="small"
                           className={`${classes.smMargin} ${classes.frontpost}`}
-                          href={'Foundation/'+record._id}
-                          // onClick={() => senddata(record._id)}
-                          >
+                          href={'Foundation/' + record._id}
+                        // onClick={() => senddata(record._id)}
+                        >
                           อ่านเพิ่มเติม
                         </Button>
                         {/* <Link to={'Foundation/'+record._id+'/show'}>FDT</Link> */}
@@ -189,8 +183,8 @@ const Foundation = ({ classes, ...props }) => {
                         </div>
                         <Button variant="contained" color="primary" size="small"
                           className={`${classes.smMargin} ${classes.frontpost}`}
-                          href={'Foundation/'+record._id}
-                          // onClick={() => setCurrentId(record._id)}
+                          href={'Foundation/' + record._id}
+                        // onClick={() => setCurrentId(record._id)}
                         >
                           อ่านเพิ่มเติม
                         </Button>
@@ -232,8 +226,8 @@ const Foundation = ({ classes, ...props }) => {
                         </div>
                         <Button variant="contained" color="primary" size="small"
                           className={`${classes.smMargin} ${classes.frontpost}`}
-                          href={'Foundation/'+record._id}
-                          // onClick={() => setCurrentId(record._id)}
+                          href={'Foundation/' + record._id}
+                        // onClick={() => setCurrentId(record._id)}
                         >
                           อ่านเพิ่มเติม
                         </Button>
@@ -275,8 +269,8 @@ const Foundation = ({ classes, ...props }) => {
                         </div>
                         <Button variant="contained" color="primary" size="small"
                           className={`${classes.smMargin} ${classes.frontpost}`}
-                          href={'Foundation/'+record._id}
-                          // onClick={() => setCurrentId(record._id)}
+                          href={'Foundation/' + record._id}
+                        // onClick={() => setCurrentId(record._id)}
                         >
                           อ่านเพิ่มเติม
                         </Button>
@@ -318,8 +312,8 @@ const Foundation = ({ classes, ...props }) => {
                         </div>
                         <Button variant="contained" color="primary" size="small"
                           className={`${classes.smMargin} ${classes.frontpost}`}
-                          href={'Foundation/'+record._id}
-                          // onClick={() => setCurrentId(record._id)}
+                          href={'Foundation/' + record._id}
+                        // onClick={() => setCurrentId(record._id)}
                         >
                           อ่านเพิ่มเติม
                         </Button>
@@ -361,8 +355,8 @@ const Foundation = ({ classes, ...props }) => {
                         </div>
                         <Button variant="contained" color="primary" size="small"
                           className={`${classes.smMargin} ${classes.frontpost}`}
-                          href={'Foundation/'+record._id}
-                          // onClick={() => setCurrentId(record._id)}
+                          href={'Foundation/' + record._id}
+                        // onClick={() => setCurrentId(record._id)}
                         >
                           อ่านเพิ่มเติม
                         </Button>
@@ -376,7 +370,6 @@ const Foundation = ({ classes, ...props }) => {
           })
         }
       </Grid>
-
     </>
   );
 }

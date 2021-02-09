@@ -15,8 +15,9 @@ import Navbar from "./components/Navbar/Navbar";  //forth
 import Profile from "./pages/userInformation"; //june
 import register from "./pages/register";
 import Foundation from './pages/Foundation';
-import ShowFDT from './components/foundation/ShowFDT';
-
+import ShowFDT from './pages/FDTShow';
+// import ShowFDT from './components/foundation/ShowFDT';
+import PrivateRoute from 'react-private-route'
 
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
         <Route exact={true} path="/" component={Homepage}/>
         <Route path="/Login" component={Login}/>
         <Route path="/Register" component={register}/>
-        <Route path="/Too_panjai" component={Too_panjai}/>
+        <Route path="/Too_panjai" component={Too_panjai}/> 
+        {/* <PrivateRoute   isAuthenticated={isLoggedIn()} path="/Too_panjai" component={Too_panjai}/> */}
         <Route exact path="/Foundation/:id" component={ShowFDT}/>
         <Route path="/Foundation" component={Foundation}/>
         <Route path="/profile" component={Profile}/>
