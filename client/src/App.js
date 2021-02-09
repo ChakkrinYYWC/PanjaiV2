@@ -21,7 +21,7 @@ import { Category } from '@material-ui/icons';
 
 import ShowFDT from './pages/FDTShow';
 // import ShowFDT from './components/foundation/ShowFDT';
-import PrivateRoute from 'react-private-route'
+// import PrivateRoute from 'react-private-route'
 
 function App() {
   return (
