@@ -49,7 +49,8 @@ function RegisterFrom() {
                 }
             }).then(res => {
                 console.log(res);
-                window.alert("ERROR: "+res)
+                window.alert("ERROR: "+res)  
+                return <Redirect to='/' />
             }).catch(error => console.log(error))
         }
     }

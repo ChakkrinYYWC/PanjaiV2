@@ -3,7 +3,10 @@ import React from 'react';
 import { useState } from 'react';
 import './Homepage.css'
 import Carousel from 'react-bootstrap/Carousel';
-import $ from 'jquery';
+import { Player } from 'video-react';
+// import "node_modules/video-react/dist/video-react.css";
+import YouTube from '@u-wave/react-youtube';
+
 // import Card from 'react-bootstrap/Card';
 import { Card, Button } from 'react-bootstrap';
 
@@ -15,6 +18,8 @@ import {
     Link,
     Redirect
 } from "react-router-dom";
+
+
 
 /*----------------------------------------------------------------------*/
 
@@ -54,18 +59,18 @@ function Homepage() {
                         src="/06.jpg"
                     />
                 </Carousel.Item>
-            </Carousel> 
+            </Carousel>
 
 
             {/* ---------------------------------category------------------------------------- */}
             <div className="category">
-                <h3>ห ม ว ด ห มู่ มู ล นิ ธิ</h3>
+                <h3>หมวดหมู่มูลนิธิ</h3>
                 <div className="row m-0">
                     <div className="column col-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/pngegg.png" />
                             <Card.Body>
-                                <Link to="/profile" className="CardTitle">เด็กและเยาวชน</Link>
+                                <Link to="/Foundation/kid" className="CardTitle">เด็กและเยาวชน</Link>
                                 {/* <Card.Title Link to="/Too-panjai">เด็กและเยาวชน</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -74,7 +79,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/2.png" />
                             <Card.Body className="">
-                                <Link to="/profile" className="CardTitle">ผู้สูงอายุ</Link>
+                                <Link to="/Foundation/old" className="CardTitle">ผู้สูงอายุ</Link>
                                 {/* <Card.Title>ผู้สูงอายุ</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -83,7 +88,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/e.png" />
                             <Card.Body>
-                                <Link to="/profile" className="CardTitle">สัตว์</Link>
+                                <Link to="/Foundation/animal" className="CardTitle">สัตว์</Link>
                                 {/* <Card.Title>สัตว์</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -94,7 +99,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/4.png" />
                             <Card.Body>
-                                <Link to="/profile" className="CardTitle">ผู้พิการและผู้ป่วย</Link>
+                                <Link to="/Foundation/patient" className="CardTitle">ผู้พิการและผู้ป่วย</Link>
                                 {/* <Card.Title>ผู้พิการและผู้ป่วย</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -103,7 +108,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/5.1.png" />
                             <Card.Body>
-                                <Link to="/profile" className="CardTitle">สิ่งแวดล้อม</Link>
+                                <Link to="/Foundation/environment" className="CardTitle">สิ่งแวดล้อม</Link>
                                 {/* <Card.Title>สิ่งแวดล้อม</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -112,7 +117,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/6.png" />
                             <Card.Body>
-                                <Link to="/profile" className="CardTitle">อื่นๆ</Link>
+                                <Link to="/Foundation/other" className="CardTitle">อื่นๆ</Link>
                                 {/* <Card.Title>อื่นๆ</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -122,7 +127,7 @@ function Homepage() {
 
             {/* ----------------------------ตู้ปันใจ------------------------------------------ */}
             <div className="tupanjai">
-                <div class="row">
+                <div className="row">
                     <div className="col-sm-4">
                         <div className="too">
                             <img src="to1.png" width="750" height="600"></img>
@@ -132,7 +137,7 @@ function Homepage() {
                         <div className="tpjj">
                             <p>  สำหรับคนที่ต้องการสิ่งของหรือต้องการบริจาคสิ่งของ  </p>
                             <p>แต่ไม่รู้จะไปบริจาคที่ไหน สามารถบริจาคได้ที่ </p>
-                            <a className="tpj" type="button" href="Too_panjai"><i class="far fa-hand-point-right"></i> ตู้ปันใจ</a>
+                            <a className="tpj" type="button" href="Too_panjai"><i className="far fa-hand-point-right"></i> ตู้ปันใจ</a>
                         </div>
                     </div>
                 </div>
@@ -143,46 +148,46 @@ function Homepage() {
                     onClick={Handledisplay}
                 >
 
-                    <li class="title">
-                        <h2>" รอยยิ้มแห่งความสุข<i class="far fa-smile-wink"></i> "</h2>
+                    <li className="title">
+                        <h2>" รอยยิ้มแห่งความสุข<i className="far fa-smile-wink"></i> "</h2>
                     </li>
-                    <li class="stack stack-1">
-                        <ul class="cards-down">
-                            <li class="card card-2"><img src="https://www.centralretail.com/storage/content/updates/our-projects/2020/01/20200131-134400-5.jpg" />
-                                <div class="content">
+                    <li className="stack stack-1">
+                        <ul className="cards-down">
+                            <li className="card card-2"><img src="https://www.centralretail.com/storage/content/updates/our-projects/2020/01/20200131-134400-5.jpg" />
+                                <div className="content">
                                     <center><p>" ช่วยกันปันน้ำใจ "</p></center>
                                 </div>
                             </li>
-                            <li class="card card-3"><img src="https://home4animals.org/wp-content/uploads/2018/01/img-06.jpg" />
-                                <div class="content">
+                            <li className="card card-3"><img src="https://home4animals.org/wp-content/uploads/2018/01/img-06.jpg" />
+                                <div className="content">
                                     <center><p>" ทุกชีวิตมีค่า "</p></center>
                                 </div>
                             </li>
                         </ul>
                     </li>
-                    <li class="stack stack-2">
-                        <ul class="cards-down">
-                            <li class="card card-2"><img src="https://f.ptcdn.info/629/060/000/phk8l2zd5SQ1Q10qxsm-o.jpg" />
-                                <div class="content">
+                    <li className="stack stack-2">
+                        <ul className="cards-down">
+                            <li className="card card-2"><img src="https://f.ptcdn.info/629/060/000/phk8l2zd5SQ1Q10qxsm-o.jpg" />
+                                <div className="content">
                                     <center><p>" คนไทยไม่ทิ้งกัน "</p></center>
                                 </div>
                             </li>
-                            <li class="card card-3"><img src="https://happymom.in.th/upload/d444294a3940ec9ccde7dc5514137f18.jpg" />
-                                <div class="content">
+                            <li className="card card-3"><img src="https://happymom.in.th/upload/d444294a3940ec9ccde7dc5514137f18.jpg" />
+                                <div className="content">
                                     <center><p>" หนูดีใจมากๆเลยค่ะ "</p></center>
                                 </div>
                             </li>
                         </ul>
                     </li>
-                    <li class="stack stack-3">
-                        <ul class="cards-down">
-                            <li class="card card-2"><img src="https://4.bp.blogspot.com/-o8CwTuYhYrI/Ui_zq7jfYcI/AAAAAAAAACw/kCQQ6dFBIWo/s1600/yim.jpg" />
-                                <div class="content">
+                    <li className="stack stack-3">
+                        <ul className="cards-down">
+                            <li className="card card-2"><img src="https://4.bp.blogspot.com/-o8CwTuYhYrI/Ui_zq7jfYcI/AAAAAAAAACw/kCQQ6dFBIWo/s1600/yim.jpg" />
+                                <div className="content">
                                     <center><p>" ยิ่งให้  ยิ่งได้ "</p></center>
                                 </div>
                             </li>
-                            <li class="card card-3"><img src="https://obs.line-scdn.net/0hmdaLuIDjMktcNRmSeHxNHGZjMSRvWSFIOANjSABbbH8kViEeaFMpJX83b3t4UHUVMgB_KHs0KXohUiUZYVIp/w644" />
-                                <div class="content">
+                            <li className="card card-3"><img src="https://obs.line-scdn.net/0hmdaLuIDjMktcNRmSeHxNHGZjMSRvWSFIOANjSABbbH8kViEeaFMpJX83b3t4UHUVMgB_KHs0KXohUiUZYVIp/w644" />
+                                <div className="content">
                                     <center><p>" ขอบคุณนะคะ "</p></center>
                                 </div>
                             </li>
@@ -190,7 +195,25 @@ function Homepage() {
                     </li>
                 </ul>
             </div>
+            <YouTube
+                video="Billkin song [รวมเพลงบิวกิ้น] cover"
+                autoplay
+            />
+
+            {/* <video width="320" height="240" controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video> */}
+
+            {/* <Player className="vdo"
+      playsInline
+      poster="/assets/poster.png"
+      src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+    /> */}
         </div>
+
+
     );
 }
 

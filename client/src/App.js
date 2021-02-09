@@ -15,6 +15,9 @@ import Navbar from "./components/Navbar/Navbar";  //forth
 import Profile from "./pages/userInformation"; //june
 import register from "./pages/register";
 import Foundation from './pages/Foundation';
+import category from './components/category/category';
+import categoryshow from './components/category/categoryshow';
+import { Category } from '@material-ui/icons';
 
 
 function App() {
@@ -26,8 +29,10 @@ function App() {
         <Route path="/Login" component={Login}/>
         <Route path="/Register" component={register}/>
         <Route path="/Too_panjai" component={Too_panjai}/>
-        <Route path="/Foundation" component={Foundation}/>
+        {/* <Route path="/Foundation" component={Foundation}/> */}
         <Route path="/profile" component={Profile}/>
+        <Route path="/Foundation/:name/:id" component={categoryshow}/>
+        <Route path="/Foundation/:name" component={category}/>
       </Switch>
     </Router>
   );
