@@ -1,0 +1,99 @@
+.dek{
+    background-image: url("../img/dek.png") ;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    font-family: 'Mali', cursive;
+    height: 350px;
+    margin-top: 0px;
+
+}
+
+p{
+    margin-top: 0px;
+}
+
+.dek .box{
+    background-color: rgba(255, 255, 255, 0.733);
+    margin: 280px 120px 200px 120px;
+    box-shadow: 0px 7px 7px 4px rgba(206, 206, 206, 0.397);
+    justify-items: center;
+    /* height: 1000px; */
+
+}
+
+.Title{
+    margin-top: 85px;
+    font-size: 25px;
+    font-weight: bolder;
+    color:rgba(77, 50, 9, 0.925);
+    text-align: center;
+  
+  }
+
+  .Title .fab{
+      font-size: 26px;
+      color: rgb(212, 167, 134);
+      margin: 10px;
+  }
+
+  .foundation{
+    height: 800px;
+    width: 100%;
+    margin: 0;
+    
+  
+  }
+
+  
+.foundat{
+    width: 330px;
+    height: 330px;
+    text-align: center;
+    border-radius:30px;
+   
+    box-shadow: 1px 1px 1px 0px rgba(2, 1, 1, 0.555);
+  }
+
+  .foundat Img{
+    height: 180px;
+    width:100%;
+    border-radius:30px 30px 0  0;
+ 
+
+
+  }
+  
+  .foundat img {
+    
+   /* margin-inline: 50px; */
+
+  }
+
+  .foundation .row{
+    padding: 60px 40px 60px 70px;
+ 
+  }
+
+  .Tfound{
+      font-size: 16px;
+      color:rgba(41, 27, 27, 0.753);
+      font-weight: bold;
+      text-align:right;
+  }
+
+  .Tfound:hover{
+    color:rgba(41, 27, 27, 0.863);
+    font-size: 16px;
+    
+  }
+
+  .information{
+      text-align: left;
+      color: rgb(82, 82, 82);
+  }
+
+  .dek .card-body{
+      background-color: #e4d38580;
+      border-radius: 0 0 30px 30px;
+  }
