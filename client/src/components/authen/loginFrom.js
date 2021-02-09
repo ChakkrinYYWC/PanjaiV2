@@ -36,10 +36,15 @@ function LoginFrom() {
             }
         }).then(res => {
             console.log(res);
-            localStorage.setItem('PanjaiToken', res.data[0]);
-            localStorage.setItem('currentUser', res.data[1]);
-            localStorage.setItem('currentUser_id', res.data[2]);
-            localStorage.setItem('currentUser_email', res.data[3]);
+            if(res.data[0]) {
+                localStorage.setItem('PanjaiToken', res.data[0]);
+                localStorage.setItem('currentUser', res.data[1]);
+                localStorage.setItem('currentUser_id', res.data[2]);
+                localStorage.setItem('currentUser_email', res.data[3]);
+                window.location.href = "http://localhost:3000"
+            } else {
+                window.alert("Username or password incorrect.")
+            }
             //window.alert("ERROR: "+res.data.message)
             //console.log(PanjaiToken)
         }).catch(error => console.log(error))

@@ -10,6 +10,11 @@ export const postFDT = (state = initialState, action) => {
                 ...state,
                 list: [...action.payload]
             }
+        case ACTION_TYPES.FETCH_ById:
+            return {
+                ...state,
+                list: state.list.map(x => x._id == action.payload._id ? action.payload : x)
+            }
         case ACTION_TYPES.CREATE:
             return {
                 ...state,
@@ -24,7 +29,7 @@ export const postFDT = (state = initialState, action) => {
         case ACTION_TYPES.DELETE:
             return {
                 ...state,
-                list:state.list.filter(x => x._id != action.payload)
+                list: state.list.filter(x => x._id != action.payload)
             }
 
         default:
