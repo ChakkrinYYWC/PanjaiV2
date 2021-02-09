@@ -18,10 +18,12 @@ function Category({ classes, ...props }) {
     useEffect(() => {
         props.fetchAllPostFDT()
     }, [])
+    console.log(props)
+    // console.log(props.currentId1)
 
     return (
         <>
-            <div className="dek">
+            <div className="dek" >
                 <div>.</div>
                 <div className="box">
                     <div className="Title"><i className="fab fa-gratipay"></i>{props.currentId.match.params.name}<i className="fab fa-gratipay"></i></div>
@@ -60,7 +62,6 @@ const mapStateToProps = state => ({
 
 const mapActionToProps = {
     fetchAllPostFDT: action.fetchAll,
-    fetchPostFDT: action.fetchById,
     deletePostMessage: action.Delete
 }
 

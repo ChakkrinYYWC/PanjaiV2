@@ -10,7 +10,9 @@ import {
     Redirect
 } from "react-router-dom";
 
-function categoryshow() {
+function categoryshow(props) {
+
+    console.log('**'+props)
 
     return (
         <h2>Hi55555555555555555555555555555555555555555555555555555</h2>
