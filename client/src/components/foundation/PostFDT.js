@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import useForm from "../PostPanjai/useForm";
 import * as actions from "../../action/postFDT";
 import { connect } from "react-redux";
-import { withStyles, Typography, IconButton, Button, TextField } from '@material-ui/core';
+import { withStyles, Typography, IconButton, Button, 
+        TextField, MenuItem, FormControl, InputLabel,
+        Select } from '@material-ui/core';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import { PhotoCamera, AssignmentTurnedIn } from "@material-ui/icons"
@@ -39,6 +41,10 @@ const styles = theme => ({
     },
     input: {
         display: 'none',
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
     },
     imgpreview: {
         width: "40%"
@@ -191,6 +197,19 @@ const PostFDT = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
                     /><br />
+                    <FormControl className={classes.formControl}>
+                        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={values.category}
+                            onChange={handleInputChange}
+                        >
+                            <MenuItem value={10}>Ten</MenuItem>
+                            <MenuItem value={20}>Twenty</MenuItem>
+                            <MenuItem value={30}>Thirty</MenuItem>
+                        </Select>
+                    </FormControl>
                     <TextField
                         id="standard-basic"
                         name="item"
