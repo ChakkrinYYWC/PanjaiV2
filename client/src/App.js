@@ -15,7 +15,8 @@ import Navbar from "./components/Navbar/Navbar";  //forth
 import Profile from "./pages/userInformation"; //june
 import register from "./pages/register";
 import Foundation from './pages/Foundation';
-import category from './components/category/category';
+// import category from './components/category/category';
+import category from './pages/Category';
 import categoryshow from './components/category/categoryshow';
 import { Category } from '@material-ui/icons';
 

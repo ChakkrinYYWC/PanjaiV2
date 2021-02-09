@@ -198,26 +198,21 @@ const PostFDT = ({ classes, ...props }) => {
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
                     /><br />
                     <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                        <InputLabel id="demo-simple-select-helper-label">หมวดหมู่</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
+                            labelId="demo-simple-select-helper-label"
+                            id="demo-simple-select-helper"
                             value={values.category}
                             onChange={handleInputChange}
                         >
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={"เด็กและเยาวชน"}>เด็กและเยาวชน</MenuItem>
+                            <MenuItem value={"ผู้สูงอายุ"}>ผู้สูงอายุ</MenuItem>
+                            <MenuItem value={"สัตว์"}>สัตว์</MenuItem>
+                            <MenuItem value={"ผู้พิการและผู้ป่วย"}>ผู้พิการและผู้ป่วย</MenuItem>
+                            <MenuItem value={"สิ่งแวดล้อม"}>สิ่งแวดล้อม</MenuItem>
+                            <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
                         </Select>
-                    </FormControl>
-                    <TextField
-                        id="standard-basic"
-                        name="item"
-                        label="ต้องการรับบริจาค"
-                        value={values.item}
-                        onChange={handleInputChange}
-                        {...(errors.item && { error: true, helperText: errors.item })}
-                    /><br />
+                    </FormControl><br />
                     <input
                         accept="image/*"
                         className={classes.input}

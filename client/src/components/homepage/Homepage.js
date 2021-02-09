@@ -70,7 +70,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/pngegg.png" />
                             <Card.Body>
-                                <Link to="/Foundation/kid" className="CardTitle">เด็กและเยาวชน</Link>
+                                <Link to="/Foundation/เด็กและเยาวชน" className="CardTitle">เด็กและเยาวชน</Link>
                                 {/* <Card.Title Link to="/Too-panjai">เด็กและเยาวชน</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -79,7 +79,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/2.png" />
                             <Card.Body className="">
-                                <Link to="/Foundation/old" className="CardTitle">ผู้สูงอายุ</Link>
+                                <Link to="/Foundation/ผู้สูงอายุ" className="CardTitle">ผู้สูงอายุ</Link>
                                 {/* <Card.Title>ผู้สูงอายุ</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -88,7 +88,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/e.png" />
                             <Card.Body>
-                                <Link to="/Foundation/animal" className="CardTitle">สัตว์</Link>
+                                <Link to="/Foundation/สัตว์" className="CardTitle">สัตว์</Link>
                                 {/* <Card.Title>สัตว์</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -99,7 +99,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/4.png" />
                             <Card.Body>
-                                <Link to="/Foundation/patient" className="CardTitle">ผู้พิการและผู้ป่วย</Link>
+                                <Link to="/Foundation/ผู้พิการและผู้พิการ" className="CardTitle">ผู้พิการและผู้ป่วย</Link>
                                 {/* <Card.Title>ผู้พิการและผู้ป่วย</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -108,7 +108,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/5.1.png" />
                             <Card.Body>
-                                <Link to="/Foundation/environment" className="CardTitle">สิ่งแวดล้อม</Link>
+                                <Link to="/Foundation/สิ่งแวดล้อม" className="CardTitle">สิ่งแวดล้อม</Link>
                                 {/* <Card.Title>สิ่งแวดล้อม</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -117,7 +117,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/6.png" />
                             <Card.Body>
-                                <Link to="/Foundation/other" className="CardTitle">อื่นๆ</Link>
+                                <Link to="/Foundation/อื่นๆ" className="CardTitle">อื่นๆ</Link>
                                 {/* <Card.Title>อื่นๆ</Card.Title> */}
                             </Card.Body>
                         </Card>
