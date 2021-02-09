@@ -16,6 +16,8 @@ const initialFieldValues = {
     message: '',
     item: '',
     n_item: '',
+    category: '',
+    promptpay: '',
     imageFile: null,
 }
 
@@ -26,8 +28,8 @@ const styles = theme => ({
         justifyContent: 'center'
     },
     root: {
-            margin: 0,
-            padding: theme.spacing(2),
+        margin: 0,
+        padding: theme.spacing(2),
     },
     margin: {
         margin: theme.spacing(1),
@@ -70,6 +72,8 @@ const PostFDT = ({ classes, ...props }) => {
         temp.message = values.message ? "" : "กรุณาใส่ข้อมูล."
         temp.item = values.item ? "" : "กรุณาใส่ข้อมูล."
         temp.n_item = values.n_item ? "" : "กรุณาใส่ข้อมูล."
+        temp.category = values.category ? "" : "กรุณาใส่ข้อมูล."
+        temp.promptpay = values.promptpay ? "" : "กรุณาใส่ข้อมูล."
         setErrors({
             ...temp
         })
@@ -127,6 +131,8 @@ const PostFDT = ({ classes, ...props }) => {
                 formData.append('message', values.message);
                 formData.append('item', values.item);
                 formData.append('n_item', values.n_item);
+                formData.append('category', values.category);
+                formData.append('promptpay', values.promptpay);
 
                 props.createPostFDT(formData, onSuccess) //ส่งค่าไปserver
             }
@@ -177,6 +183,22 @@ const PostFDT = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.n_item && { error: true, helperText: errors.n_item })}
                     />
+                    <TextField
+                        id="standard-basic"
+                        name="promptpay"
+                        label="promptpay"
+                        value={values.promptpay}
+                        onChange={handleInputChange}
+                        {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
+                    /><br />
+                    <TextField
+                        id="standard-basic"
+                        name="item"
+                        label="ต้องการรับบริจาค"
+                        value={values.item}
+                        onChange={handleInputChange}
+                        {...(errors.item && { error: true, helperText: errors.item })}
+                    /><br />
                     <input
                         accept="image/*"
                         className={classes.input}
