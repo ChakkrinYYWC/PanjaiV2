@@ -39,6 +39,8 @@ router.post('/', upload.single('image'), (req, res) => {
         message: req.body.message,
         item: req.body.item,
         n_item: req.body.n_item,
+        promptpay: req.body.promptpay,
+        category: req.body.category,
         image: req.file.filename
     })
     console.log(newRecord)

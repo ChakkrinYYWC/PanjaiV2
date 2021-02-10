@@ -1,7 +1,7 @@
-
-  .d-block{
+ 
+ .d-block{
     height: 610px;
-    position: relative;;
+    position: relative;
   }
 
 
@@ -33,7 +33,7 @@
 
 .CardTitle{
   color:rgba(110, 76, 26, 0.925);
-  font-size: 19px;
+  font-size: 18px;
   text-decoration-line: none;
   
 }
@@ -42,10 +42,10 @@
   color:rgba(253, 253, 253, 0.925);
   background-color: rgba(161, 128, 79, 0.925) ;
   border-radius: 10px;
-  font-size: 18px;
+
   text-decoration-line: none;
-  padding: 2px;
-  font-size: 20px;
+  padding: 3px;
+  font-size: 19px;
 }
 
 .row{
@@ -133,6 +133,7 @@
 
   .card{
     background-image: url("../img/01.jpg"); 
+    
   }   
 
   ul.card-stacks {
@@ -158,13 +159,14 @@
     transition-delay: 0.4s;
     background: #FFF;
     overflow: hidden;
-    height: 210px;
+    height: 200px;
     width: 210px;
     border-radius:10px;
     position: absolute;
     top: 0px;
     box-shadow: 3px 4px 2px 0 rgba(85, 52, 4, 0.925);
   }
+
   ul.card-stacks li.stack ul.cards-down li.card img {
     max-width: 100%;
     height: 80%;
@@ -215,4 +217,3 @@
  
 
 
-  
