@@ -83,7 +83,7 @@ router.delete('/:id', (req, res) => {
     })
 })
 router.post('/addFav', (req, res) => {
-    console.log(req.body._id)
+    console.log(req.body.id)
 })
 
 module.exports = router

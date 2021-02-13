@@ -4,7 +4,7 @@ import * as action from '../../action/postPanjai'
 import { Divider, Grid, Paper, Typography, withStyles, List, ListItem, ListItemText, Button, makeStyles } from '@material-ui/core';
 import PostPanjaiForm from './PostPanjaiForm'
 import ButterToast, { Cinnamon } from "butter-toast";
-import { DeleteSweep, AccessAlarm, ThreeDRotation } from "@material-ui/icons";
+import { DeleteSweep, AccessAlarm, ThreeDRotation, AssignmentTurnedIn } from "@material-ui/icons";
 import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
@@ -138,24 +138,26 @@ const PostPanjai = ({ classes, ...props }) => {
     };
 
     const favoriteItem = id => {
-        console.log('id: '+id)
-        Axios.post('/Too-Panjai/addFav', id, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        // const onSuccess = () => {
+        //     ButterToast.raise({
+        //         content: <Cinnamon.Crisp title="ตู้ปันใจ"
+        //             content="Submitted successfully"
+        //             scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+        //             icon={<AssignmentTurnedIn />}
+        //         />
+        //     })
+        // }
+        // props.createPostPanjai(id, onSuccess)
+        console.log("id: "+id)
+        Axios.post('/Too-Panjai/addfav', JSON.stringify(id), {
         }).then(res => {
-            console.log(res);
-            // if(res.data[0]) {
-            //     localStorage.setItem('PanjaiToken', res.data[0]);
-            //     localStorage.setItem('currentUser', res.data[1]);
-            //     localStorage.setItem('currentUser_id', res.data[2]);
-            //     localStorage.setItem('currentUser_email', res.data[3]);
-            //     window.location.href = "http://localhost:3000"
+            console.log(res)
+            // if(res.data.name) {
+            //     window.alert("Error: "+res.data.message)
+            //     console.log("error")
             // } else {
-            //     window.alert("Username or password incorrect.")
+            //     window.location.href = "http://localhost:3000/Login"
             // }
-            //window.alert("ERROR: "+res.data.message)
-            //console.log(PanjaiToken)
         }).catch(error => console.log(error))
     }
 
@@ -315,7 +317,8 @@ const mapStateToProps = state => ({
 
 const mapActionToProps = {
     fetchAllPostPanjai: action.fetchAll,
-    deletePostMessage: action.Delete
+    deletePostMessage: action.Delete,
+    createPostPanjai: action.create
 }
 
 export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(PostPanjai));
