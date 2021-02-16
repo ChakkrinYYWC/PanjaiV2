@@ -11,7 +11,7 @@ const Menuitems = [
     },
     {
         title: 'หมวดหมู่มูลนิธิ',
-        href: '/Foundation',
+        href: '/',
         cName: 'nav-links'
     },
     {

@@ -13,54 +13,6 @@ import {
     Redirect
 } from "react-router-dom";
 
-function category(props) {
-    return (
-
-        <div className="dek" >
-
-            {/* <div className="box"> */}
-                <div className="box-white">
-                    <div className="Title"><i className="fab fa-gratipay"></i>เด็กและเยาวชน<i className="fab fa-gratipay"></i></div>
-                    {/* <i className="fab fa-gratipay"></i> */}
-                    <div className="foundation">
-                        <div className="row m-0">
-                            <div className="column col-4">
-                                <Card className="foundat">
-                                    <Card.Img variant="top" src="/1.1.jpg" />
-                                    <Card.Body>
-                                        <Link to="/category" className="Tfound">เด็กและเยาวชน</Link>
-                                        <div className="information">thrfg</div>
-
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                            <div className="column col-4">
-                                <Card className="foundat">
-                                    <Card.Img variant="top" src="/1.2.jpg" />
-                                    <Card.Body className="">
-                                        <Link to="/profile" className="Tfound">ผู้สูงอายุ</Link>
-                                        <div className="information">thrfg</div>
-
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                            <div className="column col-4">
-                                <Card className="foundat">
-                                    <Card.Img variant="top" src="/1.3.jpg" />
-                                    <Card.Body>
-                                        <Link to="/profile" className="Tfound">ผลิตสื่อนวัตกรรมการเรียนรู้วิทยาศาสตร์ สำหรับนักเรียนระดับมัธยมศึกษา</Link>
-                                        <div className="information">thrfg</div>
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-{/* 
-            </div> */}
-        </div>
 
 function Category({ classes, ...props }) {
 
@@ -71,10 +23,9 @@ function Category({ classes, ...props }) {
     return (
         <>
             <div className="dek">
-                <div>.</div>
-                <div className="box">
+             
+                <div className="box-white">
                     <div className="Title"><i className="fab fa-gratipay"></i>{props.currentId.match.params.name}<i className="fab fa-gratipay"></i></div>
-                    {/* <i className="fab fa-gratipay"></i> */}
                     <div className="foundation">
                         <div className="row m-0">
                             {
@@ -85,9 +36,9 @@ function Category({ classes, ...props }) {
                                                 <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
                                                 <Card.Body>
                                                     <Link to="/category" className="Tfound">{record.title}</Link>
-                                                    <div className="information">{record.item}</div>
-                                                    <div className="information">{record.n_item}</div>
-                                                    <div className="information">{moment(record.Timestamp).calendar()}</div>
+                                                    <div className="information">ต้องการรับบริจาค :{record.item}</div>
+                                                    <div className="information">จำนวน :{record.n_item}</div>
+                                                    <div className="information-1">วันที่ลง :{moment(record.Timestamp).calendar()}</div>
                                                     <Link to={"/Foundation/"+props.currentId.match.params.name+"/"+record._id} className="CardTitle">อ่านเพิ่มเติม</Link>
                                                 </Card.Body>
                                             </Card>

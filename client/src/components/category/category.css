@@ -12,7 +12,12 @@
     /* margin-top: 50px; */
 }
 
-
+/* .dekt:nth-child(1){
+  background-image: url("../img/dek.png") ;
+}
+.dek:nth-child(2){
+  background-image: url("../img/dek.png") ;
+} */
 
 
 .dek p {
@@ -25,10 +30,11 @@
 
 .box-white{
     background-color: rgba(255, 255, 255, 0.89);
-    margin: 340px 120px 200px 120px;
+    margin: 340px 120px 500px 120px;
     box-shadow: 0px 7px 7px 4px rgba(206, 206, 206, 0.397);
     justify-items: center;
     /* height: 1000px; */
+  
 
 }
 
@@ -49,7 +55,7 @@
   }
 
   .foundation{
-    height: 800px;
+    height: 60%;
     width: 100%;
     margin: 0;
     
@@ -58,12 +64,13 @@
 
   
 .foundat{
-    width: 330px;
-    height: 330px;
+    width: 355px;
+    height: 350px;
     text-align: center;
-    border-radius:30px;
+    border-radius:40px;
    
     box-shadow: 1px 1px 1px 0px rgba(2, 1, 1, 0.555);
+    margin: 40px;
   }
 
   .foundat Img{
@@ -82,7 +89,7 @@
   }
 
   .foundation .row{
-    padding: 60px 40px 60px 70px;
+    padding: 30px 90px 60px 10px;
  
   }
 
@@ -97,16 +104,47 @@
 
   .Tfound:hover{
     color:rgba(41, 27, 27, 0.863);
-    font-size: 16.2px;
     
   }
 
-  .information{
-      text-align: left;
-      color: rgb(82, 82, 82);
-  }
 
   .dek .card-body{
       background-color: #e4d38580;
       border-radius: 0 0 30px 30px;
   }
+
+  .foundat .CardTitle{
+    text-decoration-line: none;
+    font-size: 13px;
+    color:rgba(253, 253, 253, 0.925);
+    background-color: rgba(161, 128, 79, 0.925) ;
+    border-radius: 6px;
+    padding: 3px;
+
+
+  }
+ 
+  .foundat .CardTitle:hover{
+    font-size: 13.5px;
+    text-decoration-line: underline;
+  }
+
+  .information,.information-1{
+    text-align: left;
+    color: rgb(82, 82, 82);
+    margin-top: 1px;
+    padding: 2px 0 2px 0;
+    font-size: 15px;
+}
+
+  /* .information .information-1{
+    margin-top: 1px;
+    padding: 2px 0 2px 0;
+    font-size: 15px;
+  } */
+
+  .information-1{
+    margin-bottom: 10px
+
+  }
+  
