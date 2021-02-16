@@ -19,6 +19,8 @@ function Category({ classes, ...props }) {
     useEffect(() => {
         props.fetchAllPostFDT()
     }, [])
+    console.log(props)
+    // console.log(props.currentId1)
 
     return (
         <>
@@ -60,7 +62,6 @@ const mapStateToProps = state => ({
 
 const mapActionToProps = {
     fetchAllPostFDT: action.fetchAll,
-    fetchPostFDT: action.fetchById,
     deletePostMessage: action.Delete
 }
 
