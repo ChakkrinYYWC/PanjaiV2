@@ -39,6 +39,8 @@ router.post('/', upload.single('image'), (req, res) => {
         message: req.body.message,
         item: req.body.item,
         n_item: req.body.n_item,
+        promptpay: req.body.promptpay,
+        category: req.body.category,
         image: req.file.filename
     })
     console.log(newRecord)
@@ -80,5 +82,16 @@ router.delete('/:id', (req, res) => {
             console.log('Error #5 : ' + JSON.stringify(err, undefined, 2))
     })
 })
+
+
+// router.get('/:id', (req, res) => {
+//     console.log(req.params.id)
+//     PostFDT.findById(req.params.id, (err, docs) => {
+//         if (!err)
+//             res.send(docs)
+//         else
+//             console.log('Error #6 : ' + JSON.stringify(err, undefined, 2))
+//     })
+// })
 
 module.exports = router

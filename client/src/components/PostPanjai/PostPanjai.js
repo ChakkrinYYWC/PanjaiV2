@@ -14,6 +14,10 @@ import { If, Then,ElseIf, Else } from 'react-if-elseif-else-render';
 import Icon from '@material-ui/core/Icon';
 import Axios from 'axios';
 
+const currentUser = localStorage.getItem('currentUser')
+const currentUser_id = localStorage.getItem('currentUser_id')
+
+
 
 const styles = theme => ({
     paper: {
@@ -91,7 +95,6 @@ const ITEM_HEIGHT = 48;
 
 const PostPanjai = ({ classes, ...props }) => {
 
-    const currentUser = localStorage.getItem('currentUser')
     const [currentId, setCurrentId] = useState(0)
 
     useEffect(() => {
@@ -148,8 +151,11 @@ const PostPanjai = ({ classes, ...props }) => {
         //     })
         // }
         // props.createPostPanjai(id, onSuccess)
-        console.log("id: "+id)
-        Axios.post('/Too-Panjai/addfav', JSON.stringify(id), {
+        // const formData = new FormData();
+        // formData.append('currentUser', currentUser_id);
+        // console.log(JSON.stringify(formData))
+        const data = {currentUser_id}
+        Axios.post('/Too-Panjai/addfav/'+id, data,{
         }).then(res => {
             console.log(res)
             // if(res.data.name) {

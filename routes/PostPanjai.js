@@ -7,6 +7,7 @@ const path = require('path')
 // const middleware = require('../middleware/index');
 
 var { PostPanjai } = require('../model/postPanjai')
+const user =require('../model/user')
 
 const storage = multer.diskStorage({
     destination: './public/uploads/Too-Panjai',
@@ -82,8 +83,20 @@ router.delete('/:id', (req, res) => {
             console.log('Error #5 : ' + JSON.stringify(err, undefined, 2))
     })
 })
-router.post('/addFav', (req, res) => {
-    console.log(req.body.id)
+router.post('/addFav/:id', (req, res) => {
+    console.log("Post_id: "+req.params.id)
+    console.log("currentuser_id: "+req.body.currentUser_id)
+    // user.update(
+    //     { _id: req.body.currentUser_id },
+    //     { $addToSet: { favorite: req.params.id } }
+    // )
+    user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { favorite: req.params.id } }, function(error,update){
+        if(error){
+            console.log(error)
+        }else{
+            res.redirect('/dinsor/'+req.params.id)
+        }
+    })
 })
 
 module.exports = router

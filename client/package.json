@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
+    "@u-wave/react-youtube": "^0.7.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "butter-toast": "^3.3.5",
@@ -16,6 +17,9 @@
     "mdb": "^0.1.0",
     "mdbreact": "^5.0.1",
     "moment": "^2.29.1",
+    "payment": "^2.4.0",
+    "promptpay-qr": "^0.4.4",
+    "qrcode.react": "^1.0.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
@@ -26,6 +30,8 @@
     "react-scripts": "4.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "video-react": "^0.14.1",
+    "sepa-payment-qr-code": "^1.0.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

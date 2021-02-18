@@ -1,5 +1,5 @@
 import { Search } from '@material-ui/icons';
-import React, { Component } from 'react';
+import React, { Component, state} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import Axios from 'axios';
@@ -7,6 +7,7 @@ import { Avatar } from "@material-ui/core";
 
 import Menuitems from "./Menuitems";
 import './Navbar.css';
+//import { find } from '../../../../model/user';
 
 const PanjaiToken = localStorage.getItem('PanjaiToken')
 //console.log("PanjaiToken: "+PanjaiToken)
@@ -14,7 +15,7 @@ const currentUser = localStorage.getItem('currentUser')
 const currentUser_id = localStorage.getItem('currentUser_id')
 //console.log("currentUser_id#1: "+currentUser_id)
 
-const data = {currentUser_id}
+const data = { currentUser_id }
 
 async function logout() {
     await Axios.post('/authenticate/logout', data, {
@@ -30,15 +31,37 @@ async function logout() {
             window.location.href = "http://localhost:3000"
         }
     }).catch(error => console.log(error))
-    console.log("currentUser_id#2: "+currentUser_id)
+    console.log("currentUser_id#2: " + currentUser_id)
 }
 
+
+// async function search(){
+//     await Axios.post('/Search'+state.find, {
+//     }).then(res => {
+//         console.log(res)
+//     }).catch(error =>{
+//         console.log(error)
+//     })
+// }
+
 class Navbar extends Component {
-    state = { clicked: false }
+    state = { clicked: false,
+    find:''}
 
     handleClick = () => {
         this.setState({ clicked: !this.state.clicked })
 
+    }
+
+    search = () => {
+        console.log("its work!!")
+        console.log(this.state.find)
+        Axios.get('/Search/'+this.state.find, {
+        }).then(res => {
+            console.log(res)
+        }).catch(error =>{
+            console.log(error)
+        })
     }
 
     render() {
@@ -46,7 +69,8 @@ class Navbar extends Component {
 
             <div>
                 <nav className="NavbarItems">
-                    <h1 className="navbar-logo">ปันใจ <i class="fab fa-gratipay"></i></h1>
+                    <h1 className="navbar-logo">ปันใจ <i className="fab fa-gratipay"></i></h1>
+                    {/* <div className="navbar-logo"><img src="logo.png" width="120px"/></div> */}
                     <div className="menu-icon" onClick={this.handleClick}>
                         <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                     </div>
@@ -75,16 +99,26 @@ class Navbar extends Component {
                             </If>
                         </li>
                     </ul>
-
-                    <span class="dropdown position-search">
-                        <span type="button" data-toggle="dropdown"><i class="fas fa-search"></i></span>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <input type="Search" placeholder="ค้นหา..."></input>
+                    <span className="dropdown position-search">
+                        <span type="button" data-toggle="dropdown"><i className="fas fa-search"></i></span>
+                        <div className="dropdown-menu dropdown-menu-right">
+                            <form>
+                                <input 
+                                    onChange={(event) =>{
+                                        this.setState({find: event.target.value})
+                                        //setSearch(event.target.value)
+                                    }}
+                                    type="Search"
+                                    placeholder="ค้นหา...">
+                                </input>
+                                <button onClick={this.search} type="submit">submit</button>
+                            </form>
                         </div>
                     </span>
-                    <span class="noti">
-                        <span type="button" href="" className="bell"><i class="fas fa-bell"></i></span>
+                    <span className="noti">
+                        <span type="button" href="" className="bell"><i className="fas fa-bell"></i></span>
                     </span>
+
                     <If condition={PanjaiToken == "null"} >
                         <Then>
                             <Link to="/Login" className="nav-links-mobile"> เข้าสู่ระบบ</Link>
@@ -96,7 +130,10 @@ class Navbar extends Component {
                             </Then>
                         </Else>
                     </If>
-                    
+
+
+
+
                     {/* <div type="button" href="Login" className="nav-links-mobile">เข้าสู่ระบบ</div> */}
 
                 </nav>
