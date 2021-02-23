@@ -15,7 +15,7 @@ import Navbar from "./components/Navbar/Navbar";  //forth
 import Profile from "./pages/userInformation"; //june
 import register from "./pages/register";
 import Foundation from './pages/Foundation';
-
+import Noti1 from "./components/Noti1/Noti1"; //june
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
         <Route path="/Too_panjai" component={Too_panjai}/>
         <Route path="/Foundation" component={Foundation}/>
         <Route path="/profile" component={Profile}/>
+        <Route path="/notification" component={Noti1}/>
       </Switch>
     </Router>
   );
