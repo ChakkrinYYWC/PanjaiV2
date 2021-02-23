@@ -28,6 +28,12 @@
     font-family: 'Mali', cursive;
     text-shadow: 3px 3px 4px rgba(43, 28, 7, 0.925);
     font-weight: bold;
+    text-decoration: none;
+
+}
+.navbar-logo:hover{
+    text-decoration: none;
+    color: rgb(70, 7, 7);
 
 }
 
