@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import useForm from "../PostPanjai/useForm";
 import * as actions from "../../action/postFDT";
 import { connect } from "react-redux";
-import { withStyles, Typography, IconButton, Button, TextField } from '@material-ui/core';
+import {
+    withStyles, Typography, IconButton, Button,
+    TextField, MenuItem, FormControl, InputLabel,
+    Select
+} from '@material-ui/core';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import { PhotoCamera, AssignmentTurnedIn } from "@material-ui/icons"
 import ButterToast, { Cinnamon } from "butter-toast";
 
-const defaultImageSrc = '/img/picture-28117_960_720.png'
+const defaultImageSrc = '/image.png'
 
 
 const initialFieldValues = {
@@ -16,6 +20,8 @@ const initialFieldValues = {
     message: '',
     item: '',
     n_item: '',
+    category: '',
+    promptpay: '',
     imageFile: null,
 }
 
@@ -26,8 +32,8 @@ const styles = theme => ({
         justifyContent: 'center'
     },
     root: {
-            margin: 0,
-            padding: theme.spacing(2),
+        margin: 0,
+        padding: theme.spacing(2),
     },
     margin: {
         margin: theme.spacing(1),
@@ -37,6 +43,10 @@ const styles = theme => ({
     },
     input: {
         display: 'none',
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
     },
     imgpreview: {
         width: "40%"
@@ -58,7 +68,7 @@ const DialogActions = withStyles((theme) => ({
 
 
 const PostFDT = ({ classes, ...props }) => {
-
+    
     const [{ alt, src }, setImg] = useState({
         src: defaultImageSrc,
         alt: 'Upload an Image'
@@ -70,6 +80,8 @@ const PostFDT = ({ classes, ...props }) => {
         temp.message = values.message ? "" : "กรุณาใส่ข้อมูล."
         temp.item = values.item ? "" : "กรุณาใส่ข้อมูล."
         temp.n_item = values.n_item ? "" : "กรุณาใส่ข้อมูล."
+        // temp.category = values.category ? "" : "กรุณาใส่ข้อมูล."
+        temp.promptpay = values.promptpay ? "" : "กรุณาใส่ข้อมูล."
         setErrors({
             ...temp
         })
@@ -82,9 +94,11 @@ const PostFDT = ({ classes, ...props }) => {
         errors,
         setErrors,
         handleInputChange,
-        resetForm,
+        resetFormFDT,
         file,
-        setFile
+        setFile,
+        category,
+        setCategory
     } = useForm(initialFieldValues, props.setCurrentId)
 
     const showPreview = e => {
@@ -112,14 +126,14 @@ const PostFDT = ({ classes, ...props }) => {
                     icon={<AssignmentTurnedIn />}
                 />
             })
-            resetForm()
+            resetFormFDT()
             setImg({
                 src: defaultImageSrc,
                 alt: 'Upload an Image'
             });
         }
         if (validate()) {
-            if (props.currentId == 0) {
+            if (props.currentId != 0) {
                 const formData = new FormData();
 
                 formData.append('image', file); // appending file
@@ -127,6 +141,8 @@ const PostFDT = ({ classes, ...props }) => {
                 formData.append('message', values.message);
                 formData.append('item', values.item);
                 formData.append('n_item', values.n_item);
+                formData.append('category', category);
+                formData.append('promptpay', values.promptpay);
 
                 props.createPostFDT(formData, onSuccess) //ส่งค่าไปserver
             }
@@ -135,6 +151,10 @@ const PostFDT = ({ classes, ...props }) => {
         }
 
     }
+
+    const handleChange = e => {
+        setCategory(e.target.value);
+      };
 
     return (
         <form noValidate autoComplete="off" className={`${classes.root} ${classes.form}`}>
@@ -177,6 +197,27 @@ const PostFDT = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.n_item && { error: true, helperText: errors.n_item })}
                     />
+                    <TextField
+                        id="standard-basic"
+                        name="promptpay"
+                        label="promptpay"
+                        value={values.promptpay}
+                        onChange={handleInputChange}
+                        {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
+                    /><br />
+                    <FormControl className={classes.formControl}>
+                        <InputLabel id="demo-simple-select-helper-label">หมวดหมู่</InputLabel>
+                        <Select
+                            onChange={handleChange}
+                        >
+                            <MenuItem value={"เด็กและเยาวชน"}>เด็กและเยาวชน</MenuItem>
+                            <MenuItem value={"ผู้สูงอายุ"}>ผู้สูงอายุ</MenuItem>
+                            <MenuItem value={"สัตว์"}>สัตว์</MenuItem>
+                            <MenuItem value={"ผู้พิการและผู้ป่วย"}>ผู้พิการและผู้ป่วย</MenuItem>
+                            <MenuItem value={"สิ่งแวดล้อม"}>สิ่งแวดล้อม</MenuItem>
+                            <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem> 
+                        </Select>
+                    </FormControl><br />
                     <input
                         accept="image/*"
                         className={classes.input}

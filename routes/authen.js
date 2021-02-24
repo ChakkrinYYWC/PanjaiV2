@@ -67,7 +67,7 @@ server.post("/login", function(req, res, next){
     passport.authenticate('local',async function(err, Userdata) {
         //console.log(Userdata)
         if (err) { 
-            console.log(err)
+            console.log("passporterror"+err)
             res.send(err); 
         }
         const  token =jwt.sign({ id: Userdata.username }, jwtConfig.secret);
@@ -75,7 +75,7 @@ server.post("/login", function(req, res, next){
         user.findByIdAndUpdate(Userdata, {accessToken:token},await function(error,update){
             if(error){
                 console.log(error)
-                res.send(err)
+                res.send(error)
             }else{
                 console.log("User logged in");
                 const data = [token, Userdata.username, Userdata._id, Userdata.email]
@@ -108,11 +108,11 @@ server.post('/logout', (req, res) => {
         user.findByIdAndUpdate(req.body.currentUser_id, {accessToken: null}, function(error,update){
             if(error){
                 console.log(error)
-                res.send(err)
+                res.send(error)
             }else{
                 console.log(update)
                 console.log("User logged out");
-                res.send("User logout")
+                res.send(200)
             }
         })
     })(req, res);
@@ -140,14 +140,16 @@ server.post("/register", upload.single('IDcard'), function(req, res){
     console.log('filename: '+req.file.filename)
     user.register(new user({username: req.body.username, idcard: req.file.filename, email: req.body.email, accessToken: null}), req.body.password,function(error, user){
         if(error){
-            console.log(error);
+            console.log("error: "+error);
             res.send(error)
+        } else {
+            console.log('user created')
+            res.send(status)
         }
 
         passport.authenticate('local')(req,res,function(){
           //req.flash('success','Welcome to our website ,'+ user.username)
           //res.redirect('/')
-            console.log('user created')
         })
     })
 })

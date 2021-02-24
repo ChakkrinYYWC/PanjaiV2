@@ -47,6 +47,9 @@ passport.deserializeUser(user.deserializeUser());
 app.get('/image/:image', (req, res) => {
     res.sendFile(path.resolve(__dirname, './public/uploads/Too-Panjai/'+ req.params.image))
 })
+app.get('/Foundation/:image', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './public/uploads/Foundation/'+ req.params.image))
+})
 app.use('/authenticate', authenticate)
 app.use('/Too-Panjai', postPanjaiRoutes)
 app.use('/Foundation', postFDTRoutes)

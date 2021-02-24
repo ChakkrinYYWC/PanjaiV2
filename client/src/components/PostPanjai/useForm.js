@@ -5,6 +5,7 @@ const useForm = (initialFieldValues, setCurrentId) => {
     const [values, setValues] = useState(initialFieldValues)
     const [errors, setErrors] = useState({})
     const [file, setFile] = useState('')
+    const [category, setCategory] = useState('');
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -21,6 +22,13 @@ const useForm = (initialFieldValues, setCurrentId) => {
         setFile('')
         setCurrentId(0)
     }
+    
+    const resetFormFDT = () => {
+        setValues(initialFieldValues)
+        setErrors({})
+        setFile('')
+        setCategory('')
+    }
 
     return {
         values,
@@ -29,8 +37,11 @@ const useForm = (initialFieldValues, setCurrentId) => {
         setErrors,
         handleInputChange,
         resetForm,
+        resetFormFDT,
         file,
         setFile,
+        category,
+        setCategory
     };
 }
 

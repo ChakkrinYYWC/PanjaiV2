@@ -1,0 +1,150 @@
+.dek {
+  
+    /* background-attachment: fixed; */
+    /* background-image: url("./dek.png") ; */
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    font-family: 'Mali', cursive;
+    height: 400px;
+    position: absolute;
+    /* z-index: 20; */
+    /* margin-top: 50px; */
+}
+
+/* .dekt:nth-child(1){
+  background-image: url("../img/dek.png") ;
+}
+.dek:nth-child(2){
+  background-image: url("../img/dek.png") ;
+} */
+
+
+.dek p {
+  margin: 0px;
+  padding: 0px;
+} 
+/* .box {
+  margin: 0 auto;
+} */
+
+.box-white{
+    background-color: rgba(255, 255, 255, 0.89);
+    margin: 340px 120px 500px 120px;
+    box-shadow: 0px 7px 7px 4px rgba(206, 206, 206, 0.397);
+    justify-items: center;
+    /* height: 1000px; */
+  
+
+}
+
+.Title{
+  padding-top: 80px;
+  
+    font-size: 25px;
+    font-weight: bolder;
+    color:rgba(77, 50, 9, 0.925);
+    text-align: center;
+  
+  }
+
+  .Title .fab{
+      font-size: 26px;
+      color: rgb(212, 167, 134);
+      margin: 10px;
+  }
+
+  .foundation{
+    height: 60%;
+    width: 100%;
+    margin: 0;
+    
+  
+  }
+
+  
+.foundat{
+    width: 355px;
+    height: 350px;
+    text-align: center;
+    border-radius:40px;
+   
+    box-shadow: 1px 1px 1px 0px rgba(2, 1, 1, 0.555);
+    margin: 40px;
+  }
+
+  .foundat Img{
+    height: 180px;
+    width:100%;
+    border-radius:30px 30px 0  0;
+ 
+
+
+  }
+  
+  .foundat img {
+    
+   /* margin-inline: 50px; */
+
+  }
+
+  .foundation .row{
+    padding: 30px 90px 60px 10px;
+ 
+  }
+
+  .Tfound{
+      font-size: 16px;
+      color:rgba(41, 27, 27, 0.664);
+      font-weight: bold;
+      text-align:right;
+      text-decoration-line: none;
+
+  }
+
+  .Tfound:hover{
+    color:rgba(41, 27, 27, 0.863);
+    
+  }
+
+
+  .dek .card-body{
+      background-color: #e4d38580;
+      border-radius: 0 0 30px 30px;
+  }
+
+  .foundat .CardTitle{
+    text-decoration-line: none;
+    font-size: 13px;
+    color:rgba(253, 253, 253, 0.925);
+    background-color: rgba(161, 128, 79, 0.925) ;
+    border-radius: 6px;
+    padding: 3px;
+
+
+  }
+ 
+  .foundat .CardTitle:hover{
+    font-size: 13.5px;
+    text-decoration-line: underline;
+  }
+
+  .information,.information-1{
+    text-align: left;
+    color: rgb(82, 82, 82);
+    margin-top: 1px;
+    padding: 2px 0 2px 0;
+    font-size: 15px;
+}
+
+  /* .information .information-1{
+    margin-top: 1px;
+    padding: 2px 0 2px 0;
+    font-size: 15px;
+  } */
+
+  .information-1{
+    margin-bottom: 10px
+
+  }
+  

@@ -1,17 +1,25 @@
-
+.carousel {
+    z-index: 1 !important; 
+}
 .NavbarItems {
     background: rgba(161, 128, 79, 0.925) ;
     height: 80px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 120px 1fr 50px 50px 150px ;
+    padding:  0 25px;
     justify-content: center;
     align-items: center;
     font-size: 18px;
     font-family: 'Mali', cursive;
+    text-align: center;
     text-shadow: 2px 2px 4px  rgba(214, 176, 119, 0.925);
+    z-index: 20 !important;
     /* text-shadow: 2px 2px 4px  rgba(187, 130, 44, 0.925);
     */
 }
-
+.noti,.search {
+    text-align: center;
+}
 .navbar-logo{
     font-size: 30px;
     color: white;
@@ -20,15 +28,21 @@
     font-family: 'Mali', cursive;
     text-shadow: 3px 3px 4px rgba(43, 28, 7, 0.925);
     font-weight: bold;
+    text-decoration: none;
+
+}
+.navbar-logo:hover{
+    text-decoration: none;
+    color: rgb(70, 7, 7);
 
 }
 
 .nav-menu {
-    padding: 120px;
-    margin: 25px;
+    padding: 20px;
+    margin: 0;
     display: grid;
     grid-template-columns: repeat(7,auto);
-    grid-gap:30px;
+    /* grid-gap:30px; */
     list-style: none;
     text-align: center;
 }
@@ -42,9 +56,13 @@
 .nav-links-mobile{
     background-color:rgba(110, 76, 26, 0.925);
     border-radius: 15px;
-    padding: 0.2rem 0.9rem;
+    
+    
 }
-
+a.nav-links-mobile {
+    order: 1;
+    column-span: 2;
+}
 .nav-links:hover{
     background-color: rgba(110, 76, 26, 0.925);
     border-radius: 15px;
@@ -72,7 +90,8 @@
 }
 .dropdown,.bell {
     color: white;
-   
+    font-size: 24px;
+    text-align: center;
 }
 .dropdown-menu{
     font-size: 10px;
@@ -86,20 +105,30 @@
 
  @media screen and (max-width: 1024px) {
     .NavbarItems {
-        position: relative;
-       
+        /* position: relative; */
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        padding: 0;
    
     }
+
+    .user-myphoto {
+        display: none !important;
+    }
+
+
     .position-search{
         position: relative;
-        left: 115px;
-
+        left: 220px;
         
     }
     .noti{
         position: relative;
-        left: 110px;
+        left: 200px;
+      
     }
+
+
     .nav-menu,.nav-links-mobile{
         display: none;
         flex-direction: column;
@@ -159,16 +188,18 @@
     .menu-icon{
         display: block;
         position: absolute;
-        top: 15px;
-        right: 10px;
+        top: 2px;
+        right: 0px;
         transform: translate(-100%, 60%);
-        font-size: 1.0rem;
+        font-size: 1.5rem;
         cursor: pointer;
     }
 
     .fa-times{
         color: white;
-        font-size: 1.2rem;
+        font-size: 1.7rem;
+      
+
     
     }
 
