@@ -3,6 +3,9 @@ import React from 'react';
 import { useState } from 'react';
 import Foundation from './Foundation'
 import Home from '../components/homepage/Homepage'
+import Search from '../components/search/search'
+
+
 
 import {
     BrowserRouter as Router,
@@ -21,7 +24,8 @@ function Homepage() {
             <Link to="/register">Register</Link><br />
             <Link to="/Too_panjai">Too panjai</Link><br /> */}
             {/* <Foundation/> */}
-            <Home/>
+            {/* <Home/> */}
+            <Search/>
         </>
            
     )

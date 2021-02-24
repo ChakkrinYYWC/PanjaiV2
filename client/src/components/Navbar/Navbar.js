@@ -20,7 +20,7 @@ async function logout() {
     await Axios.post('/authenticate/logout', data, {
     }).then(res => {
         console.log(res);
-        if(res.data.name){
+        if (res.data.name) {
             window.alert("Error")
         } else {
             localStorage.setItem('PanjaiToken', null);
@@ -46,7 +46,7 @@ class Navbar extends Component {
 
             <div>
                 <nav className="NavbarItems">
-                    <h1 className="navbar-logo">ปันใจ <i className="fab fa-gratipay"></i></h1>
+                    <Link to="/"  className="navbar-logo" >ปันใจ <i className="fab fa-gratipay"></i></Link>
                     {/* <div className="navbar-logo"><img src="logo.png" width="120px"/></div> */}
                     <div className="menu-icon" onClick={this.handleClick}>
                         <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
@@ -54,10 +54,13 @@ class Navbar extends Component {
                     <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
                         {Menuitems.map((item, index) => {
                             return (
-                                <li className="itemlist" key={index}>
-                                    <Link className={item.cName} to={item.href}>
-                                        {item.title}
-                                    </Link>
+                                <li className="itemlist" key={index} >
+                                    {/* <a href={"#" + item.id}> */}
+                                        <a className={item.cName} href={item.href}>
+                                            {item.title}
+                                        </a>
+                                    {/* </a> */}
+
                                 </li>
 
                             )
@@ -83,7 +86,7 @@ class Navbar extends Component {
                         </div>
                     </span>
                     <span className="noti">
-                        <span type="button" href="" className="bell"><i className="fas fa-bell"></i></span>
+                        <span type="button" href="Login" className="bell"><i className="fas fa-bell"></i></span>
                     </span>
 
                     <If condition={PanjaiToken == "null"} >

@@ -11,6 +11,7 @@ import PageFoundation from '../components/foundation/foundation'
 import FDTform from '../components/foundation/FDTform'
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 
+
 const styles = theme => ({
     root: {
         margin: 0,
@@ -27,7 +28,10 @@ const styles = theme => ({
     },
     extendedIcon: {
         marginRight: theme.spacing(1),
-    }
+    },
+
+ 
+
 });
 
 const DialogTitle = withStyles(styles)((props) => {
@@ -61,8 +65,15 @@ function Foundation({ classes, ...props }) {
         setOpen(false);
     };
 
+    // const Styles = makeStyles ({
 
+    //     title: {
+    //         fontSize: '30px',
+    //     },
 
+    // });
+
+    // const classes = Styles();
     return (
         <>
             <If condition={currentUser == 'admin'}>
@@ -73,7 +84,7 @@ function Foundation({ classes, ...props }) {
                         </Fab>
 
                         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-                            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                            <DialogTitle className={classes.title} id="customized-dialog-title"  onClose={handleClose}>
                                 Post Foundation
                         </DialogTitle>
                             <PostFDT {...{ currentId, setCurrentId }} />

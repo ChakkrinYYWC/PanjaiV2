@@ -1,0 +1,35 @@
+.search-bar{
+    margin: 5% 3% 5% 3%;
+}
+
+
+
+
+.ui-input{
+    width: 70%;
+    height: auto;
+    margin-right: 2%;
+    font-size: 15pt;
+}
+
+
+.check1{
+    margin-right: 30%;
+}
+
+.check2{
+    margin-right: auto;
+}
+
+
+
+
+
+
+
+
+.ui-input:hover {
+    -webkit-box-shadow: 10px 10px 5px -5px rgba(221,219,219,1);
+    -moz-box-shadow: 10px 10px 5px -5px rgba(221,219,219,1);
+    box-shadow: 10px 10px 5px -5px rgba(221,219,219,1);
+}

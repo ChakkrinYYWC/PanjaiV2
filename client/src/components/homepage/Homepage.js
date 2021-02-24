@@ -20,7 +20,6 @@ import {
 } from "react-router-dom";
 
 
-
 /*----------------------------------------------------------------------*/
 
 function Homepage() {
@@ -33,6 +32,7 @@ function Homepage() {
 
     return (
         <div>
+            
             {/* ----------------------slideshow------------------------------------------------*/}
             <Carousel>
                 <Carousel.Item>
@@ -63,7 +63,7 @@ function Homepage() {
 
 
             {/* ---------------------------------category------------------------------------- */}
-            <div className="category">
+            <div className="category" id="003">
                 <h3>หมวดหมู่มูลนิธิ</h3>
                 <div className="row m-0">
                     <div className="column col-4">
@@ -126,7 +126,7 @@ function Homepage() {
             </div>
 
             {/* ----------------------------ตู้ปันใจ------------------------------------------ */}
-            <div className="tupanjai">
+            <div className="tupanjai" id="1">
                 <div className="row">
                     <div className="col-sm-4">
                         <div className="too">
