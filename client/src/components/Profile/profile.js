@@ -13,6 +13,8 @@ function Profile() {
     const [newFirst, setnewFirst] = useState("");
     const [newPhone, setnewPhone] = useState("");
     const [newAddress, setnewAddress] = useState("");
+    const currentUser = localStorage.getItem('currentUser')
+    
     const CancelUpdate = () => {
         setedit(false);
     }
@@ -119,8 +121,8 @@ function Profile() {
                                 <div className="box-text">
                                     <h1> ประวัติส่วนตัว</h1>
                                     <div className="textinforuser">
-                                        <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล</span>
-                                        <p>{profile.name}</p>
+                                        <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
+                                        <p>{currentUser}</p>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>

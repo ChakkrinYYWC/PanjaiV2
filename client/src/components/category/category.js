@@ -61,8 +61,7 @@ const mapStateToProps = state => ({
 })
 
 const mapActionToProps = {
-    fetchAllPostFDT: action.fetchAll,
-    deletePostMessage: action.Delete
+    fetchAllPostFDT: action.fetchAll
 }
 
 export default connect(mapStateToProps, mapActionToProps)(Category);

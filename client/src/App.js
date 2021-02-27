@@ -15,11 +15,9 @@ import Navbar from "./components/Navbar/Navbar";  //forth
 import Profile from "./pages/userInformation"; //june
 import register from "./pages/register";
 import Foundation from './pages/Foundation';
-// import category from './components/category/category';
 import category from './pages/Category';
-import categoryshow from './components/category/categoryshow';
+import Categoryshow from './pages/Categoryshow';
 import { Category } from '@material-ui/icons';
-
 import ShowFDT from './pages/FDTShow';
 // import ShowFDT from './components/foundation/ShowFDT';
 // import PrivateRoute from 'react-private-route'
@@ -37,7 +35,7 @@ function App() {
         {/* <Route exact path="/Foundation/:id" component={ShowFDT}/>
         <Route path="/Foundation" component={Foundation}/> */}
         <Route path="/profile" component={Profile}/>
-        <Route path="/Foundation/:name/:id" component={categoryshow}/>
+        <Route path="/Foundation/:name/:id" component={Categoryshow}/>
         <Route path="/Foundation/:name" component={category}/>
       </Switch>
     </Router>

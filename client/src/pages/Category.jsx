@@ -59,7 +59,6 @@ function Catego({ classes, ...props }) {
         setOpen(false);
     };
 
-    console.log(props)
 
     return (
 
@@ -78,6 +77,7 @@ function Catego({ classes, ...props }) {
                             <PostFDT {...{ currentId, setCurrentId }} />
                             <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
                         </Dialog>
+
                         <Category {...{ currentId, setCurrentId }} />
                     </Provider>
                 </Then>
@@ -85,7 +85,6 @@ function Catego({ classes, ...props }) {
                     <Provider store={store}>
                         <Category {...{ currentId, setCurrentId }} />
                     </Provider>
-
                 </Else>
             </If>
         </>
