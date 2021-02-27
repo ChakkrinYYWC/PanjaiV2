@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './category.css'
 import { connect } from 'react-redux';
 import * as action from '../../action/postFDT'
@@ -12,14 +12,55 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
+import PostFDT from "../foundation/PostFDT";
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
+import { Fab, withStyles, Typography, IconButton } from '@material-ui/core';
+import ButterToast, { POS_RIGHT, POS_TOP, Cinnamon } from "butter-toast";
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
+import { DeleteSweep } from "@material-ui/icons";
+import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
+import { Redirect } from 'react-router'
+
+const styles = theme => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(2),
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
+    extendedIcon: {
+        marginRight: theme.spacing(0),
+    }
+});
+
+const DialogTitle2 = withStyles(styles)((props) => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+        <MuiDialogTitle disableTypography className={classes.root} {...other}>
+            <Typography variant="h6">{children}</Typography>
+            {onClose ? (
+                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+                    <CloseIcon />
+                </IconButton>
+            ) : null}
+        </MuiDialogTitle>
+    );
+});
 
 function Categoryshow({ classes, ...props }) {
 
     const [open, setOpen] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const [current, setCurrent] = useState(0)
+    const currentUser = localStorage.getItem('currentUser')
 
     useEffect(() => {
         props.fetchAllPostFDT()
@@ -33,6 +74,28 @@ function Categoryshow({ classes, ...props }) {
         setOpen(false);
     };
 
+    const handleClickOpenFDT = id => {
+        setOpen2(true);
+        setCurrent(id);
+    };
+
+    const handleCloseFDT = () => {
+        setOpen2(false);
+    };
+
+    const onDelete = id => {
+        const onSuccess = () => {
+            ButterToast.raise({
+                content: <Cinnamon.Crisp title="Foundation"
+                    content="Deleted successfully"
+                    scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+                    icon={<DeleteSweep />}
+                />
+            })
+        }
+        if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?'))
+            props.deletePostMessage(id, onSuccess)
+    }
 
     console.log(props)
 
@@ -42,38 +105,97 @@ function Categoryshow({ classes, ...props }) {
                 props.postFDTList.filter(fdt => fdt._id == props.currentId.match.params.id).map((record, index) => {
                     return (
                         <>
-                            <h2>{record.title}</h2>
-                            <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
-                            <h2>{record.message}</h2>
-                            <h2>{record.item}</h2>
-                            <h2>{record.n_item}</h2>
-                            <h2>{moment(record.Timestamp).calendar()}</h2>
+                            <If condition={currentUser == 'admin'}>
+                                <Then>
 
-                            <Button variant="contained" color="primary" onClick={handleClickOpen}>
-                                บริจาค
-                            </Button>
-                            <Dialog
-                                fullScreen={fullScreen}
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="responsive-dialog-title"
-                            >
-                                <DialogTitle id="responsive-dialog-title">บริจาคให้กับ{record.title}</DialogTitle>
+                                    <Fab size="small" color="primary" aria-label="edit" onClick={() => handleClickOpenFDT(record._id)} >
+                                        <EditOutlinedIcon />
+                                    </Fab>
 
-                                <DialogContent>
-                                    <DialogContentText>
-                                        <Form {...record} />
-                                    </DialogContentText>
-                                </DialogContent>
+                                    <Dialog
+                                        onClose={handleCloseFDT}
+                                        aria-labelledby="customized-dialog-title"
+                                        open={open2}
+                                    >
+                                        <DialogTitle2 id="customized-dialog-title" onClose={handleCloseFDT}>
+                                            แก้ไขข้อมูลโครงการ
+                                        </DialogTitle2>
 
-                                <DialogActions>
-                                    <Button onClick={handleClose} color="primary">
-                                        ยกเลิก
+                                        <PostFDT {...{ current, setCurrent }} />
+                                        <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
+                                    </Dialog>
+
+                                    <Fab size="small" color="primary" aria-label="add" onClick={() => onDelete(record._id)} >
+                                        <DeleteOutlineRoundedIcon />
+                                    </Fab>
+
+                                    <h2>{record.title}</h2>
+                                    <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
+                                    <h2>{record.message}</h2>
+                                    <h2>สิ่งของที่ต้องการ {record.item}</h2>
+                                    <h2>จำนวน {record.n_item}</h2>
+                                    <h2>วันที่ลง {moment(record.Timestamp).calendar()}</h2>
+
+                                    <Button variant="contained" color="primary" onClick={handleClickOpen}>
+                                        บริจาค
                                     </Button>
-                                </DialogActions>
+                                    <Dialog
+                                        fullScreen={fullScreen}
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="responsive-dialog-title"
+                                    >
+                                        <DialogTitle id="responsive-dialog-title">บริจาคให้กับ{record.title}</DialogTitle>
 
-                            </Dialog>
+                                        <DialogContent>
+                                            <DialogContentText>
+                                                <Form {...record} />
+                                            </DialogContentText>
+                                        </DialogContent>
 
+                                        <DialogActions>
+                                            <Button onClick={handleClose} color="primary">
+                                                ยกเลิก
+                                            </Button>
+                                        </DialogActions>
+                                    </Dialog>
+
+                                </Then>
+                                <Else>
+
+                                    <h2>{record.title}</h2>
+                                    <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
+                                    <h2>{record.message}</h2>
+                                    <h2>สิ่งของที่ต้องการ {record.item}</h2>
+                                    <h2>จำนวน {record.n_item}</h2>
+                                    <h2>วันที่ลง {moment(record.Timestamp).calendar()}</h2>
+
+                                    <Button variant="contained" color="primary" onClick={handleClickOpen}>
+                                        บริจาค
+                                    </Button>
+                                    <Dialog
+                                        fullScreen={fullScreen}
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="responsive-dialog-title"
+                                    >
+                                        <DialogTitle id="responsive-dialog-title">บริจาคให้กับ{record.title}</DialogTitle>
+
+                                        <DialogContent>
+                                            <DialogContentText>
+                                                <Form {...record} />
+                                            </DialogContentText>
+                                        </DialogContent>
+
+                                        <DialogActions>
+                                            <Button onClick={handleClose} color="primary">
+                                                ยกเลิก
+                                            </Button>
+                                        </DialogActions>
+                                    </Dialog>
+
+                                </Else>
+                            </If>
 
                         </>
                     );

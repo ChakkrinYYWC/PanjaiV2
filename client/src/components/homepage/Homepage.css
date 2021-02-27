@@ -8,7 +8,7 @@
 /*Category*/
 .category{
   background-color: rgb(255, 236, 179);
-  height: 620px;
+  height: 700px;
   width: 100%;
   margin: 0;
   font-family: 'Mali', cursive;
@@ -123,7 +123,7 @@
   }
 
   h3{
-    padding: 30px;
+    padding: 50px;
     font-size: 40px;
     text-align: center;
     font-weight: bold;

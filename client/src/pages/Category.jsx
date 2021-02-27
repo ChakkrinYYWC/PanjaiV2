@@ -4,7 +4,7 @@ import { store } from "../action/store";
 import { Provider } from "react-redux";
 import PostFDT from "../components/foundation/PostFDT";
 import ButterToast, { POS_RIGHT, POS_TOP } from "butter-toast";
-import { Fab, makeStyles, withStyles, Typography, IconButton, Dialog, Button, TextField, Container } from '@material-ui/core';
+import { Fab, withStyles, Typography, IconButton, Dialog } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
@@ -47,9 +47,9 @@ const DialogTitle = withStyles(styles)((props) => {
 
 function Catego({ classes, ...props }) {
 
-    const [currentId, setCurrentId] = useState(props)
+    const [current, setCurrent] = useState(0)
     const [open, setOpen] = React.useState(false);
-    //const [currentId, setCurrentId] = useState(0)
+    const [currentId, setCurrentId] = useState(props)
     const currentUser = localStorage.getItem('currentUser')
 
     const handleClickOpen = () => {
@@ -74,8 +74,10 @@ function Catego({ classes, ...props }) {
                             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                                 Post Foundation
                         </DialogTitle>
-                            <PostFDT {...{ currentId, setCurrentId }} />
+
+                            <PostFDT {...{ current, setCurrent }} />
                             <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
+                            
                         </Dialog>
 
                         <Category {...{ currentId, setCurrentId }} />
@@ -83,7 +85,7 @@ function Catego({ classes, ...props }) {
                 </Then>
                 <Else>
                     <Provider store={store}>
-                        <Category {...{ currentId, setCurrentId }} />
+                        {/* <Category {...{ currentId, setCurrentId }} /> */}
                     </Provider>
                 </Else>
             </If>
