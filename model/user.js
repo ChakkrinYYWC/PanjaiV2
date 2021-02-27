@@ -6,7 +6,10 @@ let userSchema = new mongoose.Schema({
     idcard : String,
     email : String,
     accessToken : String,
-    favorite : Array
+    favorite : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "postPanjai"
+    },
 });
 
 userSchema.plugin(passportLocalMongoose);

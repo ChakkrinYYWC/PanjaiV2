@@ -141,7 +141,7 @@ function Profile() {
                                             <button className="button" onClick={handleEditProfile}>EditProfile</button>
                                         </div>
                                         <div className="Like">
-                                            <i className="fab fa-gratipay"></i>
+                                            <Link to="/profile/favorite"><i className="fab fa-gratipay"></i></Link>
                                             {/* <Link  to={item.href}></Link> */}
                                         </div>
                                     </div>
