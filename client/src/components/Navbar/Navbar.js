@@ -1,9 +1,21 @@
+<<<<<<< HEAD
 import { Search } from '@material-ui/icons';
 import React, { Component, state} from 'react';
+=======
+
+    import { FormatColorResetOutlined, Search } from '@material-ui/icons';
+    import React, { Component,useState } from 'react';
+
+   
+
+
+>>>>>>> 95224e7935a76f84641ce14aa4d4aec5a91522f5
 import { Link, Redirect } from 'react-router-dom';
+
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import Axios from 'axios';
 import { Avatar } from "@material-ui/core";
+import NotiPanel from "../Noti1/Noti1";
 
 import Menuitems from "./Menuitems";
 import './Navbar.css';
@@ -21,7 +33,7 @@ async function logout() {
     await Axios.post('/authenticate/logout', data, {
     }).then(res => {
         console.log(res);
-        if(res.data.name){
+        if (res.data.name) {
             window.alert("Error")
         } else {
             localStorage.setItem('PanjaiToken', null);
@@ -45,8 +57,28 @@ async function logout() {
 // }
 
 class Navbar extends Component {
+<<<<<<< HEAD
     state = { clicked: false,
     find:''}
+=======
+
+    
+    state = { 
+
+        input: "",
+        clicked: false ,
+        openState: false,
+        targetNoti: null
+    }
+
+
+    openNotiPanel = (event) => {
+        console.log(event)
+        this.setState({ openState: !this.state.openState });
+        this.setState({ targetNoti: event.target})
+
+    }
+>>>>>>> 95224e7935a76f84641ce14aa4d4aec5a91522f5
 
     handleClick = () => {
         this.setState({ clicked: !this.state.clicked })
@@ -69,18 +101,23 @@ class Navbar extends Component {
 
             <div>
                 <nav className="NavbarItems">
-                    <h1 className="navbar-logo">ปันใจ <i className="fab fa-gratipay"></i></h1>
+
+                    <Link to="/"  className="navbar-logo" >ปันใจ <i className="fab fa-gratipay"></i></Link>
                     {/* <div className="navbar-logo"><img src="logo.png" width="120px"/></div> */}
+
                     <div className="menu-icon" onClick={this.handleClick}>
                         <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                     </div>
                     <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
                         {Menuitems.map((item, index) => {
                             return (
-                                <li className="itemlist" key={index}>
-                                    <Link className={item.cName} to={item.href}>
-                                        {item.title}
-                                    </Link>
+                                <li className="itemlist" key={index} >
+                                    {/* <a href={"#" + item.id}> */}
+                                        <a className={item.cName} href={item.href}>
+                                            {item.title}
+                                        </a>
+                                    {/* </a> */}
+
                                 </li>
 
                             )
@@ -115,8 +152,16 @@ class Navbar extends Component {
                             </form>
                         </div>
                     </span>
-                    <span className="noti">
-                        <span type="button" href="" className="bell"><i className="fas fa-bell"></i></span>
+
+                    <span class="noti">
+                        <span type="button"  className="bell" onClick={(event) => this.openNotiPanel(event)}>
+                            <i class="fas fa-bell"></i>
+                            {
+                                this.state.openState?  <NotiPanel open={this.state.openState} t={this.state.targetNoti} /> : null
+                            }
+                           
+                        </span>
+
                     </span>
 
                     <If condition={PanjaiToken == "null"} >
@@ -137,6 +182,7 @@ class Navbar extends Component {
                     {/* <div type="button" href="Login" className="nav-links-mobile">เข้าสู่ระบบ</div> */}
 
                 </nav>
+                {/* <input onChange={(event) => { this.setState({input:event.target.value}); console.log(event,event.target.value) }}></input> */}
             </div>
         )
     }
