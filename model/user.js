@@ -5,6 +5,8 @@ let userSchema = new mongoose.Schema({
     username : String,
     idcard : String,
     email : String,
+    address : String,
+    phone : String,
     accessToken : String,
     favorite : {
         type: mongoose.Schema.Types.ObjectId,

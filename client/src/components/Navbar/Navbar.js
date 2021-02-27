@@ -1,15 +1,6 @@
-<<<<<<< HEAD
-import { Search } from '@material-ui/icons';
-import React, { Component, state} from 'react';
-=======
+import { FormatColorResetOutlined, Search } from '@material-ui/icons';
+import React, { Component,useState } from 'react';
 
-    import { FormatColorResetOutlined, Search } from '@material-ui/icons';
-    import React, { Component,useState } from 'react';
-
-   
-
-
->>>>>>> 95224e7935a76f84641ce14aa4d4aec5a91522f5
 import { Link, Redirect } from 'react-router-dom';
 
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
@@ -57,11 +48,6 @@ async function logout() {
 // }
 
 class Navbar extends Component {
-<<<<<<< HEAD
-    state = { clicked: false,
-    find:''}
-=======
-
     
     state = { 
 
@@ -78,7 +64,6 @@ class Navbar extends Component {
         this.setState({ targetNoti: event.target})
 
     }
->>>>>>> 95224e7935a76f84641ce14aa4d4aec5a91522f5
 
     handleClick = () => {
         this.setState({ clicked: !this.state.clicked })
