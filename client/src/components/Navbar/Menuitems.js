@@ -1,3 +1,5 @@
+const currentUser_id = localStorage.getItem('currentUser_id')
+
 const Menuitems = [
     {
         id: '001',
@@ -32,7 +34,7 @@ const Menuitems = [
     {
         id: '006',
         title: 'ข้อมูลส่วนตัว',
-        href: '/profile',
+        href: '/profile/'+currentUser_id,
         cName: 'nav-links'
     }
  

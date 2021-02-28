@@ -4,10 +4,12 @@ var ObjectID = require('mongoose').Types.ObjectId
 const fs = require('fs')
 const multer = require('multer')
 const path = require('path')
+const mongoose = require("mongoose");
 // const middleware = require('../middleware/index');
 
 var { PostPanjai } = require('../model/postPanjai')
 const user = require('../model/user');
+const noti = require('../model/notification');
 
 const storage = multer.diskStorage({
     destination: './public/uploads/Too-Panjai',
@@ -86,36 +88,102 @@ router.delete('/:id', (req, res) => {
 router.post('/addFav/:id', (req, res) => {
     console.log("Post_id: "+req.params.id)
     console.log("currentuser_id: "+req.body.currentUser_id)
-    // user.update(
-    //     { _id: req.body.currentUser_id },
-    //     { $addToSet: { favorite: req.params.id } }
-    // )
+
     user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { favorite: req.params.id } }, function(error,update){
         if(error){
             console.log(error)
-        }else{
-            res.redirect('/dinsor/'+req.params.id)
         }
     })
-    // user.f({
-    //     query: { id: req.body.currentUser_id },
-    //     sort: { rating: 1 },
-    //     update: { $inc: { favorite: req.params.id } }
-    // })
-    // user.insert({_id: req.body.currentUser_id}, {favorite: req.params.id }, function(err, doc){
-    //     if (err) {
-    //         console.log(err)
-    //     } else {
-    //         console.log(doc)
-    //     }
-    // });
-    // user.save({ _id: req.body.currentUser_id },{favorite: req.params.id }, function(error,save){
-    //     if (error){
+})
+
+router.post('/addRequest/:id',async function(req, res){
+    console.log("Post_id: "+req.params.id)
+    console.log("currentuser_id: "+req.body.currentUser_id)
+
+    user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { request: req.params.id } },await function(error,update){
+        if(error){
+            console.log(error)
+        }
+    })
+
+    // const Post = PostPanjai.findById(req.params.id,await function(error,done){
+    //     if(error){
     //         console.log(error)
-    //     } else {
-    //         console.log(save)
+    //     }else{
+    //         //console.log(done)
     //     }
     // })
+    let post = await PostPanjai.aggregate([
+        {
+            $match: {
+                _id : mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+    ])
+    //console.log(post)
+    let owner_id = await user.aggregate([
+        {
+            $match: {
+                username : post[0].creator
+            }
+        },
+    ])
+    //console.log(owner_id[0]._id)
+
+    // noti.findByIdAndUpdate( owner_id[0]._id, { $addToSet: { notification: req.params.id } },await function(error,update){
+    //     if(error){
+    //         console.log(error)
+    //     }
+    // })
+
+    noti.create({
+        owner : owner_id[0]._id,
+        requester : req.body.currentUser_id,
+        notification : req.params.id,
+    })
+
+
+})
+
+router.post('/notifications/:id',async function(req, res){
+    //console.log("Id:"+req.params.id)
+    const result = await noti.aggregate([
+        {
+            $lookup:
+            {
+                localField: "owner",
+                from: "users",
+                foreignField: "_id",
+                as: "owner"
+            }
+        },
+        {
+            $lookup:
+            {
+                localField: "requester",
+                from: "users",
+                foreignField: "_id",
+                as: "requester"
+            }
+        },
+        {
+            $lookup:
+            {
+                localField: "notification",
+                from: "PostPanjai",
+                foreignField: "_id",
+                as: "notification"
+            }
+        },
+        // {
+        //     $match: {
+        //         "owner" : req.params.id
+        //     }
+        // },
+    ])
+    const result2 = [result[0].owner[0].username, result[0].requester[0].username, result[0].notification[0].title]
+    console.log(result2)
+    res.send(result2)
 })
 
 module.exports = router

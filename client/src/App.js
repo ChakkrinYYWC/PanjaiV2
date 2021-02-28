@@ -37,7 +37,7 @@ function App() {
         {/* <PrivateRoute   isAuthenticated={isLoggedIn()} path="/Too_panjai" component={Too_panjai}/> */}
         {/* <Route exact path="/Foundation/:id" component={ShowFDT}/>
         <Route path="/Foundation" component={Foundation}/> */}
-        <Route path="/profile" component={Profile}/>
+        <Route path="/profile/:id" component={Profile}/>
         <Route path="/notification" component={Noti1}/>
         <Route path="/Foundation/:name/:id" component={Categoryshow}/>
         <Route path="/Foundation/:name" component={category}/>

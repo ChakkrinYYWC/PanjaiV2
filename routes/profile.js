@@ -24,21 +24,73 @@ const e = require("express");
 /*-------------------------------------------------------------------------------*/
 server.post('/favorite/:user',async function(req, res){
     console.log("User: " + req.params.user)
-    const result = await user.findById(req.params.user, function(error,done){
-        if (error) {
-            console.log(error)
-        } else {
-            //console.log(done)
-        }
-    })
-    user.find({}, function(error,done){
-        if(error){
-            console.log(error)
-        } else {
-            console.log(done)
-        }
-    })
-    //console.log(result)
+    // const result = await user.findById(req.params.user, function(error,done){
+    //     if (error) {
+    //         console.log(error)
+    //     } else {
+    //         console.log(done)
+    //     }
+    // })
+    let result = await user.aggregate([
+        {
+            $match: {
+                _id : mongoose.Types.ObjectId(req.params.user)
+            }
+        },
+        {
+            $lookup:
+            {
+                localField: "favorite",
+                from: "PostPanjai",
+                foreignField: "_id",
+                as: "favorite"
+            }
+        },
+    ])
+    console.log(result[0].favorite)
+    res.send(result[0].favorite)
 })
+
+server.post('/update/:id', function (req, res) {
+    console.log('************************************')
+    //console.log(req.body[0])
+    // if (!ObjectID.isValid(req.params.id))
+    // return res.status(400).send('No record with given id : ' + req.params.id)
+
+    var updatedUser = {
+        phone: req.body[0],
+        address: req.body[1],
+    }
+
+    user.findByIdAndUpdate(req.params.id, { $set: updatedUser }, { new: true }, function(error,update){
+        if(!error){
+            res.send(update)
+        }else{
+            console.log('Error #3 : '+error)
+        }
+    })
+
+});
+server.get('/information/:id',async function (req, res) {
+    let result = await user.aggregate([
+        {
+            $match: {
+                _id : mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        // {
+        //     $lookup:
+        //     {
+        //         localField: "favorite",
+        //         from: "PostPanjai",
+        //         foreignField: "_id",
+        //         as: "favorite"
+        //     }
+        // },
+    ])
+    console.log(result)
+    res.send(result[0])
+
+});
 /*-------------------------------------------------------------------------------*/
 module.exports = server;

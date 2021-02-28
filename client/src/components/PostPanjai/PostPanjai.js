@@ -140,30 +140,19 @@ const PostPanjai = ({ classes, ...props }) => {
         setAnchorEl(null);
     };
 
-    const favoriteItem = id => {
-        // const onSuccess = () => {
-        //     ButterToast.raise({
-        //         content: <Cinnamon.Crisp title="ตู้ปันใจ"
-        //             content="Submitted successfully"
-        //             scheme={Cinnamon.Crisp.SCHEME_PURPLE}
-        //             icon={<AssignmentTurnedIn />}
-        //         />
-        //     })
-        // }
-        // props.createPostPanjai(id, onSuccess)
-        // const formData = new FormData();
-        // formData.append('currentUser', currentUser_id);
-        // console.log(JSON.stringify(formData))
+    const requestItem = id => {
         const data = {currentUser_id}
-        Axios.post('/Too-Panjai/addfav/'+id, data,{
+        Axios.post('/Too-Panjai/addRequest/'+id, data,{
         }).then(res => {
             console.log(res)
-            // if(res.data.name) {
-            //     window.alert("Error: "+res.data.message)
-            //     console.log("error")
-            // } else {
-            //     window.location.href = "http://localhost:3000/Login"
-            // }
+        }).catch(error => console.log(error))
+    }
+
+    const favoriteItem = id => {
+        const data = {currentUser_id}
+        Axios.post('/Too-Panjai/addFav/'+id, data,{
+        }).then(res => {
+            console.log(res)
         }).catch(error => console.log(error))
     }
 
@@ -286,6 +275,7 @@ const PostPanjai = ({ classes, ...props }) => {
                                                             <Else>
                                                                 <Button variant="contained" color="primary" size="small"
                                                                     className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น
+                                                                    onClick={() => requestItem(record._id)}
                                                                 >
                                                                     ขอรับ
                                                                 </Button>
