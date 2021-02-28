@@ -1,9 +1,5 @@
-
-    import { FormatColorResetOutlined, Search } from '@material-ui/icons';
-    import React, { Component,useState } from 'react';
-
-   
-
+import { FormatColorResetOutlined, Search } from '@material-ui/icons';
+import React, { Component,useState } from 'react';
 
 import { Link, Redirect } from 'react-router-dom';
 
@@ -14,6 +10,7 @@ import NotiPanel from "../Noti1/Noti1";
 
 import Menuitems from "./Menuitems";
 import './Navbar.css';
+//import { find } from '../../../../model/user';
 
 const PanjaiToken = localStorage.getItem('PanjaiToken')
 //console.log("PanjaiToken: "+PanjaiToken)
@@ -40,8 +37,17 @@ async function logout() {
     console.log("currentUser_id#2: " + currentUser_id)
 }
 
-class Navbar extends Component {
 
+// async function search(){
+//     await Axios.post('/Search'+state.find, {
+//     }).then(res => {
+//         console.log(res)
+//     }).catch(error =>{
+//         console.log(error)
+//     })
+// }
+
+class Navbar extends Component {
     
     state = { 
 
@@ -62,6 +68,17 @@ class Navbar extends Component {
     handleClick = () => {
         this.setState({ clicked: !this.state.clicked })
 
+    }
+
+    search = () => {
+        console.log("its work!!")
+        console.log(this.state.find)
+        Axios.get('/Search/'+this.state.find, {
+        }).then(res => {
+            console.log(res)
+        }).catch(error =>{
+            console.log(error)
+        })
     }
 
     render() {
@@ -107,7 +124,17 @@ class Navbar extends Component {
                     <span className="dropdown position-search">
                         <span type="button" data-toggle="dropdown"><i className="fas fa-search"></i></span>
                         <div className="dropdown-menu dropdown-menu-right">
-                            <input type="Search" placeholder="ค้นหา..."></input>
+                            <form>
+                                <input 
+                                    onChange={(event) =>{
+                                        this.setState({find: event.target.value})
+                                        //setSearch(event.target.value)
+                                    }}
+                                    type="Search"
+                                    placeholder="ค้นหา...">
+                                </input>
+                                <button onClick={this.search} type="submit">submit</button>
+                            </form>
                         </div>
                     </span>
 

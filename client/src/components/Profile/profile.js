@@ -14,6 +14,9 @@ function Profile() {
     const [newPhone, setnewPhone] = useState("");
     const [newAddress, setnewAddress] = useState("");
     const currentUser = localStorage.getItem('currentUser')
+    const currentUser_email = localStorage.getItem('currentUser_email')
+    const currentUser_phone = localStorage.getItem('currentUser_phone')
+    const currentUser_address = localStorage.getItem('currentUser_address')
     
     const CancelUpdate = () => {
         setedit(false);
@@ -99,7 +102,7 @@ function Profile() {
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-envelope"> </i> อีเมล</span>
 
-                                        <p>june_25431@hotmail.com</p>
+                                        <p>{currentUser_email}</p>
                                     </div>
                                     <div className="confirm-and-cancelEditProfile">
                                         <div className="confirmEditProfile">
@@ -126,15 +129,15 @@ function Profile() {
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
-                                        <p>{profile.phone}</p>
+                                        <p>{currentUser_phone}</p>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
-                                        <p>{profile.address}</p>
+                                        <p>{currentUser_address}</p>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-envelope"> </i> อีเมล</span>
-                                        <p>{profile.email}</p>
+                                        <p>{currentUser_email}</p>
                                     </div>
 
 
@@ -143,7 +146,7 @@ function Profile() {
                                             <button className="button" onClick={handleEditProfile}>EditProfile</button>
                                         </div>
                                         <div className="Like">
-                                            <i className="fab fa-gratipay"></i>
+                                            <Link to="/profile/favorite"><i className="fab fa-gratipay"></i></Link>
                                             {/* <Link  to={item.href}></Link> */}
                                         </div>
                                     </div>

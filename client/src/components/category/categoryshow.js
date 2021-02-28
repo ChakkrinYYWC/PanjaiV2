@@ -93,8 +93,10 @@ function Categoryshow({ classes, ...props }) {
                 />
             })
         }
-        if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?'))
+        if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')){
             props.deletePostMessage(id, onSuccess)
+            window.location.href = "http://localhost:3000/Foundation/"+props.currentId.match.params.name
+        }   
     }
 
     console.log(props)

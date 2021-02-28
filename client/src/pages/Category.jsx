@@ -59,7 +59,6 @@ function Catego({ classes, ...props }) {
         setOpen(false);
     };
 
-
     return (
 
         <>
@@ -85,7 +84,7 @@ function Catego({ classes, ...props }) {
                 </Then>
                 <Else>
                     <Provider store={store}>
-                        {/* <Category {...{ currentId, setCurrentId }} /> */}
+                        <Category {...{ currentId, setCurrentId }} />
                     </Provider>
                 </Else>
             </If>

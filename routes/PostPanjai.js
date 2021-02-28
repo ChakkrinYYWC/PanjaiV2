@@ -7,6 +7,7 @@ const path = require('path')
 // const middleware = require('../middleware/index');
 
 var { PostPanjai } = require('../model/postPanjai')
+const user = require('../model/user');
 
 const storage = multer.diskStorage({
     destination: './public/uploads/Too-Panjai',
@@ -81,6 +82,40 @@ router.delete('/:id', (req, res) => {
         else
             console.log('Error #5 : ' + JSON.stringify(err, undefined, 2))
     })
+})
+router.post('/addFav/:id', (req, res) => {
+    console.log("Post_id: "+req.params.id)
+    console.log("currentuser_id: "+req.body.currentUser_id)
+    // user.update(
+    //     { _id: req.body.currentUser_id },
+    //     { $addToSet: { favorite: req.params.id } }
+    // )
+    user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { favorite: req.params.id } }, function(error,update){
+        if(error){
+            console.log(error)
+        }else{
+            res.redirect('/dinsor/'+req.params.id)
+        }
+    })
+    // user.f({
+    //     query: { id: req.body.currentUser_id },
+    //     sort: { rating: 1 },
+    //     update: { $inc: { favorite: req.params.id } }
+    // })
+    // user.insert({_id: req.body.currentUser_id}, {favorite: req.params.id }, function(err, doc){
+    //     if (err) {
+    //         console.log(err)
+    //     } else {
+    //         console.log(doc)
+    //     }
+    // });
+    // user.save({ _id: req.body.currentUser_id },{favorite: req.params.id }, function(error,save){
+    //     if (error){
+    //         console.log(error)
+    //     } else {
+    //         console.log(save)
+    //     }
+    // })
 })
 
 module.exports = router
