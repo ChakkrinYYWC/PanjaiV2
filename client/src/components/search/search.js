@@ -1,14 +1,16 @@
 import React from "react";
 import "./search.css";
 import Checkbox from "@material-ui/core/Checkbox";
+import { Button } from "@material-ui/core";
+import { Card } from "react-bootstrap";
 
 import {
-  Grid,
-  Paper,
-  Typography,
-  Button,} from "@material-ui/core";
-
-import IconButton from '@material-ui/core/IconButton';
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect,
+} from "react-router-dom";
 
 export default function Checkboxes() {
   const [checked, setChecked] = React.useState(true);
@@ -23,9 +25,9 @@ export default function Checkboxes() {
         <div className="search-bar">
           <form className="ui-form">
             <div className="field">
-              <input type="text" className="ui-input" placeholder="Search" />
+              <input type="text" className="ui-input" placeholder="ค้นหา" />
 
-              <label style={{ color: "green" }}>Search</label>
+              <button className="search-bt">ค้นหา</button>
             </div>
           </form>
         </div>
@@ -37,7 +39,7 @@ export default function Checkboxes() {
             inputProps={{ "aria-label": "checkbox with default color" }}
           />
           <label className="check1" style={{ color: "black" }}>
-            มูลนิธิ
+            <h2> มูลนิธิ </h2>
           </label>
 
           <Checkbox
@@ -47,161 +49,168 @@ export default function Checkboxes() {
             inputProps={{ "aria-label": "checkbox with default color" }}
           />
           <label className="check2" style={{ color: "black" }}>
-            ตู้ปันใจ
+            <h2> ตู้ปันใจ</h2>
           </label>
-        </div>{" "}
+        </div>
       </center>
 
-      
-      <div className="search-bar">
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={4}>
-          <Paper className="framepost">
-            <Grid container>
-              <Grid item xs={8}>
-                <Typography variant="h5" className="dew"></Typography>
-              </Grid>
-              <Grid item sm={4}>
-                {/* จุด3จุด */}
-                <span>
-                  <IconButton
-                    aria-label="more"
-                    aria-controls="long-menu"
-                    aria-haspopup="true"
-                  ></IconButton>
-                </span>
-              </Grid>
-            </Grid>
+      <div className="bg2">
+        <center className="head">
+          <h3> มูลนิธิ</h3>
+        </center>
 
-            <div className="frontpost">ข้อมูล</div>
-            <Grid container justify="center">
-              <div className=" frampicture">
-                <img src="https://th.bing.com/th/id/OIP.ocZAvEG4Aci0n_wAJcnCYgHaEE?w=289&h=180&c=7&o=5&pid=1.7" className="picture" />
-              </div>
-            </Grid>
+        <div className="row m-0">
+          <div className="column col-4">
+            <Card className="foundat">
+              <Card.Img
+                variant="top"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
+              />
+              <Card.Body>
+                <Link className="Tfound">ชื่อโครงการ</Link>
+                <div className="information">ต้องการรับบริจาค :</div>
+                <div className="information">จำนวน :</div>
+                <div className="information-1">วันที่ลง :</div>
+                <Link className="CardTitle">อ่านเพิ่มเติม</Link>
+              </Card.Body>
+            </Card>
+          </div>
 
-            <Grid container justify="center">
-              <div>
+          <div className="column col-4">
+            <Card className="foundat">
+              <Card.Img
+                variant="top"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
+              />
+              <Card.Body>
+                <Link className="Tfound">ชื่อโครงการ</Link>
+                <div className="information">ต้องการรับบริจาค :</div>
+                <div className="information">จำนวน :</div>
+                <div className="information-1">วันที่ลง :</div>
+                <Link className="CardTitle">อ่านเพิ่มเติม</Link>
+              </Card.Body>
+            </Card>
+          </div>
+
+          <div className="column col-4">
+            <Card className="foundat">
+              <Card.Img
+                variant="top"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
+              />
+              <Card.Body>
+                <Link className="Tfound">ชื่อโครงการ</Link>
+                <div className="information">ต้องการรับบริจาค :</div>
+                <div className="information">จำนวน :</div>
+                <div className="information-1">วันที่ลง :</div>
+                <Link className="CardTitle">อ่านเพิ่มเติม</Link>
+              </Card.Body>
+            </Card>
+          </div>
+        </div>
+
+        <center className="head">
+          <h3> ตู้ปันใจ </h3>{" "}
+        </center>
+
+        <div className="row m-0">
+          <div className="column col-4">
+            <Card className="foundat">
+              <Card.Img
+                variant="top"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
+              />
+              <Card.Body>
+                <Link className="Tfound">บริจาคอะไร</Link>
+                <div className="information">ผู้สร้าง :</div>
+                <div className="information">จังหวัด :</div>
+                <div className="information-1">วันที่ลง :</div>
+              <div className="pum">
                 <Button
                   variant="contained"
                   color="primary"
                   size="small"
+                  className="want" // จำเป็น
                 >
-                  แก้ไข
+                  ขอรับ
                 </Button>
-
                 <Button
                   variant="contained"
                   color="secondary"
                   size="small"
-                 
+                  className="fav"
                 >
                   ถูกใจ
                 </Button>
+                </div>
+              </Card.Body>
+            </Card>
+          </div>
 
-              </div>
-            </Grid>
-          </Paper>
-        </Grid>
-
-
-
-
-
-        <Grid item xs={12} sm={4}>
-          <Paper className="framepost">
-            <Grid container>
-              <Grid item xs={8}>
-                <Typography variant="h5" className="dew"></Typography>
-              </Grid>
-              <Grid item sm={4}>
-                {/* จุด3จุด */}
-                <span>
-                  <IconButton
-                    aria-label="more"
-                    aria-controls="long-menu"
-                    aria-haspopup="true"
-                  ></IconButton>
-                </span>
-              </Grid>
-            </Grid>
-
-            <div className="frontpost">ข้อมูล</div>
-            <Grid container justify="center">
-              <div className=" frampicture">
-                <img src="https://th.bing.com/th/id/OIP.ocZAvEG4Aci0n_wAJcnCYgHaEE?w=289&h=180&c=7&o=5&pid=1.7" className="picture" />
-              </div>
-            </Grid>
-
-            <Grid container justify="center">
-              <div>
-                <Button
+          <div className="column col-4">
+            <Card className="foundat">
+              <Card.Img
+                variant="top"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
+              />
+              <Card.Body>
+                <Link className="Tfound">บริจาคอะไร</Link>
+                <div className="information">ผู้สร้าง :</div>
+                <div className="information">จังหวัด :</div>
+                <div className="information-1">วันที่ลง :</div>
+              <div className="pum">
+                <Button 
                   variant="contained"
                   color="primary"
                   size="small"
+                  className="want" // จำเป็น
                 >
-                  แก้ไข
+                  ขอรับ
                 </Button>
-
                 <Button
                   variant="contained"
                   color="secondary"
                   size="small"
-                 
+                  className="fav"
                 >
                   ถูกใจ
                 </Button>
-
               </div>
-            </Grid>
-          </Paper>
-        </Grid>
+              </Card.Body>
+            </Card>
+          </div>
 
-        <Grid item xs={12} sm={4}>
-          <Paper className="framepost">
-            <Grid container>
-              <Grid item xs={8}>
-                <Typography variant="h5" className="dew"></Typography>
-              </Grid>
-              <Grid item sm={4}>
-                {/* จุด3จุด */}
-                <span>
-                  <IconButton
-                    aria-label="more"
-                    aria-controls="long-menu"
-                    aria-haspopup="true"
-                  ></IconButton>
-                </span>
-              </Grid>
-            </Grid>
-
-            <div className="frontpost">ข้อมูล</div>
-            <Grid container justify="center">
-              <div className=" frampicture">
-                <img src="https://th.bing.com/th/id/OIP.ocZAvEG4Aci0n_wAJcnCYgHaEE?w=289&h=180&c=7&o=5&pid=1.7" className="picture" />
-              </div>
-            </Grid>
-
-            <Grid container justify="center">
-              <div>
+          {/* <div className="column col-4">
+            <Card className="foundat">
+              <Card.Img
+                variant="top"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
+              />
+              <Card.Body>
+                <Link className="Tfound">บริจาคอะไร</Link>
+                <div className="information">ผู้สร้าง :</div>
+                <div className="information">จังหวัด :</div>
+                <div className="information-1">วันที่ลง :</div>
                 <Button
                   variant="contained"
                   color="primary"
                   size="small"
+                  className="want" // จำเป็น
                 >
-                  บริจาค
+                  ขอรับ
                 </Button>
-
-               
-
-              </div>
-            </Grid>
-          </Paper>
-        </Grid>
-
-
-
-      </Grid>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                  className="fav"
+                >
+                  ถูกใจ
+                </Button>
+              </Card.Body>
+            </Card>
+          </div> */}
+        </div>
       </div>
     </div>
   );
