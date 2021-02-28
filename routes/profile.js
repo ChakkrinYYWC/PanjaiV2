@@ -24,21 +24,31 @@ const e = require("express");
 /*-------------------------------------------------------------------------------*/
 server.post('/favorite/:user',async function(req, res){
     console.log("User: " + req.params.user)
-    const result = await user.findById(req.params.user, function(error,done){
-        if (error) {
-            console.log(error)
-        } else {
-            //console.log(done)
-        }
-    })
-    user.find({}, function(error,done){
-        if(error){
-            console.log(error)
-        } else {
-            console.log(done)
-        }
-    })
-    //console.log(result)
+    // const result = await user.findById(req.params.user, function(error,done){
+    //     if (error) {
+    //         console.log(error)
+    //     } else {
+    //         console.log(done)
+    //     }
+    // })
+    let result = await user.aggregate([
+        {
+            $match: {
+                _id : mongoose.Types.ObjectId(req.params.user)
+            }
+        },
+        {
+            $lookup:
+            {
+                localField: "favorite",
+                from: "PostPanjai",
+                foreignField: "_id",
+                as: "favorite"
+            }
+        },
+    ])
+    console.log(result[0].favorite)
+    res.send(result[0].favorite)
 })
 /*-------------------------------------------------------------------------------*/
 module.exports = server;

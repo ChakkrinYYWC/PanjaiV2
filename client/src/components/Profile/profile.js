@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './profile.css'
+import Axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function Profile() {
+
+    const currentUserID = localStorage.getItem("currentUser_id")
 
     // false = ยังไม่ได้กด edit
     const [edit, setedit] = useState(false);
@@ -40,7 +43,13 @@ function Profile() {
 
     }
 
-
+    function Myfav(){
+        Axios.post('/profile/favorite/'+currentUserID ,{
+        }).then(res => {
+            console.log(res);
+            //window.location.href = "http://localhost:3000/profile/favorite"
+        }).catch(error => console.log(error))
+    }
 
 
 
@@ -141,7 +150,7 @@ function Profile() {
                                             <button className="button" onClick={handleEditProfile}>EditProfile</button>
                                         </div>
                                         <div className="Like">
-                                            <Link to="/profile/favorite"><i className="fab fa-gratipay"></i></Link>
+                                            <button onClick={Myfav}><i className="fab fa-gratipay"></i></button>
                                             {/* <Link  to={item.href}></Link> */}
                                         </div>
                                     </div>
