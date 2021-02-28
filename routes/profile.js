@@ -51,15 +51,15 @@ server.post('/favorite/:user',async function(req, res){
     res.send(result[0].favorite)
 })
 
-server.put('/123', function (req, res) {
+server.post('/update/:id', function (req, res) {
     console.log('************************************')
-    
-    if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send('No record with given id : ' + req.params.id)
+    //console.log(req.body[0])
+    // if (!ObjectID.isValid(req.params.id))
+    // return res.status(400).send('No record with given id : ' + req.params.id)
 
     var updatedUser = {
-        phone: req.body.phone,
-        address: req.body.address,
+        phone: req.body[0],
+        address: req.body[1],
     }
 
     user.findByIdAndUpdate(req.params.id, { $set: updatedUser }, { new: true }, function(error,update){
@@ -69,6 +69,27 @@ server.put('/123', function (req, res) {
             console.log('Error #3 : '+error)
         }
     })
+
+});
+server.get('/information/:id',async function (req, res) {
+    let result = await user.aggregate([
+        {
+            $match: {
+                _id : mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        // {
+        //     $lookup:
+        //     {
+        //         localField: "favorite",
+        //         from: "PostPanjai",
+        //         foreignField: "_id",
+        //         as: "favorite"
+        //     }
+        // },
+    ])
+    console.log(result)
+    res.send(result[0])
 
 });
 /*-------------------------------------------------------------------------------*/

@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './profile.css'
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
-import Axios from 'axios';
 
 function Profile() {
 
     const currentUserID = localStorage.getItem("currentUser_id")
+    const [allInform, setAllInform] = useState("");
+
+    Axios.get('/profile/information/'+currentUserID,{
+    }).then(res => {
+        console.log(res)
+        setAllInform(res.data)
+    }).catch(error => console.log(error))
 
     // false = ยังไม่ได้กด edit
     const [edit, setedit] = useState(false);
@@ -53,18 +59,18 @@ function Profile() {
         console.log('00000000')
         console.log(address)
         console.log(phone)
-        console.log(currentUser_id)
+        console.log(currentUserID)
 
-        const formData = new FormData();
-        formData.append('address', address)
-        formData.append('phone', phone)
-        Axios.post('/profile/123', formData, {
+        // const formData = new FormData();
+        // formData.append('address', address)
+        // formData.append('phone', phone)
+        const data = [phone, address]
+        Axios.post('/profile/update/'+currentUserID, data,{
         }).then(res => {
             console.log(res)
         }).catch(error => console.log(error))
     }
 
-<<<<<<< HEAD
     function Myfav(){
         Axios.post('/profile/favorite/'+currentUserID ,{
         }).then(res => {
@@ -72,11 +78,6 @@ function Profile() {
             //window.location.href = "http://localhost:3000/profile/favorite"
         }).catch(error => console.log(error))
     }
-
-
-
-=======
->>>>>>> d5a300a60b8b402e1b414177d95a14b93a07ff01
 
     useEffect(() => {
 
@@ -153,19 +154,19 @@ function Profile() {
                                     <h1> ประวัติส่วนตัว</h1>
                                     <div className="textinforuser">
                                         <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
-                                        <p>{currentUser}</p>
+                                        <p>W8</p>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
-                                        <p>{currentUser_phone}</p>
+                                        <p>{allInform.phone}</p>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
-                                        <p>{currentUser_address}</p>
+                                        <p>{allInform.address}</p>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-envelope"> </i> อีเมล</span>
-                                        <p>{currentUser_email}</p>
+                                        <p>{allInform.email}</p>
                                     </div>
 
 
