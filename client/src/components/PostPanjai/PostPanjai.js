@@ -5,7 +5,7 @@ import { Divider, Grid, Paper, Typography, withStyles,
     List, ListItem, ListItemText, Button, makeStyles } from '@material-ui/core';
 import PostPanjaiForm from './PostPanjaiForm'
 import ButterToast, { Cinnamon } from "butter-toast";
-import { DeleteSweep, AccessAlarm, ThreeDRotation } from "@material-ui/icons";
+import { DeleteSweep, AccessAlarm, ThreeDRotation, AssignmentTurnedIn } from "@material-ui/icons";
 import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
@@ -13,6 +13,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { If, Then,ElseIf, Else } from 'react-if-elseif-else-render';
 import Icon from '@material-ui/core/Icon';
+import Axios from 'axios';
+
+const currentUser = localStorage.getItem('currentUser')
+const currentUser_id = localStorage.getItem('currentUser_id')
+
 
 const styles = theme => ({
     paper: {
@@ -90,7 +95,6 @@ const ITEM_HEIGHT = 48;
 
 const PostPanjai = ({ classes, ...props }) => {
 
-    const currentUser = localStorage.getItem('currentUser')
     const [currentId, setCurrentId] = useState(0)
 
     useEffect(() => {
@@ -135,6 +139,33 @@ const PostPanjai = ({ classes, ...props }) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const favoriteItem = id => {
+        // const onSuccess = () => {
+        //     ButterToast.raise({
+        //         content: <Cinnamon.Crisp title="ตู้ปันใจ"
+        //             content="Submitted successfully"
+        //             scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+        //             icon={<AssignmentTurnedIn />}
+        //         />
+        //     })
+        // }
+        // props.createPostPanjai(id, onSuccess)
+        // const formData = new FormData();
+        // formData.append('currentUser', currentUser_id);
+        // console.log(JSON.stringify(formData))
+        const data = {currentUser_id}
+        Axios.post('/Too-Panjai/addfav/'+id, data,{
+        }).then(res => {
+            console.log(res)
+            // if(res.data.name) {
+            //     window.alert("Error: "+res.data.message)
+            //     console.log("error")
+            // } else {
+            //     window.location.href = "http://localhost:3000/Login"
+            // }
+        }).catch(error => console.log(error))
+    }
 
     return (
         <>
@@ -260,6 +291,7 @@ const PostPanjai = ({ classes, ...props }) => {
                                                                 </Button>
                                                                 <Button variant="contained" color="secondary" size="small"
                                                                     className={`${classes.smMargin1} ${classes.frontpost}`}
+                                                                    onClick={() => favoriteItem(record._id)}
                                                                 >
                                                                     ถูกใจ
                                                                 </Button>
@@ -291,7 +323,8 @@ const mapStateToProps = state => ({
 
 const mapActionToProps = {
     fetchAllPostPanjai: action.fetchAll,
-    deletePostMessage: action.Delete
+    deletePostMessage: action.Delete,
+    createPostPanjai: action.create
 }
 
 export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(PostPanjai));

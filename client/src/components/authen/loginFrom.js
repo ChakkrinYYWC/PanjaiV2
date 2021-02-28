@@ -41,6 +41,8 @@ function LoginFrom() {
                 localStorage.setItem('currentUser', res.data[1]);
                 localStorage.setItem('currentUser_id', res.data[2]);
                 localStorage.setItem('currentUser_email', res.data[3]);
+                localStorage.setItem('currentUser_address', res.data[4]);
+                localStorage.setItem('currentUser_phone', res.data[5]);
                 window.location.href = "http://localhost:3000"
             } else {
                 window.alert("Username or password incorrect.")
