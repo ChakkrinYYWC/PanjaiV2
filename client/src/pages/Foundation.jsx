@@ -16,6 +16,7 @@ const styles = theme => ({
     root: {
         margin: 0,
         padding: theme.spacing(2),
+        
     },
     closeButton: {
         position: 'absolute',
@@ -28,9 +29,8 @@ const styles = theme => ({
     },
     extendedIcon: {
         marginRight: theme.spacing(1),
-    },
-
- 
+    }
+  
 
 });
 
@@ -65,15 +65,8 @@ function Foundation({ classes, ...props }) {
         setOpen(false);
     };
 
-    // const Styles = makeStyles ({
 
-    //     title: {
-    //         fontSize: '30px',
-    //     },
-
-    // });
-
-    // const classes = Styles();
+  
     return (
         <>
             <If condition={currentUser == 'admin'}>
