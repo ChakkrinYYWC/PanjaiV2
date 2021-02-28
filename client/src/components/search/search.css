@@ -1,0 +1,229 @@
+.search-bar{
+    margin: 5% 3% 5% 3%;
+    font-family: 'Mali', cursive;
+}
+.ui-input{
+    width: 50%;
+    height: auto;
+    margin-right: 2%;
+    font-size: 15pt;
+   
+}
+
+.search-bt{
+    background-color: rgb(241, 194, 99);
+    font-size: 18pt;
+    height: 40px;
+    width: 90px;
+    font-family: 'Mali', cursive;
+    border-radius: 10px;
+    
+}
+.search-bt:hover{
+    background-color: rgb(199, 155, 101);
+    font-size: 20px;
+}
+.check1{
+    margin-right:40%;
+  
+}
+.check2{
+    margin-right: auto;
+}
+
+
+.check1 h2 {
+    font-size: 25px;
+    margin: 0px; 
+    text-align: center;
+    font-family: 'Mali', cursive;
+    font-weight: bold;
+    color: rgb(151, 114, 85);
+    padding-top: 50px;
+}
+
+.check2 h2 {
+    font-size: 25px;
+    margin: 0px; 
+    text-align: center;
+    font-family: 'Mali', cursive;
+    font-weight: bold;
+    color: rgb(151, 114, 85);
+}
+
+
+
+
+.box1{
+    zoom: 140%;
+}
+
+.box2{
+    zoom: 140%;
+}
+
+
+
+
+.head {
+    margin-top:2%;
+}
+
+
+
+
+.dek {
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    font-family: 'Mali', cursive;
+    height: 400px;
+    position: absolute;
+ 
+}
+
+
+
+.dek p {
+  margin: 0px;
+  padding: 0px;
+} 
+/* 
+.box-white{
+    background-color: rgba(255, 255, 255, 0.89);
+    margin: 340px 120px 500px 120px;
+    box-shadow: 0px 7px 7px 4px rgba(206, 206, 206, 0.397);
+    justify-items: center;
+
+  
+
+} */
+
+.Title{
+  padding-top: 80px;
+  
+    font-size: 25px;
+    font-weight: bolder;
+    color:rgba(77, 50, 9, 0.925);
+    text-align: center;
+  
+  }
+
+  .Title .fab{
+      font-size: 26px;
+      color: rgb(212, 167, 134);
+      margin: 10px;
+  }
+
+  .foundation{
+    height: 60%;
+    width: 100%;
+    margin: 0;
+    
+  
+  }
+
+  
+.foundat{
+    width: 355px;
+    height: 350px;
+    text-align: center;
+    border-radius:40px;
+    
+    box-shadow: 1px 1px 1px 0px rgba(2, 1, 1, 0.555);
+    margin: 40px;
+  }
+
+  .foundat Img{
+    height: 180px;
+    width:100%;
+    border-radius:30px 30px 0  0;
+ 
+
+
+  }
+  
+  .foundation .row{
+    padding: 30px 90px 60px 10px;
+ 
+  }
+
+  .Tfound{
+      font-size: 16px;
+      color:rgba(41, 27, 27, 0.664);
+      font-weight: bold;
+      text-align:right;
+      text-decoration-line: none;
+
+  }
+
+  .Tfound:hover{
+    color:rgba(41, 27, 27, 0.863);
+    
+  }
+
+
+  .dek .card-body{
+      background-color: #e4d38580;
+      border-radius: 0 0 30px 30px;
+  }
+
+  .foundat .CardTitle{
+    text-decoration-line: none;
+    font-size: 13px;
+    color:rgba(253, 253, 253, 0.925);
+    background-color: rgba(161, 128, 79, 0.925) ;
+    border-radius: 6px;
+    padding: 3px;
+
+
+  }
+ 
+  .foundat .CardTitle:hover{
+    font-size: 13.5px;
+    text-decoration-line: underline;
+  }
+
+  .information,.information-1{
+    text-align: left;
+    color: rgb(82, 82, 82);
+    margin-top: 1px;
+    padding: 2px 0 2px 0;
+    font-size: 15px;
+}
+
+
+  .information-1{
+    margin-bottom: 10px
+
+  }
+  
+
+.bg2{
+    margin: 0% 15% 0% 15%;
+    background-color: rgb(235, 232, 228);
+    font-family: 'Mali', cursive; 
+}
+
+.head{
+    background-color: white;
+}
+
+.bg2 .row {
+    padding: 0% 10% 0% 5%;
+    /* padding-bottom: 50px;
+    padding-right: 100px;
+    padding-left: 100px; */
+}
+
+.ui-input:hover {
+    -webkit-box-shadow: 10px 10px 5px -5px rgba(221,219,219,1);
+    -moz-box-shadow: 10px 10px 5px -5px rgba(221,219,219,1);
+    box-shadow: 10px 10px 5px -5px rgba(221,219,219,1);
+}
+
+.pum Button {
+    padding: 2.5px 3px;
+    font-size: 0.8125rem;
+    margin: 0px 7px 0 0;
+}

@@ -46,7 +46,7 @@ function Profile() {
 
     }
     // อัพเดตโปรไฟล์
-    function confirmUpdate() {
+    const confirmUpdate = (event) =>  {
         console.log('00000000')
         console.log(address)
         console.log(phone)
@@ -56,18 +56,8 @@ function Profile() {
         formData.append('address', address)
         formData.append('phone', phone)
         Axios.post('/profile/123', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
         }).then(res => {
             console.log(res)
-            if (res.data.name) {
-                window.alert("Error: " + res.data.message)
-                console.log("error")
-            } else {
-                console.log("successful")
-                // window.location.href = "http://localhost:3000/Login"
-            }
         }).catch(error => console.log(error))
     }
 
