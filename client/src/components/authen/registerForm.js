@@ -12,6 +12,8 @@ function RegisterFrom() {
     const [password, setPassword] = useState();
     const [CPassword, setCPassword] = useState();
     const [Email, setEmail] = useState();
+    const [address, setAddress] = useState();
+    const [phone, setPhone] = useState();
     const [file, setFile] = useState();
 
     const PanjaiToken = localStorage.getItem('PanjaiToken');
@@ -41,6 +43,8 @@ function RegisterFrom() {
             formData.append('username', username)
             formData.append('password', password)
             formData.append('email', Email)
+            formData.append('address', address)
+            formData.append('phone', phone)
             formData.append('PanjaiToken', PanjaiToken)
             //console.log(JSON.stringify(formData))
             Axios.post('/authenticate/register', formData, {
@@ -118,7 +122,32 @@ function RegisterFrom() {
                         />
                     </div>
 
+                    <div className="form-group">
+                        <label>ที่อยู่: </label><br/>
+                        <input
+                            type="text"
+                            name="address"
+                            placeholder="ที่อยู่"
+                            onChange={(event) =>{
+                                setAddress(event.target.value)
+                            }}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label>เบอร์โทรศัพท์: </label><br/>
+                        <input
+                            type="phone number"
+                            name="phone"
+                            placeholder="เบอร์โทรศัพท์"
+                            onChange={(event) =>{
+                                setPhone(event.target.value)
+                            }}
+                        />
+                    </div>
+
                     <div>
+                        <label>ภาพบัตรประจำตัวประชาชน: </label><br/>
                         <input
                             type='file'
                             id='customFile'
@@ -127,6 +156,7 @@ function RegisterFrom() {
                             }}
                         />
                     </div> 
+
                     <br/>
                     <div>
                         <button className="btn btn-lg " onClick={uploadFile}>สมัครสมาชิก</button>

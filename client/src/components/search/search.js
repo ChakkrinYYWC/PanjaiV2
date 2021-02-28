@@ -189,17 +189,10 @@ export default function Checkboxes() {
                   color="primary"
                   size="small"
                 >
-                  แก้ไข
+                  บริจาค
                 </Button>
 
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  size="small"
-                 
-                >
-                  ถูกใจ
-                </Button>
+               
 
               </div>
             </Grid>
