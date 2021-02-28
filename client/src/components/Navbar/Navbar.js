@@ -1,9 +1,16 @@
-import { Search } from '@material-ui/icons';
-import React, { Component } from 'react';
+
+    import { FormatColorResetOutlined, Search } from '@material-ui/icons';
+    import React, { Component,useState } from 'react';
+
+   
+
+
 import { Link, Redirect } from 'react-router-dom';
+
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import Axios from 'axios';
 import { Avatar } from "@material-ui/core";
+import NotiPanel from "../Noti1/Noti1";
 
 import Menuitems from "./Menuitems";
 import './Navbar.css';
@@ -34,7 +41,23 @@ async function logout() {
 }
 
 class Navbar extends Component {
-    state = { clicked: false }
+
+    
+    state = { 
+
+        input: "",
+        clicked: false ,
+        openState: false,
+        targetNoti: null
+    }
+
+
+    openNotiPanel = (event) => {
+        console.log(event)
+        this.setState({ openState: !this.state.openState });
+        this.setState({ targetNoti: event.target})
+
+    }
 
     handleClick = () => {
         this.setState({ clicked: !this.state.clicked })
@@ -46,8 +69,10 @@ class Navbar extends Component {
 
             <div>
                 <nav className="NavbarItems">
+
                     <Link to="/"  className="navbar-logo" >ปันใจ <i className="fab fa-gratipay"></i></Link>
                     {/* <div className="navbar-logo"><img src="logo.png" width="120px"/></div> */}
+
                     <div className="menu-icon" onClick={this.handleClick}>
                         <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                     </div>
@@ -85,8 +110,16 @@ class Navbar extends Component {
                             <input type="Search" placeholder="ค้นหา..."></input>
                         </div>
                     </span>
-                    <span className="noti">
-                        <span type="button" href="Login" className="bell"><i className="fas fa-bell"></i></span>
+
+                    <span class="noti">
+                        <span type="button"  className="bell" onClick={(event) => this.openNotiPanel(event)}>
+                            <i class="fas fa-bell"></i>
+                            {
+                                this.state.openState?  <NotiPanel open={this.state.openState} t={this.state.targetNoti} /> : null
+                            }
+                           
+                        </span>
+
                     </span>
 
                     <If condition={PanjaiToken == "null"} >
@@ -107,6 +140,7 @@ class Navbar extends Component {
                     {/* <div type="button" href="Login" className="nav-links-mobile">เข้าสู่ระบบ</div> */}
 
                 </nav>
+                {/* <input onChange={(event) => { this.setState({input:event.target.value}); console.log(event,event.target.value) }}></input> */}
             </div>
         )
     }

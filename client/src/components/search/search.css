@@ -1,25 +1,50 @@
 .search-bar{
     margin: 5% 3% 5% 3%;
 }
-
-
-
-
 .ui-input{
     width: 70%;
     height: auto;
     margin-right: 2%;
     font-size: 15pt;
 }
-
-
 .check1{
     margin-right: 30%;
 }
-
 .check2{
     margin-right: auto;
 }
+
+
+
+
+
+
+.framepost{
+    background: #f9a825;
+    color: rgba(187, 130, 44, 0.925);
+    padding: '10px 10px';
+}
+
+
+.frampicture {
+    padding: '10px 10px'
+
+}
+
+.picture {
+    height: 150px;
+    width: auto;
+    margin: 10px auto;
+}
+
+
+.color1{
+    color: #a13800;
+}
+.judjudjud{
+    margin-left: 75px;
+
+},
 
 
 
