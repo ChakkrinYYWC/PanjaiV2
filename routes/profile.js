@@ -50,5 +50,26 @@ server.post('/favorite/:user',async function(req, res){
     console.log(result[0].favorite)
     res.send(result[0].favorite)
 })
+
+server.put('/123', function (req, res) {
+    console.log('************************************')
+    
+    if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send('No record with given id : ' + req.params.id)
+
+    var updatedUser = {
+        phone: req.body.phone,
+        address: req.body.address,
+    }
+
+    user.findByIdAndUpdate(req.params.id, { $set: updatedUser }, { new: true }, function(error,update){
+        if(!error){
+            res.send(update)
+        }else{
+            console.log('Error #3 : '+error)
+        }
+    })
+
+});
 /*-------------------------------------------------------------------------------*/
 module.exports = server;

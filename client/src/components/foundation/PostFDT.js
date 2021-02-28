@@ -68,11 +68,23 @@ const DialogActions = withStyles((theme) => ({
 
 
 const PostFDT = ({ classes, ...props }) => {
-    
+
+    console.log('*')
+    console.log(props)
+
     const [{ alt, src }, setImg] = useState({
         src: defaultImageSrc,
         alt: 'Upload an Image'
     });
+
+    useEffect(() => {
+        if (props.current != 0) {
+            setValues({
+                ...props.postFDTList.find(x => x._id == props.current)
+            })
+            setErrors({})
+        }
+    }, [props.current])
 
     const validate = () => {
         let temp = { ...errors }
@@ -99,7 +111,7 @@ const PostFDT = ({ classes, ...props }) => {
         setFile,
         category,
         setCategory
-    } = useForm(initialFieldValues, props.setCurrentId)
+    } = useForm(initialFieldValues, props.setCurrent)
 
     const showPreview = e => {
         if (e.target.files && e.target.files[0]) {
@@ -133,7 +145,7 @@ const PostFDT = ({ classes, ...props }) => {
             });
         }
         if (validate()) {
-            if (props.currentId != 0) {
+            if (props.current == 0) {
                 const formData = new FormData();
 
                 formData.append('image', file); // appending file
@@ -147,18 +159,19 @@ const PostFDT = ({ classes, ...props }) => {
                 props.createPostFDT(formData, onSuccess) //ส่งค่าไปserver
             }
             else
-                props.updatePostFDT(props.currentId, values, onSuccess)
+                props.updatePostFDT(props.current, values, onSuccess)
         }
 
     }
 
     const handleChange = e => {
         setCategory(e.target.value);
-      };
+    };
 
-    return (
-        <form noValidate autoComplete="off" className={`${classes.root} ${classes.form}`}>
-            <DialogContent dividers>
+    if (props.current == 0) {
+        return (
+            <form noValidate autoComplete="off" className={`${classes.root} ${classes.form}`}>
+
                 <Typography gutterBottom>
                     <TextField
                         id="standard-basic"
@@ -215,7 +228,7 @@ const PostFDT = ({ classes, ...props }) => {
                             <MenuItem value={"สัตว์"}>สัตว์</MenuItem>
                             <MenuItem value={"ผู้พิการและผู้ป่วย"}>ผู้พิการและผู้ป่วย</MenuItem>
                             <MenuItem value={"สิ่งแวดล้อม"}>สิ่งแวดล้อม</MenuItem>
-                            <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem> 
+                            <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
                         </Select>
                     </FormControl><br />
                     <input
@@ -234,14 +247,91 @@ const PostFDT = ({ classes, ...props }) => {
                         <img src={src} alt={alt} className={classes.imgpreview} />
                     </div>
                 </Typography>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleSubmit} color="primary" >
-                    Post
+
+
+                <DialogActions>
+                    <Button onClick={handleSubmit} color="primary" >
+                        Post
                 </Button>
-            </DialogActions>
-        </form>
-    );
+                </DialogActions>
+            </form>
+        );
+    } else {
+        return (
+            <form noValidate autoComplete="off" className={`${classes.root} ${classes.form}`}>
+
+                <Typography gutterBottom>
+                    <TextField
+                        id="standard-basic"
+                        label="หัวข้อ"
+                        name="title"
+                        value={values.title}
+                        onChange={handleInputChange}
+                        {...(errors.title && { error: true, helperText: errors.title })}
+                    />
+                    <TextField
+                        id="standard-basic"
+                        name="message"
+                        label="รายละเอียด"
+                        fullWidth
+                        multiline
+                        rows={2}
+                        value={values.message}
+                        onChange={handleInputChange}
+                        {...(errors.message && { error: true, helperText: errors.message })}
+                    />
+                    <TextField
+                        id="standard-basic"
+                        name="item"
+                        label="ต้องการรับบริจาค"
+                        value={values.item}
+                        onChange={handleInputChange}
+                        {...(errors.item && { error: true, helperText: errors.item })}
+                    />
+                    <TextField
+                        id="standard-number"
+                        name="n_item"
+                        label="Number"
+                        type="number"
+                        label="จำนวน"
+                        value={values.n_item}
+                        onChange={handleInputChange}
+                        {...(errors.n_item && { error: true, helperText: errors.n_item })}
+                    />
+                    <TextField
+                        id="standard-basic"
+                        name="promptpay"
+                        label="promptpay"
+                        value={values.promptpay}
+                        onChange={handleInputChange}
+                        {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
+                    /><br />
+                    {/* <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="icon-button-file"
+                        type="file"
+                        onChange={showPreview}
+                    />
+                    <label htmlFor="icon-button-file">
+                        <IconButton color="primary" aria-label="upload picture" component="span">
+                            <PhotoCamera />
+                        </IconButton>
+                    </label>
+                    <div>
+                        <img src={src} alt={alt} className={classes.imgpreview} />
+                    </div> */}
+                </Typography>
+
+
+                <DialogActions>
+                    <Button onClick={handleSubmit} color="primary" >
+                        Post
+                </Button>
+                </DialogActions>
+            </form>
+        );
+    }
 }
 
 const mapStateToProps = state => ({
