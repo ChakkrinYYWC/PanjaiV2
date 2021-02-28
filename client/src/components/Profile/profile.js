@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './profile.css'
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 function Profile() {
 
@@ -13,11 +14,15 @@ function Profile() {
     const [newFirst, setnewFirst] = useState("");
     const [newPhone, setnewPhone] = useState("");
     const [newAddress, setnewAddress] = useState("");
+
+    const [address, setAddress] = useState();
+    const [phone, setPhone] = useState();
     const currentUser = localStorage.getItem('currentUser')
     const currentUser_email = localStorage.getItem('currentUser_email')
     const currentUser_phone = localStorage.getItem('currentUser_phone')
     const currentUser_address = localStorage.getItem('currentUser_address')
-    
+    const currentUser_id = localStorage.getItem('currentUser_id')
+
     const CancelUpdate = () => {
         setedit(false);
     }
@@ -42,12 +47,29 @@ function Profile() {
     }
     // อัพเดตโปรไฟล์
     function confirmUpdate() {
+        console.log('00000000')
+        console.log(address)
+        console.log(phone)
+        console.log(currentUser_id)
 
+        const formData = new FormData();
+        formData.append('address', address)
+        formData.append('phone', phone)
+        Axios.post('/profile/123', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(res => {
+            console.log(res)
+            if (res.data.name) {
+                window.alert("Error: " + res.data.message)
+                console.log("error")
+            } else {
+                console.log("successful")
+                // window.location.href = "http://localhost:3000/Login"
+            }
+        }).catch(error => console.log(error))
     }
-
-
-
-
 
 
     useEffect(() => {
@@ -92,11 +114,11 @@ function Profile() {
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
                                         {/* <p>098-9847077</p> */}
-                                        <input type="text" value={newPhone} onChange={(e) => { handleFirstPhone(e.target.value) }}></input>
+                                        <input type="text" name='phone' onChange={(e) => { setPhone(e.target.value) }}></input>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
-                                        <input type="text" value={newAddress} onChange={(e) => { handleFirstAddress(e.target.value) }}></input>
+                                        <input type="text" name='address' onChange={(e) => { setAddress(e.target.value) }}></input>
                                         {/* <p>129 ซ.สุขสวัสดิ์ 26 แยก 10-5 แขวงบางปะกอก เขตราษฎร์บูรณะ กทม.10140</p> */}
                                     </div>
                                     <div className="textinforuser">
@@ -143,7 +165,7 @@ function Profile() {
 
                                     <div className="btn-bottom-profile">
                                         <div className="EditProfile">
-                                            <button className="button" onClick={handleEditProfile}>EditProfile</button>
+                                            <button className="button" onClick={handleEditProfile}>แก้ใข</button>
                                         </div>
                                         <div className="Like">
                                             <Link to="/profile/favorite"><i className="fab fa-gratipay"></i></Link>
