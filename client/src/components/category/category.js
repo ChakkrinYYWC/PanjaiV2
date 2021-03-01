@@ -67,9 +67,9 @@ function Category({ classes, ...props }) {
                     <div>loading...</div>
 
                     :
-                    <div className="dek" style={{ backgroundImage: `url(${imgdek})` }}>
+                    <div className="dek" >
                         {/* {alert(imgHeader)} */}
-
+                        {/* style={{ backgroundImage: `url(${imgdek})` }} */}
                         <div className="box-white">
                             <div className="Title"><i className="fab fa-gratipay"></i>{props.currentId.match.params.name}<i className="fab fa-gratipay"></i></div>
                             <div className="foundation">
