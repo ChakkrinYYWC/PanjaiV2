@@ -70,6 +70,7 @@ function Profile() {
 
 
     return (
+        <div className="back">
         <div className="container">
             <div className="box">
                 <section>
@@ -165,6 +166,7 @@ function Profile() {
             <div className="Post">
                 <p>Post ของฉัน </p>
             </div>
+        </div>
         </div>
 
     )

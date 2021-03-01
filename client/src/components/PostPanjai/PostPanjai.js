@@ -22,7 +22,8 @@ const currentUser_id = localStorage.getItem('currentUser_id')
 const styles = theme => ({
     paper: {
         margin: theme.spacing(3),
-        padding: theme.spacing(2)
+        padding: theme.spacing(2),
+        
     },
     smMargin: {
         "&:hover": {
@@ -44,7 +45,7 @@ const styles = theme => ({
     post1: {
 
         borderRadius: 5,
-        boxShadow: '0 2px 3px 2px rgba(85, 52, 4, 0.925)',
+        boxShadow: '0 1px 1px 1px rgba(85, 52, 4, 0.925)',
         height: 'auto',
         padding: '30px 30px',
         marginBlock: '15px'
@@ -53,7 +54,7 @@ const styles = theme => ({
     framepost: {
         // background: '#f9a825',
         borderRadius: 5,
-        boxShadow: '0 2px 3px 2px rgba(187, 130, 44, 0.925)',
+        boxShadow: '1px   1px 1px 1px rgba(187, 130, 44, 0.925)',
         color: 'rgba(187, 130, 44, 0.925)',
         height: 'auto',
         padding: '10px 10px',
@@ -81,6 +82,7 @@ const styles = theme => ({
         marginLeft: '75px'
 
     },
+    
 
 })
 
@@ -172,9 +174,11 @@ const PostPanjai = ({ classes, ...props }) => {
             <Grid container justify="center">
                 <Grid item lg={4}>
                     {/* กรอบโพส */}
-                    <Paper className={classes.post1}>
+                    {/* <Box bgcolor="primary.main" color="primary.contrastText" p={2}> */}
+                    <Paper className={`${classes.post1} ${classes.bg}`}>
                         <PostPanjaiForm {...{ currentId, setCurrentId }} />
                     </Paper>
+                    {/* </Box> */}
                 </Grid>
             </Grid>
             <Grid container spacing={2} >
