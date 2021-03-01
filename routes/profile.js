@@ -52,10 +52,6 @@ server.post('/favorite/:user',async function(req, res){
 })
 
 server.post('/update/:id', function (req, res) {
-    console.log('************************************')
-    //console.log(req.body[0])
-    // if (!ObjectID.isValid(req.params.id))
-    // return res.status(400).send('No record with given id : ' + req.params.id)
 
     var updatedUser = {
         phone: req.body[0],
@@ -71,6 +67,7 @@ server.post('/update/:id', function (req, res) {
     })
 
 });
+
 server.get('/information/:id',async function (req, res) {
     let result = await user.aggregate([
         {
@@ -78,17 +75,8 @@ server.get('/information/:id',async function (req, res) {
                 _id : mongoose.Types.ObjectId(req.params.id)
             }
         },
-        // {
-        //     $lookup:
-        //     {
-        //         localField: "favorite",
-        //         from: "PostPanjai",
-        //         foreignField: "_id",
-        //         as: "favorite"
-        //     }
-        // },
     ])
-    console.log(result)
+    // console.log(result)
     res.send(result[0])
 
 });
