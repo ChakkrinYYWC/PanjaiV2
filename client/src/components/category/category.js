@@ -82,7 +82,7 @@ function Category({ classes, ...props }) {
                                                                     <Card className="foundat">
                                                                         <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
                                                                         <Card.Body>
-                                                                            <Link to="/category" className="Tfound">{record.title}</Link>
+                                                                            <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="Tfound">{record.title}</Link>
                                                                             <div className="information">ต้องการรับบริจาค :{record.item}</div>
                                                                             <div className="information">จำนวน :{record.n_item}</div>
                                                                             <div className="information-1">วันที่ลง :{moment(record.Timestamp).calendar()}</div>
