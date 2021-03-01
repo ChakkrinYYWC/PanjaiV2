@@ -122,8 +122,8 @@ class Navbar extends Component {
                         </li>
                     </ul>
                     <span className="dropdown position-search">
-                        <span type="button" data-toggle="dropdown"><i className="fas fa-search"></i></span>
-                        <div className="dropdown-menu dropdown-menu-right">
+                    <Link to='/searchResult'/*type="button" data-toggle="dropdown"*/><i className="fas fa-search"></i></Link>
+                        {/* <div className="dropdown-menu dropdown-menu-right">
                             <form>
                                 <input 
                                     onChange={(event) =>{
@@ -135,7 +135,7 @@ class Navbar extends Component {
                                 </input>
                                 <button onClick={this.search} type="submit">submit</button>
                             </form>
-                        </div>
+                        </div> */}
                     </span>
 
                     <span class="noti">

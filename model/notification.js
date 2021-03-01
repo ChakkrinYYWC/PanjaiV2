@@ -1,18 +1,9 @@
 const   mongoose = require('mongoose')
 
 let notiSchema = new mongoose.Schema({
-    owner : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
-    },
-    requester : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
-    },
-    notification : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "postPanjai",
-    },
+    owner : String,
+    requester : String,
+    notification : String,
 });
 
 module.exports = mongoose.model('noti', notiSchema);

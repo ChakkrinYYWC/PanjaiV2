@@ -22,26 +22,25 @@ var { PostFDT } = require('../model/postFDT')
 
 server.get('/:word',async (req, res) => {
     const keyword = req.params.word
-    console.log('Search: '+keyword)
-    let response1 = await PostPanjai.aggregate([
-        {
-            $match: {
-                "message" : keyword
-            }
-        }
-    ])
-    //console.log(response1)
-    let response2 = await PostFDT.aggregate([
+    //console.log('Search: '+keyword)
+    let postTPJ = await PostPanjai.aggregate([
         {
             $match: {
                 "title" : keyword
             }
         }
     ])
-    //console.log(response2)
+    let postFDT = await PostFDT.aggregate([
+        {
+            $match: {
+                "title" : keyword
+            }
+        }
+    ])
 
-    const result = {response1, response2}
+    const result = {postTPJ, postFDT}
     console.log(result)
+    res.send(result)
 })
 
 module.exports = server;
