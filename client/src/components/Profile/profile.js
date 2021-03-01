@@ -39,7 +39,6 @@ function Profile() {
         }).catch(error => console.log(error))
     }
 
-<<<<<<< HEAD
     useEffect(() => {
 
         const getprofile = () => {
@@ -47,30 +46,21 @@ function Profile() {
             //fetch from server
 
             //ข้อมูล Demo
-            setprofile(
-                {
+            // setprofile(
+            //     {
 
-                    name: "june",
-                    phone: "28178799812",
-                    address: "พระราชวัง ประเทศอังกฤษ",
-                    email: "june@gamil.com"
+            //         name: "june",
+            //         phone: "28178799812",
+            //         address: "พระราชวัง ประเทศอังกฤษ",
+            //         email: "june@gamil.com"
 
-                }
-            )
+            //     }
+            // )
         }
 
         getprofile();
 
     }, [])
-=======
-    function Myfav() {
-        Axios.post('/profile/favorite/' + currentUserID, {
-        }).then(res => {
-            console.log(res);
-            window.location.href = "http://localhost:3000/profile/favorite"
-        }).catch(error => console.log(error))
-    }
->>>>>>> fb26b0fc5b6c13e6c5f3daa517b0410cb16fce79
 
 
     return (
