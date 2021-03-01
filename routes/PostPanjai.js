@@ -128,18 +128,11 @@ router.post('/addRequest/:id',async function(req, res){
             }
         },
     ])
-    //console.log(owner_id[0]._id)
-
-    // noti.findByIdAndUpdate( owner_id[0]._id, { $addToSet: { notification: req.params.id } },await function(error,update){
-    //     if(error){
-    //         console.log(error)
-    //     }
-    // })
-
+    console.log(owner_id)
     noti.create({
-        owner : owner_id[0]._id,
-        requester : req.body.currentUser_id,
-        notification : req.params.id,
+        owner : owner_id[0].username,
+        requester : req.body.currentUser,
+        notification : post[0].title,
     })
 
 
@@ -147,43 +140,24 @@ router.post('/addRequest/:id',async function(req, res){
 
 router.post('/notifications/:id',async function(req, res){
     //console.log("Id:"+req.params.id)
-    const result = await noti.aggregate([
+    let find = await user.aggregate([
         {
-            $lookup:
-            {
-                localField: "owner",
-                from: "users",
-                foreignField: "_id",
-                as: "owner"
+            $match: {
+                _id : mongoose.Types.ObjectId(req.params.id)
             }
-        },
-        {
-            $lookup:
-            {
-                localField: "requester",
-                from: "users",
-                foreignField: "_id",
-                as: "requester"
-            }
-        },
-        {
-            $lookup:
-            {
-                localField: "notification",
-                from: "PostPanjai",
-                foreignField: "_id",
-                as: "notification"
-            }
-        },
-        // {
-        //     $match: {
-        //         "owner" : req.params.id
-        //     }
-        // },
+        }
     ])
-    const result2 = [result[0].owner[0].username, result[0].requester[0].username, result[0].notification[0].title]
-    console.log(result2)
-    res.send(result2)
+    //console.log(find)
+    let result = await noti.aggregate([
+        {
+            $match: {
+                "owner" : find[0].username
+            }
+        }
+    ])
+    //const result2 = [result[0].owner[0].username, result[0].requester[0].username, result[0].notification[0].title]
+    //console.log(result)
+    res.send(result)
 })
 
 module.exports = router

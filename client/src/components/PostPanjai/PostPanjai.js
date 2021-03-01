@@ -141,7 +141,7 @@ const PostPanjai = ({ classes, ...props }) => {
     };
 
     const requestItem = id => {
-        const data = {currentUser_id}
+        const data = {currentUser_id, currentUser}
         Axios.post('/Too-Panjai/addRequest/'+id, data,{
         }).then(res => {
             console.log(res)
@@ -149,7 +149,7 @@ const PostPanjai = ({ classes, ...props }) => {
     }
 
     const favoriteItem = id => {
-        const data = {currentUser_id}
+        const data = {currentUser_id, currentUser}
         Axios.post('/Too-Panjai/addFav/'+id, data,{
         }).then(res => {
             console.log(res)
