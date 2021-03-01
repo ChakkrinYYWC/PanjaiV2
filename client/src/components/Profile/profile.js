@@ -63,6 +63,7 @@ function Profile() {
                                         <input 
                                         type="text" 
                                         name='name' 
+                                        placeholder={allInform.name}
                                         onChange={(e) => { setName(e.target.value) }}></input>
                                     </div>
                                     <div className="textinforuser">
@@ -107,7 +108,7 @@ function Profile() {
                                     <h1> ประวัติส่วนตัว</h1>
                                     <div className="textinforuser">
                                         <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
-                                        <p>W8</p>
+                                        <p>{allInform.name}</p>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
