@@ -156,7 +156,7 @@ router.post('/notifications/:id',async function(req, res){
         }
     ])
     //const result2 = [result[0].owner[0].username, result[0].requester[0].username, result[0].notification[0].title]
-    //console.log(result)
+    console.log(result)
     res.send(result)
 })
 

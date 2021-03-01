@@ -6,15 +6,17 @@ import { ContactSupportOutlined } from '@material-ui/icons';
 
 function Notification({open,t}) {
 
+    const [ noti, setNoti ] = useState([])
+
     const user_id = localStorage.getItem('currentUser_id')
     Axios.post('/Too-Panjai/notifications/'+user_id,{
     }).then(res => {
-        //console.log(res.data[0]);
-        
+        console.log(res.data);
+        setNoti(res.data)
     }).catch(error => console.log(error))
     
     const [ input, setInput ] = useState("")
-    //console.log(inform)
+    console.log(noti)
     return (
         <div>
             {/* <Button onClick={handleClick}>Holy guacamole!</Button> */}
@@ -34,23 +36,19 @@ function Notification({open,t}) {
                        
                         <div className="boxNoti">
                             <div className="boxtext">คำขอ</div>
-                            {/* {inform.forEach(data => {
-                                <div className="grid">
-                                <div className="NameKamko">{data[0]}</div>
-                                    <div>
-                                        <i class="fas fa-check-circle" ></i>
-                                        <i class="fas fa-times-circle"></i>
+                            {
+                                noti.map((record, index) => {
+                                    return(
+                                        <div className="grid">
+                                        <div className="NameKamko">{record.requester}ต้องการ{record.notification}จากคุณ</div>
+                                        <div>
+                                            <i class="fas fa-check-circle" ></i>
+                                            <i class="fas fa-times-circle"></i>
+                                        </div>
                                     </div>
-                                </div>
-                            })} */}
-
-                            <div className="grid">
-                                <div className="NameKamko"></div>
-                                <div>
-                                    <i class="fas fa-check-circle" ></i>
-                                    <i class="fas fa-times-circle"></i>
-                                </div>
-                            </div>
+                                    )
+                                })
+                            }
 
                         </div>
                         
