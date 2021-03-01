@@ -29,11 +29,14 @@ const styles = theme => ({
     form: {
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'center'
+        justifyContent: 'center',
+       
     },
     root: {
-        margin: 0,
+        
         padding: theme.spacing(2),
+        padding: "20px 20px 15px 20px",
+       
     },
     margin: {
         margin: theme.spacing(1),
@@ -49,8 +52,50 @@ const styles = theme => ({
         minWidth: 120,
     },
     imgpreview: {
-        width: "40%"
+        marginTop: "20px",
+        width: "18%",
+
+    },
+    color1: {
+        "&:hover": {
+            color: "rgb(255, 255, 255)",
+            backgroundColor: "rgb(193, 140, 87)"
+        },
+        color: '#a13800',
+        backgroundColor: "rgb(248, 242, 236)",
+        marginLeft: '25px',
+        
+    },   
+    Btn: {
+        "&:hover": {
+            backgroundColor: "rgb(255, 230, 153)",
+            fontSize: '13px'
+        },
+        color: "rgb(51, 38, 0)",
+        background: 'rgb(255, 191, 0)',
+        fontFamily: 'mali',
+        fontSize: '15px'
+    },
+    want: {
+        padding: "0 40px 0 0",
+        margin: "0 0 10px 0"
+    },
+    formControl: {
+        padding: "0",
+        width: "25%",
+    },
+    titile: {
+        width: "50%",
+        margin: "0 0 10px 0"
+   
+    },
+    detail: {
+        margin: "0 0 10px 0"
+    },
+    promptpay: {
+        margin: "0 0 10px 0"
     }
+
 });
 
 const DialogContent = withStyles((theme) => ({
@@ -176,6 +221,7 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         label="หัวข้อ"
+                        className={classes.titile}
                         name="title"
                         value={values.title}
                         onChange={handleInputChange}
@@ -184,6 +230,7 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         name="message"
+                        className={classes.detail}
                         label="รายละเอียด"
                         fullWidth
                         multiline
@@ -196,6 +243,7 @@ const PostFDT = ({ classes, ...props }) => {
                         id="standard-basic"
                         name="item"
                         label="ต้องการรับบริจาค"
+                        className={classes.want}
                         value={values.item}
                         onChange={handleInputChange}
                         {...(errors.item && { error: true, helperText: errors.item })}
@@ -213,7 +261,8 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         name="promptpay"
-                        label="promptpay"
+                        className={classes.promptpay}
+                        label="พร้อมเพย์"
                         value={values.promptpay}
                         onChange={handleInputChange}
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
@@ -231,6 +280,9 @@ const PostFDT = ({ classes, ...props }) => {
                             <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
                         </Select>
                     </FormControl><br />
+                    <div>
+                        <img src={src} alt={alt} className={classes.imgpreview} />
+                    </div>
                     <input
                         accept="image/*"
                         className={classes.input}
@@ -239,18 +291,18 @@ const PostFDT = ({ classes, ...props }) => {
                         onChange={showPreview}
                     />
                     <label htmlFor="icon-button-file">
-                        <IconButton color="primary" aria-label="upload picture" component="span">
+                        <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1} >
                             <PhotoCamera />
                         </IconButton>
                     </label>
-                    <div>
-                        <img src={src} alt={alt} className={classes.imgpreview} />
-                    </div>
+
                 </Typography>
 
 
                 <DialogActions>
-                    <Button onClick={handleSubmit} color="primary" >
+                    <Button onClick={handleSubmit} 
+                    className={classes.Btn}
+                    color="primary" >
                         Post
                 </Button>
                 </DialogActions>
@@ -263,6 +315,7 @@ const PostFDT = ({ classes, ...props }) => {
                 <Typography gutterBottom>
                     <TextField
                         id="standard-basic"
+                        className={classes.titile}
                         label="หัวข้อ"
                         name="title"
                         value={values.title}
@@ -272,6 +325,7 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         name="message"
+                        className={classes.detail}
                         label="รายละเอียด"
                         fullWidth
                         multiline
@@ -283,6 +337,7 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         name="item"
+                        className={classes.want}
                         label="ต้องการรับบริจาค"
                         value={values.item}
                         onChange={handleInputChange}
@@ -301,7 +356,8 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         name="promptpay"
-                        label="promptpay"
+                        className={classes.promptpay}
+                        label="พร้อมเพย์"
                         value={values.promptpay}
                         onChange={handleInputChange}
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
@@ -325,7 +381,9 @@ const PostFDT = ({ classes, ...props }) => {
 
 
                 <DialogActions>
-                    <Button onClick={handleSubmit} color="primary" >
+                    <Button onClick={handleSubmit} 
+                    className={classes.Btn}
+                    color="primary" >
                         Post
                 </Button>
                 </DialogActions>
