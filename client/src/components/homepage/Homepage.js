@@ -99,7 +99,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/4.png" />
                             <Card.Body>
-                                <Link to="/Foundation/ผู้พิการและผู้พิการ" className="CardTitle">ผู้พิการและผู้ป่วย</Link>
+                                <Link to="/Foundation/ผู้พิการและผู้ป่วย" className="CardTitle">ผู้พิการและผู้ป่วย</Link>
                                 {/* <Card.Title>ผู้พิการและผู้ป่วย</Card.Title> */}
                             </Card.Body>
                         </Card>
