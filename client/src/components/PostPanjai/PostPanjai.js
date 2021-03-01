@@ -1,8 +1,10 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as action from '../../action/postPanjai'
-import { Divider, Grid, Paper, Typography, withStyles, 
-    List, ListItem, ListItemText, Button, makeStyles } from '@material-ui/core';
+import {
+    Divider, Grid, Paper, Typography, withStyles,
+    List, ListItem, ListItemText, Button, makeStyles
+} from '@material-ui/core';
 import PostPanjaiForm from './PostPanjaiForm'
 import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep, AccessAlarm, ThreeDRotation, AssignmentTurnedIn } from "@material-ui/icons";
@@ -11,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { If, Then,ElseIf, Else } from 'react-if-elseif-else-render';
+import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import Icon from '@material-ui/core/Icon';
 import Axios from 'axios';
 
@@ -85,12 +87,10 @@ const styles = theme => ({
 })
 
 const options = [
-    'แก้ไข',
-    'ลบโพสต์',
+    // 'แก้ไข',
+    // 'ลบ',
     'รายงานโพสต์'
-
 ];
-
 const ITEM_HEIGHT = 48;
 
 const PostPanjai = ({ classes, ...props }) => {
@@ -131,29 +131,63 @@ const PostPanjai = ({ classes, ...props }) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const [select, setSelect] = React.useState('');
+
+    const handleChange = (id, option) => {
+        // if (option == 'แก้ไข') {
+        //     ScrollToTop(id)
+        // } else if (option == 'ลบ') {
+        //     onDelete(id)
+        // } else {
+        console.log('*' + option)
+        console.log('*' + id)
+        reportItem(id)
+        // }
+        setAnchorEl(null);
+    };
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = (event) => {
         setAnchorEl(null);
     };
 
     const requestItem = id => {
+<<<<<<< HEAD
         const data = {currentUser_id, currentUser}
         Axios.post('/Too-Panjai/addRequest/'+id, data,{
+=======
+        const data = { currentUser_id }
+        Axios.post('/Too-Panjai/addRequest/' + id, data, {
+>>>>>>> fb26b0fc5b6c13e6c5f3daa517b0410cb16fce79
         }).then(res => {
             console.log(res)
         }).catch(error => console.log(error))
     }
 
     const favoriteItem = id => {
+<<<<<<< HEAD
         const data = {currentUser_id, currentUser}
         Axios.post('/Too-Panjai/addFav/'+id, data,{
+=======
+        const data = { currentUser_id }
+        Axios.post('/Too-Panjai/addFav/' + id, data, {
+>>>>>>> fb26b0fc5b6c13e6c5f3daa517b0410cb16fce79
         }).then(res => {
             console.log(res)
         }).catch(error => console.log(error))
+    }
+
+    const reportItem = id => {
+        if (window.confirm('รายงานโพสนี้ใช่หรือไม่?')) {
+            // const data = { currentUser_id }
+            Axios.post('/report/' + id, {
+            }).then(res => {
+                console.log(res)
+            }).catch(error => console.log(error))
+        }
     }
 
     return (
@@ -184,41 +218,46 @@ const PostPanjai = ({ classes, ...props }) => {
 
                                                         </Typography>
                                                     </Grid>
-                                                    <Grid item sm={4}>
+                                                    <If condition={currentUser == record.creator}>
+                                                        <Then>
+                                                            <>
+                                                            </>
+                                                        </Then>
+                                                        <Else>
+                                                            <Grid item sm={4}>
+                                                                <IconButton
+                                                                    aria-label="more"
+                                                                    aria-controls="long-menu"
+                                                                    aria-haspopup="true"
+                                                                    onClick={handleClick}
+                                                                    className={classes.judjudjud}
+                                                                >
+                                                                    <MoreVertIcon />
+                                                                </IconButton>
+                                                                <Menu
+                                                                    id="long-menu"
+                                                                    anchorEl={anchorEl}
+                                                                    keepMounted
+                                                                    open={open}
+                                                                    onClose={handleClose}
+                                                                    PaperProps={{
+                                                                        style: {
+                                                                            maxHeight: ITEM_HEIGHT * 4.5,
+                                                                            width: '20ch',
+                                                                        },
+                                                                    }}
+                                                                >
+                                                                    {options.map((option) => (
+                                                                        <MenuItem key={option} onClick={() => handleChange(record._id, option)}>
+                                                                            {option}
+                                                                        </MenuItem>
+                                                                    ))}
+                                                                </Menu>
 
-                                                        {/* จุด3จุด */}
-                                                        <span>
-                                                            <IconButton
-                                                                aria-label="more"
-                                                                aria-controls="long-menu"
-                                                                aria-haspopup="true"
-                                                                onClick={handleClick}
-                                                                className={classes.judjudjud}
-                                                            >
-                                                                <MoreVertIcon />
-                                                            </IconButton>
-                                                            <Menu
-                                                                id="long-menu"
-                                                                anchorEl={anchorEl}
-                                                                keepMounted
-                                                                open={open}
-                                                                onClose={handleClose}
-                                                                PaperProps={{
-                                                                    style: {
-                                                                        maxHeight: ITEM_HEIGHT * 4.5,
-                                                                        width: '20ch',
-                                                                    },
-                                                                }}
-                                                            >
-                                                                {options.map((option) => (
-                                                                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                                                                        {option}
-                                                                    </MenuItem>
-                                                                ))}
-                                                            </Menu>
+                                                            </Grid>
+                                                        </Else>
+                                                    </If>
 
-                                                        </span>
-                                                    </Grid>
                                                 </Grid>
 
                                                 <div className={classes.frontpost}>
@@ -260,18 +299,13 @@ const PostPanjai = ({ classes, ...props }) => {
                                                             </Then>
 
                                                             <ElseIf condition={currentUser == 'admin'}>
-                                                                <Button variant="contained" color="primary" size="small"
-                                                                    className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น
-                                                                    onClick={() => ScrollToTop(record._id)}>
-                                                                    แก้ไข
-                                                                </Button>
                                                                 <Button variant="contained" color="secondary" size="small"
                                                                     className={`${classes.smMargin1} ${classes.frontpost}`}
                                                                     onClick={() => onDelete(record._id)}>
                                                                     ลบ
                                                                 </Button>
                                                             </ElseIf>
-                                                            
+
                                                             <Else>
                                                                 <Button variant="contained" color="primary" size="small"
                                                                     className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น

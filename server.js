@@ -16,6 +16,7 @@ var postFDTRoutes = require('./routes/PostFDT')
 var authenticate = require('./routes/authen')
 var findsomething = require('./routes/search');
 var profileRoute = require('./routes/profile')
+var reportRoute = require('./routes/report')
 const { profile } = require("console");
 
 const app = express();
@@ -57,6 +58,7 @@ app.use('/Too-Panjai', postPanjaiRoutes)
 app.use('/Foundation', postFDTRoutes)
 app.use('/search', findsomething)
 app.use('/profile', profileRoute)
+app.use('/report', reportRoute)
 
 // app.post('/signin/facebook', async (req, res) => {
 //     console.log('Request -->', req.body.user)
