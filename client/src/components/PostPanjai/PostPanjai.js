@@ -289,11 +289,6 @@ const PostPanjai = ({ classes, ...props }) => {
                                                             </Then>
 
                                                             <ElseIf condition={currentUser == 'admin'}>
-                                                                <Button variant="contained" color="primary" size="small"
-                                                                    className={`${classes.smMargin} ${classes.frontpost}`}// จำเป็น
-                                                                    onClick={() => ScrollToTop(record._id)}>
-                                                                    แก้ไข
-                                                                </Button>
                                                                 <Button variant="contained" color="secondary" size="small"
                                                                     className={`${classes.smMargin1} ${classes.frontpost}`}
                                                                     onClick={() => onDelete(record._id)}>

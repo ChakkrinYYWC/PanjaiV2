@@ -214,7 +214,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
                         name="title"
                         variant="filled"
-                        label="ชื่อ"
+                        label="ชื่อสิ่งของ"
                         size="small"
                         fullWidth
                         className={classes.paper}
@@ -235,7 +235,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         name="message"
                         variant="filled"
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
-                        label="รายละเอียด"
+                        label="ข้อมูลสิ่งของ"
                         fullWidth
                         size="small"
                         multiline
