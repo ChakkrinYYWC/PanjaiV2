@@ -39,13 +39,28 @@ function Profile() {
         }).catch(error => console.log(error))
     }
 
-    function Myfav() {
-        Axios.post('/profile/favorite/' + currentUserID, {
-        }).then(res => {
-            console.log(res);
-            window.location.href = "http://localhost:3000/profile/favorite"
-        }).catch(error => console.log(error))
-    }
+    useEffect(() => {
+
+        const getprofile = () => {
+
+            //fetch from server
+
+            //ข้อมูล Demo
+            // setprofile(
+            //     {
+
+            //         name: "june",
+            //         phone: "28178799812",
+            //         address: "พระราชวัง ประเทศอังกฤษ",
+            //         email: "june@gamil.com"
+
+            //     }
+            // )
+        }
+
+        getprofile();
+
+    }, [])
 
 
     return (
@@ -128,7 +143,7 @@ function Profile() {
                                             <button className="button" onClick={handleEditProfile}>แก้ใข</button>
                                         </div>
                                         <div className="Like">
-                                            <button onClick={Myfav}><i className="fab fa-gratipay"></i></button>
+                                            <Link to='/myfav'><i className="fab fa-gratipay"></i></Link>
                                             {/* <Link  to={item.href}></Link> */}
                                         </div>
                                     </div>

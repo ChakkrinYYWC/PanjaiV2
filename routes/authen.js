@@ -78,7 +78,7 @@ server.post("/login", function(req, res, next){
                 res.send(error)
             }else{
                 //console.log("User logged in");
-                const data = [token, Userdata.username, Userdata._id, Userdata.email, Userdata.address, Userdata.phone]
+                const data = [token, Userdata.username, Userdata._id, Userdata.email, Userdata.address, Userdata.phone, Userdata.name]
                 //console.log(data)
                 res.send(data)
             }
@@ -138,7 +138,7 @@ server.get('/register', (req, res) => {
 })
 server.post("/register", upload.single('IDcard'), function(req, res){
     console.log('filename: '+req.file.filename)
-    user.register(new user({username: req.body.username, idcard: req.file.filename, email: req.body.email, address: req.body.address, phone: req.body.phone , accessToken: null}), req.body.password,function(error, user){
+    user.register(new user({name: req.body.name, username: req.body.username, idcard: req.file.filename, email: req.body.email, address: req.body.address, phone: req.body.phone , accessToken: null}), req.body.password,function(error, user){
         if(error){
             console.log("error: "+error);
             res.send(error)
