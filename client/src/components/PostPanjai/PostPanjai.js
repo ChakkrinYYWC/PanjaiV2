@@ -203,7 +203,7 @@ const PostPanjai = ({ classes, ...props }) => {
                     props.postPanjaiList.map((record, index) => {
                         return (
                             <Grid item xs={12} sm={4} >
-                                {index}
+                                {/* {index} */}
                                 <Paper className={classes.framepost}>
                                     <Fragment key={index}>
                                         <ListItem>
