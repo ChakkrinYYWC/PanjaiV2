@@ -31,7 +31,7 @@ function Profile() {
     // อัพเดตโปรไฟล์
     const confirmUpdate = (event) => {
 
-        const data = [phone, address]
+        const data = [phone, address, name]
         Axios.post('/profile/update/' + currentUserID, data, {
         }).then(res => {
             console.log(res)
