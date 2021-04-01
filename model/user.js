@@ -12,6 +12,18 @@ let userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "postPanjai"
     },
+    request : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "postPanjai"
+    },
+    // notification : {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "postPanjai",
+    // },
+    recieve : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "postPanjai"
+    },
 });
 
 userSchema.plugin(passportLocalMongoose);

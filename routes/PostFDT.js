@@ -60,7 +60,8 @@ router.put('/:id', (req, res) => {
         title: req.body.title,
         message: req.body.message,
         item: req.body.item,
-        n_item: req.body.n_item
+        n_item: req.body.n_item,
+        promptpay: req.body.promptpay
     }
 
     PostFDT.findByIdAndUpdate(req.params.id, { $set: updatedRecord }, { new: true }, (err, docs) => {

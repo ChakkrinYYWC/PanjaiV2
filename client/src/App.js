@@ -15,14 +15,11 @@ import Navbar from "./components/Navbar/Navbar";  //forth
 import Profile from "./pages/userInformation"; //june
 import register from "./pages/register";
 import Foundation from './pages/Foundation';
-
 import Noti1 from "./components/Noti1/Noti1"; //june
-
 // import category from './components/category/category';
 import category from './pages/Category';
-import categoryshow from './components/category/categoryshow';
+import Categoryshow from './pages/Categoryshow';
 import { Category } from '@material-ui/icons';
-
 import ShowFDT from './pages/FDTShow';
 // import ShowFDT from './components/foundation/ShowFDT';
 // import PrivateRoute from 'react-private-route'
@@ -31,7 +28,7 @@ import ShowFDT from './pages/FDTShow';
 function App() {
   return (
     <Router>
-    <Navbar></Navbar>
+    <Navbar />
       <Switch>
         <Route exact={true} path="/" component={Homepage}/>
         <Route path="/Login" component={Login}/>
@@ -40,11 +37,9 @@ function App() {
         {/* <PrivateRoute   isAuthenticated={isLoggedIn()} path="/Too_panjai" component={Too_panjai}/> */}
         {/* <Route exact path="/Foundation/:id" component={ShowFDT}/>
         <Route path="/Foundation" component={Foundation}/> */}
-        <Route path="/profile" component={Profile}/>
-
+        <Route path="/profile/:id" component={Profile}/>
         <Route path="/notification" component={Noti1}/>
-
-        <Route path="/Foundation/:name/:id" component={categoryshow}/>
+        <Route path="/Foundation/:name/:id" component={Categoryshow}/>
         <Route path="/Foundation/:name" component={category}/>
 
       </Switch>

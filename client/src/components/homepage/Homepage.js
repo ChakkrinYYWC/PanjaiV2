@@ -99,7 +99,7 @@ function Homepage() {
                         <Card className="cardd">
                             <Card.Img variant="top" src="/4.png" />
                             <Card.Body>
-                                <Link to="/Foundation/ผู้พิการและผู้พิการ" className="CardTitle">ผู้พิการและผู้ป่วย</Link>
+                                <Link to="/Foundation/ผู้พิการและผู้ป่วย" className="CardTitle">ผู้พิการและผู้ป่วย</Link>
                                 {/* <Card.Title>ผู้พิการและผู้ป่วย</Card.Title> */}
                             </Card.Body>
                         </Card>
@@ -195,10 +195,10 @@ function Homepage() {
                     </li>
                 </ul>
             </div>
-            <YouTube
+            {/* <YouTube
                 video="Billkin song [รวมเพลงบิวกิ้น] cover"
                 autoplay
-            />
+            /> */}
 
             {/* <video width="320" height="240" controls>
   <source src="movie.mp4" type="video/mp4">

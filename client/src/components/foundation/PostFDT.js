@@ -12,7 +12,6 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import { PhotoCamera, AssignmentTurnedIn } from "@material-ui/icons"
 import ButterToast, { Cinnamon } from "butter-toast";
 
-
 const defaultImageSrc = '/image.png'
 
 
@@ -31,14 +30,13 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        
-        
+       
     },
     root: {
-        margin: 0,
-        padding: theme.spacing(2),
-        padding: '0px 20px 0px 20px',
         
+        padding: theme.spacing(2),
+        padding: "20px 20px 15px 20px",
+       
     },
     margin: {
         margin: theme.spacing(1),
@@ -47,46 +45,56 @@ const styles = theme => ({
         marginRight: theme.spacing(1),
     },
     input: {
-       
         display: 'none',
-        
     },
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
     },
     imgpreview: {
-        width: "20%",
-        marginTop: '20px'
-        
-    },
-    postBtn: {
-        "&:hover": {
-            background: 'rgb(255, 230, 153)',
-            fontSize: '17px',
-            color: 'rgb(97, 64, 31)',
-          
-        },
-        margin: theme.spacing(0.5),
-        color: 'rgb(255, 255, 255)',
-        backgroundColor: "rgb(97, 64, 31)",
-        fontFamily: 'mali'
+        marginTop: "20px",
+        width: "18%",
+
     },
     color1: {
+        "&:hover": {
+            color: "rgb(255, 255, 255)",
+            backgroundColor: "rgb(193, 140, 87)"
+        },
         color: '#a13800',
-        marginLeft: '35px',
-        background: 'rgb(245, 245, 239)',
-
+        backgroundColor: "rgb(248, 242, 236)",
+        marginLeft: '25px',
         
+    },   
+    Btn: {
+        "&:hover": {
+            backgroundColor: "rgb(255, 230, 153)",
+            fontSize: '13px'
+        },
+        color: "rgb(51, 38, 0)",
+        background: 'rgb(255, 191, 0)',
+        fontFamily: 'mali',
+        fontSize: '15px'
     },
     want: {
-        padding: '0px 30px 0 0' ,
+        padding: "0 40px 0 0",
+        margin: "0 0 10px 0"
     },
-
     formControl: {
+        padding: "0",
         width: "25%",
+    },
+    titile: {
+        width: "50%",
+        margin: "0 0 10px 0"
+   
+    },
+    detail: {
+        margin: "0 0 10px 0"
+    },
+    promptpay: {
+        margin: "0 0 10px 0"
     }
-    
 
 });
 
@@ -105,11 +113,23 @@ const DialogActions = withStyles((theme) => ({
 
 
 const PostFDT = ({ classes, ...props }) => {
-    
+
+    console.log('*')
+    console.log(props)
+
     const [{ alt, src }, setImg] = useState({
         src: defaultImageSrc,
         alt: 'Upload an Image'
     });
+
+    useEffect(() => {
+        if (props.current != 0) {
+            setValues({
+                ...props.postFDTList.find(x => x._id == props.current)
+            })
+            setErrors({})
+        }
+    }, [props.current])
 
     const validate = () => {
         let temp = { ...errors }
@@ -136,7 +156,7 @@ const PostFDT = ({ classes, ...props }) => {
         setFile,
         category,
         setCategory
-    } = useForm(initialFieldValues, props.setCurrentId)
+    } = useForm(initialFieldValues, props.setCurrent)
 
     const showPreview = e => {
         if (e.target.files && e.target.files[0]) {
@@ -170,7 +190,7 @@ const PostFDT = ({ classes, ...props }) => {
             });
         }
         if (validate()) {
-            if (props.currentId != 0) {
+            if (props.current == 0) {
                 const formData = new FormData();
 
                 formData.append('image', file); // appending file
@@ -184,22 +204,24 @@ const PostFDT = ({ classes, ...props }) => {
                 props.createPostFDT(formData, onSuccess) //ส่งค่าไปserver
             }
             else
-                props.updatePostFDT(props.currentId, values, onSuccess)
+                props.updatePostFDT(props.current, values, onSuccess)
         }
 
     }
 
     const handleChange = e => {
         setCategory(e.target.value);
-      };
+    };
 
-    return (
-        <form noValidate autoComplete="off" className={`${classes.root} ${classes.form}`}>
-            <DialogContent dividers>
+    if (props.current == 0) {
+        return (
+            <form noValidate autoComplete="off" className={`${classes.root} ${classes.form}`}>
+
                 <Typography gutterBottom>
                     <TextField
                         id="standard-basic"
                         label="หัวข้อ"
+                        className={classes.titile}
                         name="title"
                         value={values.title}
                         onChange={handleInputChange}
@@ -208,6 +230,7 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         name="message"
+                        className={classes.detail}
                         label="รายละเอียด"
                         fullWidth
                         multiline
@@ -217,9 +240,104 @@ const PostFDT = ({ classes, ...props }) => {
                         {...(errors.message && { error: true, helperText: errors.message })}
                     />
                     <TextField
-                        className={classes.want}
                         id="standard-basic"
                         name="item"
+                        label="ต้องการรับบริจาค"
+                        className={classes.want}
+                        value={values.item}
+                        onChange={handleInputChange}
+                        {...(errors.item && { error: true, helperText: errors.item })}
+                    />
+                    <TextField
+                        id="standard-number"
+                        name="n_item"
+                        label="Number"
+                        type="number"
+                        label="จำนวน"
+                        value={values.n_item}
+                        onChange={handleInputChange}
+                        {...(errors.n_item && { error: true, helperText: errors.n_item })}
+                    />
+                    <TextField
+                        id="standard-basic"
+                        name="promptpay"
+                        className={classes.promptpay}
+                        label="พร้อมเพย์"
+                        value={values.promptpay}
+                        onChange={handleInputChange}
+                        {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
+                    /><br />
+                    <FormControl className={classes.formControl}>
+                        <InputLabel id="demo-simple-select-helper-label">หมวดหมู่</InputLabel>
+                        <Select
+                            onChange={handleChange}
+                        >
+                            <MenuItem value={"เด็กและเยาวชน"}>เด็กและเยาวชน</MenuItem>
+                            <MenuItem value={"ผู้สูงอายุ"}>ผู้สูงอายุ</MenuItem>
+                            <MenuItem value={"สัตว์"}>สัตว์</MenuItem>
+                            <MenuItem value={"ผู้พิการและผู้ป่วย"}>ผู้พิการและผู้ป่วย</MenuItem>
+                            <MenuItem value={"สิ่งแวดล้อม"}>สิ่งแวดล้อม</MenuItem>
+                            <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
+                        </Select>
+                    </FormControl><br />
+                    <div>
+                        <img src={src} alt={alt} className={classes.imgpreview} />
+                    </div>
+                    <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="icon-button-file"
+                        type="file"
+                        onChange={showPreview}
+                    />
+                    <label htmlFor="icon-button-file">
+                        <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1} >
+                            <PhotoCamera />
+                        </IconButton>
+                    </label>
+
+                </Typography>
+
+
+                <DialogActions>
+                    <Button onClick={handleSubmit} 
+                    className={classes.Btn}
+                    color="primary" >
+                        Post
+                </Button>
+                </DialogActions>
+            </form>
+        );
+    } else {
+        return (
+            <form noValidate autoComplete="off" className={`${classes.root} ${classes.form}`}>
+
+                <Typography gutterBottom>
+                    <TextField
+                        id="standard-basic"
+                        className={classes.titile}
+                        label="หัวข้อ"
+                        name="title"
+                        value={values.title}
+                        onChange={handleInputChange}
+                        {...(errors.title && { error: true, helperText: errors.title })}
+                    />
+                    <TextField
+                        id="standard-basic"
+                        name="message"
+                        className={classes.detail}
+                        label="รายละเอียด"
+                        fullWidth
+                        multiline
+                        rows={2}
+                        value={values.message}
+                        onChange={handleInputChange}
+                        {...(errors.message && { error: true, helperText: errors.message })}
+                    />
+                    <TextField
+                        id="standard-basic"
+                        name="item"
+                        className={classes.want}
                         label="ต้องการรับบริจาค"
                         value={values.item}
                         onChange={handleInputChange}
@@ -238,56 +356,40 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         name="promptpay"
+                        className={classes.promptpay}
                         label="พร้อมเพย์"
-                        type="tel"  
                         value={values.promptpay}
                         onChange={handleInputChange}
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
                     /><br />
-                    <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-helper-label">หมวดหมู่</InputLabel>
-                        <Select
-                            onChange={handleChange}
-                        >
-                            <MenuItem value={"เด็กและเยาวชน"}>เด็กและเยาวชน</MenuItem>
-                            <MenuItem value={"ผู้สูงอายุ"}>ผู้สูงอายุ</MenuItem>
-                            <MenuItem value={"สัตว์"}>สัตว์</MenuItem>
-                            <MenuItem value={"ผู้พิการและผู้ป่วย"}>ผู้พิการและผู้ป่วย</MenuItem>
-                            <MenuItem value={"สิ่งแวดล้อม"}>สิ่งแวดล้อม</MenuItem>
-                            <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem> 
-                        </Select>
-                    </FormControl><br />
-                    
-                    <input
+                    {/* <input
                         accept="image/*"
                         className={classes.input}
                         id="icon-button-file"
                         type="file"
                         onChange={showPreview}
                     />
-                   
-                    <div>
-                        <img src={src} alt={alt} className={classes.imgpreview} />
-                    </div>
                     <label htmlFor="icon-button-file">
-                        <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1}>
+                        <IconButton color="primary" aria-label="upload picture" component="span">
                             <PhotoCamera />
                         </IconButton>
                     </label>
+                    <div>
+                        <img src={src} alt={alt} className={classes.imgpreview} />
+                    </div> */}
                 </Typography>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleSubmit} 
-                color="primary" 
-                size="large"
-                type="submit"
-                className={classes.postBtn}
-                >
-                    Post
+
+
+                <DialogActions>
+                    <Button onClick={handleSubmit} 
+                    className={classes.Btn}
+                    color="primary" >
+                        Post
                 </Button>
-            </DialogActions>
-        </form>
-    );
+                </DialogActions>
+            </form>
+        );
+    }
 }
 
 const mapStateToProps = state => ({

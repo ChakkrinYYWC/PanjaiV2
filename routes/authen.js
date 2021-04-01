@@ -77,9 +77,9 @@ server.post("/login", function(req, res, next){
                 console.log(error)
                 res.send(error)
             }else{
-                console.log("User logged in");
+                //console.log("User logged in");
                 const data = [token, Userdata.username, Userdata._id, Userdata.email, Userdata.address, Userdata.phone]
-                console.log(data)
+                //console.log(data)
                 res.send(data)
             }
         })

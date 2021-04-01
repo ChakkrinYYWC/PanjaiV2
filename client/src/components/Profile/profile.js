@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import './profile.css'
+import Axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function Profile() {
 
+    const currentUserID = localStorage.getItem("currentUser_id")
+    const [allInform, setAllInform] = useState("");
     // false = ยังไม่ได้กด edit
     const [edit, setedit] = useState(false);
     //ข้อมูลโปรไฟล์
-    const [profile, setprofile] = useState([]);
-    //ข้อมูลเมื่อมีการแก้ไข
-    // const [newProfile, setnewProfile] = useState([])
-    const [newFirst, setnewFirst] = useState("");
-    const [newPhone, setnewPhone] = useState("");
-    const [newAddress, setnewAddress] = useState("");
+    const [address, setAddress] = useState();
+    const [phone, setPhone] = useState();
+    const [name, setName] = useState();
+
+    Axios.get('/profile/information/' + currentUserID, {
+    }).then(res => {
+        // console.log(res)
+        setAllInform(res.data)
+    }).catch(error => console.log(error))
+
     const CancelUpdate = () => {
         setedit(false);
     }
@@ -21,52 +28,24 @@ function Profile() {
         setedit(true);
     }
 
-
-
-    function handleFirstname(value) {
-        setnewFirst(value);
-
-    }
-    function handleFirstPhone(value) {
-        setnewPhone(value);
-
-    }
-    function handleFirstAddress(value) {
-        setnewAddress(value);
-
-    }
     // อัพเดตโปรไฟล์
-    function confirmUpdate() {
+    const confirmUpdate = (event) => {
 
+        const data = [phone, address]
+        Axios.post('/profile/update/' + currentUserID, data, {
+        }).then(res => {
+            console.log(res)
+            window.location.href = "http://localhost:3000/profile/" + currentUserID
+        }).catch(error => console.log(error))
     }
 
-
-
-
-
-
-    useEffect(() => {
-
-        const getprofile = () => {
-
-            //fetch from server
-
-            //ข้อมูล Demo
-            setprofile(
-                {
-
-                    name: "june",
-                    phone: "28178799812",
-                    address: "พระราชวัง ประเทศอังกฤษ",
-                    email: "june@gamil.com"
-
-                }
-            )
-        }
-
-        getprofile();
-
-    }, [])
+    function Myfav() {
+        Axios.post('/profile/favorite/' + currentUserID, {
+        }).then(res => {
+            console.log(res);
+            window.location.href = "http://localhost:3000/profile/favorite"
+        }).catch(error => console.log(error))
+    }
 
 
     return (
@@ -82,24 +61,32 @@ function Profile() {
                                     <h1> ประวัติส่วนตัว</h1>
                                     <div className="textinforuser">
                                         <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล</span>
-                                        {/* <p>เจมส์ จิรายุ</p> */}
-                                        <input type="text" value={newFirst} onChange={(e) => { handleFirstname(e.target.value) }}></input>
+                                        <input 
+                                        type="text" 
+                                        name='name' 
+                                        onChange={(e) => { setName(e.target.value) }}></input>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
-                                        {/* <p>098-9847077</p> */}
-                                        <input type="text" value={newPhone} onChange={(e) => { handleFirstPhone(e.target.value) }}></input>
+                                        <input 
+                                        type="text" 
+                                        name='phone' 
+                                        placeholder={allInform.phone}
+                                        onChange={(e) => { setPhone(e.target.value) }}></input>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
-                                        <input type="text" value={newAddress} onChange={(e) => { handleFirstAddress(e.target.value) }}></input>
-                                        {/* <p>129 ซ.สุขสวัสดิ์ 26 แยก 10-5 แขวงบางปะกอก เขตราษฎร์บูรณะ กทม.10140</p> */}
+                                        <input 
+                                        type="text" 
+                                        name='address'
+                                        placeholder={allInform.address} 
+                                        onChange={(e) => { setAddress(e.target.value) }}></input>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-envelope"> </i> อีเมล</span>
-
-                                        <p>june_25431@hotmail.com</p>
+                                        <p>{allInform.email}</p>
                                     </div>
+
                                     <div className="confirm-and-cancelEditProfile">
                                         <div className="confirmEditProfile">
                                             <button className="button" onClick={confirmUpdate}>บันทึก</button>
@@ -120,29 +107,29 @@ function Profile() {
                                 <div className="box-text">
                                     <h1> ประวัติส่วนตัว</h1>
                                     <div className="textinforuser">
-                                        <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล</span>
-                                        <p>{profile.name}</p>
+                                        <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
+                                        <p>W8</p>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
-                                        <p>{profile.phone}</p>
+                                        <p>{allInform.phone}</p>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
-                                        <p>{profile.address}</p>
+                                        <p>{allInform.address}</p>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-envelope"> </i> อีเมล</span>
-                                        <p>{profile.email}</p>
+                                        <p>{allInform.email}</p>
                                     </div>
 
 
                                     <div className="btn-bottom-profile">
                                         <div className="EditProfile">
-                                            <button className="button" onClick={handleEditProfile}>EditProfile</button>
+                                            <button className="button" onClick={handleEditProfile}>แก้ใข</button>
                                         </div>
                                         <div className="Like">
-                                            <Link to="/profile/favorite"><i className="fab fa-gratipay"></i></Link>
+                                            <button onClick={Myfav}><i className="fab fa-gratipay"></i></button>
                                             {/* <Link  to={item.href}></Link> */}
                                         </div>
                                     </div>
@@ -152,13 +139,6 @@ function Profile() {
                         )
 
                     }
-
-
-
-
-
-
-
                 </section>
 
 
