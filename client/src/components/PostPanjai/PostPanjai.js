@@ -157,16 +157,16 @@ const PostPanjai = ({ classes, ...props }) => {
     };
 
     const requestItem = id => {
-        const data = { currentUser_id }
-        Axios.post('/Too-Panjai/addRequest/' + id, data, {
+        const data = {currentUser_id, currentUser}
+        Axios.post('/Too-Panjai/addRequest/'+id, data,{
         }).then(res => {
             console.log(res)
         }).catch(error => console.log(error))
     }
 
     const favoriteItem = id => {
-        const data = { currentUser_id }
-        Axios.post('/Too-Panjai/addFav/' + id, data, {
+        const data = {currentUser_id, currentUser}
+        Axios.post('/Too-Panjai/addFav/'+id, data,{
         }).then(res => {
             console.log(res)
         }).catch(error => console.log(error))
@@ -181,7 +181,14 @@ const PostPanjai = ({ classes, ...props }) => {
             }).catch(error => console.log(error))
         }
     }
-
+    for (let i = props.postPanjaiList.length; i > 0; i--) {
+        console.log('*' + i)
+        console.log(props.postPanjaiList[i - 1])
+    }
+    // console.log( props.postPanjaiList[4])
+    // console.log( props.postPanjaiList[3])
+    // console.log( props.postPanjaiList[2])
+    // console.log( props.postPanjaiList[1])
     return (
         <>
             <Grid container justify="center">
@@ -200,6 +207,7 @@ const PostPanjai = ({ classes, ...props }) => {
                     props.postPanjaiList.map((record, index) => {
                         return (
                             <Grid item xs={12} sm={4} >
+                                {/* {index} */}
                                 <Paper className={classes.framepost}>
                                     <Fragment key={index}>
                                         <ListItem>

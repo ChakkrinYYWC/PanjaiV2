@@ -31,7 +31,7 @@ function Profile() {
     // อัพเดตโปรไฟล์
     const confirmUpdate = (event) => {
 
-        const data = [phone, address]
+        const data = [phone, address, name]
         Axios.post('/profile/update/' + currentUserID, data, {
         }).then(res => {
             console.log(res)
@@ -39,13 +39,28 @@ function Profile() {
         }).catch(error => console.log(error))
     }
 
-    function Myfav() {
-        Axios.post('/profile/favorite/' + currentUserID, {
-        }).then(res => {
-            console.log(res);
-            window.location.href = "http://localhost:3000/profile/favorite"
-        }).catch(error => console.log(error))
-    }
+    useEffect(() => {
+
+        const getprofile = () => {
+
+            //fetch from server
+
+            //ข้อมูล Demo
+            // setprofile(
+            //     {
+
+            //         name: "june",
+            //         phone: "28178799812",
+            //         address: "พระราชวัง ประเทศอังกฤษ",
+            //         email: "june@gamil.com"
+
+            //     }
+            // )
+        }
+
+        getprofile();
+
+    }, [])
 
 
     return (
@@ -64,6 +79,7 @@ function Profile() {
                                         <input 
                                         type="text" 
                                         name='name' 
+                                        placeholder={allInform.name}
                                         onChange={(e) => { setName(e.target.value) }}></input>
                                     </div>
                                     <div className="textinforuser">
@@ -108,7 +124,7 @@ function Profile() {
                                     <h1> ประวัติส่วนตัว</h1>
                                     <div className="textinforuser">
                                         <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
-                                        <p>W8</p>
+                                        <p>{allInform.name}</p>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
@@ -129,7 +145,7 @@ function Profile() {
                                             <button className="button" onClick={handleEditProfile}>แก้ใข</button>
                                         </div>
                                         <div className="Like">
-                                            <button onClick={Myfav}><i className="fab fa-gratipay"></i></button>
+                                            <Link to='/myfav'><i className="fab fa-gratipay"></i></Link>
                                             {/* <Link  to={item.href}></Link> */}
                                         </div>
                                     </div>

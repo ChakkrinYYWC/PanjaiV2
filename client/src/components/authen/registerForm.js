@@ -7,7 +7,8 @@ import loginImg from "../img/login.svg";
 import "./login.css";
 
 function RegisterFrom() {
-/*------------------------------------------------------------*/
+    /*------------------------------------------------------------*/
+    const [name, setName] = useState();
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const [CPassword, setCPassword] = useState();
@@ -33,13 +34,14 @@ function RegisterFrom() {
         // console.log(username)
         // console.log(password)
         // console.log(Email)
-        if (password !== CPassword){
+        if (password !== CPassword) {
             window.alert('Confirm password incorrect!')
             //window.location.href = "http://localhost:3000/Login"
         }
-        else{
+        else {
             const formData = new FormData();
             formData.append('IDcard', file); // appending file
+            formData.append('name', name)
             formData.append('username', username)
             formData.append('password', password)
             formData.append('email', Email)
@@ -53,8 +55,8 @@ function RegisterFrom() {
                 }
             }).then(res => {
                 console.log(res)
-                if(res.data.name) {
-                    window.alert("Error: "+res.data.message)
+                if (res.data.name) {
+                    window.alert("Error: " + res.data.message)
                     console.log("error")
                 } else {
                     window.location.href = "http://localhost:3000/Login"
@@ -72,92 +74,104 @@ function RegisterFrom() {
             </div>
 
             <div className="item2">
-                <h3>สมัครสมาชิก</h3><br/>
+                <h3>สมัครสมาชิก</h3><br />
                 <form>
+                    <div className="form-group">
+                        <label>ชื่อ-นามสกุล:</label><br />
+                        <input
+                            type="text"
+                            name="Surname"
+                            placeholder="ชื่อ-สกุล"
+                            onChange={(event) => {
+                                setName(event.target.value)
+                            }}
+                        />
+                    </div>
+
                     <div className="form-group">
                         <label>ชื่อผู้ใช้:</label><br />
                         <input
                             type="text"
                             name="Username"
                             placeholder="ชื่อผู้ใช้"
-                            onChange={(event) =>{
+                            onChange={(event) => {
                                 setUsername(event.target.value)
                             }}
                         />
                     </div>
 
                     <div className="form-group">
-                        <label>รหัสผ่าน: </label><br/>
+                        <label>รหัสผ่าน: </label><br />
                         <input
                             type="password"
                             name="Password"
                             placeholder="รหัสผ่าน"
-                            onChange={(event) =>{
+                            onChange={(event) => {
                                 setPassword(event.target.value)
                             }}
                         />
                     </div>
 
                     <div className="form-group">
-                        <label>ยืนยันรหัสผ่าน: </label><br/>
+                        <label>ยืนยันรหัสผ่าน: </label><br />
                         <input
                             type="password"
                             name="CPassword"
                             placeholder="รหัสผ่าน"
-                            onChange={(event) =>{
+                            onChange={(event) => {
                                 setCPassword(event.target.value)
                             }}
                         />
                     </div>
 
                     <div className="form-group">
-                        <label>อีเมล: </label><br/>
+                        <label>อีเมล: </label><br />
                         <input
                             type="email"
                             name="email"
                             placeholder="อีเมล"
-                            onChange={(event) =>{
+                            onChange={(event) => {
                                 setEmail(event.target.value)
                             }}
                         />
                     </div>
 
                     <div className="form-group">
-                        <label>ที่อยู่: </label><br/>
+                        <label>ที่อยู่: </label><br />
                         <input
                             type="text"
                             name="address"
                             placeholder="ที่อยู่"
-                            onChange={(event) =>{
+                            onChange={(event) => {
                                 setAddress(event.target.value)
                             }}
                         />
                     </div>
 
                     <div className="form-group">
-                        <label>เบอร์โทรศัพท์: </label><br/>
+                        <label>เบอร์โทรศัพท์: </label><br />
                         <input
                             type="phone number"
                             name="phone"
                             placeholder="เบอร์โทรศัพท์"
-                            onChange={(event) =>{
+                            onChange={(event) => {
                                 setPhone(event.target.value)
                             }}
                         />
                     </div>
 
                     <div>
-                        <label>ภาพบัตรประจำตัวประชาชน: </label><br/>
+                        <label>ภาพบัตรประจำตัวประชาชน: </label><br />
                         <input
                             type='file'
                             id='customFile'
-                            onChange={(event) =>{
+                            onChange={(event) => {
                                 setFile(event.target.files[0])
                             }}
                         />
-                    </div> 
+                    </div>
 
-                    <br/>
+                    <br />
                     <div>
                         <button className="btn btn-lg " onClick={uploadFile}>สมัครสมาชิก</button>
                     </div>

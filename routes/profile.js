@@ -56,6 +56,7 @@ server.post('/update/:id', function (req, res) {
     var updatedUser = {
         phone: req.body[0],
         address: req.body[1],
+        name: req.body[2],
     }
 
     user.findByIdAndUpdate(req.params.id, { $set: updatedUser }, { new: true }, function(error,update){
