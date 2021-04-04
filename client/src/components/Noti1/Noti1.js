@@ -6,17 +6,37 @@ import { ContactSupportOutlined } from '@material-ui/icons';
 
 function Notification({open,t}) {
 
-    const [ noti, setNoti ] = useState([])
-
+    const username = localStorage.getItem('currentUser')
     const user_id = localStorage.getItem('currentUser_id')
+    const user_contact = localStorage.getItem('currentUser_phone')
+
+    function accept(record){
+        const item = record.notification
+        const sendTo = record.requester
+        const data = {username, sendTo, item}
+        Axios.post('/Too-Panjai/recieveAccept', data,{
+        }).then(res => {
+        }).catch(error => console.log(error))
+        window.alert("Send contact to "+record.requester)
+    }
+
+    const [ noti, setNoti ] = useState([])
+    const [ recieves, setRecieve ] = useState([])
+
     Axios.post('/Too-Panjai/notifications/'+user_id,{
     }).then(res => {
-        console.log(res.data);
+        //console.log(res.data);
         setNoti(res.data)
+    }).catch(error => console.log(error))
+
+    Axios.post('/Too-Panjai/findRecieve/'+user_id,{
+    }).then(res => {
+        console.log(res.data);
+        setRecieve(res.data)
     }).catch(error => console.log(error))
     
     const [ input, setInput ] = useState("")
-    console.log(noti)
+    //console.log(noti)
     return (
         <div>
             {/* <Button onClick={handleClick}>Holy guacamole!</Button> */}
@@ -40,9 +60,9 @@ function Notification({open,t}) {
                                 noti.map((record, index) => {
                                     return(
                                         <div className="grid">
-                                        <div className="NameKamko">{record.requester}ต้องการ{record.notification}จากคุณ</div>
+                                        <div className="NameKamko">{record.requester} ต้องการ {record.notification} จากคุณ</div>
                                         <div>
-                                            <i class="fas fa-check-circle" ></i>
+                                            <i onClick={() => accept(record)} class="fas fa-check-circle" ></i>
                                             <i class="fas fa-times-circle"></i>
                                         </div>
                                     </div>
@@ -57,11 +77,17 @@ function Notification({open,t}) {
                         
                         {/* คำตอบรับ */}
                         <div className="boxNoti">
-                           <div className="boxtext1">คำตอบรับ</div> 
-                           
-                           <div className="NameKamko"> สรวงฤทัย ตอบรับคำขอของคุณ
-                           
-                           </div>
+                            <div className="boxtext">คำขอ</div>
+                            {
+                                recieves.map((record, index) => {
+                                    return(
+                                        <div className="grid">
+                                        <div className="NameKamko">{record.owner} ได้ยอมรับคำขอ ({record.item}) ของคุณแล้ว<br/>โปรดติดต่อ : {record.owner_contact}</div>
+                                    </div>
+                                    )
+                                })
+                            }
+
                         </div>
                         
                

@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 var { PostPanjai } = require('../model/postPanjai')
 const user = require('../model/user');
 const noti = require('../model/notification');
+const recieve = require('../model/recieve');
 
 const storage = multer.diskStorage({
     destination: './public/uploads/Too-Panjai',
@@ -157,7 +158,62 @@ router.post('/notifications/:id',async function(req, res){
         }
     ])
     //const result2 = [result[0].owner[0].username, result[0].requester[0].username, result[0].notification[0].title]
-    console.log(result)
+    //console.log(result)
+    res.send(result)
+})
+
+router.post('/recieveAccept',async function(req, res){
+    let owner_id = await user.aggregate([
+        {
+            $match: {
+                username : req.body.username
+            }
+        },
+    ])
+
+    console.log(owner_id)
+    recieve.create({
+        to : req.body.sendTo,
+        owner : owner_id[0].username,
+        owner_contact : owner_id[0].phone,
+        item : req.body.item,
+    })
+
+    // let findRecieve = await recieve.aggregate([
+    //     {
+    //         $match: {
+    //             owner : req.body.username
+    //         }
+    //     },
+    // ])
+    // console.log(findRecieve)
+
+    // noti.findByIdAndDelete(owner_id[0].username, function(error,remove){
+    //     if(error){
+    //         console.log(error)
+    //     }
+    // })
+})
+
+router.post('/findRecieve/:id',async function(req, res){
+    //console.log("Id:"+req.params.id)
+    let find = await user.aggregate([
+        {
+            $match: {
+                _id : mongoose.Types.ObjectId(req.params.id)
+            }
+        }
+    ])
+    //console.log(find)
+    let result = await recieve.aggregate([
+        {
+            $match: {
+                "to" : find[0].username
+            }
+        }
+    ])
+    //const result2 = [result[0].owner[0].username, result[0].requester[0].username, result[0].notification[0].title]
+    //console.log(result)
     res.send(result)
 })
 
