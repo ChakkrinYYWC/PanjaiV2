@@ -11,6 +11,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import { PhotoCamera, AssignmentTurnedIn } from "@material-ui/icons"
 import ButterToast, { Cinnamon } from "butter-toast";
+import zIndex from '@material-ui/core/styles/zIndex';
 
 const defaultImageSrc = '/image.png'
 
@@ -30,12 +31,14 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
-       
+    
+    
     },
     root: {
         
         padding: theme.spacing(2),
         padding: "20px 20px 15px 20px",
+      
        
     },
     margin: {

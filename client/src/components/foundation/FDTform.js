@@ -19,6 +19,7 @@ const FDTform = () => {
         setqrCode(generatePayload(phoneNumber, { amount }));
     }
     return (
+       
         <div align="center">
             <h2>บริจาค</h2>
             {/* <input type="text" value={phoneNumber} onChange={handlePhoneNumber} /> */}
@@ -34,6 +35,7 @@ const FDTform = () => {
                 </Else>
             </If>
         </div>
+        
     );
 }
 export default FDTform;
