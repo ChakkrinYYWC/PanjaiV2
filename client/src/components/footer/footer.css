@@ -1,7 +1,7 @@
 .footer {
     height: 50px;
     width: 100%;
-    margin-top: 100px;
+    /* margin-top: 100px; */
     background-color: rgb(161, 128, 79) ;
     color: white;
     text-align: center;
@@ -9,7 +9,7 @@
     font-family: 'Mali', cursive;
     padding-top:5px;
     padding-bottom: 65px;
-    position: absolute;
+    position: static;
   }
 .textfooter{
     font-size: 20px;

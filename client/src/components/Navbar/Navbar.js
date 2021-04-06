@@ -140,7 +140,7 @@ class Navbar extends Component {
                         </li>
                     </ul>
                     <span className="dropdown position-search">
-                        <Link to='/searchResult'/*type="button" data-toggle="dropdown"*/><i className="fas fa-search"></i></Link>
+                        <Link to='/searchResult' className="ssearch" /*type="button" data-toggle="dropdown"*/><i className="fas fa-search"></i></Link>
                         {/* <div className="dropdown-menu dropdown-menu-right">
                             <form>
                                 <input 
