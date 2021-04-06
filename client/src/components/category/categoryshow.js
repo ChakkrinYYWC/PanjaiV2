@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './category.css'
+import './categoryshow.css'
 import { connect } from 'react-redux';
 import * as action from '../../action/postFDT'
 import moment from 'moment';
@@ -93,10 +94,10 @@ function Categoryshow({ classes, ...props }) {
                 />
             })
         }
-        if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')){
+        if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')) {
             props.deletePostMessage(id, onSuccess)
-            window.location.href = "http://localhost:3000/Foundation/"+props.currentId.match.params.name
-        }   
+            window.location.href = "http://localhost:3000/Foundation/" + props.currentId.match.params.name
+        }
     }
 
     console.log(props)
@@ -107,97 +108,134 @@ function Categoryshow({ classes, ...props }) {
                 props.postFDTList.filter(fdt => fdt._id == props.currentId.match.params.id).map((record, index) => {
                     return (
                         <>
-                            <If condition={currentUser == 'admin'}>
-                                <Then>
 
-                                    <Fab size="small" color="primary" aria-label="edit" onClick={() => handleClickOpenFDT(record._id)} >
-                                        <EditOutlinedIcon />
-                                    </Fab>
+                            <div className="postfdt">
+                                <If condition={currentUser == 'admin'}>
 
-                                    <Dialog
-                                        onClose={handleCloseFDT}
-                                        aria-labelledby="customized-dialog-title"
-                                        open={open2}
-                                    >
-                                        <DialogTitle2 id="customized-dialog-title" onClose={handleCloseFDT}>
-                                            แก้ไขข้อมูลโครงการ
+                                    <Then>
+                                        <div className="box-box">
+
+
+                                            <Fab className="botton" size="small" color="back" aria-label="edit" onClick={() => handleClickOpenFDT(record._id)} >
+                                                <EditOutlinedIcon />
+                                            </Fab>
+
+                                            <Dialog
+                                                onClose={handleCloseFDT}
+                                                aria-labelledby="customized-dialog-title"
+                                                open={open2}
+                                            >
+                                                <DialogTitle2 id="customized-dialog-title" onClose={handleCloseFDT}>
+                                                    แก้ไขข้อมูลโครงการ
                                         </DialogTitle2>
 
-                                        <PostFDT {...{ current, setCurrent }} />
-                                        <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
-                                    </Dialog>
+                                                <PostFDT {...{ current, setCurrent }} />
+                                                <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
+                                            </Dialog>
 
-                                    <Fab size="small" color="primary" aria-label="add" onClick={() => onDelete(record._id)} >
-                                        <DeleteOutlineRoundedIcon />
-                                    </Fab>
 
-                                    <h2>{record.title}</h2>
-                                    <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
-                                    <h2>{record.message}</h2>
-                                    <h2>สิ่งของที่ต้องการ {record.item}</h2>
-                                    <h2>จำนวน {record.n_item}</h2>
-                                    <h2>วันที่ลง {moment(record.Timestamp).calendar()}</h2>
+                                            <Fab className="botton" size="small" color="back" aria-label="add" onClick={() => onDelete(record._id)} >
+                                                <DeleteOutlineRoundedIcon />
+                                            </Fab>
 
-                                    <Button variant="contained" color="primary" onClick={handleClickOpen}>
-                                        บริจาค
-                                    </Button>
-                                    <Dialog
-                                        fullScreen={fullScreen}
-                                        open={open}
-                                        onClose={handleClose}
-                                        aria-labelledby="responsive-dialog-title"
-                                    >
-                                        <DialogTitle id="responsive-dialog-title">บริจาคให้กับ{record.title}</DialogTitle>
 
-                                        <DialogContent>
-                                            <DialogContentText>
-                                                <Form {...record} />
-                                            </DialogContentText>
-                                        </DialogContent>
+                                            <div className="Tt">{record.title}</div>
 
-                                        <DialogActions>
-                                            <Button onClick={handleClose} color="primary">
-                                                ยกเลิก
-                                            </Button>
-                                        </DialogActions>
-                                    </Dialog>
+                                            <center>
+                                                <div className="image01">
+                                                    <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
+                                                </div>
+                                            </center>
+                                            <div className="map">
+                                                <center><Button className="map" variant="contained" >
+                                                    แผนที่
+                                            </Button></center>
+                                            </div>
+                                            <div className="info">{record.message}</div>
+                                            <div className="bx">
+                                                <div className="logo" ><i className="fab fa-gratipay"></i></div>
+                                                <div className="infor">สิ่งของที่ต้องการ : {record.item}</div>
+                                                <div className="infor">จำนวน : {record.n_item} บาท</div>
+                                                <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
 
-                                </Then>
-                                <Else>
+                                            </div>
+                                            <center><Button variant="contained" onClick={handleClickOpen}>
+                                                บริจาค
+                                            </Button></center>
 
-                                    <h2>{record.title}</h2>
-                                    <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
-                                    <h2>{record.message}</h2>
-                                    <h2>สิ่งของที่ต้องการ {record.item}</h2>
-                                    <h2>จำนวน {record.n_item}</h2>
-                                    <h2>วันที่ลง {moment(record.Timestamp).calendar()}</h2>
+                                            <Dialog
+                                                fullScreen={fullScreen}
+                                                open={open}
+                                                onClose={handleClose}
+                                                aria-labelledby="responsive-dialog-title"
+                                            >
+                                                <DialogTitle id="responsive-dialog-title">บริจาคให้กับ {record.title}</DialogTitle>
 
-                                    <Button variant="contained" color="primary" onClick={handleClickOpen}>
-                                        บริจาค
-                                    </Button>
-                                    <Dialog
-                                        fullScreen={fullScreen}
-                                        open={open}
-                                        onClose={handleClose}
-                                        aria-labelledby="responsive-dialog-title"
-                                    >
-                                        <DialogTitle id="responsive-dialog-title">บริจาคให้กับ{record.title}</DialogTitle>
+                                                <DialogContent>
+                                                    <DialogContentText>
+                                                        <Form {...record} />
+                                                    </DialogContentText>
+                                                </DialogContent>
 
-                                        <DialogContent>
-                                            <DialogContentText>
-                                                <Form {...record} />
-                                            </DialogContentText>
-                                        </DialogContent>
+                                                <DialogActions>
+                                                    <Button onClick={handleClose} color="primary">
+                                                        ยกเลิก
+                                                    </Button>
+                                                </DialogActions>
+                                            </Dialog>
+                                        </div>
+                                    </Then>
+                                    <Else>
+                                        <div className="box-box">
+                                            <div className="Tt">{record.title}</div>
 
-                                        <DialogActions>
-                                            <Button onClick={handleClose} color="primary">
-                                                ยกเลิก
-                                            </Button>
-                                        </DialogActions>
-                                    </Dialog>
+                                            <center>
+                                                <div className="image01">
+                                                    <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
+                                                </div>
+                                            </center>
+                                            <div className="map">
+                                                <center><Button className="map" variant="contained" >
+                                                    แผนที่
+                                            </Button></center>
+                                            </div>
+                                            <div className="info">{record.message}</div>
+                                            <div className="bx">
+                                                <div className="logo" ><i className="fab fa-gratipay"></i></div>
+                                                <div className="infor">สิ่งของที่ต้องการ : {record.item}</div>
+                                                <div className="infor">จำนวน : {record.n_item} บาท</div>
+                                                <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
 
-                                </Else>
-                            </If>
+                                            </div>
+                                            <center><Button variant="contained" onClick={handleClickOpen}>
+                                                บริจาค
+</Button></center>
+
+                                            <Dialog
+                                                fullScreen={fullScreen}
+                                                open={open}
+                                                onClose={handleClose}
+                                                aria-labelledby="responsive-dialog-title"
+                                            >
+                                                <DialogTitle id="responsive-dialog-title">บริจาคให้กับ {record.title}</DialogTitle>
+
+                                                <DialogContent>
+                                                    <DialogContentText>
+                                                        <Form {...record} />
+                                                    </DialogContentText>
+                                                </DialogContent>
+
+                                                <DialogActions>
+                                                    <Button onClick={handleClose} color="primary">
+                                                        ยกเลิก
+        </Button>
+                                                </DialogActions>
+                                            </Dialog>
+                                        </div>
+                                    </Else>
+
+                                </If>
+                            </div>
 
                         </>
                     );

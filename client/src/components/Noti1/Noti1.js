@@ -11,6 +11,7 @@ function Notification({open,t}) {
     const user_contact = localStorage.getItem('currentUser_phone')
 
     function accept(record){
+        console.log(record._id)
         const item = record.notification
         const sendTo = record.requester
         const data = {username, sendTo, item}
