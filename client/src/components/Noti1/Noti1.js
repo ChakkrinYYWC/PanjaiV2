@@ -11,14 +11,24 @@ function Notification({open,t}) {
     const user_contact = localStorage.getItem('currentUser_phone')
 
     function accept(record){
-        console.log(record._id)
+        //console.log(record._id)
         const item = record.notification
         const sendTo = record.requester
-        const data = {username, sendTo, item}
+        const notiId = record._id
+        const data = {username, sendTo, item, notiId}
         Axios.post('/Too-Panjai/recieveAccept', data,{
         }).then(res => {
         }).catch(error => console.log(error))
-        window.alert("Send contact to "+record.requester)
+        //window.alert("Send contact to "+record.requester)
+    }
+
+    function deny(record){
+        const notiId = record._id
+        const data = {notiId}
+        Axios.post('/Too-Panjai/recieveDeny', data,{
+        }).then(res => {
+        }).catch(error => console.log(error))
+        //window.alert("Send contact to "+record.requester)
     }
 
     const [ noti, setNoti ] = useState([])
@@ -32,7 +42,7 @@ function Notification({open,t}) {
 
     Axios.post('/Too-Panjai/findRecieve/'+user_id,{
     }).then(res => {
-        console.log(res.data);
+        //console.log(res.data);
         setRecieve(res.data)
     }).catch(error => console.log(error))
     
@@ -64,7 +74,7 @@ function Notification({open,t}) {
                                         <div className="NameKamko">{record.requester} ต้องการ {record.notification} จากคุณ</div>
                                         <div>
                                             <i onClick={() => accept(record)} class="fas fa-check-circle" ></i>
-                                            <i class="fas fa-times-circle"></i>
+                                            <i onClick={() => deny(record)} class="fas fa-times-circle"></i>
                                         </div>
                                     </div>
                                     )

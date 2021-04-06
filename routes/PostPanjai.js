@@ -136,8 +136,6 @@ router.post('/addRequest/:id',async function(req, res){
         requester : req.body.currentUser,
         notification : post[0].title,
     })
-
-
 })
 
 router.post('/notifications/:id',async function(req, res){
@@ -171,7 +169,7 @@ router.post('/recieveAccept',async function(req, res){
         },
     ])
 
-    console.log(owner_id)
+    //console.log(owner_id)
     recieve.create({
         to : req.body.sendTo,
         owner : owner_id[0].username,
@@ -179,20 +177,19 @@ router.post('/recieveAccept',async function(req, res){
         item : req.body.item,
     })
 
-    // let findRecieve = await recieve.aggregate([
-    //     {
-    //         $match: {
-    //             owner : req.body.username
-    //         }
-    //     },
-    // ])
-    // console.log(findRecieve)
+    noti.findByIdAndDelete(req.body.notiId, function(error,remove){
+        if(error){
+            console.log(error)
+        }
+    })
+})
 
-    // noti.findByIdAndDelete(owner_id[0].username, function(error,remove){
-    //     if(error){
-    //         console.log(error)
-    //     }
-    // })
+router.post('/recieveDeny',async function(req, res){
+    noti.findByIdAndDelete(req.body.notiId, function(error,remove){
+        if(error){
+            console.log(error)
+        }
+    })
 })
 
 router.post('/findRecieve/:id',async function(req, res){
