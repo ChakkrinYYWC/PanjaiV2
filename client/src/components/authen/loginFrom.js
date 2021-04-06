@@ -37,6 +37,7 @@ function LoginFrom() {
         }).then(res => {
             console.log(res);
             if(res.data[0]) {
+                localStorage.setItem('Firstpopup', true);
                 localStorage.setItem('PanjaiToken', res.data[0]);
                 localStorage.setItem('currentUser', res.data[1]);
                 localStorage.setItem('currentUser_id', res.data[2]);

@@ -34,6 +34,7 @@
 .navbar-logo:hover{
     text-decoration: none;
     color: rgb(70, 7, 7);
+    text-shadow: 3px 3px 4px rgba(226, 224, 220, 0.925);
 
 }
 
@@ -103,6 +104,21 @@ a.nav-links-mobile {
     display: none;
 }
 
+.ssearch{
+    color: rgb(255, 255, 255);
+
+}
+.ssearch:hover{
+    color: rgb(88, 70, 10);
+    text-shadow: 3px 3px 4px rgb(255, 203, 100);
+
+}
+
+.bell:hover{
+    color: rgb(88, 70, 10);
+    text-shadow: 3px 3px 4px rgb(255, 203, 100);
+
+}
  @media screen and (max-width: 1024px) {
     .NavbarItems {
         /* position: relative; */
@@ -208,5 +224,6 @@ a.nav-links-mobile {
         padding-bottom: 10px;
     }
    
+
  }
  

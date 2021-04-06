@@ -1,8 +1,6 @@
 import { FormatColorResetOutlined, Search } from '@material-ui/icons';
-import React, { Component,useState } from 'react';
-
+import React, { Component, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import Axios from 'axios';
 import { Avatar } from "@material-ui/core";
@@ -52,11 +50,11 @@ async function logout() {
 // }
 
 class Navbar extends Component {
-    
-    state = { 
+
+    state = {
 
         input: "",
-        clicked: false ,
+        clicked: false,
         openState: false,
         targetNoti: null,
         noti: [],
@@ -80,7 +78,7 @@ class Navbar extends Component {
     openNotiPanel = (event) => {
         console.log(event)
         this.setState({ openState: !this.state.openState });
-        this.setState({ targetNoti: event.target})
+        this.setState({ targetNoti: event.target })
 
     }
 
@@ -88,31 +86,66 @@ class Navbar extends Component {
         this.setState({ clicked: !this.state.clicked })
 
     }
+<<<<<<< HEAD
+=======
+
+    search = () => {
+        console.log("its work!!")
+        console.log(this.state.find)
+        Axios.get('/Search/' + this.state.find, {
+        }).then(res => {
+            console.log(res)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+>>>>>>> 31220ec96625785d8776093bd5fae762b4b3737c
     render() {
         return (
             <div>
                 {/* {this.getNumber()} */}
                 <nav className="NavbarItems">
 
-                    <Link to="/"  className="navbar-logo" >ปันใจ <i className="fab fa-gratipay"></i></Link>
+                    <Link to="/" className="navbar-logo" >ปันใจ  <i className="fab fa-gratipay"></i></Link>
                     {/* <div className="navbar-logo"><img src="logo.png" width="120px"/></div> */}
 
                     <div className="menu-icon" onClick={this.handleClick}>
                         <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                     </div>
+
                     <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
                         {Menuitems.map((item, index) => {
-                            return (
-                                <li className="itemlist" key={index} >
-                                    {/* <a href={"#" + item.id}> */}
+                            if (PanjaiToken == "null") {
+                                if (index < 5) {
+                                    return (
+
+                                        <li className="itemlist" key={index} >
+                                            {/* <a href={"#" + item.id}> */}
+                                            <a className={item.cName} href={item.href}>
+                                                {item.title}
+                                            </a>
+                                            {/* </a> */}
+
+                                        </li>
+
+                                    )
+                                }
+                            }
+                            else {
+                                return (
+
+                                    <li className="itemlist" key={index} >
+                                        {/* <a href={"#" + item.id}> */}
                                         <a className={item.cName} href={item.href}>
                                             {item.title}
                                         </a>
-                                    {/* </a> */}
+                                        {/* </a> */}
 
-                                </li>
+                                    </li>
 
-                            )
+                                )
+                            }
                         })}
 
                         <li className="itemlist">
@@ -129,7 +162,7 @@ class Navbar extends Component {
                         </li>
                     </ul>
                     <span className="dropdown position-search">
-                    <Link to='/searchResult'/*type="button" data-toggle="dropdown"*/><i className="fas fa-search"></i></Link>
+                        <Link to='/searchResult' className="ssearch" /*type="button" data-toggle="dropdown"*/><i className="fas fa-search"></i></Link>
                         {/* <div className="dropdown-menu dropdown-menu-right">
                             <form>
                                 <input 
@@ -144,16 +177,36 @@ class Navbar extends Component {
                             </form>
                         </div> */}
                     </span>
+<<<<<<< HEAD
                     <span class="noti">
                         <span type="button"  className="bell" onClick={(event) => this.openNotiPanel(event)}>
+=======
+                    {PanjaiToken == "null" ? <span></span> : <span class="noti">
+                        <span type="button" className="bell" onClick={(event) => this.openNotiPanel(event)}>
                             <i class="fas fa-bell"></i>
                             {
-                                this.state.openState?  <NotiPanel open={this.state.openState} t={this.state.targetNoti} /> : null
+                                this.state.openState ? <NotiPanel open={this.state.openState} t={this.state.targetNoti} /> : null
                             }
-                           
+
                         </span>
+                    </span>
+                    }
+                    {/* <span class="noti">
+                        <span type="button" className="bell" onClick={(event) => this.openNotiPanel(event)}>
+>>>>>>> 31220ec96625785d8776093bd5fae762b4b3737c
+                            <i class="fas fa-bell"></i>
+                            {
+                                this.state.openState ? <NotiPanel open={this.state.openState} t={this.state.targetNoti} /> : null
+                            }
+
+                        </span>
+<<<<<<< HEAD
                         <span class="badge">{this.state.noti.length+this.state.recieve.length}</span>
                     </span>
+=======
+
+                    </span> */}
+>>>>>>> 31220ec96625785d8776093bd5fae762b4b3737c
 
                     <If condition={PanjaiToken == "null"} >
                         <Then>
@@ -171,14 +224,17 @@ class Navbar extends Component {
 
 
                     {/* <div type="button" href="Login" className="nav-links-mobile">เข้าสู่ระบบ</div> */}
-
+                   
                 </nav>
+               
                 {/* <input onChange={(event) => { this.setState({input:event.target.value}); console.log(event,event.target.value) }}></input> */}
+       
             </div>
+
+            
         )
     }
 }
-
 
 
 
