@@ -46,6 +46,7 @@ function App() {
         <Route path="/Foundation/:name" component={category}/>
         <Route path="/searchResult" component={search}/>
         <Route path="/myfav" component={favorite}/>
+        {/* <Route path="/about" component={about}/> */}
       </Switch>
     </Router>
   );

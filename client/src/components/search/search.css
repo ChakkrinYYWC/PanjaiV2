@@ -217,13 +217,21 @@
 
 .bg2{
     padding: 0% 15% 0% 15%;
-    background-color: rgb(224, 213, 178);
+    /* background-color: rgb(235, 198, 77); */
     font-family: 'Mali', cursive; 
 }
 
-/* .head{
+.head{
     background-color: white;
-} */
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+    
+    
+  
+}
 
 .bg2 .row {
     padding: 0% 10% 0% 5%;
@@ -244,6 +252,7 @@
     margin: 0px 7px 0 0;
 }
 .background-search {
-  background-color:  rgb(224, 213, 178);
+  background-color:  rgb(226, 221, 204);
+  height: 100%;
   
 }

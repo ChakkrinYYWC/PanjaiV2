@@ -22,7 +22,7 @@ const Menuitems = [
     {
         id: '004',
         title: 'เกี่ยวกับเรา',
-        href: '/',
+        href: '/about',
         cName: 'nav-links'
     },
     {
