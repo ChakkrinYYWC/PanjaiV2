@@ -14,17 +14,13 @@ import Too_panjai from "./pages/Too-panjai";
 import Navbar from "./components/Navbar/Navbar";  //forth
 import Profile from "./pages/userInformation"; //june
 import register from "./pages/register";
-import Foundation from './pages/Foundation';
 import Noti1 from "./components/Noti1/Noti1"; //june
 import search from './pages/searchResult'
 import favorite from './pages/myfavorite'
-
 // import category from './components/category/category';
 import category from './pages/Category';
 import Categoryshow from './pages/Categoryshow';
 import { Category } from '@material-ui/icons';
-import ShowFDT from './pages/FDTShow';
-// import ShowFDT from './components/foundation/ShowFDT';
 // import PrivateRoute from 'react-private-route'
 
 

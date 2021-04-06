@@ -219,3 +219,44 @@ const mapActionToProps = {
 
 export default connect(mapStateToProps, mapActionToProps)(Categoryshow);
 //export default Categoryshow;
+
+
+// import React from 'react';
+
+// function Map() {
+//     return (
+//         <>
+//             <h2>Hi</h2>
+//             <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1mAA__Tql3SsFj9vR6dAMudAQlJ_KFj9J" width="640" height="480"></iframe>
+//         </>
+//     );
+// }
+// export default Map;
+
+// import React, { Component } from 'react';
+// import { withGoogleMap, withScriptjs, GoogleMap, Marker, InfoWindow } from "react-google-maps";
+
+// function Map() {
+//     return (
+//         <GoogleMap
+//             defaultCenter={{ lat: 14.0135, lng: 100.5305 }}
+//             defaultZoom={10}
+//         />
+//     );
+// }
+
+// const WrappedMap = withScriptjs(withGoogleMap(Map));
+
+// export default function Categoryshow() {
+//     return (
+//         <div style={{ width: "100vw", height: "100vh" }}>
+//             <WrappedMap
+//                 googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg`}
+//                 loadingElement={<div style={{ height: `100%` }} />}
+//                 containerElement={<div style={{ height: `100%` }} />}
+//                 mapElement={<div style={{ height: `100%` }} />}
+//             />
+//         </div>
+//     );
+// }
+
