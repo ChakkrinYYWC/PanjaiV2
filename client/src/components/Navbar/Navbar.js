@@ -86,21 +86,6 @@ class Navbar extends Component {
         this.setState({ clicked: !this.state.clicked })
 
     }
-<<<<<<< HEAD
-=======
-
-    search = () => {
-        console.log("its work!!")
-        console.log(this.state.find)
-        Axios.get('/Search/' + this.state.find, {
-        }).then(res => {
-            console.log(res)
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-
->>>>>>> 31220ec96625785d8776093bd5fae762b4b3737c
     render() {
         return (
             <div>
@@ -177,10 +162,6 @@ class Navbar extends Component {
                             </form>
                         </div> */}
                     </span>
-<<<<<<< HEAD
-                    <span class="noti">
-                        <span type="button"  className="bell" onClick={(event) => this.openNotiPanel(event)}>
-=======
                     {PanjaiToken == "null" ? <span></span> : <span class="noti">
                         <span type="button" className="bell" onClick={(event) => this.openNotiPanel(event)}>
                             <i class="fas fa-bell"></i>
@@ -193,21 +174,14 @@ class Navbar extends Component {
                     }
                     {/* <span class="noti">
                         <span type="button" className="bell" onClick={(event) => this.openNotiPanel(event)}>
->>>>>>> 31220ec96625785d8776093bd5fae762b4b3737c
                             <i class="fas fa-bell"></i>
                             {
                                 this.state.openState ? <NotiPanel open={this.state.openState} t={this.state.targetNoti} /> : null
                             }
 
                         </span>
-<<<<<<< HEAD
-                        <span class="badge">{this.state.noti.length+this.state.recieve.length}</span>
-                    </span>
-=======
 
                     </span> */}
->>>>>>> 31220ec96625785d8776093bd5fae762b4b3737c
-
                     <If condition={PanjaiToken == "null"} >
                         <Then>
                             <Link to="/Login" className="nav-links-mobile"> เข้าสู่ระบบ</Link>
