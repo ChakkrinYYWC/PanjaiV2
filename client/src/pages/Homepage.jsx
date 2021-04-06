@@ -25,7 +25,7 @@ function Homepage() {
             <Link to="/Too_panjai">Too panjai</Link><br /> */}
             {/* <Foundation/> */}
             <Home/>
-            <Search/>
+            {/* <Search/> */}
         </>
            
     )
