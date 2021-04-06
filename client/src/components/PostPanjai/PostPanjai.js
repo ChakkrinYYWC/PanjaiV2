@@ -44,15 +44,17 @@ const styles = theme => ({
     actionDiv: {
         textAlign: "center"
     },
+    // กรอบที่ใส่โพส
     post1: {
 
-        borderRadius: 5,
+        borderRadius: '20px',
         boxShadow: '0 1px 1px 1px rgba(85, 52, 4, 0.925)',
         height: 'auto',
         padding: '30px 30px',
         marginBlock: '15px'
 
     },
+// กรอบโพส
     framepost: {
         // background: '#f9a825',
         borderRadius: 5,
@@ -60,7 +62,8 @@ const styles = theme => ({
         color: 'rgba(187, 130, 44, 0.925)',
         height: 'auto',
         padding: '10px 10px',
-        marginBlock: '15px'
+        marginBlock: '15px',
+        borderRadius: '20px',
     },
     frampicture: {
         padding: '10px 10px'
@@ -81,9 +84,12 @@ const styles = theme => ({
         color: '#a13800'
     },
     judjudjud: {
-        marginLeft: '75px'
+        marginLeft: '80px'
 
     },
+    bg1: {
+        backgroundColor: 'rgba(187, 130, 44, 0.925)',
+    }
     
 
 })
@@ -191,7 +197,7 @@ const PostPanjai = ({ classes, ...props }) => {
     // console.log( props.postPanjaiList[1])
     return (
         <>
-            <Grid container justify="center">
+            <Grid container justify="center" >
                 <Grid item lg={4}>
                     {/* กรอบโพส */}
                     {/* <Box bgcolor="primary.main" color="primary.contrastText" p={2}> */}
@@ -201,7 +207,7 @@ const PostPanjai = ({ classes, ...props }) => {
                     {/* </Box> */}
                 </Grid>
             </Grid>
-            <Grid container spacing={2} >
+            <Grid container spacing={3} >
                 {/* ฝั่งขวา ใช้ classes.ชื่ออื่่น */}
                 {
                     props.postPanjaiList.map((record, index) => {
