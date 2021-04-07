@@ -79,7 +79,7 @@ function Category({ classes, ...props }) {
                                                     {
                                                         props.postFDTList.filter(fdt => fdt.category == props.currentId.match.params.name).map((record, index) => {
                                                             return (
-                                                                <div className="column col-4">
+                                                                <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
                                                                     <Card className="foundat">
                                                                         <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
                                                                         <Card.Body>
