@@ -1,0 +1,60 @@
+.footer {
+    height: 50px;
+    width: 100%;
+    margin-top: 100px;
+    background-color: rgb(161, 128, 79) ;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Mali', cursive;
+    padding-top:5px;
+    padding-bottom: 65px;
+    position: absolute;
+  }
+.textfooter{
+    font-size: 20px;
+    color: white;
+    font-family: 'Mali', cursive;
+
+    font-weight: bold;
+    text-decoration: none;
+    padding-top: 20px;
+}
+
+.textfooter:hover{
+    text-decoration: none;
+    color: rgb(70, 7, 7);
+    text-shadow: 3px 3px 4px rgba(226, 224, 220, 0.925);
+
+}
+.logofooter{
+    font-size: 20px;
+  
+}
+.bigpopup{
+    text-align: center; 
+    background-color: rgba(0, 0, 0, 0.144);
+    color:rgb(145, 111, 2) ;
+    width: 100%;
+    justify-items: center;
+    
+
+}
+
+.popup{
+    margin-top: 100px;
+    color:rgb(145, 111, 2);
+    text-align: center; 
+}
+.popuptitle .y{
+    text-align: center;
+    color: royalblue;
+}
+
+.p{
+
+    height: 400px;
+    width: 500px;
+
+  
+}

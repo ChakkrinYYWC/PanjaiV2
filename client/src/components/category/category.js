@@ -70,6 +70,7 @@ function Category({ classes, ...props }) {
                         {
                             props.postFDTList.filter(fdt => fdt.name == props.currentId.match.params.name).map((record, index) => {
                                 return (
+                                        
                                     <div className="dek" style={{ backgroundImage: `url(${record.image})` }}>
                                         <div className="box-white">
                                             <div className="Title"><i className="fab fa-gratipay"></i>{props.currentId.match.params.name}<i className="fab fa-gratipay"></i></div>
@@ -87,6 +88,7 @@ function Category({ classes, ...props }) {
                                                                             <div className="information">จำนวน :{record.n_item}</div>
                                                                             <div className="information-1">วันที่ลง :{moment(record.Timestamp).calendar()}</div>
                                                                             <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="CardTitle">อ่านเพิ่มเติม</Link>
+                                                                            
                                                                         </Card.Body>
                                                                     </Card>
                                                                 </div>

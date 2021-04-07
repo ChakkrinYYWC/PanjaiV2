@@ -6,11 +6,11 @@
     background-size: cover;
     width: 100%;
     font-family: 'Mali', cursive;
-    height: 400px;
-    position:absolute;
+    /* height: 400px; */
+    position: absolute;
     /* z-index: 20; */
     /* margin-top: 50px; */
-
+  
 }
 
 
@@ -21,7 +21,7 @@
 
 .box-white{
     background-color: rgba(255, 255, 255, 0.89);
-    margin: 340px 120px 500px 120px;
+    margin: 340px 120px 0px 120px;
     box-shadow: 0px 7px 7px 4px rgba(206, 206, 206, 0.397);
     justify-items: center;
     /* height: 1000px; */
