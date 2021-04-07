@@ -16,9 +16,12 @@ function Notification({open,t}) {
         const sendTo = record.requester
         const notiId = record._id
         const data = {username, sendTo, item, notiId}
-        Axios.post('/Too-Panjai/recieveAccept', data,{
-        }).then(res => {
-        }).catch(error => console.log(error))
+        if (window.confirm('เมื่อกดยืนยันแล้ว ผู้รับของมีเวลา 2 วันในการติดต่อกลับมาหาคุณ')) {
+            // const data = { currentUser_id }
+            Axios.post('/Too-Panjai/recieveAccept', data,{
+            }).then(res => {
+            }).catch(error => console.log(error))
+        }
         //window.alert("Send contact to "+record.requester)
     }
 
