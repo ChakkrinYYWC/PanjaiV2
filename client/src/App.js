@@ -15,7 +15,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/footer/footer";  
 import Profile from "./pages/userInformation";
 import register from "./pages/register";
-import Foundation from './pages/Foundation';
+import aroundME from './pages/aroundME';
 import Noti1 from "./components/Noti1/Noti1";
 import search from './pages/searchResult';
 import favorite from './pages/myfavorite';
@@ -47,6 +47,7 @@ function App() {
         <Route path="/searchResult" component={search}/>
         <Route path="/myfav" component={favorite}/>
         <Route path="/aboutus" component={About}/>
+        <Route path="/testaroundme" component={aroundME}/>
         
     
       </Switch>
