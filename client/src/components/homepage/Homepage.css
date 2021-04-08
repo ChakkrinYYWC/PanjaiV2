@@ -230,16 +230,17 @@
     margin-top: 100px;
     color:rgb(124, 96, 4);
     text-align: center; 
-    font-family: 'Mali', cursive;
+   
 }
 
 
 .p{
 
-    height: 400px;
+    height: 320px;
     width: 500px;
-    background-color: rgb(235, 230, 184);
+    background-color: rgb(255, 255, 255);
     font-size: 20px;
+    
 } 
 
  /* .pum Button{
@@ -310,7 +311,7 @@ background-color: #fdfdfd;
 .popup .row {
   padding-bottom: 0px; 
   padding-right: 140px; 
-   padding-left: 120px;
+   padding-left: 140px;
 }
 
 .pum .dropdown{
