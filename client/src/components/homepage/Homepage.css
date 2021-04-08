@@ -216,4 +216,30 @@
   }
  
 
+  .bigpopup{
+    text-align: center; 
+    background-color: rgba(0, 0, 0, 0.144);
+    color:rgb(145, 111, 2) ;
+    width: 100%;
+    justify-items: center;
+    
 
+}
+
+.popup{
+    margin-top: 100px;
+    color:rgb(145, 111, 2);
+    text-align: center; 
+}
+.popuptitle .y{
+    text-align: center;
+    color: royalblue;
+}
+
+.p{
+
+    height: 400px;
+    width: 500px;
+
+  
+} 
