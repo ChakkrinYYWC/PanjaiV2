@@ -107,7 +107,6 @@ function aroundME() {
                 <GoogleMap
                     defaultZoom={5}
                     defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
-
                 >
                     {props.markers.map(marker => (
                         <Marker
@@ -130,7 +129,6 @@ function aroundME() {
         <>
             <Map />
             {/* <button className="btn btn-lg " onClick={getPosition}>here</button> */}
-            <h2>Hello555555</h2>
         </>
     );
 }

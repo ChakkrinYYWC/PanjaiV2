@@ -184,15 +184,16 @@ const PostPanjai = ({ classes, ...props }) => {
     const reportItem = id => {
         if (window.confirm('รายงานโพสนี้ใช่หรือไม่?')) {
             // const data = { currentUser_id }
-            Axios.post('/report/' + id, {
+            const data = {id, currentUser, currentUser_id }
+            Axios.post('/report/' + id, data, {
             }).then(res => {
                 console.log(res)
             }).catch(error => console.log(error))
         }
     }
     for (let i = props.postPanjaiList.length; i > 0; i--) {
-        console.log('*' + i)
-        console.log(props.postPanjaiList[i - 1])
+        // console.log('*' + i)
+        // console.log(props.postPanjaiList[i - 1])
     }
     // console.log( props.postPanjaiList[4])
     // console.log( props.postPanjaiList[3])
