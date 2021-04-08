@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
-import Foundation from './Foundation'
+import Foundation from './aroundME'
 import Home from '../components/homepage/Homepage'
 import Search from '../components/search/search'
 

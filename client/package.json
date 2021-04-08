@@ -25,6 +25,7 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
+    "react-geocode": "^0.2.3",
     "react-google-maps": "^9.4.5",
     "react-if-elseif-else-render": "^1.0.2",
     "react-image": "^4.0.3",
