@@ -22,6 +22,7 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
 import { DeleteSweep } from "@material-ui/icons";
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
+import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router'
 import GoogleMapReact from 'google-map-react';
 import Axios from 'axios';
@@ -330,6 +331,14 @@ function Categoryshow({ classes, ...props }) {
                                     </Else>
 
                                 </If>
+                                {/* <footer id="sticky-footer" >
+                                    <div className="footer">
+
+                                        <div className="logofooter" ><i className="fab fa-gratipay"></i></div>
+                                        <Link to="/#001" className="textfooter">ปันใจ </Link>
+                                       
+                                    </div>
+                                </footer> */}
                             </div>
 
                         </>

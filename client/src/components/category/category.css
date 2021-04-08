@@ -9,7 +9,7 @@
     /* height: 400px; */
     position: absolute;
     /* z-index: 20; */
-    /* margin-top: 50px; */
+
   
 }
 
@@ -21,11 +21,10 @@
 
 .box-white{
     background-color: rgba(255, 255, 255, 0.89);
-    margin: 340px 120px 0px 120px;
+    margin: 340px 120px 100px 120px;
     box-shadow: 0px 7px 7px 4px rgba(206, 206, 206, 0.397);
     justify-items: center;
-    /* height: 1000px; */
-    
+  
 
 }
 
@@ -135,9 +134,47 @@
 
   /*responsive*/
 @media only screen and (max-width: 1024px) {
+  .box-white{
+    margin: 250px 20px 100px 20px;
+ 
+  }
+  .Title{
+    padding-top: 35px;
+    font-size: 18px;
+    }
+
+    .foundat{
+      width:280px;
+      height: 295px;
+      margin-bottom: 0px;
+    }
+    .foundat Img{
+      height: 140px;
   
+    }
+    .foundation .row{
+      padding: 0px 100px 50px 0px;
+      
+  
+    } 
+    .Tfound{
+      font-size: 12px;
+    }
+    .information,.information-1{
+      margin-top: 0px;
+      padding: 0px;
+      font-size: 12px;
+    }
+    .foundat .CardTitle{
+      font-size: 10px;
+    }
+    .information-1{
+      margin-bottom: 0px
+  
+    }
 }
 @media only screen and (max-width: 768px) {
+  
   .dek{
     width: 100%;
     height: 180px;
@@ -145,30 +182,56 @@
 
   .box-white{
     margin: 120px 15px 100px 15px;
+
   }
 
   .Title{
-    padding-top: 10px;
+    padding-top: 15px;
     font-size: 18px;
     }
 
-    .Title .fab{
-      font-size: 20px;
-
+  .Title .fab{
+    font-size: 20px;
   }
 
   .foundat{
-    width:250px;
-    height: 220px;
-    margin: 0px;
+    width:240px;
+    height: 240px;
+    margin-bottom: 0px;
   }
+
+
   .foundat Img{
-    height: 130px;
+    height: 100px;
 
   }
 
   .foundation .row{
-    padding: 20px 0px 0px 0px;
- 
+    padding: 0px 0px 0px 0px;
+    
+
+  } 
+  
+  .Tfound{
+    font-size: 12px;
   }
+  .information,.information-1{
+    margin-top: 1px;
+    padding: 0px;
+    font-size: 12px;
+  }
+  .card-body {
+    flex: 1 1 auto;
+    padding: 0.5rem 1rem;
+
+  }
+  .foundat .CardTitle{
+    font-size: 10px;
+  }
+  .information-1{
+    margin-bottom: 0px
+
+  }
+
+
 }    

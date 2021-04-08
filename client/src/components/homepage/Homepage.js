@@ -7,10 +7,13 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Player } from 'video-react';
 // import "node_modules/video-react/dist/video-react.css";
 import YouTube from '@u-wave/react-youtube';
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 // import Card from 'react-bootstrap/Card';
 import { Card, Button, Modal } from 'react-bootstrap';
 
+import SplitButton from 'react-bootstrap/SplitButton'
 
 import {
     BrowserRouter as Router,
@@ -19,6 +22,7 @@ import {
     Link,
     Redirect
 } from "react-router-dom";
+import { model } from 'mongoose';
 
 
 /*----------------------------------------------------------------------*/
@@ -30,6 +34,7 @@ function Homepage() {
     const Handledisplay = () => {
         setDisplay(!display);
     }
+
     const [show, setShow] = useState(false);
 
 
@@ -46,36 +51,49 @@ function Homepage() {
     }, []);
 
 
+
+
+
     return (
         <div>
             <div className="bigpopup">
                 <Modal className="popup" show={show}>
-                    <div className="p">
+                    <span className="p">
                         <Modal.Header className="popuptitle" closeButton onClick={handleClose}>
                             {/* <div className="y">คุณต้องการบริจาคอะไร?</div> */}
                         </Modal.Header>
-                        <Modal.Body>คุณต้องการบริจาคอะไร?</Modal.Body>
-                        <div className="field">
-                            <input
-                                type="text"
-                                className="ui-input"
-                                placeholder="ค้นหา" />
-                            <button type='submit' className="search-bt">ค้นหา</button>
-                        </div>
-                        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                        <Modal.Body>ยินดีต้อนรับเข้าสู่ปันใจนะกั้บ</Modal.Body>
 
-
-                        {/* <Modal.Footer> */}
-                        {/* <Button variant="secondary" onClick={handleClose}>
-                            Close
-          </Button> */}
-                        <Button variant="primary" onClick={handleClose}>
-                            ตู้ปันใจ
+                        <Modal.Body> <i className="fab fa-gratipay"></i></Modal.Body>
+                        <Modal.Body>คุณต้องการบริจาคอะไรไหม ?</Modal.Body>
+                        <span  className="pum row m-0">
+                            <span className="column col-6">
+                            <Button className="pummoney" href="/#003" variant="primary" onClick={handleClose}>
+                                เงิน
                             </Button>
-                        {/* </Modal.Footer> */}
+                            </span >
+                            <span  className="column col-6">
+                            <DropdownButton id="dropdown-item-button" title=" สิ่งของ">
+                                <span  className="lover">
+                                    <Dropdown.Item  as="button" >
+                                        <Link to="/Too_panjai"className="love" >นม</Link>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item as="button" >
+                                        <Link to="/Too_panjai"className="love" >เครื่องเขียน</Link>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item  as="button" >
+                                        <Link to="/Too_panjai" className="love">ข้าวสาร</Link>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item  as="button" >
+                                        <Link to="/Too_panjai" className="love">ไม่มีสิ่งที่ต้องการบริจาค</Link>
+                                    </Dropdown.Item>
+                                </span >
+                            </DropdownButton>
+                            </span >
+                        </span >
 
-                       
-                    </div>
+
+                    </span>
                 </Modal>
             </div>
             {/* ----------------------slideshow------------------------------------------------*/}
