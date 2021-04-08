@@ -57,7 +57,7 @@ router.post('/', upload.single('image'), (req, res) => {
         image: req.file.filename,
         endtime: req.body.endtime,
         lat: req.body.lat,
-        lng: req.body.lat
+        lng: req.body.lng
     })
     console.log(newRecord)
     newRecord.save((err, docs) => {
@@ -80,7 +80,7 @@ router.put('/:id', (req, res) => {
         promptpay: req.body.promptpay,
         endtime: req.body.endtime,
         lat: req.body.lat,
-        lng: req.body.lat
+        lng: req.body.lng
     }
 
     PostFDT.findByIdAndUpdate(req.params.id, { $set: updatedRecord }, { new: true }, (err, docs) => {

@@ -127,7 +127,7 @@ function Categoryshow({ classes, ...props }) {
 
     const MapWithAMarker = withScriptjs(withGoogleMap(props =>
         <GoogleMap
-            defaultZoom={4}
+            defaultZoom={15}
             defaultCenter={{ lat: lat, lng: lng }}
         >
             <Marker
