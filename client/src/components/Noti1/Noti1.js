@@ -3,6 +3,7 @@ import './Noti1.css'
 import {Button,Overlay,Popover} from "react-bootstrap"
 import Axios from 'axios';
 import { ContactSupportOutlined } from '@material-ui/icons';
+var once = false;
 
 function Notification({open,t}) {
 
@@ -45,19 +46,24 @@ function Notification({open,t}) {
     const [ noti, setNoti ] = useState([])
     const [ recieves, setRecieve ] = useState([])
 
-    Axios.post('/Too-Panjai/notifications/'+user_id,{
-    }).then(res => {
-        //console.log(res.data);
-        setNoti(res.data)
-    }).catch(error => console.log(error))
-
-    Axios.post('/Too-Panjai/findRecieve/'+user_id,{
-    }).then(res => {
-        //console.log(res.data);
-        setRecieve(res.data)
-    }).catch(error => console.log(error))
+    async function onetime(){
+        if(once == false){
+            //once = true;
+            await Axios.post('/Too-Panjai/notifications/'+user_id,{
+            }).then(res => {
+                //console.log(res.data);
+                setNoti(res.data)
+            }).catch(error => console.log(error))
+        
+            await Axios.post('/Too-Panjai/findRecieve/'+user_id,{
+            }).then(res => {
+                //console.log(res.data);
+                setRecieve(res.data)
+            }).catch(error => console.log(error))
+        }
+    }
+    onetime()
     
-    const [ input, setInput ] = useState("")
     //console.log(noti)
     return (
         <div>
