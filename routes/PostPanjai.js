@@ -176,7 +176,16 @@ router.post('/recieveAccept',async function(req, res){
         owner_contact : owner_id[0].phone,
         item : req.body.item,
     })
+    // recieve.createIndex( { "createdAt": 1 }, { expireAfterSeconds: 3600 } )
 
+    // noti.findByIdAndDelete(req.body.notiId, function(error,remove){
+    //     if(error){
+    //         console.log(error)
+    //     }
+    // })
+})
+
+router.post('/recieveDeny',async function(req, res){
     noti.findByIdAndDelete(req.body.notiId, function(error,remove){
         if(error){
             console.log(error)
@@ -184,8 +193,8 @@ router.post('/recieveAccept',async function(req, res){
     })
 })
 
-router.post('/recieveDeny',async function(req, res){
-    noti.findByIdAndDelete(req.body.notiId, function(error,remove){
+router.post('/deleteRecieve',async function(req, res){
+    recieve.findByIdAndDelete(req.body.recieveId, function(error,remove){
         if(error){
             console.log(error)
         }

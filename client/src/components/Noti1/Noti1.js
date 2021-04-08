@@ -34,6 +34,14 @@ function Notification({open,t}) {
         //window.alert("Send contact to "+record.requester)
     }
 
+    function deleteRecieve(record){
+        const recieveId = record._id
+        const data ={recieveId}
+        Axios.post('/Too-Panjai/deleteRecieve', data,{
+        }).then(res => {
+        }).catch(error => console.log(error))
+    }
+
     const [ noti, setNoti ] = useState([])
     const [ recieves, setRecieve ] = useState([])
 
@@ -91,13 +99,14 @@ function Notification({open,t}) {
                         
                         {/* คำตอบรับ */}
                         <div className="boxNoti">
-                            <div className="boxtext">คำขอ</div>
+                            <div className="boxtext">คำอนุมัติ</div>
                             {
                                 recieves.map((record, index) => {
                                     return(
                                         <div className="grid">
-                                        <div className="NameKamko">{record.owner} ได้ยอมรับคำขอ ({record.item}) ของคุณแล้ว<br/>โปรดติดต่อ : {record.owner_contact}</div>
-                                    </div>
+                                            <div className="NameKamko">{record.owner} ได้ยอมรับคำขอ ({record.item}) ของคุณแล้ว<br/>โปรดติดต่อ : {record.owner_contact}</div>
+                                            <button onClick={() => deleteRecieve(record)}>ลบ</button>
+                                        </div>
                                     )
                                 })
                             }
