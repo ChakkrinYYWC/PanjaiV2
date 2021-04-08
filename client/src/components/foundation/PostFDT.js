@@ -23,6 +23,9 @@ const initialFieldValues = {
     n_item: '',
     category: '',
     promptpay: '',
+    endtime: '',
+    lat: '',
+    lng: '',
     imageFile: null,
 }
 
@@ -140,6 +143,8 @@ const PostFDT = ({ classes, ...props }) => {
         temp.message = values.message ? "" : "กรุณาใส่ข้อมูล."
         temp.item = values.item ? "" : "กรุณาใส่ข้อมูล."
         temp.n_item = values.n_item ? "" : "กรุณาใส่ข้อมูล."
+        temp.lat = values.lat ? "" : "กรุณาใส่ข้อมูล."
+        temp.lng = values.lng ? "" : "กรุณาใส่ข้อมูล."
         // temp.category = values.category ? "" : "กรุณาใส่ข้อมูล."
         temp.promptpay = values.promptpay ? "" : "กรุณาใส่ข้อมูล."
         setErrors({
@@ -203,6 +208,9 @@ const PostFDT = ({ classes, ...props }) => {
                 formData.append('n_item', values.n_item);
                 formData.append('category', category);
                 formData.append('promptpay', values.promptpay);
+                formData.append('endtime', values.endtime);
+                formData.append('lat', values.lat);
+                formData.append('lng', values.lng);
 
                 props.createPostFDT(formData, onSuccess) //ส่งค่าไปserver
             }
@@ -269,7 +277,7 @@ const PostFDT = ({ classes, ...props }) => {
                         value={values.promptpay}
                         onChange={handleInputChange}
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
-                    /><br />
+                    />
                     <FormControl className={classes.formControl}>
                         <InputLabel id="demo-simple-select-helper-label">หมวดหมู่</InputLabel>
                         <Select
@@ -283,6 +291,22 @@ const PostFDT = ({ classes, ...props }) => {
                             <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
                         </Select>
                     </FormControl><br />
+                    <TextField
+                        id="standard-number"
+                        name="lat"
+                        label="ละติจูด"
+                        value={values.lat}
+                        onChange={handleInputChange}
+                        {...(errors.lat && { error: true, helperText: errors.lat })}
+                    />
+                    <TextField
+                        id="standard-number"
+                        name="lng"
+                        label="ลองจิจูด"
+                        value={values.lng}
+                        onChange={handleInputChange}
+                        {...(errors.lng && { error: true, helperText: errors.lng })}
+                    /><br />
                     <div>
                         <img src={src} alt={alt} className={classes.imgpreview} />
                     </div>
@@ -364,6 +388,22 @@ const PostFDT = ({ classes, ...props }) => {
                         value={values.promptpay}
                         onChange={handleInputChange}
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
+                    /><br />
+                     <TextField
+                        id="standard-number"
+                        name="lat"
+                        label="ละติจูด"
+                        value={values.lat}
+                        onChange={handleInputChange}
+                        {...(errors.lat && { error: true, helperText: errors.lat })}
+                    />
+                    <TextField
+                        id="standard-number"
+                        name="lng"
+                        label="ลองจิจูด"
+                        value={values.lng}
+                        onChange={handleInputChange}
+                        {...(errors.lng && { error: true, helperText: errors.lng })}
                     /><br />
                     {/* <input
                         accept="image/*"

@@ -4,6 +4,7 @@ var ObjectID = require('mongoose').Types.ObjectId
 const fs = require('fs')
 const multer = require('multer')
 const path = require('path')
+const mongoose = require("mongoose");
 
 var { PostFDT } = require('../model/postFDT')
 
@@ -33,6 +34,18 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/map', async (req, res) => {
+    let result = await PostFDT.aggregate([
+        {
+            $match: {
+                _id : mongoose.Types.ObjectId(req.body.data)
+            }
+        }
+    ]);
+    console.log(result)
+    res.send(result[0])
+})
+
 router.post('/', upload.single('image'), (req, res) => {
     var newRecord = new PostFDT({
         title: req.body.title,
@@ -41,7 +54,10 @@ router.post('/', upload.single('image'), (req, res) => {
         n_item: req.body.n_item,
         promptpay: req.body.promptpay,
         category: req.body.category,
-        image: req.file.filename
+        image: req.file.filename,
+        endtime: req.body.endtime,
+        lat: req.body.lat,
+        lng: req.body.lat
     })
     console.log(newRecord)
     newRecord.save((err, docs) => {
@@ -61,7 +77,10 @@ router.put('/:id', (req, res) => {
         message: req.body.message,
         item: req.body.item,
         n_item: req.body.n_item,
-        promptpay: req.body.promptpay
+        promptpay: req.body.promptpay,
+        endtime: req.body.endtime,
+        lat: req.body.lat,
+        lng: req.body.lat
     }
 
     PostFDT.findByIdAndUpdate(req.params.id, { $set: updatedRecord }, { new: true }, (err, docs) => {

@@ -2,16 +2,24 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* background-color: rgba(221, 217, 208, 0.699); */
+    
     
 
 }
+/* .back{
+    background-color: rgb(241, 220, 149);
+    margin-top: 0px;
+} */
 /* หัวข้อความ */
-body {
+.container  {
     font-family: Roboto;
     font-size: 16px;
     color: #000000;
+   
 
 }
+
 
 
 .box{
@@ -21,7 +29,7 @@ body {
     grid-gap: 1rem;
     box-shadow: 0px 7px 7px 4px rgba(206, 206, 206, 0.397);
     justify-items: center;
-    
+    background-color: rgba(221, 217, 208, 0.699);
     
 }
 .box-img img{
@@ -36,8 +44,8 @@ body {
 }
 .Like {
     align-items: center;
-    font-size: 40px;
-    color: #A52A2A;
+    font-size: 35px;
+    color: #521d1d;
     margin-right: 120px;
 }
 .confirm-and-cancelEditProfile{
@@ -88,15 +96,16 @@ body {
 }
 
 .button {
-    background-color:rgba(187, 130, 44, 0.925);
+    background-color:rgba(185, 142, 76, 0.925);
     color: white;
     width: 100px;
     font-family: 'Mali', cursive;
     padding: 5px 8px;
+    border-radius: 50px;
     
 }
 .button:hover{
-    background-color:rgba(85, 52, 4, 0.925);
+    background-color:rgba(82, 60, 28, 0.925);
 }
 
 .Post{
@@ -105,14 +114,29 @@ body {
     font-weight: bold;
     color: #2e2e2e;
     margin-bottom: 45px;
+   
 }
 .EditProfile{
     justify-self: center;
+    
 }
 .textinforuser{
     display: grid;
     grid-template-columns: 150px 1fr;
     align-items: center;
+}
+.Like .fa-gratipay{
+    align-items: center;
+    font-size: 40px;
+    color:rgba(204, 88, 10, 0.925);
+    margin-right: 120px;
+    
+    
+}
+.Like .fa-gratipay:hover{
+    
+    color:rgba(145, 62, 7, 0.925);
+    
 }
 
 
