@@ -119,6 +119,11 @@ a.nav-links-mobile {
     text-shadow: 3px 3px 4px rgb(255, 203, 100);
 
 }
+
+.badge {
+    background-color: red;
+    color: white;
+  }
  @media screen and (max-width: 1024px) {
     .NavbarItems {
         /* position: relative; */

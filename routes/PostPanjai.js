@@ -178,11 +178,11 @@ router.post('/recieveAccept',async function(req, res){
     })
     // recieve.createIndex( { "createdAt": 1 }, { expireAfterSeconds: 3600 } )
 
-    // noti.findByIdAndDelete(req.body.notiId, function(error,remove){
-    //     if(error){
-    //         console.log(error)
-    //     }
-    // })
+    noti.findByIdAndDelete(req.body.notiId, function(error,remove){
+        if(error){
+            console.log(error)
+        }
+    })
 })
 
 router.post('/recieveDeny',async function(req, res){

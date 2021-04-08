@@ -23,7 +23,7 @@ function Notification({open,t}) {
             }).then(res => {
             }).catch(error => console.log(error))
         }
-        //window.alert("Send contact to "+record.requester)
+        window.location.reload();
     }
 
     function deny(record){
