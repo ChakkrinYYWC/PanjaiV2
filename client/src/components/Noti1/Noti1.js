@@ -91,7 +91,7 @@ function Notification({open,t}) {
                         
                         {/* คำตอบรับ */}
                         <div className="boxNoti">
-                            <div className="boxtext">คำขอ</div>
+                            <div className="boxtext">คำตอบรับ</div>
                             {
                                 recieves.map((record, index) => {
                                     return(

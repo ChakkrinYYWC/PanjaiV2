@@ -12,6 +12,7 @@ import PageFoundation from '../components/foundation/foundation'
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import PostPanjaiForm from '../components/PostPanjai/PostPanjaiForm';
 
+
 const styles = theme => ({
     root: {
         margin: 0,
@@ -64,22 +65,24 @@ function Catego({ classes, ...props }) {
         <>
             <If condition={currentUser == 'admin'}>
                 <Then>
-                    <Provider store={store}>
-                        <Fab size="small" color="primary" aria-label="add" onClick={handleClickOpen} >
+                    <Provider store={store} >
+            
+                        <Fab size="small"  color="primary" aria-label="add" onClick={handleClickOpen} >
                             <AddIcon />
                         </Fab>
-
+              
                         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                                 Post Foundation
                         </DialogTitle>
-
                             <PostFDT {...{ current, setCurrent }} />
                             <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
                             
                         </Dialog>
 
                         <Category {...{ currentId, setCurrentId }} />
+                  
+
                     </Provider>
                 </Then>
                 <Else>
