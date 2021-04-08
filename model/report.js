@@ -1,17 +1,12 @@
-// const   mongoose = require('mongoose');
-
-// let reportSchema = new mongoose.Schema({
-//     report : {
-//         type: mongoose.Schema.Types.ObjectId,
-//         ref: "postPanjai"
-//     },
-// });
-
-// module.exports = mongoose.model('Report', reportSchema);
 const   mongoose = require('mongoose')
 
 var Report = mongoose.model('Report',{
-    report : {
+    from: String, 
+    user_id : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user"
+    },
+    report_id : {
         type: mongoose.Schema.Types.ObjectId,
         ref: "postPanjai"
     },

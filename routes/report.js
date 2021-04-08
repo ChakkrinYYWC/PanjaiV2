@@ -15,11 +15,25 @@ router.get('/', (req, res) => {
             console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
     })
 })
+router.post('/addFav/:id', (req, res) => {
+    console.log("Post_id: "+req.params.id)
+    console.log("currentuser_id: "+req.body.currentUser_id)
+
+    user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { favorite: req.params.id } }, function(error,update){
+        if(error){
+            console.log(error)
+        }
+    })
+})
 
 router.post('/:id', (req, res) => {
     console.log("Post_id: " + req.params.id)
+    console.log("currentuser_id: "+req.body.currentUser_id)
+    console.log("currentuser: "+req.body.currentUser)
     var newRecord = new Report({
-        $addToSet: { report: req.params.id }
+        from: req.body.currentUser,
+        user_id: req.body.currentUser_id,
+        report_id: req.params.id 
     })
     console.log(newRecord)
     newRecord.save((err, docs) => {
