@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
 import './Homepage.css'
 import Carousel from 'react-bootstrap/Carousel';
 import { Player } from 'video-react';
@@ -8,7 +9,7 @@ import { Player } from 'video-react';
 import YouTube from '@u-wave/react-youtube';
 
 // import Card from 'react-bootstrap/Card';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Modal } from 'react-bootstrap';
 
 
 import {
@@ -29,10 +30,54 @@ function Homepage() {
     const Handledisplay = () => {
         setDisplay(!display);
     }
+    const [show, setShow] = useState(false);
+
+
+    const handleClose = () => {
+        localStorage.setItem('Firstpopup', false);
+        setShow(false);
+    };
+
+
+    useEffect(async () => {
+        // const Firstpopup = localStorage.getItem('Firstpopup');
+        await setShow(localStorage.getItem('Firstpopup'));
+        await localStorage.setItem('Firstpopup', false);
+    }, []);
+
 
     return (
         <div>
-            
+            <div className="bigpopup">
+                <Modal className="popup" show={show}>
+                    <div className="p">
+                        <Modal.Header className="popuptitle" closeButton onClick={handleClose}>
+                            {/* <div className="y">คุณต้องการบริจาคอะไร?</div> */}
+                        </Modal.Header>
+                        <Modal.Body>คุณต้องการบริจาคอะไร?</Modal.Body>
+                        <div className="field">
+                            <input
+                                type="text"
+                                className="ui-input"
+                                placeholder="ค้นหา" />
+                            <button type='submit' className="search-bt">ค้นหา</button>
+                        </div>
+                        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+
+
+                        {/* <Modal.Footer> */}
+                        {/* <Button variant="secondary" onClick={handleClose}>
+                            Close
+          </Button> */}
+                        <Button variant="primary" onClick={handleClose}>
+                            ตู้ปันใจ
+                            </Button>
+                        {/* </Modal.Footer> */}
+
+                       
+                    </div>
+                </Modal>
+            </div>
             {/* ----------------------slideshow------------------------------------------------*/}
             <Carousel>
                 <Carousel.Item>
@@ -194,6 +239,7 @@ function Homepage() {
                         </ul>
                     </li>
                 </ul>
+
             </div>
             {/* <YouTube
                 video="Billkin song [รวมเพลงบิวกิ้น] cover"

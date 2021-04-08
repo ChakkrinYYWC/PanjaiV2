@@ -69,6 +69,7 @@ const styles = theme => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        borderRadius: '10px'
     },
     color1: {
         color: '#a13800',
@@ -76,6 +77,9 @@ const styles = theme => ({
     },
     paper: {
         fontFamily: 'mali',
+    },
+    bg1: {
+        backgroundColor: 'rgba(187, 130, 44, 0.925)',
     }
 
 })
@@ -203,15 +207,15 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                 </Grid>
 
 
-                <Grid item xs={12} sm={6}
+                <Grid item xs={12} sm={6} 
                     container
                     direction="row"
                     justify="center"
                     alignItems="center"
                 >
-                    <TextField
+                    <TextField 
                         // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px'} }}
                         name="title"
                         variant="filled"
                         label="ชื่อสิ่งของ"
@@ -234,7 +238,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="message"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px'} }}
                         label="ข้อมูลสิ่งของ"
                         fullWidth
                         size="small"
@@ -254,7 +258,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="contect"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali' ,height: '40px' } }}
                         label="เบอร์โทรศัพท์"
                         fullWidth
                         size="small"
@@ -275,7 +279,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="location"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px' } }}
                         label="จังหวัด"
                         fullWidth
                         size="small"
@@ -300,7 +304,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         // กดแก้่ไข
     } else {
         return (
-            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
+            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form} ${classes.bg1}`}
                 onSubmit={handleSubmit}>
 
                 <Grid item xs={12} sm={6}
@@ -311,7 +315,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                 >
                     <TextField
                         // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px'} }}
                         name="title"
                         variant="filled"
                         label="ชื่อ"
@@ -333,7 +337,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="message"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px' } }}
                         label="ข้อมูล"
                         fullWidth
                         multiline
@@ -352,7 +356,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="contect"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px'} }}
                         label="เบอร์โทรศัพท์"
                         fullWidth
                         value={values.contect}
@@ -371,7 +375,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="location"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px'} }}
                         label="ใส่ชื่อจังหวัด"
                         fullWidth
                         multiline

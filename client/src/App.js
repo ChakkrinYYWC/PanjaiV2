@@ -11,12 +11,16 @@ import { BrowserRouter as Router,
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import Too_panjai from "./pages/Too-panjai";
-import Navbar from "./components/Navbar/Navbar";  //forth
-import Profile from "./pages/userInformation"; //june
+import Navbar from "./components/Navbar/Navbar";  
+import Footer from "./components/footer/footer";  
+import Profile from "./pages/userInformation";
 import register from "./pages/register";
-import Noti1 from "./components/Noti1/Noti1"; //june
-import search from './pages/searchResult'
-import favorite from './pages/myfavorite'
+import Foundation from './pages/Foundation';
+import Noti1 from "./components/Noti1/Noti1";
+import search from './pages/searchResult';
+import favorite from './pages/myfavorite';
+import About from "./components/aboutus/aboutus";
+
 // import category from './components/category/category';
 import category from './pages/Category';
 import Categoryshow from './pages/Categoryshow';
@@ -38,12 +42,17 @@ function App() {
         <Route path="/Foundation" component={Foundation}/> */}
         <Route path="/profile/:id" component={Profile}/>
         <Route path="/notification" component={Noti1}/>
-        <Route path="/Foundation/:name/:id" component={Categoryshow}/>
+        <Route path="/Foundation/:name/:id" component={Categoryshow}/> 
         <Route path="/Foundation/:name" component={category}/>
         <Route path="/searchResult" component={search}/>
         <Route path="/myfav" component={favorite}/>
+        <Route path="/aboutus" component={About}/>
+        
+    
       </Switch>
+      {/* <Footer /> */}
     </Router>
+    
   );
 }
 

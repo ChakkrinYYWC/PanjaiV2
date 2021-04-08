@@ -24,7 +24,12 @@ const useStyles = makeStyles({
         fontSize: '30px',
         fontWeight: 'bold'
        
+    },
+    bg: {
+        backgroundColor: ' rgb(255, 236, 179)',
+       
     }
+    
 
 
 });
@@ -32,9 +37,14 @@ const useStyles = makeStyles({
 function Too_panjai() {
     const classes = useStyles();
     return (
-        <Provider store={store}>
-            <Container maxWidth="lg">
-                <div position="static" className={classes.primary}>
+        <div className={classes.bg} >
+           
+        <Provider store={store} >
+            <Container maxWidth="lg" >
+            
+                <div position="static" className={classes.bg} >
+                    
+
                     <Typography
                         variant="h2"
                         align="center">
@@ -46,6 +56,7 @@ function Too_panjai() {
                 <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
             </Container>
         </Provider>
+        </div>
     );
 }
 

@@ -67,11 +67,11 @@ server.post("/login", function(req, res, next){
     passport.authenticate('local',async function(err, Userdata) {
         //console.log(Userdata)
         if (err) { 
-            console.log("passporterror"+err)
+            console.log(err)
             res.send(err); 
         }
         const  token =jwt.sign({ id: Userdata.username }, jwtConfig.secret);
-        console.log("token: " + token)
+        //console.log("token: " + token)
         user.findByIdAndUpdate(Userdata, {accessToken:token},await function(error,update){
             if(error){
                 console.log(error)
@@ -98,7 +98,7 @@ server.post("/login", function(req, res, next){
 // });
 /*-------------------------------------------------------------------------------*/
 server.post('/logout', (req, res) => {
-    console.log("currentUser: "+req.body.currentUser_id)
+    //console.log("currentUser: "+req.body.currentUser_id)
     passport.authenticate('local', function(err, Userdata) {
         if (err) { 
             console.log(err)
@@ -110,9 +110,9 @@ server.post('/logout', (req, res) => {
                 console.log(error)
                 res.send(error)
             }else{
-                console.log(update)
+                //console.log(update)
                 console.log("User logged out");
-                res.send(200)
+                res.sendStatus(200)
             }
         })
     })(req, res);
