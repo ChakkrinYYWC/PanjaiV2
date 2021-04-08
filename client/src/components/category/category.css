@@ -7,26 +7,17 @@
     width: 100%;
     font-family: 'Mali', cursive;
     height: 400px;
-    position: absolute;
+    position:absolute;
     /* z-index: 20; */
     /* margin-top: 50px; */
-}
 
-/* .dekt:nth-child(1){
-  background-image: url("../img/dek.png") ;
 }
-.dek:nth-child(2){
-  background-image: url("../img/dek.png") ;
-} */
 
 
 .dek p {
   margin: 0px;
   padding: 0px;
 } 
-/* .box {
-  margin: 0 auto;
-} */
 
 .box-white{
     background-color: rgba(255, 255, 255, 0.89);
