@@ -13,6 +13,8 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "butter-toast": "^3.3.5",
+    "google-map-react": "^2.1.9",
+    "google-maps-react": "^2.0.6",
     "jquery": "^3.5.1",
     "mdb": "^0.1.0",
     "mdbreact": "^5.0.1",
@@ -23,6 +25,7 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
+    "react-google-maps": "^9.4.5",
     "react-if-elseif-else-render": "^1.0.2",
     "react-image": "^4.0.3",
     "react-redux": "^7.2.2",
@@ -30,8 +33,8 @@
     "react-scripts": "4.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "video-react": "^0.14.1",
     "sepa-payment-qr-code": "^1.0.0",
+    "video-react": "^0.14.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

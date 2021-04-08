@@ -13,6 +13,7 @@ function Profile() {
     const [address, setAddress] = useState();
     const [phone, setPhone] = useState();
     const [name, setName] = useState();
+    const [values, setValues] = useState('')
 
     Axios.get('/profile/information/' + currentUserID, {
     }).then(res => {
@@ -30,7 +31,6 @@ function Profile() {
 
     // อัพเดตโปรไฟล์
     const confirmUpdate = (event) => {
-
         const data = [phone, address, name]
         Axios.post('/profile/update/' + currentUserID, data, {
         }).then(res => {
@@ -76,27 +76,27 @@ function Profile() {
                                     <h1> ประวัติส่วนตัว</h1>
                                     <div className="textinforuser">
                                         <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล</span>
-                                        <input 
-                                        type="text" 
-                                        name='name' 
-                                        placeholder={allInform.name}
-                                        onChange={(e) => { setName(e.target.value) }}></input>
+                                        <input
+                                            type="text"
+                                            name='name'
+                                            // value={allInform.name}
+                                            onChange={(e) => { setName(e.target.value) }}></input>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
-                                        <input 
-                                        type="text" 
-                                        name='phone' 
-                                        placeholder={allInform.phone}
-                                        onChange={(e) => { setPhone(e.target.value) }}></input>
+                                        <input
+                                            type="text"
+                                            name='phone'
+                                            // value={allInform.phone}
+                                            onChange={(e) => { setPhone(e.target.value) }}></input>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
-                                        <input 
-                                        type="text" 
-                                        name='address'
-                                        placeholder={allInform.address} 
-                                        onChange={(e) => { setAddress(e.target.value) }}></input>
+                                        <input
+                                            type="text"
+                                            name='address'
+                                            // value={allInform.address}
+                                            onChange={(e) => { setAddress(e.target.value) }}></input>
                                     </div>
                                     <div className="textinforuser">
                                         <span> <i className="fas fa-envelope"> </i> อีเมล</span>
