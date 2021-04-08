@@ -3,6 +3,7 @@ import './Noti1.css'
 import {Button,Overlay,Popover} from "react-bootstrap"
 import Axios from 'axios';
 import { ContactSupportOutlined } from '@material-ui/icons';
+var once = false;
 
 function Notification({open,t}) {
 
@@ -22,7 +23,7 @@ function Notification({open,t}) {
             }).then(res => {
             }).catch(error => console.log(error))
         }
-        //window.alert("Send contact to "+record.requester)
+        window.location.reload();
     }
 
     function deny(record){
@@ -34,22 +35,35 @@ function Notification({open,t}) {
         //window.alert("Send contact to "+record.requester)
     }
 
+    function deleteRecieve(record){
+        const recieveId = record._id
+        const data ={recieveId}
+        Axios.post('/Too-Panjai/deleteRecieve', data,{
+        }).then(res => {
+        }).catch(error => console.log(error))
+    }
+
     const [ noti, setNoti ] = useState([])
     const [ recieves, setRecieve ] = useState([])
 
-    Axios.post('/Too-Panjai/notifications/'+user_id,{
-    }).then(res => {
-        //console.log(res.data);
-        setNoti(res.data)
-    }).catch(error => console.log(error))
-
-    Axios.post('/Too-Panjai/findRecieve/'+user_id,{
-    }).then(res => {
-        //console.log(res.data);
-        setRecieve(res.data)
-    }).catch(error => console.log(error))
+    async function onetime(){
+        if(once == false){
+            //once = true;
+            await Axios.post('/Too-Panjai/notifications/'+user_id,{
+            }).then(res => {
+                //console.log(res.data);
+                setNoti(res.data)
+            }).catch(error => console.log(error))
+        
+            await Axios.post('/Too-Panjai/findRecieve/'+user_id,{
+            }).then(res => {
+                //console.log(res.data);
+                setRecieve(res.data)
+            }).catch(error => console.log(error))
+        }
+    }
+    onetime()
     
-    const [ input, setInput ] = useState("")
     //console.log(noti)
     return (
         <div>
@@ -96,8 +110,9 @@ function Notification({open,t}) {
                                 recieves.map((record, index) => {
                                     return(
                                         <div className="grid">
-                                        <div className="NameKamko">{record.owner} ได้ยอมรับคำขอ ({record.item}) ของคุณแล้ว<br/>โปรดติดต่อ : {record.owner_contact}</div>
-                                    </div>
+                                            <div className="NameKamko">{record.owner} ได้ยอมรับคำขอ ({record.item}) ของคุณแล้ว<br/>โปรดติดต่อ : {record.owner_contact}</div>
+                                            <button onClick={() => deleteRecieve(record)}>ลบ</button>
+                                        </div>
                                     )
                                 })
                             }

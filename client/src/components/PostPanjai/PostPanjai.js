@@ -295,7 +295,6 @@ const PostPanjai = ({ classes, ...props }) => {
 
                                                 <Grid container justify="center">
                                                     <div className={classes.botton1}>
-
                                                         <If condition={currentUser == record.creator}>
                                                             <Then>
                                                                 <Button variant="contained" color="primary" size="small"
@@ -341,7 +340,6 @@ const PostPanjai = ({ classes, ...props }) => {
                                                 {/* รูปแบบช่อง */}
                                             </ListItemText>
                                         </ListItem>
-                                        <Divider component='li' />
                                     </Fragment>
                                 </Paper>
                             </Grid>

@@ -85,7 +85,7 @@ function Homepage() {
                                         <Link to="/Too_panjai" className="love">ข้าวสาร</Link>
                                     </Dropdown.Item>
                                     <Dropdown.Item  as="button" >
-                                        <Link to="/Too_panjai" className="love">ไม่มีสิ่งที่ต้องการบริจาค</Link>
+                                        <Link to="/Too_panjai" className="love">อื่นๆ</Link>
                                     </Dropdown.Item>
                                 </span >
                             </DropdownButton>
