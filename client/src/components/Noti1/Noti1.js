@@ -32,7 +32,7 @@ function Notification({open,t}) {
         Axios.post('/Too-Panjai/recieveDeny', data,{
         }).then(res => {
         }).catch(error => console.log(error))
-        //window.alert("Send contact to "+record.requester)
+        window.location.reload();
     }
 
     function deleteRecieve(record){
@@ -41,6 +41,7 @@ function Notification({open,t}) {
         Axios.post('/Too-Panjai/deleteRecieve', data,{
         }).then(res => {
         }).catch(error => console.log(error))
+        window.location.reload();
     }
 
     const [ noti, setNoti ] = useState([])

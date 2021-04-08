@@ -186,7 +186,7 @@ class Navbar extends Component {
                                     this.state.openState ? <NotiPanel open={this.state.openState} t={this.state.targetNoti} /> : null
                                 }
                             </span>
-                            <span class="badge">{(this.state.noti.length) + (this.state.recieve.length)}</span>
+                            {this.state.noti.length+this.state.recieve.length <= 0 ? <span></span> : <span class="badge">{(this.state.noti.length) + (this.state.recieve.length)}</span>}
                         </a>
                     </span>
                     }
