@@ -33,7 +33,7 @@ router.post('/:id', (req, res) => {
     var newRecord = new Report({
         from: req.body.currentUser,
         user_id: req.body.currentUser_id,
-        report_id: req.params.id 
+        post_id: req.params.id 
     })
     console.log(newRecord)
     newRecord.save((err, docs) => {

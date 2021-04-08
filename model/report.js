@@ -6,7 +6,7 @@ var Report = mongoose.model('Report',{
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
-    report_id : {
+    post_id : {
         type: mongoose.Schema.Types.ObjectId,
         ref: "postPanjai"
     },
