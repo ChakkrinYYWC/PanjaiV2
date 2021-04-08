@@ -182,6 +182,9 @@ class Navbar extends Component {
                         </span>
 
                     </span> */}
+
+                    
+
                     <If condition={PanjaiToken == "null"} >
                         <Then>
                             <Link to="/Login" className="nav-links-mobile"> เข้าสู่ระบบ</Link>

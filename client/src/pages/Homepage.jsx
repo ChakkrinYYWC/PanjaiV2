@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Foundation from './Foundation'
 import Home from '../components/homepage/Homepage'
 import Search from '../components/search/search'
+import Admin from '../components/admin/User'
 
 
 
