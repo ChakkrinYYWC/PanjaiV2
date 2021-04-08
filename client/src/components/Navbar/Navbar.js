@@ -12,11 +12,15 @@ import './Navbar.css';
 
 const PanjaiToken = localStorage.getItem('PanjaiToken')
 //console.log("PanjaiToken: "+PanjaiToken)
+const user_id = localStorage.getItem('currentUser_id')
 const currentUser = localStorage.getItem('currentUser')
 const currentUser_id = localStorage.getItem('currentUser_id')
 //console.log("currentUser_id#1: "+currentUser_id)
 
 const data = { currentUser_id }
+
+// const [ noti, setNoti ] = useState([])
+// const [ recieves, setRecieve ] = useState([])
 
 async function logout() {
     await Axios.post('/authenticate/logout', data, {
@@ -52,9 +56,24 @@ class Navbar extends Component {
         input: "",
         clicked: false,
         openState: false,
-        targetNoti: null
+        targetNoti: null,
+        noti: [],
+        recieve: []
     }
 
+    // getNumber = () =>{
+    //     Axios.post('/Too-Panjai/notifications/'+user_id,{
+    //     }).then(res => {
+    //         //console.log(res.data);
+    //         this.setState({ noti: res.data });
+    //     }).catch(error => console.log(error))
+        
+    //     Axios.post('/Too-Panjai/findRecieve/'+user_id,{
+    //     }).then(res => {
+    //         //console.log(res.data);
+    //         this.setState({ recieve: res.data });
+    //     }).catch(error => console.log(error))
+    // }
 
     openNotiPanel = (event) => {
         console.log(event)
@@ -67,22 +86,10 @@ class Navbar extends Component {
         this.setState({ clicked: !this.state.clicked })
 
     }
-
-    search = () => {
-        console.log("its work!!")
-        console.log(this.state.find)
-        Axios.get('/Search/' + this.state.find, {
-        }).then(res => {
-            console.log(res)
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-
     render() {
         return (
-
             <div>
+                {/* {this.getNumber()} */}
                 <nav className="NavbarItems">
 
                     <Link to="/" className="navbar-logo" >ปันใจ  <i className="fab fa-gratipay"></i></Link>
@@ -175,7 +182,6 @@ class Navbar extends Component {
                         </span>
 
                     </span> */}
-
                     <If condition={PanjaiToken == "null"} >
                         <Then>
                             <Link to="/Login" className="nav-links-mobile"> เข้าสู่ระบบ</Link>

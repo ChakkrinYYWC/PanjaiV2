@@ -24,7 +24,8 @@ const currentUser_id = localStorage.getItem('currentUser_id')
 const styles = theme => ({
     paper: {
         margin: theme.spacing(3),
-        padding: theme.spacing(2)
+        padding: theme.spacing(2),
+        
     },
     smMargin: {
         "&:hover": {
@@ -43,23 +44,26 @@ const styles = theme => ({
     actionDiv: {
         textAlign: "center"
     },
+    // กรอบที่ใส่โพส
     post1: {
 
-        borderRadius: 5,
-        boxShadow: '0 2px 3px 2px rgba(85, 52, 4, 0.925)',
+        borderRadius: '20px',
+        boxShadow: '0 1px 1px 1px rgba(85, 52, 4, 0.925)',
         height: 'auto',
         padding: '30px 30px',
         marginBlock: '15px'
 
     },
+// กรอบโพส
     framepost: {
         // background: '#f9a825',
         borderRadius: 5,
-        boxShadow: '0 2px 3px 2px rgba(187, 130, 44, 0.925)',
+        boxShadow: '1px   1px 1px 1px rgba(187, 130, 44, 0.925)',
         color: 'rgba(187, 130, 44, 0.925)',
         height: 'auto',
         padding: '10px 10px',
-        marginBlock: '15px'
+        marginBlock: '15px',
+        borderRadius: '20px',
     },
     frampicture: {
         padding: '10px 10px'
@@ -80,9 +84,13 @@ const styles = theme => ({
         color: '#a13800'
     },
     judjudjud: {
-        marginLeft: '75px'
+        marginLeft: '80px'
 
     },
+    bg1: {
+        backgroundColor: 'rgba(187, 130, 44, 0.925)',
+    }
+    
 
 })
 
@@ -155,16 +163,19 @@ const PostPanjai = ({ classes, ...props }) => {
     };
 
     const requestItem = id => {
-        const data = {currentUser_id, currentUser}
-        Axios.post('/Too-Panjai/addRequest/'+id, data,{
-        }).then(res => {
-            console.log(res)
-        }).catch(error => console.log(error))
+        const data = { currentUser_id, currentUser }
+        if (window.confirm("Do you want to request?")) {
+            Axios.post('/Too-Panjai/addRequest/' + id, data, {
+            }).then(res => {
+                console.log(res)
+            }).catch(error => console.log(error))
+        }
+
     }
 
     const favoriteItem = id => {
-        const data = {currentUser_id, currentUser}
-        Axios.post('/Too-Panjai/addFav/'+id, data,{
+        const data = { currentUser_id, currentUser }
+        Axios.post('/Too-Panjai/addFav/' + id, data, {
         }).then(res => {
             console.log(res)
         }).catch(error => console.log(error))
@@ -189,15 +200,17 @@ const PostPanjai = ({ classes, ...props }) => {
     // console.log( props.postPanjaiList[1])
     return (
         <>
-            <Grid container justify="center">
+            <Grid container justify="center" >
                 <Grid item lg={4}>
                     {/* กรอบโพส */}
-                    <Paper className={classes.post1}>
+                    {/* <Box bgcolor="primary.main" color="primary.contrastText" p={2}> */}
+                    <Paper className={`${classes.post1} ${classes.bg}`}>
                         <PostPanjaiForm {...{ currentId, setCurrentId }} />
                     </Paper>
+                    {/* </Box> */}
                 </Grid>
             </Grid>
-            <Grid container spacing={2} >
+            <Grid container spacing={3} >
                 {/* ฝั่งขวา ใช้ classes.ชื่ออื่่น */}
                 {
                     props.postPanjaiList.map((record, index) => {

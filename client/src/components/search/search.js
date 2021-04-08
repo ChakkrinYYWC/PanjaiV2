@@ -22,7 +22,9 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 export default function Checkboxes() {
   const [checked, setChecked] = React.useState(true);
   const [searchInput, setSearchInput] = useState("")
-
+  const [checkMulaniti, SetCheckMulaniti] = useState(false);
+  // const [checkfacebook, Setcheckfacebook] = useState(false);
+  // const [checkfacebook, Setcheckfacebook] = useState(false);
   const [postTPJ, setPostTPJ] = useState([])
   const [postFDT, setPostFDT] = useState([])
 
@@ -40,7 +42,7 @@ export default function Checkboxes() {
     setChecked(event.target.checked);
   };
 
-  console.log(postTPJ)
+  // console.log(postTPJ)
   console.log(postFDT)
 
   function Loop() {
@@ -48,7 +50,7 @@ export default function Checkboxes() {
   }
 
   return (
-    <div>
+    <div className='background-search'>
       <center>
         <div className="search-bar">
           <form className="ui-form">
@@ -64,12 +66,13 @@ export default function Checkboxes() {
             </div>
           </form>
         </div>
-        <div>
+        <div className='flex'>
           <Checkbox
             className="box1"
             defaultChecked
             color="default"
-            inputProps={{ "aria-label": "checkbox with default color" }}
+            inputProps={{ "aria-label": "checkbox with default color" }
+           }
           />
           <label className="check1" style={{ color: "black" }}>
             <h2> มูลนิธิ </h2>
@@ -84,12 +87,21 @@ export default function Checkboxes() {
           <label className="check2" style={{ color: "black" }}>
             <h2> ตู้ปันใจ</h2>
           </label>
+          <Checkbox
+            className="box3"
+            defaultChecked
+            color="default"
+            inputProps={{ "aria-label": "checkbox with default color" }}
+          />
+          <label className="check3" style={{ color: "black" }}>
+            <h2> ใกล้ฉัน</h2>
+          </label>
         </div>
       </center>
 
       <div className="bg2">
         <center className="head">
-          <h3> มูลนิธิ</h3>
+          <h2> มูลนิธิ</h2>
         </center>
 
         <div className="row m-0">
@@ -101,7 +113,8 @@ export default function Checkboxes() {
                   <Card className="foundat">
                     <Card.Img
                       variant="top"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
+                      src="https:/
+                      /encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
                     />
                     <Card.Body>
                       <Link className="Tfound">{record.title}</Link>
@@ -167,7 +180,7 @@ export default function Checkboxes() {
         </div>
 
         <center className="head">
-          <h3> ตู้ปันใจ </h3>{" "}
+          <h2> ตู้ปันใจ </h2>{" "}
         </center>
 
         <div className="row m-0">
