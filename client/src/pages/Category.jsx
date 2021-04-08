@@ -66,7 +66,6 @@ function Catego({ classes, ...props }) {
             <If condition={currentUser == 'admin'}>
                 <Then>
                     <Provider store={store} >
-            
                         <Fab size="small"  color="primary" aria-label="add" onClick={handleClickOpen} >
                             <AddIcon />
                         </Fab>

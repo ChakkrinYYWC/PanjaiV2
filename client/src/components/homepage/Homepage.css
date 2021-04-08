@@ -219,27 +219,104 @@
   .bigpopup{
     text-align: center; 
     background-color: rgba(0, 0, 0, 0.144);
-    color:rgb(145, 111, 2) ;
+    color:rgb(133, 102, 2) ;
     width: 100%;
     justify-items: center;
     
-
+  
 }
 
 .popup{
     margin-top: 100px;
-    color:rgb(145, 111, 2);
+    color:rgb(124, 96, 4);
     text-align: center; 
+    font-family: 'Mali', cursive;
 }
-.popuptitle .y{
-    text-align: center;
-    color: royalblue;
-}
+
 
 .p{
 
     height: 400px;
     width: 500px;
-
-  
+    background-color: rgb(235, 230, 184);
+    font-size: 20px;
 } 
+
+ /* .pum Button{
+color: rgb(255, 255, 255);
+background-color: rgb(109, 83, 0);
+height: 30px;
+margin: 10px;
+font-size: 20px;
+ } */
+
+ .pum .pummoney{
+  background-color: rgb(109, 83, 0);
+   width: 90%;
+   font-size: 20px;
+   margin-top: 10px;
+ }
+ .pum .btn {
+  color: rgb(255, 255, 255);
+  background-color: rgb(109, 83, 0);
+  padding: 10px 15px;
+  font-size: 15px;
+  margin: 0px;
+}
+
+.pum .btn:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(136, 105, 3);
+
+}
+
+.pum btn-check:active+.btn-primary, .btn-check:checked+.btn-primary, .btn-primary.active, .btn-primary:active, .show>.btn-primary.dropdown-toggle {
+  color: rgb(255, 255, 255);
+  background-color: #ceb56f;
+  border-color: #f8b628;
+}
+
+.pum .btn-check:active+.btn-primary:focus, .btn-check:checked+.btn-primary:focus, .btn-primary.active:focus, .btn-primary:active:focus, .show>.btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 50%);
+}
+.btn-primary {
+
+  border-color: #f3f5f7;
+}
+
+.pum primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #ceb56f;
+  border-color: #f8b628;
+}
+.love{
+  color: #7c580b;
+  text-decoration: none;
+  font-size: 13px;
+  width: 50%;
+}
+.lover:hover{
+  background-color: #ceb56f;
+}
+
+.love:hover{
+  color: #553b03;
+  text-decoration: none;
+background-color: #fdfdfd;
+  font-weight: bold;
+  font-family: 'Mali', cursive;
+}
+
+.popup .row {
+  padding-bottom: 0px; 
+  padding-right: 140px; 
+   padding-left: 120px;
+}
+
+.pum .dropdown{
+  color: white;
+  text-decoration: none;
+  padding: 0px;
+
+}
+
