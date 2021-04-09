@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import Geocode from "react-geocode";
 import Axios from 'axios'
+import { BrowserRouter as Router, Link, } from "react-router-dom";
+import { compose, withProps, withHandlers, withStateHandlers, withState } from "recompose";
 
-// const fetch = require("isomorphic-fetch");
-// const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
-const { compose, withProps, withHandlers } = require("recompose");
+
+// const { compose, withProps, withHandlers, withStateHandlers, withState } = require("recompose");
 Geocode.setApiKey("AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg");
 Geocode.enableDebug();
 
 function AroundME() {
-
-    var [lat, setLat] = useState(0)
-    var [long, setLong] = useState(0)
 
     class Map extends React.PureComponent {
 
@@ -24,6 +22,7 @@ function AroundME() {
         }
 
         around = [];
+        result_kg = [];
 
         componentWillMount() {
             this.setState({ markers: [] })
@@ -34,13 +33,13 @@ function AroundME() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(position => {
 
-                    setLat(position.coords.latitude)
-                    setLong(position.coords.longitude)
+                    // setLat(position.coords.latitude) //lat current
+                    // setLong(position.coords.longitude) //long current
 
                     this.setState({
                         mapPosition: {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude,
+                            lat: position.coords.latitude,  //lat current
+                            lng: position.coords.longitude, //long current
                         }
                     })
                 }, () => {
@@ -62,36 +61,52 @@ function AroundME() {
             }).then(res => {
                 var result_lat = 0
                 var result_long = 0
-                for (let i = 0; i < res.data.length-6; i++) {
+                for (let i = 0; i < res.data.length; i++) {
 
-                    result_lat = lat - res.data[i].lat
-                    result_long = long - res.data[i].lng
+                    result_lat = this.state.mapPosition.lat - res.data[i].lat
+                    result_long = this.state.mapPosition.lng - res.data[i].lng
 
-                    if(result_lat > -2 && result_lat < 2 && result_long > -2 && result_long < 2){
-                        console.log(res.data[i])
+                    if (result_lat > -0.25 && result_lat < 0.25 && result_long > -0.25 && result_long < 0.25) {
+                        // console.log('****************')
+                        // console.log(res.data[i])
                         this.around.push(res.data[i])
                     }
-                    console.log(lat)
-                    console.log(long)
-                    console.log(res.data[i].lat)
-                    console.log(res.data[i].lat)
-                    console.log('result   '+result_lat)
-                    console.log('result   '+result_lat)
-                    console.log(this.around)
+
+                    // console.log(res.data[i].lat)
+                    // console.log(res.data[i].lng)
+                    // console.log('result   ' + result_lat)
+                    // console.log('result   ' + result_lat)
+                    // console.log(this.around)
                 }
                 // console.log(this.around)
-                console.log(lat)
-                console.log(long)
                 this.setState({ markers: this.around });
             }).catch(error => console.log(error))
         }
 
         render() {
 
-            console.log(lat)
-            console.log(long)
-            console.log('state' + this.state.mapPosition.lat)
-            console.log('state' + this.state.mapPosition.lng)
+            console.log('state' + this.state.mapPosition.lat) //x1
+            console.log('state' + this.state.mapPosition.lng) //y1
+            console.log(this.state.markers)
+            var c = 0
+            var dlat = 0
+            var dlong = 0
+            var kg = 0
+
+            this.state.markers.map(marker => (
+
+                console.log(marker.lat),
+                dlat = this.state.mapPosition.lat - marker.lat,
+                dlong = this.state.mapPosition.lng - marker.lng,
+                c = Math.sqrt(dlat * dlat + dlong * dlong),
+                kg = c / (1 / 108.4),
+                this.result_kg.push({ kg, marker })
+
+            ))
+            console.log(this.result_kg)
+
+            this.result_kg.sort((a, b) => (a.kg > b.kg) ? 1 : -1) //sortระยะทาง
+
             const MapWithAMarkerClusterer = compose(
                 withProps({
                     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places",
@@ -102,16 +117,36 @@ function AroundME() {
                 withScriptjs,
                 withGoogleMap
             )(props =>
-                <GoogleMap
-                    defaultZoom={15}
-                    defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
-                >
-                    {props.markers.map(marker => (
-                        <Marker
-                            position={{ lat: marker.lat, lng: marker.lng }}
-                        />
-                    ))}
-                </GoogleMap>
+                <>
+                    <GoogleMap
+                        defaultZoom={14}
+                        //defaultCenter={{ lat: 0, lng: 0 }}
+                        defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
+                    >
+                        {props.markers.map(marker => (
+                            <Marker
+                                position={{ lat: marker.lat, lng: marker.lng }}
+                                onClick={props.onToggleOpen}
+                            >
+                                {/* <InfoWindow onCloseClick={props.onToggleOpen}>
+                                    <div>
+                                        {"" + marker.title}
+                                    </div>
+                                </InfoWindow> */}
+                            </Marker>
+                        ))}
+                    </GoogleMap>
+                    <h1>มูลนิธิใกล้ฉัน</h1><br/>
+                    {
+                        this.result_kg.map(mark => (
+                            <>
+                                <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} >{mark.marker.title}</Link>
+                                <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร</h1>
+                                <br />
+                            </>
+                        ))
+                    }
+                </>
             );
 
             return (
