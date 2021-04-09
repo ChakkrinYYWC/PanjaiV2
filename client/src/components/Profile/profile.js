@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './profile.css'
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Card, Button, Modal } from 'react-bootstrap';
 
 function Profile() {
 
@@ -140,15 +140,25 @@ function Profile() {
                                     </div>
 
 
-                                    <div className="btn-bottom-profile">
+                                    <div className="grid-container">
                                         <div className="EditProfile">
-                                            <button className="button" onClick={handleEditProfile}>แก้ใข</button>
+                                            <button className="button" onClick={handleEditProfile}>แก้ไข</button>
                                         </div>
-                                        <div className="Like">
-                                            <Link to='/myfav'><i className="fab fa-gratipay"></i></Link>
-                                            {/* <Link  to={item.href}></Link> */}
+                                        
+                                        {/* <div className='Like'>
+                                             <Link to="/myfav" className="button1" >โพสที่ถูกใจ</Link>
+                                        </div> */}
+                                        <div className='Like'>
+                                        <Button className="button1" href="/myfav"  >
+                                        โพสที่ถูกใจ
+                                        </Button>
                                         </div>
                                     </div>
+
+                                    
+                               
+                               
+                               
                                 </div>
 
                             </div>

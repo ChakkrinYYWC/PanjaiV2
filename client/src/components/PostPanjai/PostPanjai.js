@@ -84,8 +84,8 @@ const styles = theme => ({
         color: '#a13800'
     },
     judjudjud: {
-        marginLeft: '80px'
-
+        display:'flex',
+        justifyContent: 'flex-end'
     },
     bg1: {
         backgroundColor: 'rgba(187, 130, 44, 0.925)',
@@ -229,19 +229,14 @@ const PostPanjai = ({ classes, ...props }) => {
 
                                                         </Typography>
                                                     </Grid>
-                                                    <If condition={currentUser == record.creator}>
-                                                        <Then>
-                                                            <>
-                                                            </>
-                                                        </Then>
-                                                        <Else>
-                                                            <Grid item sm={4}>
+                                                   
+                                                    {currentUser !== record.creator && <Grid item sm={4} className={classes.judjudjud}>
                                                                 <IconButton
                                                                     aria-label="more"
                                                                     aria-controls="long-menu"
                                                                     aria-haspopup="true"
                                                                     onClick={handleClick}
-                                                                    className={classes.judjudjud}
+                                                                    
                                                                 >
                                                                     <MoreVertIcon />
                                                                 </IconButton>
@@ -265,9 +260,8 @@ const PostPanjai = ({ classes, ...props }) => {
                                                                     ))}
                                                                 </Menu>
 
-                                                            </Grid>
-                                                        </Else>
-                                                    </If>
+                                                            </Grid>}
+                                   
 
                                                 </Grid>
 
@@ -340,7 +334,7 @@ const PostPanjai = ({ classes, ...props }) => {
                                                 {/* รูปแบบช่อง */}
                                             </ListItemText>
                                         </ListItem>
-                                        <Divider component='li' />
+                                        {/* <Divider component='li' /> */}
                                     </Fragment>
                                 </Paper>
                             </Grid>
