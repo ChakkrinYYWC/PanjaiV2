@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { render } from 'react-dom';
 import { Link, Redirect } from 'react-router-dom';
 import loginImg from "../img/login.svg";
-import "./login.css";
+import "./register.css";
 
 function RegisterFrom() {
     /*------------------------------------------------------------*/
@@ -67,18 +67,18 @@ function RegisterFrom() {
 
     return (
         <div className="grid-container">
-            <div className="item1">
+            <div className="item1_reg">
                 <div className="image">
                     <img src={loginImg} />
                 </div>
             </div>
 
-            <div className="item2">
-                <h3>สมัครสมาชิก</h3><br />
-                <form>
+            <div className="item2_reg">
+                <h3>สมัครสมาชิก</h3>
+                <center><form>
                     <div className="form-group">
                         <label>ชื่อ-นามสกุล:</label><br />
-                        <input
+                        <input className='reg'
                             type="text"
                             name="Surname"
                             placeholder="ชื่อ-สกุล"
@@ -90,7 +90,7 @@ function RegisterFrom() {
 
                     <div className="form-group">
                         <label>ชื่อผู้ใช้:</label><br />
-                        <input
+                        <input className='reg'
                             type="text"
                             name="Username"
                             placeholder="ชื่อผู้ใช้"
@@ -102,7 +102,7 @@ function RegisterFrom() {
 
                     <div className="form-group">
                         <label>รหัสผ่าน: </label><br />
-                        <input
+                        <input className='reg'
                             type="password"
                             name="Password"
                             placeholder="รหัสผ่าน"
@@ -114,7 +114,7 @@ function RegisterFrom() {
 
                     <div className="form-group">
                         <label>ยืนยันรหัสผ่าน: </label><br />
-                        <input
+                        <input className='reg'
                             type="password"
                             name="CPassword"
                             placeholder="รหัสผ่าน"
@@ -126,7 +126,7 @@ function RegisterFrom() {
 
                     <div className="form-group">
                         <label>อีเมล: </label><br />
-                        <input
+                        <input className='reg'
                             type="email"
                             name="email"
                             placeholder="อีเมล"
@@ -138,7 +138,7 @@ function RegisterFrom() {
 
                     <div className="form-group">
                         <label>ที่อยู่: </label><br />
-                        <input
+                        <input className='reg'
                             type="text"
                             name="address"
                             placeholder="ที่อยู่"
@@ -150,7 +150,7 @@ function RegisterFrom() {
 
                     <div className="form-group">
                         <label>เบอร์โทรศัพท์: </label><br />
-                        <input
+                        <input className='reg'
                             type="phone number"
                             name="phone"
                             placeholder="เบอร์โทรศัพท์"
@@ -162,7 +162,7 @@ function RegisterFrom() {
 
                     <div>
                         <label>ภาพบัตรประจำตัวประชาชน: </label><br />
-                        <input
+                        <input className='reg'
                             type='file'
                             id='customFile'
                             onChange={(event) => {
@@ -175,7 +175,7 @@ function RegisterFrom() {
                     <div>
                         <button className="btn btn-lg " onClick={uploadFile}>สมัครสมาชิก</button>
                     </div>
-                </form>
+                </form></center>
             </div>
         </div>
     )

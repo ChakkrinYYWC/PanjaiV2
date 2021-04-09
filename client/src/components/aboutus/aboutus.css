@@ -35,7 +35,7 @@
     grid-column: 3 / 5;
 }
 
-.grid-container {
+.bg .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
     grid-gap: 10px;
@@ -84,12 +84,12 @@
     border-radius: 60%;
 
 }
-.grid-container1 > div {
+.bg .grid-container1 > div {
     
     text-align: center;
    
   }
-  .grid-container1 {
+  .bg .grid-container1 {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     grid-gap: 10px;
@@ -198,7 +198,7 @@
         grid-column: 1 / 5;
     }
     
-    .grid-container {
+    .bg .grid-container {
         display: grid;
         grid-template-columns: auto auto auto auto auto auto;
         grid-gap: 10px;
@@ -247,12 +247,12 @@
         border-radius: 60%;
     
     }
-    .grid-container1 > div {
+    .bg.grid-container1 > div {
         
         text-align: center;
        
       }
-      .grid-container1 {
+     .bg .grid-container1 {
         display: grid;
         grid-template-columns: auto auto auto auto auto;
         grid-gap: 10px;
