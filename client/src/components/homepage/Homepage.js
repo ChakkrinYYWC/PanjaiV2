@@ -62,37 +62,38 @@ function Homepage() {
                         <Modal.Header className="popuptitle" closeButton onClick={handleClose}>
                             {/* <div className="y">คุณต้องการบริจาคอะไร?</div> */}
                         </Modal.Header>
-                        <Modal.Body>ยินดีต้อนรับเข้าสู่ปันใจนะกั้บ</Modal.Body>
+                        <Modal.Body><i  class='fas'>&#xf1bb;</i> ยินดีต้อนรับเข้าสู่ปันใจนะกั้บ <i  class='fas'>&#xf1bb;</i></Modal.Body>
 
-                        <Modal.Body> <i className="fab fa-gratipay"></i></Modal.Body>
+                        {/* <Modal.Body> <i className="fab fa-gratipay"></i></Modal.Body> */}
                         <Modal.Body>คุณต้องการบริจาคอะไรไหม ?</Modal.Body>
-                        <span  className="pum row m-0">
+
+                        <span className="pum row m-0">
                             <span className="column col-6">
-                            <Button className="pummoney" href="/#003" variant="primary" onClick={handleClose}>
-                                เงิน
+                                <Button className="pummoney" href="/#003" variant="primary" onClick={handleClose}>
+                                    เงิน
                             </Button>
                             </span >
-                            <span  className="column col-6">
-                            <DropdownButton id="dropdown-item-button" title=" สิ่งของ">
-                                <span  className="lover">
-                                    <Dropdown.Item  as="button" >
-                                        <Link to="/Too_panjai"className="love" >นม</Link>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item as="button" >
-                                        <Link to="/Too_panjai"className="love" >เครื่องเขียน</Link>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item  as="button" >
-                                        <Link to="/Too_panjai" className="love">ข้าวสาร</Link>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item  as="button" >
-                                        <Link to="/Too_panjai" className="love">ไม่มีสิ่งที่ต้องการบริจาค</Link>
-                                    </Dropdown.Item>
-                                </span >
-                            </DropdownButton>
+                            <span className="column col-6">
+                                <DropdownButton id="dropdown-item-button" title=" สิ่งของ">
+                                    <span className="lover">
+                                        <Dropdown.Item as="button" >
+                                            <Link to="/Too_panjai" className="love" >นม</Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item as="button" >
+                                            <Link to="/Too_panjai" className="love" >เครื่องเขียน</Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item as="button" >
+                                            <Link to="/Too_panjai" className="love">ข้าวสาร</Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item as="button" >
+                                            <Link to="/Too_panjai" className="love">อื่นๆ</Link>
+                                        </Dropdown.Item>
+                                    </span >
+                                </DropdownButton>
                             </span >
                         </span >
 
-
+                        <Modal.Body> <i class='far'>&#xf004;</i></Modal.Body>
                     </span>
                 </Modal>
             </div>

@@ -230,16 +230,17 @@
     margin-top: 100px;
     color:rgb(124, 96, 4);
     text-align: center; 
-    font-family: 'Mali', cursive;
+   
 }
 
 
 .p{
 
-    height: 400px;
+    height: 320px;
     width: 500px;
-    background-color: rgb(235, 230, 184);
+    background-color: rgb(255, 255, 255);
     font-size: 20px;
+    
 } 
 
  /* .pum Button{
@@ -258,10 +259,12 @@ font-size: 20px;
  }
  .pum .btn {
   color: rgb(255, 255, 255);
-  background-color: rgb(109, 83, 0);
-  padding: 10px 15px;
+  background-color: rgb(230, 184, 0);
+  padding: 9px 15px;
   font-size: 15px;
-  margin: 0px;
+  margin-top: 20px;
+
+  border-radius: 35px;
 }
 
 .pum .btn:hover {
@@ -279,9 +282,9 @@ font-size: 20px;
 .pum .btn-check:active+.btn-primary:focus, .btn-check:checked+.btn-primary:focus, .btn-primary.active:focus, .btn-primary:active:focus, .show>.btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 50%);
 }
-.btn-primary {
+.pum .btn-primary {
 
-  border-color: #f3f5f7;
+  border-color: rgb(240, 236, 236);
 }
 
 .pum primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
@@ -308,9 +311,8 @@ background-color: #fdfdfd;
 }
 
 .popup .row {
-  padding-bottom: 0px; 
-  padding-right: 140px; 
-   padding-left: 120px;
+  padding: 0px  140px 0px 140px; 
+
 }
 
 .pum .dropdown{
@@ -320,3 +322,6 @@ background-color: #fdfdfd;
 
 }
 
+.pum .fas{
+  margin-top: 20px;
+}
