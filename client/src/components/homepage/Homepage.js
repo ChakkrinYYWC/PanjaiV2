@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 
 import './Homepage.css'
 import Carousel from 'react-bootstrap/Carousel';
@@ -26,8 +27,11 @@ import { model } from 'mongoose';
 
 
 /*----------------------------------------------------------------------*/
-
+var once = false;
 function Homepage() {
+
+    const popupYet = localStorage.getItem('popupYet')
+    const currentUser = localStorage.getItem('currentUser')
 
     const [display, setDisplay] = useState(false)
 
@@ -36,13 +40,14 @@ function Homepage() {
     }
 
     const [show, setShow] = useState(false);
+    const [allitem, setItem] = useState([]);
 
 
     const handleClose = () => {
         localStorage.setItem('Firstpopup', false);
+        localStorage.setItem('popupYet', true)
         setShow(false);
     };
-
 
     useEffect(async () => {
         // const Firstpopup = localStorage.getItem('Firstpopup');
@@ -50,53 +55,83 @@ function Homepage() {
         await localStorage.setItem('Firstpopup', false);
     }, []);
 
-
-
-
+    async function onetime() {
+        if (once == false) {
+            once = true;
+            await Axios.post('Foundation/allItemInFDT', {
+            }).then(res => {
+                //console.log(res.data);
+                setItem(res.data)
+            }).catch(error => console.log(error))
+        }
+    }
+    onetime()
+    //console.log(allitem)
 
     return (
         <div>
-            <div className="bigpopup">
-                <Modal className="popup" show={show}>
-                    <span className="p">
-                        <Modal.Header className="popuptitle" closeButton onClick={handleClose}>
-                            {/* <div className="y">คุณต้องการบริจาคอะไร?</div> */}
-                        </Modal.Header>
-                        <Modal.Body><i  class='fas'>&#xf1bb;</i> ยินดีต้อนรับเข้าสู่ปันใจนะกั้บ <i  class='fas'>&#xf1bb;</i></Modal.Body>
+            <If condition={currentUser !== null && popupYet == 'false'}>
+                <Then>
+                    <div className="bigpopup">
+                        <Modal className="popup" show={show}>
+                            <span className="p">
+                                <Modal.Header className="popuptitle" closeButton onClick={handleClose}>
+                                    {/* <div className="y">คุณต้องการบริจาคอะไร?</div> */}
+                                </Modal.Header>
+                                <Modal.Body><i class='fas'>&#xf1bb;</i> ยินดีต้อนรับเข้าสู่ปันใจ <i class='fas'>&#xf1bb;</i></Modal.Body>
 
-                        {/* <Modal.Body> <i className="fab fa-gratipay"></i></Modal.Body> */}
-                        <Modal.Body>คุณต้องการบริจาคอะไรไหม ?</Modal.Body>
+                                {/* <Modal.Body> <i className="fab fa-gratipay"></i></Modal.Body> */}
+                                <Modal.Body>คุณต้องการบริจาคสิ่งใดหรือไม่ ?</Modal.Body>
 
-                        <span className="pum row m-0">
-                            <span className="column col-6">
-                                <Button className="pummoney" href="/#003" variant="primary" onClick={handleClose}>
-                                    เงิน
+                                <span className="pum row m-0">
+                                    <span className="column col-6">
+                                        <Button className="pummoney" href="/#003" variant="primary" onClick={handleClose}>
+                                            เงิน
                             </Button>
-                            </span >
-                            <span className="column col-6">
-                                <DropdownButton id="dropdown-item-button" title=" สิ่งของ">
-                                    <span className="lover">
-                                        <Dropdown.Item as="button" >
-                                            <Link to="/Too_panjai" className="love" >นม</Link>
-                                        </Dropdown.Item>
-                                        <Dropdown.Item as="button" >
-                                            <Link to="/Too_panjai" className="love" >เครื่องเขียน</Link>
-                                        </Dropdown.Item>
-                                        <Dropdown.Item as="button" >
-                                            <Link to="/Too_panjai" className="love">ข้าวสาร</Link>
-                                        </Dropdown.Item>
-                                        <Dropdown.Item as="button" >
-                                            <Link to="/Too_panjai" className="love">อื่นๆ</Link>
-                                        </Dropdown.Item>
                                     </span >
-                                </DropdownButton>
-                            </span >
-                        </span >
+                                    <span className="column col-6">
+                                        <DropdownButton id="dropdown-item-button" title=" สิ่งของ">
+                                            <span className="lover">
+                                                {
+                                                    allitem.map((record, index) => {
+                                                        return (
+                                                            <span>
+                                                                <Dropdown.Item>
+                                                                    <Link to={'/FDTpopup'}  className="love"><div>{record._id[0]}</div></Link>
+                                                                </Dropdown.Item>
+                                                                <If condition={record._id[1]}>
+                                                                    <Then>
+                                                                        <Dropdown.Item>
+                                                                            <Link to={'/FDTpopup'} className="love"><div>{record._id[1]}</div></Link>
+                                                                        </Dropdown.Item>
 
-                        <Modal.Body> <i class='far'>&#xf004;</i></Modal.Body>
-                    </span>
-                </Modal>
-            </div>
+                                                                        <If condition={record._id[2]}>
+                                                                            <Then>
+                                                                                <Dropdown.Item>
+                                                                                    <Link to={'/FDTpopup'} className="love"><div>{record._id[2]}</div></Link>
+                                                                                </Dropdown.Item>
+                                                                            </Then>
+                                                                        </If>
+                                                                    </Then>
+                                                                </If>
+                                                            </span>
+                                                        )
+                                                    })
+                                                }
+                                                <Dropdown.Item as="button" >
+                                                    <Link to='/Too_panjai' className="love"><div><a>  อื่นๆ</a></div></Link>
+                                                </Dropdown.Item>
+                                            </span >
+                                        </DropdownButton>
+                                    </span >
+                                </span >
+
+                                <Modal.Body> <i class='far'>&#xf004;</i></Modal.Body>
+                            </span>
+                        </Modal>
+                    </div>
+                </Then>
+            </If>
             {/* ----------------------slideshow------------------------------------------------*/}
             <Carousel>
                 <Carousel.Item>

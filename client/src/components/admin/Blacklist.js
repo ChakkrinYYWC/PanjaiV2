@@ -17,7 +17,7 @@ import {
 
 /*----------------------------------------------------------------------*/
 
-function Noti() {
+function Blacklist() {
 
     const [display, setDisplay] = useState(false)
 
@@ -79,4 +79,4 @@ return (
     </div>
   );
 }
-export default Noti;
+export default Blacklist;
