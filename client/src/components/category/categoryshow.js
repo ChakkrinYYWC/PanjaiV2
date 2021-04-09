@@ -71,7 +71,7 @@ function Categoryshow({ classes, ...props }) {
     const [lat, setLat] = useState();
     const [lng, setLng] = useState();
 
-    useEffect( () => {
+    useEffect(() => {
         props.fetchAllPostFDT()
     }, [])
 
@@ -94,7 +94,7 @@ function Categoryshow({ classes, ...props }) {
 
     const handleClickOpenMap = (e) => {
         console.log('****')
-        const data = {data: props.currentId.match.params.id}
+        const data = { data: props.currentId.match.params.id }
         Axios.post('/Foundation/map', data, {
         }).then(res => {
             //console.log(res.data.lat)
@@ -186,7 +186,7 @@ function Categoryshow({ classes, ...props }) {
                                                     </Button>
                                                 </center>
                                             </div>
-                                            
+
                                             <Dialog
                                                 fullScreen={fullScreen}
                                                 onClose={handleCloseMap}
@@ -199,6 +199,7 @@ function Categoryshow({ classes, ...props }) {
 
                                                 <DialogContent>
                                                     <DialogContentText>
+                                                        {/* <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1mAA__Tql3SsFj9vR6dAMudAQlJ_KFj9J" width="640" height="480"></iframe> */}
                                                         <MapWithAMarker
                                                             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places"
                                                             loadingElement={<div style={{ height: `100%` }} />}
