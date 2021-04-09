@@ -17,7 +17,7 @@ import {
 function Popup({ classes, ...props }) {
     return (
 
-        <div className="bgbg" >
+        <div className="dek" >
             <div className="box-white">
 
                 <div className="Title"><i className="fab fa-gratipay"></i>อยากกินนมเย็น<i className="fab fa-gratipay"></i></div>
