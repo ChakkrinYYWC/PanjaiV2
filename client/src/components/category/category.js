@@ -70,35 +70,46 @@ function Category({ classes, ...props }) {
                         {
                             props.postFDTList.filter(fdt => fdt.name == props.currentId.match.params.name).map((record, index) => {
                                 return (
-                                        
-                                    <div className="dek" style={{ backgroundImage: `url(${record.image})` }}>
-                                        <div className="box-white">
-                                            <div className="Title"><i className="fab fa-gratipay"></i>{props.currentId.match.params.name}<i className="fab fa-gratipay"></i></div>
-                                            <div className="foundation">
-                                                <div className="row m-0">
-                                                    {
-                                                        props.postFDTList.filter(fdt => fdt.category == props.currentId.match.params.name).map((record, index) => {
-                                                            return (
-                                                                <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
-                                                                    <Card className="foundat">
-                                                                        <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
-                                                                        <Card.Body>
-                                                                            <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="Tfound">{record.title}</Link>
-                                                                            <div className="information">ต้องการรับบริจาค :{record.item}</div>
-                                                                            <div className="information">จำนวน :{record.n_item}</div>
-                                                                            <div className="information-1">วันที่ลง :{moment(record.Timestamp).calendar()}</div>
-                                                                            <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="CardTitle">อ่านเพิ่มเติม</Link>
-                                                                            
-                                                                        </Card.Body>
-                                                                    </Card>
-                                                                </div>
-                                                            );
-                                                        })
-                                                    }
+                                 
+                                        <div className="dek" style={{ backgroundImage: `url(${record.image})` }}>
+                                            <div className="box-white">
+                                                <div className="Title"><i className="fab fa-gratipay"></i>{props.currentId.match.params.name}<i className="fab fa-gratipay"></i></div>
+                                                <div className="foundation">
+                                                    <div className="row m-0">
+                                                        {
+                                                            props.postFDTList.filter(fdt => fdt.category == props.currentId.match.params.name).map((record, index) => {
+                                                                return (
+                                                                    <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                                                        <Card className="foundat">
+                                                                            <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
+                                                                            <Card.Body>
+                                                                                <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="Tfound">{record.title}</Link>
+                                                                                <div className="information">ต้องการรับบริจาค :{record.item}</div>
+                                                                                <div className="information">จำนวน :{record.n_item}</div>
+                                                                                <div className="information-1">วันที่ลง :{moment(record.Timestamp).calendar()}</div>
+                                                                                <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="CardTitle">อ่านเพิ่มเติม</Link>
+
+                                                                            </Card.Body>
+                                                                        </Card>
+                                                                    </div>
+                                                                );
+                                                            })
+                                                        }
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            {/* <div>21866666673</div> */}
+                                            {/* <footer id="sticky-footer" >
+                                                <div className="footer">
+                                                  
+                                                    <div className="logofooter" ><i className="fab fa-gratipay"></i></div>
+                                                    <Link to="/#001" className="textfooter">ปันใจ </Link>
+                                                   
+                                                </div>
+                                            </footer> */}
+                                       
                                     </div>
+
                                 );
                             })
                         }

@@ -69,7 +69,8 @@ server.post('/update/:id', function (req, res) {
 
 });
 
-server.get('/information/:id',async function (req, res) {
+server.get('/userInformation/:id',async function (req, res) {
+    //console.log(req.params.id)
     let result = await user.aggregate([
         {
             $match: {
@@ -79,6 +80,20 @@ server.get('/information/:id',async function (req, res) {
     ])
     // console.log(result)
     res.send(result[0])
+
+});
+
+server.get('/postInformation/:user',async function (req, res) {
+    //console.log(req.params.user)
+    let result = await PostPanjai.aggregate([
+        {
+            $match: {
+                creator : req.params.user
+            }
+        },
+    ])
+    //console.log(result)
+    res.send(result)
 
 });
 /*-------------------------------------------------------------------------------*/

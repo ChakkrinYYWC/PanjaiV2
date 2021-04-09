@@ -38,7 +38,7 @@ router.post('/map', async (req, res) => {
     let result = await PostFDT.aggregate([
         {
             $match: {
-                _id : mongoose.Types.ObjectId(req.body.data)
+                _id: mongoose.Types.ObjectId(req.body.data)
             }
         }
     ]);
@@ -46,18 +46,29 @@ router.post('/map', async (req, res) => {
     res.send(result[0])
 })
 
+router.post('/addFav/:id', (req, res) => {
+    console.log("Post_id: " + req.params.id)
+    console.log("currentuser_id: " + req.body.currentUser_id)
+
+    user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { favorite: req.params.id } }, function (error, update) {
+        if (error) {
+            console.log(error)
+        }
+    })
+})
 router.post('/', upload.single('image'), (req, res) => {
+    console.log(req.body.item)
     var newRecord = new PostFDT({
         title: req.body.title,
         message: req.body.message,
-        item: req.body.item,
         n_item: req.body.n_item,
         promptpay: req.body.promptpay,
         category: req.body.category,
         image: req.file.filename,
         endtime: req.body.endtime,
         lat: req.body.lat,
-        lng: req.body.lat
+        lng: req.body.lng,
+        $addToSet: { item: req.body.item },
     })
     console.log(newRecord)
     newRecord.save((err, docs) => {
@@ -80,7 +91,7 @@ router.put('/:id', (req, res) => {
         promptpay: req.body.promptpay,
         endtime: req.body.endtime,
         lat: req.body.lat,
-        lng: req.body.lat
+        lng: req.body.lng
     }
 
     PostFDT.findByIdAndUpdate(req.params.id, { $set: updatedRecord }, { new: true }, (err, docs) => {

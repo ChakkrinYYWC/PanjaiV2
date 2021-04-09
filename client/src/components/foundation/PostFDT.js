@@ -19,9 +19,11 @@ const defaultImageSrc = '/image.png'
 const initialFieldValues = {
     title: '',
     message: '',
-    item: '',
+    item1: '',
+    item2: '',
+    item3: '',
     n_item: '',
-    category: '',
+    category: null,
     promptpay: '',
     endtime: '',
     lat: '',
@@ -120,8 +122,8 @@ const DialogActions = withStyles((theme) => ({
 
 const PostFDT = ({ classes, ...props }) => {
 
-    console.log('*')
-    console.log(props)
+    // console.log('*')
+    // console.log(props)
 
     const [{ alt, src }, setImg] = useState({
         src: defaultImageSrc,
@@ -141,7 +143,9 @@ const PostFDT = ({ classes, ...props }) => {
         let temp = { ...errors }
         temp.title = values.title ? "" : "กรุณาใส่ข้อมูล."
         temp.message = values.message ? "" : "กรุณาใส่ข้อมูล."
-        temp.item = values.item ? "" : "กรุณาใส่ข้อมูล."
+        temp.item1 = values.item1 ? "" : "กรุณาใส่ข้อมูล."
+        temp.item2 = values.item2 ? "" : "กรุณาใส่ข้อมูล."
+        temp.item3 = values.item3 ? "" : "กรุณาใส่ข้อมูล."
         temp.n_item = values.n_item ? "" : "กรุณาใส่ข้อมูล."
         temp.lat = values.lat ? "" : "กรุณาใส่ข้อมูล."
         temp.lng = values.lng ? "" : "กรุณาใส่ข้อมูล."
@@ -199,12 +203,15 @@ const PostFDT = ({ classes, ...props }) => {
         }
         if (validate()) {
             if (props.current == 0) {
+                console.log('***')
                 const formData = new FormData();
-
+                const item = [values.item1, values.item2, values.item3]
+                console.log(item)
+                
                 formData.append('image', file); // appending file
                 formData.append('title', values.title);
                 formData.append('message', values.message);
-                formData.append('item', values.item);
+                formData.append('item', item);
                 formData.append('n_item', values.n_item);
                 formData.append('category', category);
                 formData.append('promptpay', values.promptpay);
@@ -215,7 +222,7 @@ const PostFDT = ({ classes, ...props }) => {
                 props.createPostFDT(formData, onSuccess) //ส่งค่าไปserver
             }
             else
-                props.updatePostFDT(props.current, values, onSuccess)
+                    props.updatePostFDT(props.current, values, onSuccess)
         }
 
     }
@@ -252,12 +259,30 @@ const PostFDT = ({ classes, ...props }) => {
                     />
                     <TextField
                         id="standard-basic"
-                        name="item"
-                        label="ต้องการรับบริจาค"
+                        name="item1"
+                        label="ชิ้นที่1"
                         className={classes.want}
-                        value={values.item}
+                        value={values.item1}
                         onChange={handleInputChange}
-                        {...(errors.item && { error: true, helperText: errors.item })}
+                        {...(errors.item1 && { error: true, helperText: errors.item1 })}
+                    />
+                    <TextField
+                        id="standard-basic"
+                        name="item2"
+                        label="ชิ้นที่2"
+                        className={classes.want}
+                        value={values.item2}
+                        onChange={handleInputChange}
+                        {...(errors.item2 && { error: true, helperText: errors.item2 })}
+                    />
+                    <TextField
+                        id="standard-basic"
+                        name="item3"
+                        label="ชิ้นที่3"
+                        className={classes.want}
+                        value={values.item3}
+                        onChange={handleInputChange}
+                        {...(errors.item3 && { error: true, helperText: errors.item3 })}
                     />
                     <TextField
                         id="standard-number"

@@ -119,6 +119,11 @@ a.nav-links-mobile {
     text-shadow: 3px 3px 4px rgb(255, 203, 100);
 
 }
+
+.badge {
+    background-color: red;
+    color: white;
+  }
  @media screen and (max-width: 1024px) {
     .NavbarItems {
         /* position: relative; */
@@ -135,12 +140,12 @@ a.nav-links-mobile {
 
     .position-search{
         position: relative;
-        left: 220px;
+        left: 790px;
         
     }
     .noti{
         position: relative;
-        left: 200px;
+        left: 670px;
       
     }
 
@@ -196,7 +201,7 @@ a.nav-links-mobile {
 
     .navbar-logo{
         position: absolute;
-        top: 10px;
+        top: 20px;
         left: 20px;
         
     }
@@ -222,6 +227,33 @@ a.nav-links-mobile {
     li.itemlist{
         padding-top: 10px;
         padding-bottom: 10px;
+    }
+   
+
+}
+ @media screen and (max-width: 768px) {
+    .NavbarItems {
+        /* position: relative; */
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        padding: 0;
+   
+    }
+
+    .user-myphoto {
+        display: none !important;
+    }
+
+
+    .position-search{
+        position: relative;
+        left: 220px;
+        
+    }
+    .noti{
+        position: relative;
+        left: 200px;
+      
     }
    
 
