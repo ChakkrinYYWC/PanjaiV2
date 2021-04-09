@@ -6,13 +6,16 @@ var PostFDT = mongoose.model('PostFDT',{
     message : String,
     Timestamp : { type: Date, default: Date.now },
     image: String,
-    item: String,
+    item: {
+        type: String
+    },
     n_item: Number,
     category: String,
     promptpay: String,
     endtime: String,
     lat: Number,
     lng: Number
+
 },'PostFDT')
 
 
