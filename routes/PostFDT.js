@@ -7,6 +7,7 @@ const path = require('path')
 const mongoose = require("mongoose");
 
 var { PostFDT } = require('../model/postFDT')
+var { background } = require('../model/background')
 
 const storage = multer.diskStorage({
     destination: './public/uploads/Foundation',
@@ -32,6 +33,25 @@ router.get('/', (req, res) => {
         else
             console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
     })
+})
+
+router.post('/background', async (req, res) => {
+    console.log(req.body.data)
+    let result = await background.aggregate([
+        {
+            $match: {
+                name: req.body.data
+            }
+        }
+    ]);
+    console.log(result)
+    res.send(result[0])
+    // background.find((err, docs) => {
+    //     if (!err)
+    //         res.send(docs)
+    //     else
+    //         console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
+    // })
 })
 
 router.post('/map', async (req, res) => {
