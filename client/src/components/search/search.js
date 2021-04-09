@@ -72,7 +72,7 @@ export default function Checkboxes() {
             defaultChecked
             color="default"
             inputProps={{ "aria-label": "checkbox with default color" }
-           }
+            }
           />
           <label className="check1" style={{ color: "black" }}>
             <h2> มูลนิธิ </h2>
@@ -111,10 +111,9 @@ export default function Checkboxes() {
               return (
                 <div className="column col-4">
                   <Card className="foundat">
-                    <Card.Img
+                    <img
                       variant="top"
-                      src="https:/
-                      /encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
+                      src={'http://localhost:3001/image/' + record.image}
                     />
                     <Card.Body>
                       <Link className="Tfound">{record.title}</Link>
@@ -189,9 +188,9 @@ export default function Checkboxes() {
               return (
                 <div className="column col-4">
                   <Card className="foundat">
-                    <Card.Img
+                    <img
                       variant="top"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
+                      src={'http://localhost:3001/image/' + record.image}
                     />
                     <Card.Body>
                       <Link className="Tfound">{record.title}</Link>
