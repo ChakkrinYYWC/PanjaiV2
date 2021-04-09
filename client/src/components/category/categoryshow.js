@@ -220,6 +220,8 @@ function Categoryshow({ classes, ...props }) {
                                                 <div className="logo" ><i className="fab fa-gratipay"></i></div>
                                                 <div className="infor">สิ่งของที่ต้องการ : {record.item}</div>
                                                 <div className="infor">จำนวน : {record.n_item} บาท</div>
+                                                <div className="infor">ที่อยู่ : {record.address}</div>
+                                                <div className="infor">เบอร์โทรศัพท์ : {record.phone} บาท</div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
 
                                             </div>

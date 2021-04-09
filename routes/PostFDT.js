@@ -95,7 +95,8 @@ router.post('/', upload.single('image'), async function (req, res) {
     })
     newRecord.save((err, docs) => {
         if (!err)
-            res.send(docs)
+            console.log("save successful");
+            // res.send(docs)
         else
             console.log('Error #2 : ' + JSON.stringify(err, undefined, 2))
     })
@@ -103,11 +104,16 @@ router.post('/', upload.single('image'), async function (req, res) {
     await PostFDT.findByIdAndUpdate(newRecord._id, { item: allItem }, function (error, update) {
         if (error) {
             console.log(error)
+        }else{
+            res.send(update)
         }
     })
 })
 
 router.put('/:id', (req, res) => {
+
+    console.log('***')
+    console.log(req.params.id)
     if (!ObjectID.isValid(req.params.id))
         return res.status(400).send('No record with given id : ' + req.params.id)
 
