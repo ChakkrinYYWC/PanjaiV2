@@ -31,6 +31,7 @@ var once = false;
 function Homepage() {
 
     const popupYet = localStorage.getItem('popupYet')
+    const currentUser = localStorage.getItem('currentUser')
 
     const [display, setDisplay] = useState(false)
 
@@ -69,7 +70,7 @@ function Homepage() {
 
     return (
         <div>
-            <If condition={popupYet == 'false'}>
+            <If condition={currentUser !== null && popupYet == 'false'}>
                 <Then>
                     <div className="bigpopup">
                         <Modal className="popup" show={show}>
@@ -118,7 +119,7 @@ function Homepage() {
                                                     })
                                                 }
                                                 <Dropdown.Item as="button" >
-                                                    <Link to='/Too_panjai' className="love">อื่นๆ</Link>
+                                                    <Link to='/Too_panjai' className="love"><div><a>  อื่นๆ</a></div></Link>
                                                 </Dropdown.Item>
                                             </span >
                                         </DropdownButton>
