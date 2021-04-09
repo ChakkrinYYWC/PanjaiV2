@@ -198,6 +198,9 @@ const PostPanjai = ({ classes, ...props }) => {
     // console.log( props.postPanjaiList[3])
     // console.log( props.postPanjaiList[2])
     // console.log( props.postPanjaiList[1])
+    props.postPanjaiList.sort((a, b) => (a._id > b._id) ? -1 : 1) //sortdata
+    //console.log(props.postPanjaiList)
+
     return (
         <>
             <Grid container justify="center" >
