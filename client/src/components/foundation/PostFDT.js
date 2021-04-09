@@ -205,13 +205,13 @@ const PostFDT = ({ classes, ...props }) => {
             if (props.current == 0) {
                 console.log('***')
                 const formData = new FormData();
-                const item = [values.item1, values.item2, values.item3]
-                console.log(item)
                 
                 formData.append('image', file); // appending file
                 formData.append('title', values.title);
                 formData.append('message', values.message);
-                formData.append('item', item);
+                formData.append('item1', values.item1);
+                formData.append('item2', values.item2);
+                formData.append('item3', values.item3);
                 formData.append('n_item', values.n_item);
                 formData.append('category', category);
                 formData.append('promptpay', values.promptpay);
@@ -289,7 +289,7 @@ const PostFDT = ({ classes, ...props }) => {
                         name="n_item"
                         label="Number"
                         type="number"
-                        label="จำนวน"
+                        label="จำนวนเงิน"
                         value={values.n_item}
                         onChange={handleInputChange}
                         {...(errors.n_item && { error: true, helperText: errors.n_item })}

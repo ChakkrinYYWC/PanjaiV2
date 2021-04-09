@@ -15,6 +15,7 @@ import {
 
 
 function Popup({ classes, ...props }) {
+    alert("The URL of this page is: " + window.location.href);
     return (
 
         <div className="dek" >

@@ -17,13 +17,14 @@ function Notification({open,t}) {
         const sendTo = record.requester
         const notiId = record._id
         const data = {username, sendTo, item, notiId}
-        if (window.confirm('เมื่อกดยืนยันแล้ว ผู้รับของมีเวลา 2 วันในการติดต่อกลับมาหาคุณ')) {
+        if (window.confirm('เมื่อกดยืนยันแล้ว ผู้รับของมีเวลา 2 อาทิตย์ในการติดต่อกลับมาหาคุณ')) {
             // const data = { currentUser_id }
             Axios.post('/Too-Panjai/recieveAccept', data,{
             }).then(res => {
             }).catch(error => console.log(error))
         }
-        window.location.reload();
+        window.location.reload()
+        //window.alert("Send contact to "+record.requester)
     }
 
     function deny(record){
@@ -32,7 +33,8 @@ function Notification({open,t}) {
         Axios.post('/Too-Panjai/recieveDeny', data,{
         }).then(res => {
         }).catch(error => console.log(error))
-        window.location.reload();
+        window.location.reload()
+        //window.alert("Send contact to "+record.requester)
     }
 
     function deleteRecieve(record){
@@ -41,30 +43,25 @@ function Notification({open,t}) {
         Axios.post('/Too-Panjai/deleteRecieve', data,{
         }).then(res => {
         }).catch(error => console.log(error))
-        window.location.reload();
+        window.location.reload()
     }
 
     const [ noti, setNoti ] = useState([])
     const [ recieves, setRecieve ] = useState([])
 
-    async function onetime(){
-        if(once == false){
-            //once = true;
-            await Axios.post('/Too-Panjai/notifications/'+user_id,{
-            }).then(res => {
-                //console.log(res.data);
-                setNoti(res.data)
-            }).catch(error => console.log(error))
-        
-            await Axios.post('/Too-Panjai/findRecieve/'+user_id,{
-            }).then(res => {
-                //console.log(res.data);
-                setRecieve(res.data)
-            }).catch(error => console.log(error))
-        }
-    }
-    onetime()
+    Axios.post('/Too-Panjai/notifications/'+user_id,{
+    }).then(res => {
+        //console.log(res.data);
+        setNoti(res.data)
+    }).catch(error => console.log(error))
+
+    Axios.post('/Too-Panjai/findRecieve/'+user_id,{
+    }).then(res => {
+        //console.log(res.data);
+        setRecieve(res.data)
+    }).catch(error => console.log(error))
     
+    const [ input, setInput ] = useState("")
     //console.log(noti)
     return (
         <div>
@@ -106,7 +103,7 @@ function Notification({open,t}) {
                         
                         {/* คำตอบรับ */}
                         <div className="boxNoti">
-                            <div className="boxtext">คำตอบรับ</div>
+                            <div className="boxtext">คำอนุมัติ</div>
                             {
                                 recieves.map((record, index) => {
                                     return(

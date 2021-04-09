@@ -56,8 +56,9 @@ router.post('/addFav/:id', (req, res) => {
         }
     })
 })
-router.post('/', upload.single('image'), (req, res) => {
-    console.log(req.body.item)
+router.post('/', upload.single('image'), async function (req, res) {
+    console.log(req.body.item2)
+    const allItem = [req.body.item1, req.body.item2, req.body.item3]
     var newRecord = new PostFDT({
         title: req.body.title,
         message: req.body.message,
@@ -68,14 +69,19 @@ router.post('/', upload.single('image'), (req, res) => {
         endtime: req.body.endtime,
         lat: req.body.lat,
         lng: req.body.lng,
-        $addToSet: { item: req.body.item },
+        item: null
     })
-    console.log(newRecord)
     newRecord.save((err, docs) => {
         if (!err)
             res.send(docs)
         else
             console.log('Error #2 : ' + JSON.stringify(err, undefined, 2))
+    })
+    console.log(newRecord._id)
+    await PostFDT.findByIdAndUpdate(newRecord._id, { item: allItem }, function (error, update) {
+        if (error) {
+            console.log(error)
+        }
     })
 })
 
@@ -112,6 +118,45 @@ router.delete('/:id', (req, res) => {
         else
             console.log('Error #5 : ' + JSON.stringify(err, undefined, 2))
     })
+})
+
+router.post('/allItemInFDT', async function (req, res) {
+    let result = await PostFDT.aggregate([
+        // {
+        //     $match: {
+        //         _id: mongoose.Types.ObjectId(req.body.data)
+        //     }
+        // }
+        {
+            $group:
+            {
+                "_id": "$item",
+                "count": { "$sum": 1 }
+            }
+        },
+        {
+            $project: {
+                // "_id": 1,
+                // "title": 0,
+                // "message": 0,
+                // "item": 1,
+                // "n_item": 0,
+                // "promptpay": 0,
+                // "category": 0,
+                // "image": 0,
+                // "Timestamp": 0,
+                // "__v": 0,
+                // "name": 0,
+                // "endtime": 0,
+                // "map": 0,
+                // "lat": 0,
+                // "lng": 0,
+                "item": 1
+            }
+        }
+    ]);
+    //console.log(result)
+    res.send(result)
 })
 
 
