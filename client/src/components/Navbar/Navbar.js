@@ -183,7 +183,23 @@ class Navbar extends Component {
 
                     </span> */}
 
-                    
+
+
+
+                    {currentUser == "admin" ? <span></span> : <span class="drop">
+                       <span type="button" className="bell" onClick={(event) => this.openNotiPanel(event)}>
+                            <i class="fas fa-align-justify"></i> 
+                            {
+                                this.state.openState ? <NotiPanel open={this.state.openState} t={this.state.targetNoti} /> : null
+                            }
+
+                        </span>
+                    </span>
+                    } 
+
+
+
+
 
                     <If condition={PanjaiToken == "null"} >
                         <Then>

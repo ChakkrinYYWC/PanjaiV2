@@ -1,106 +1,89 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import { Button } from "@material-ui/core";
+import React from 'react';
+import { useState, useEffect } from 'react';
 
 
-const drawerWidth = 240;
+import { Card, Button, Modal } from 'react-bootstrap';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerContainer: {
-    overflow: "auto",
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-}));
 
-export default function ClippedDrawer() {
-  const classes = useStyles();
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Link,
+    Redirect
+} from "react-router-dom";
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            Panjai for admin
-          </Typography>
 
-        <Button >Logout</Button>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <Toolbar />
-        <div className={classes.drawerContainer}>
-          <List>
-            {["User", "ฺBlacklist", "Foundation", "Notification", "Logout"].map(
-              (text, index) => (
-                <ListItem button key={text}>
-                  {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-                  <ListItemText primary={text} />
-                </ListItem>
-              )
-            )}
-          </List>
-          <Divider />
+/*----------------------------------------------------------------------*/
+
+function SearchUser() {
+
+    const [display, setDisplay] = useState(false)
+
+    const Handledisplay = () => {
+        setDisplay(!display);
+    }
+    const [show, setShow] = useState(false);
+
+
+    const handleClose = () => {
+        localStorage.setItem('Firstpopup', false);
+        setShow(false);
+    };
+
+
+    useEffect(async () => {
+        // const Firstpopup = localStorage.getItem('Firstpopup');
+        await setShow(localStorage.getItem('Firstpopup'));
+        await localStorage.setItem('Firstpopup', false);
+    }, []);
+
+
+
+// ==================================== Search admin =================================================================
+    return (
+      <div>
+        <div className="bigpopup">
+          <Modal className="popup" show={show}>
+            <div className="p">
+              <Modal.Header
+                className="popuptitle"
+                closeButton
+                onClick={handleClose}
+              >
+                {/* <div className="y"></div> */}
+              </Modal.Header>
+              <Modal.Body>หาUser?</Modal.Body>
+              <div className="field">
+                <input type="text" className="ui-input" placeholder="ค้นหา" />
+                <button type="submit" className="search-bt">
+                  ค้นหา
+                </button>
+              </div>
+
+
+              <br/><br/>
+              <table width="100%">
+
+                <tr>
+                  <td>Username1</td>
+                  <td><button > Profile </button></td>
+                </tr>
+                <br/>
+                <tr>
+                  <td>Username2</td>
+                  <td><button > Profile </button></td>
+                </tr>
+              </table>
+            </div>
+          </Modal>
         </div>
-      </Drawer>
-      <main className={classes.content}>
-        <Toolbar />
-        <Typography paragraph>
-          <table  width='100%'>
-            <tr>
-              <th>UserName</th>
-              <th>Count report</th>
-            </tr>
-            <tr>
-              <td>name1</td>
-              <td>count1</td>
-            </tr>
-            <tr>
-              <td>name2</td>
-              <td>count2</td>
-            </tr>
-          </table>
-        </Typography>
-
-        <Typography paragraph></Typography>
-      </main>
-    </div>
-  );
+      </div>
+    );
 }
 
-// รอหน้า profile june
+
+
+
+
+export default SearchUser;
