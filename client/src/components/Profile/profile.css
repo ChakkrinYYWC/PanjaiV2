@@ -42,12 +42,12 @@
     grid-template-columns: 1fr 35px;
     padding: 10px 20px;
 }
-.Like {
+/* .Like {
     align-items: center;
     font-size: 35px;
     color: #521d1d;
     margin-right: 120px;
-}
+} */
 .confirm-and-cancelEditProfile{
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -98,14 +98,39 @@
 .button {
     background-color:rgba(185, 142, 76, 0.925);
     color: white;
-    width: 100px;
+    width: 80px;
     font-family: 'Mali', cursive;
     padding: 5px 8px;
     border-radius: 50px;
+    text-decoration: none;
+    height:35px;
+    padding: 1px;
     
 }
 .button:hover{
     background-color:rgba(82, 60, 28, 0.925);
+}
+.button1 {
+    background-color:rgba(136, 96, 36, 0.925);
+    color: white;
+    width: 140px;
+    font-family: 'Mali', cursive;
+    padding: 8px 8px;
+    border-radius: 50px;
+    text-decoration: none;
+    height:35px;
+    border-color: rgb(12, 3, 3);
+    padding: 1px;
+    
+}
+.button1:hover{
+    background-color:rgba(82, 60, 28, 0.925);
+    color: white;
+    text-decoration: none;
+    
+}
+.Like {
+    padding-top: 100px;
 }
 
 .Post{
@@ -125,19 +150,29 @@
     grid-template-columns: 150px 1fr;
     align-items: center;
 }
-.Like .fa-gratipay{
-    align-items: center;
-    font-size: 40px;
-    color:rgba(204, 88, 10, 0.925);
-    margin-right: 120px;
+.Like {
     
+    justify-self: center;
     
 }
-.Like .fa-gratipay:hover{
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto ;
+    grid-gap: 10px;
     
-    color:rgba(145, 62, 7, 0.925);
+    padding: 10px;
+  }
+
+  .grid-container > div {
     
-}
+    
+    text-align: center;
+    
+  }
+  
+  
 
 
 

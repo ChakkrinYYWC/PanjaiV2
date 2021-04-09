@@ -84,8 +84,8 @@ const styles = theme => ({
         color: '#a13800'
     },
     judjudjud: {
-        marginLeft: '80px'
-
+        display:'flex',
+        justifyContent: 'flex-end'
     },
     bg1: {
         backgroundColor: 'rgba(187, 130, 44, 0.925)',
@@ -198,6 +198,9 @@ const PostPanjai = ({ classes, ...props }) => {
     // console.log( props.postPanjaiList[3])
     // console.log( props.postPanjaiList[2])
     // console.log( props.postPanjaiList[1])
+    props.postPanjaiList.sort((a, b) => (a._id > b._id) ? -1 : 1) //sortdata
+    //console.log(props.postPanjaiList)
+
     return (
         <>
             <Grid container justify="center" >
@@ -229,19 +232,14 @@ const PostPanjai = ({ classes, ...props }) => {
 
                                                         </Typography>
                                                     </Grid>
-                                                    <If condition={currentUser == record.creator}>
-                                                        <Then>
-                                                            <>
-                                                            </>
-                                                        </Then>
-                                                        <Else>
-                                                            <Grid item sm={4}>
+                                                   
+                                                    {currentUser !== record.creator && <Grid item sm={4} className={classes.judjudjud}>
                                                                 <IconButton
                                                                     aria-label="more"
                                                                     aria-controls="long-menu"
                                                                     aria-haspopup="true"
                                                                     onClick={handleClick}
-                                                                    className={classes.judjudjud}
+                                                                    
                                                                 >
                                                                     <MoreVertIcon />
                                                                 </IconButton>
@@ -265,9 +263,8 @@ const PostPanjai = ({ classes, ...props }) => {
                                                                     ))}
                                                                 </Menu>
 
-                                                            </Grid>
-                                                        </Else>
-                                                    </If>
+                                                            </Grid>}
+                                   
 
                                                 </Grid>
 
