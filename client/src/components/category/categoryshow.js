@@ -277,12 +277,12 @@ function Categoryshow({ classes, ...props }) {
 
                                                 <DialogContent>
                                                     <DialogContentText>
-                                                        {/* <MapWithAMarker
+                                                    <MapWithAMarker
                                                             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places"
                                                             loadingElement={<div style={{ height: `100%` }} />}
                                                             containerElement={<div style={{ height: `400px` }} />}
                                                             mapElement={<div style={{ height: `100%` }} />}
-                                                        /> */}
+                                                        />
                                                     </DialogContentText>
                                                 </DialogContent>
 

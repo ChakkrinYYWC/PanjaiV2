@@ -58,7 +58,7 @@ class Navbar extends Component {
             once = true;
             Axios.post('/Too-Panjai/notifications/' + user_id, {
             }).then(res => {
-                console.log(res.data);
+                //console.log(res.data);
                 this.setState({ noti: res.data });
             }).catch(error => console.log(error))
 
