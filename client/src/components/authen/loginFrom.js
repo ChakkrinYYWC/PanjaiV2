@@ -34,7 +34,7 @@ function LoginFrom() {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(res => {
+        }).then( async function(res){
             console.log(res);
             if(res.data[0]) {
                 localStorage.setItem('Firstpopup', true);
@@ -45,6 +45,7 @@ function LoginFrom() {
                 localStorage.setItem('currentUser_address', res.data[4]);
                 localStorage.setItem('currentUser_phone', res.data[5]);
                 localStorage.setItem('currentUser_name', res.data[6])
+                await localStorage.setItem('popupYet', false)
                 window.location.href = "http://localhost:3000"
             } else {
                 window.alert("Username or password incorrect.")

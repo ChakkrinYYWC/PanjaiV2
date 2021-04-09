@@ -29,6 +29,8 @@ const initialFieldValues = {
     lat: '',
     lng: '',
     imageFile: null,
+    address: '',
+    phone: '',
 }
 
 const styles = theme => ({
@@ -149,6 +151,8 @@ const PostFDT = ({ classes, ...props }) => {
         temp.n_item = values.n_item ? "" : "กรุณาใส่ข้อมูล."
         temp.lat = values.lat ? "" : "กรุณาใส่ข้อมูล."
         temp.lng = values.lng ? "" : "กรุณาใส่ข้อมูล."
+        temp.address = values.address ? "" : "กรุณาใส่ข้อมูล."
+        temp.phone = values.phone ? "" : "กรุณาใส่ข้อมูล."
         // temp.category = values.category ? "" : "กรุณาใส่ข้อมูล."
         temp.promptpay = values.promptpay ? "" : "กรุณาใส่ข้อมูล."
         setErrors({
@@ -205,14 +209,16 @@ const PostFDT = ({ classes, ...props }) => {
             if (props.current == 0) {
                 console.log('***')
                 const formData = new FormData();
-                const item = [values.item1, values.item2, values.item3]
-                console.log(item)
                 
                 formData.append('image', file); // appending file
                 formData.append('title', values.title);
                 formData.append('message', values.message);
-                formData.append('item', item);
+                formData.append('item1', values.item1);
+                formData.append('item2', values.item2);
+                formData.append('item3', values.item3);
                 formData.append('n_item', values.n_item);
+                formData.append('address', values.address);
+                formData.append('phone', values.phone);
                 formData.append('category', category);
                 formData.append('promptpay', values.promptpay);
                 formData.append('endtime', values.endtime);
@@ -289,11 +295,46 @@ const PostFDT = ({ classes, ...props }) => {
                         name="n_item"
                         label="Number"
                         type="number"
-                        label="จำนวน"
+                        label="จำนวนเงิน"
                         value={values.n_item}
                         onChange={handleInputChange}
                         {...(errors.n_item && { error: true, helperText: errors.n_item })}
                     />
+                    <TextField
+                        id="standard-number"
+                        name="lat"
+                        label="ละติจูด"
+                        value={values.lat}
+                        onChange={handleInputChange}
+                        {...(errors.lat && { error: true, helperText: errors.lat })}
+                    />
+                    <TextField
+                        id="standard-number"
+                        name="lng"
+                        label="ลองจิจูด"
+                        value={values.lng}
+                        onChange={handleInputChange}
+                        {...(errors.lng && { error: true, helperText: errors.lng })}
+                    /><br />
+                    <TextField
+                        id="standard-basic"
+                        name="address"
+                        className={classes.detail}
+                        label="ที่อยู่"
+                        multiline
+                        value={values.address}
+                        onChange={handleInputChange}
+                        {...(errors.address && { error: true, helperText: errors.address })}
+                    />
+                    <TextField
+                        id="standard-number"
+                        name="phone"
+                        type='number'
+                        label="เบอร์โทรศัพท์"
+                        value={values.phone}
+                        onChange={handleInputChange}
+                        {...(errors.phone && { error: true, helperText: errors.phone })}
+                    /><br />
                     <TextField
                         id="standard-basic"
                         name="promptpay"
@@ -316,22 +357,7 @@ const PostFDT = ({ classes, ...props }) => {
                             <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
                         </Select>
                     </FormControl><br />
-                    <TextField
-                        id="standard-number"
-                        name="lat"
-                        label="ละติจูด"
-                        value={values.lat}
-                        onChange={handleInputChange}
-                        {...(errors.lat && { error: true, helperText: errors.lat })}
-                    />
-                    <TextField
-                        id="standard-number"
-                        name="lng"
-                        label="ลองจิจูด"
-                        value={values.lng}
-                        onChange={handleInputChange}
-                        {...(errors.lng && { error: true, helperText: errors.lng })}
-                    /><br />
+                    
                     <div>
                         <img src={src} alt={alt} className={classes.imgpreview} />
                     </div>

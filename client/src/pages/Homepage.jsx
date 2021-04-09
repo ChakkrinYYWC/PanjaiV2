@@ -8,6 +8,7 @@ import Admin from '../components/admin/User'
 import Noti_report from '../components/admin/Noti'
 import Black from '../components/admin/Blacklist'
 import Uad from '../components/admin/User'
+import Blacklist from '../components/admin/Blacklist'
 
 
 
