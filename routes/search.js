@@ -25,21 +25,43 @@ server.get('/:word',async (req, res) => {
     //console.log('Search: '+keyword)
     let postTPJ = await PostPanjai.aggregate([
         {
-            $match: {
-                "title" : keyword
+            $addFields: {
+                result: {
+                    $regexMatch: {
+                        input: "$title",
+                        regex: keyword,
+                        options: "i"
+                    }
+                }
             }
-        }
+        },
+        {
+            $match: {
+                "result" : true
+            }
+        },
     ])
     let postFDT = await PostFDT.aggregate([
         {
-            $match: {
-                "title" : keyword
+            $addFields: {
+                result: {
+                    $regexMatch: {
+                        input: "$title",
+                        regex: keyword,
+                        options: "i"
+                    }
+                }
             }
-        }
+        },
+        {
+            $match: {
+                "result" : true
+            }
+        },
     ])
 
     const result = {postTPJ, postFDT}
-    console.log(result)
+    //console.log(result)
     res.send(result)
 })
 
