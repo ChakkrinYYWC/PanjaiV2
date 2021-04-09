@@ -183,7 +183,6 @@ const PostPanjai = ({ classes, ...props }) => {
 
     const reportItem = id => {
         if (window.confirm('รายงานโพสนี้ใช่หรือไม่?')) {
-            // const data = { currentUser_id }
             const data = {id, currentUser, currentUser_id }
             Axios.post('/report/' + id, data, {
             }).then(res => {

@@ -9,16 +9,21 @@ const { compose, withProps, withHandlers } = require("recompose");
 Geocode.setApiKey("AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg");
 Geocode.enableDebug();
 
-function aroundME() {
+function AroundME() {
+
+    var [lat, setLat] = useState(0)
+    var [long, setLong] = useState(0)
 
     class Map extends React.PureComponent {
 
         state = {
             mapPosition: {
-                lat: 0,
-                lng: 0,
+                lat: 13.736717,
+                lng: 100.523186,
             }
         }
+
+        around = [];
 
         componentWillMount() {
             this.setState({ markers: [] })
@@ -26,13 +31,12 @@ function aroundME() {
 
         componentDidMount() {
 
-            Axios.get('/Foundation/', {
-            }).then(res => {
-                this.setState({ markers: res.data });
-            }).catch(error => console.log(error))
-
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(position => {
+
+                    setLat(position.coords.latitude)
+                    setLong(position.coords.longitude)
+
                     this.setState({
                         mapPosition: {
                             lat: position.coords.latitude,
@@ -54,46 +58,40 @@ function aroundME() {
                 alert("Sorry, Geolocation is not supported by this browser.");
             }
 
+            Axios.get('/Foundation/', {
+            }).then(res => {
+                var result_lat = 0
+                var result_long = 0
+                for (let i = 0; i < res.data.length-6; i++) {
+
+                    result_lat = lat - res.data[i].lat
+                    result_long = long - res.data[i].lng
+
+                    if(result_lat > -2 && result_lat < 2 && result_long > -2 && result_long < 2){
+                        console.log(res.data[i])
+                        this.around.push(res.data[i])
+                    }
+                    console.log(lat)
+                    console.log(long)
+                    console.log(res.data[i].lat)
+                    console.log(res.data[i].lat)
+                    console.log('result   '+result_lat)
+                    console.log('result   '+result_lat)
+                    console.log(this.around)
+                }
+                // console.log(this.around)
+                console.log(lat)
+                console.log(long)
+                this.setState({ markers: this.around });
+            }).catch(error => console.log(error))
         }
 
         render() {
 
-            // const getPosition = () => {
-            //     if (navigator.geolocation) {
-            //         navigator.geolocation.getCurrentPosition(showPosition, posError);
-            //     } else {
-            //         alert("Sorry, Geolocation is not supported by this browser.");
-            //     }
-            // }
-
-            // const posError = () => {
-            //     if (navigator.permissions) {
-            //         navigator.permissions.query({ name: 'geolocation' }).then(res => {
-            //             if (res.state === 'denied') {
-            //                 alert('Enable location permissions for this website in your browser settings.')
-            //             }
-            //         })
-            //     } else {
-            //         alert('Unable to access your location. You can continue by submitting location manually.')
-            //     }
-            // }
-
-            // const showPosition = (position) => {
-            //     let lat = position.coords.latitude // You have obtained latitude coordinate!
-            //     let long = position.coords.longitude // You have obtained longitude coordinate!
-
-            //     this.setState({
-            //         mapPosition: {
-            //             lat: position.coords.latitude,
-            //             lng: position.coords.longitude
-            //         }
-            //     })
-            //     console.log(lat)
-            //     console.log(long)
-            // }
-
-            console.log(this.state.mapPosition.lat)
-            console.log(this.state.mapPosition.lng)
+            console.log(lat)
+            console.log(long)
+            console.log('state' + this.state.mapPosition.lat)
+            console.log('state' + this.state.mapPosition.lng)
             const MapWithAMarkerClusterer = compose(
                 withProps({
                     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places",
@@ -105,7 +103,7 @@ function aroundME() {
                 withGoogleMap
             )(props =>
                 <GoogleMap
-                    defaultZoom={5}
+                    defaultZoom={15}
                     defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
                 >
                     {props.markers.map(marker => (
@@ -133,4 +131,38 @@ function aroundME() {
     );
 }
 
-export default aroundME;
+// const getPosition = () => {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(showPosition, posError);
+//     } else {
+//         alert("Sorry, Geolocation is not supported by this browser.");
+//     }
+// }
+
+// const posError = () => {
+//     if (navigator.permissions) {
+//         navigator.permissions.query({ name: 'geolocation' }).then(res => {
+//             if (res.state === 'denied') {
+//                 alert('Enable location permissions for this website in your browser settings.')
+//             }
+//         })
+//     } else {
+//         alert('Unable to access your location. You can continue by submitting location manually.')
+//     }
+// }
+
+// const showPosition = (position) => {
+//     let lat = position.coords.latitude // You have obtained latitude coordinate!
+//     let long = position.coords.longitude // You have obtained longitude coordinate!
+
+//     this.setState({
+//         mapPosition: {
+//             lat: position.coords.latitude,
+//             lng: position.coords.longitude
+//         }
+//     })
+//     console.log(lat)
+//     console.log(long)
+// }
+
+export default AroundME;
