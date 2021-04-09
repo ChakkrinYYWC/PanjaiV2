@@ -28,7 +28,7 @@ const Menuitems = [
     {
         id: '005',
         title: 'วิธีใช้',
-        href: '/',
+        href: '/FDTpopup',
         cName: 'nav-links'
     },
     
