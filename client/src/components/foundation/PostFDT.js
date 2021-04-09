@@ -215,7 +215,7 @@ const PostFDT = ({ classes, ...props }) => {
                 props.createPostFDT(formData, onSuccess) //ส่งค่าไปserver
             }
             else
-                props.updatePostFDT(props.current, values, onSuccess)
+                    props.updatePostFDT(props.current, values, onSuccess)
         }
 
     }

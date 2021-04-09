@@ -41,7 +41,7 @@ const Menuitems = [
     {
         id: '007',
         title: 'ใกล้ฉัน',
-        href: '/',
+        href: '/testaroundme',
         cName: 'nav-links'
     }
  
