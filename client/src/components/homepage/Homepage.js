@@ -48,7 +48,6 @@ function Homepage() {
         setShow(false);
     };
 
-
     useEffect(async () => {
         // const Firstpopup = localStorage.getItem('Firstpopup');
         await setShow(localStorage.getItem('Firstpopup'));
@@ -96,24 +95,20 @@ function Homepage() {
                                                     allitem.map((record, index) => {
                                                         return (
                                                             <span>
-                                                                <If condition={record._id !== null}>
+                                                                <Dropdown.Item>
+                                                                    <Link to={'/FDTpopup'}  className="love"><div>{record._id[0]}</div></Link>
+                                                                </Dropdown.Item>
+                                                                <If condition={record._id[1]}>
                                                                     <Then>
-                                                                        <Dropdown.Item as="button" >
-                                                                            <Link onClick={} className="love">{record._id[0]}</Link>
+                                                                        <Dropdown.Item>
+                                                                            <Link to={'/FDTpopup'} className="love"><div>{record._id[1]}</div></Link>
                                                                         </Dropdown.Item>
-                                                                        <If condition={record._id[1]}>
-                                                                            <Then>
-                                                                                <Dropdown.Item as="button" >
-                                                                                    <Link to="/Too_panjai" className="love">{record._id[1]}</Link>
-                                                                                </Dropdown.Item>
 
-                                                                                <If condition={record._id[2]}>
-                                                                                    <Then>
-                                                                                        <Dropdown.Item as="button" >
-                                                                                            <Link to="/Too_panjai" className="love">{record._id[2]}</Link>
-                                                                                        </Dropdown.Item>
-                                                                                    </Then>
-                                                                                </If>
+                                                                        <If condition={record._id[2]}>
+                                                                            <Then>
+                                                                                <Dropdown.Item>
+                                                                                    <Link to={'/FDTpopup'} className="love"><div>{record._id[2]}</div></Link>
+                                                                                </Dropdown.Item>
                                                                             </Then>
                                                                         </If>
                                                                     </Then>
@@ -123,7 +118,7 @@ function Homepage() {
                                                     })
                                                 }
                                                 <Dropdown.Item as="button" >
-                                                    <Link to="/Too_panjai" className="love">อื่นๆ</Link>
+                                                    <Link to='/Too_panjai' className="love">อื่นๆ</Link>
                                                 </Dropdown.Item>
                                             </span >
                                         </DropdownButton>
