@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import './ModalNoti.css'
 
 
 import { Card, Button, Modal } from 'react-bootstrap';
@@ -44,20 +45,15 @@ return (
     <div>
       <div className="bigpopup">
         <Modal className="popup" show={show}>
-          <div className="p">
+          <div className="pd">
             <Modal.Header
               className="popuptitle"
               closeButton
               onClick={handleClose}
-            >
+            >Blacklist
               {/* <div className="y"></div> */}
             </Modal.Header>
-            <Modal.Body>Blacklist</Modal.Body>
-        
-
-
-            <br/>
-            <table width="100%">
+            <Modal.Body><table width="100%">
 
               <tr>
                 <td>Username1</td>
@@ -69,8 +65,14 @@ return (
                 <td>Username2</td>
                 <td><button > Profile </button></td>
                 <td><button > Release </button></td>
-              </tr>
+              </tr>  
             </table>
+            </Modal.Body>
+        
+
+
+        
+            
           </div>
         </Modal>
       </div>

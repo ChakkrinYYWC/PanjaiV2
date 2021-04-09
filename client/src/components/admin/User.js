@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import './ModalNoti.css'
 
 
 import { Card, Button, Modal } from 'react-bootstrap';
@@ -45,23 +46,21 @@ function SearchUser() {
       <div>
         <div className="bigpopup">
           <Modal className="popup" show={show}>
-            <div className="p">
+            <div className="pd">
               <Modal.Header
                 className="popuptitle"
                 closeButton
                 onClick={handleClose}
               >
-                {/* <div className="y"></div> */}
+                หาUser?
+               
               </Modal.Header>
-              <Modal.Body>หาUser?</Modal.Body>
-              <div className="field">
+              <Modal.Body>  <div className="field">
                 <input type="text" className="ui-input" placeholder="ค้นหา" />
                 <button type="submit" className="search-bt">
                   ค้นหา
                 </button>
               </div>
-
-
               <br/><br/>
               <table width="100%">
 
@@ -74,7 +73,13 @@ function SearchUser() {
                   <td>Username2</td>
                   <td><button > Profile </button></td>
                 </tr>
+                
               </table>
+              </Modal.Body>
+            
+
+
+              
             </div>
           </Modal>
         </div>

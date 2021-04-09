@@ -1,9 +1,13 @@
 .bp{
 
     height: 600px;
-    width: 900px;
+    width: 500px;
     background-color: rgb(255, 255, 255);
     font-size: 20px;
     overflow-y: auto;
 
+}
+
+.pd{
+    overflow-y: auto;
 }

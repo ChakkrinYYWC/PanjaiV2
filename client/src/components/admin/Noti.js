@@ -71,16 +71,40 @@ return (
                           size="small"
                           className="want" // จำเป็น
                         >
-                          ขอรับ
+                          ลบโพสต์
                 </Button>
+              
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </div>
+
+
+
+
+
+
+                <div className="column  ">
+                  <Card className="foundat">
+                    <Card.Img
+                      variant="top"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
+                    />
+                    <Card.Body>
+                      <Link className="Tfound"></Link>
+                      <div className="information">ผู้สร้าง :</div>
+                      <div className="information">จังหวัด :</div>
+                      <div className="information-1">วันที่ลง :</div>
+                      <div className="pum">
                         <Button
                           variant="contained"
-                          color="secondary"
+                          color="primary"
                           size="small"
-                          className="fav"
+                          className="want" // จำเป็น
                         >
-                          ถูกใจ
-                </Button>
+                          ลบโพสต์
+                     </Button>
+                        
                       </div>
                     </Card.Body>
                   </Card>

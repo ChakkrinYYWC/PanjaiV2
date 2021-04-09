@@ -5,7 +5,9 @@ import Foundation from './aroundME'
 import Home from '../components/homepage/Homepage'
 import Search from '../components/search/search'
 import Admin from '../components/admin/User'
-import Noti from '../components/admin/Noti'
+import Noti_report from '../components/admin/Noti'
+import Black from '../components/admin/Blacklist'
+import Uad from '../components/admin/User'
 
 
 
@@ -26,7 +28,9 @@ function Homepage() {
             <Link to="/register">Register</Link><br />
             <Link to="/Too_panjai">Too panjai</Link><br /> */}
             {/* <Foundation/> */}
-            <Noti/>
+            <Home/>
+            {/* <Black/>
+            <Uad/> */}
             {/* <Search/> */}
         </>
            
