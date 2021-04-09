@@ -73,6 +73,7 @@ function Category({ classes, ...props }) {
                                  
                                         <div className="dek" style={{ backgroundImage: `url(${record.image})` }}>
                                             <div className="box-white">
+                                                
                                                 <div className="Title"><i className="fab fa-gratipay"></i>{props.currentId.match.params.name}<i className="fab fa-gratipay"></i></div>
                                                 <div className="foundation">
                                                     <div className="row m-0">

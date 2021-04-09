@@ -186,6 +186,7 @@ function Categoryshow({ classes, ...props }) {
                                                     </Button>
                                                 </center>
                                             </div>
+                                            
                                             <Dialog
                                                 fullScreen={fullScreen}
                                                 onClose={handleCloseMap}
