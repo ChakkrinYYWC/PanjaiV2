@@ -62,7 +62,7 @@ function Homepage() {
                         <Modal.Header className="popuptitle" closeButton onClick={handleClose}>
                             {/* <div className="y">คุณต้องการบริจาคอะไร?</div> */}
                         </Modal.Header>
-                        <Modal.Body><i  class='fas'>&#xf1bb;</i> ยินดีต้อนรับเข้าสู่ปันใจนะกั้บ <i  class='fas'>&#xf1bb;</i></Modal.Body>
+                        <Modal.Body><i  class='fas'>&#xf1bb;</i>ยินดีต้อนรับเข้าสู่ปันใจนะกั้บ <i  class='fas'>&#xf1bb;</i></Modal.Body>
 
                         {/* <Modal.Body> <i className="fab fa-gratipay"></i></Modal.Body> */}
                         <Modal.Body>คุณต้องการบริจาคอะไรไหม ?</Modal.Body>

@@ -121,6 +121,16 @@
 
     
 }
+
+.pagemap{
+    width: 500px;
+    height: 100%;
+    font-family: 'Mali', cursive;
+}
+.ap{
+    width: 100%;
+
+}
 @media only screen and (max-width: 1024px) {
     .box-box {
         margin: 100px 50px 100px 50px;
