@@ -10,11 +10,13 @@ class footer extends Component{
         return (
             <footer id="sticky-footer" >
             <div className="footer">
+           
               {/* <div className="textfooter">ปันใจ</div> */}
               <div className="logofooter" ><i className="fab fa-gratipay"></i></div>
               <Link to="/#001" className="textfooter">ปันใจ </Link>
                {/* <div className="logofooter" ><i className="fab fa-gratipay"></i></div>  */}
             </div>
+         
           </footer>
         )
     }

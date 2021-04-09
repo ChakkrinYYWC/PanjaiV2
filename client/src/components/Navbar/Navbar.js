@@ -19,6 +19,8 @@ const currentUser_id = localStorage.getItem('currentUser_id')
 
 const data = { currentUser_id }
 
+var once = false;
+
 // const [ noti, setNoti ] = useState([])
 // const [ recieves, setRecieve ] = useState([])
 
@@ -39,16 +41,6 @@ async function logout() {
     console.log("currentUser_id#2: " + currentUser_id)
 }
 
-
-// async function search(){
-//     await Axios.post('/Search'+state.find, {
-//     }).then(res => {
-//         console.log(res)
-//     }).catch(error =>{
-//         console.log(error)
-//     })
-// }
-
 class Navbar extends Component {
 
     state = {
@@ -61,19 +53,22 @@ class Navbar extends Component {
         recieve: []
     }
 
-    // getNumber = () =>{
-    //     Axios.post('/Too-Panjai/notifications/'+user_id,{
-    //     }).then(res => {
-    //         //console.log(res.data);
-    //         this.setState({ noti: res.data });
-    //     }).catch(error => console.log(error))
-        
-    //     Axios.post('/Too-Panjai/findRecieve/'+user_id,{
-    //     }).then(res => {
-    //         //console.log(res.data);
-    //         this.setState({ recieve: res.data });
-    //     }).catch(error => console.log(error))
-    // }
+    getNumber = () => {
+        if (once == false) {
+            once = true;
+            Axios.post('/Too-Panjai/notifications/' + user_id, {
+            }).then(res => {
+                console.log(res.data);
+                this.setState({ noti: res.data });
+            }).catch(error => console.log(error))
+
+            Axios.post('/Too-Panjai/findRecieve/' + user_id, {
+            }).then(res => {
+                //console.log(res.data);
+                this.setState({ recieve: res.data });
+            }).catch(error => console.log(error))
+        }
+    }
 
     openNotiPanel = (event) => {
         console.log(event)
@@ -87,8 +82,29 @@ class Navbar extends Component {
 
     }
     render() {
+        // const [ noti, setNoti ] = useState([])
+        // const [ recieves, setRecieve ] = useState([])
+        // var once = false;
+        // async function onetime(){
+        //     if(once == false){
+        //         once = true;
+        //         await Axios.post('/Too-Panjai/notifications/'+user_id,{
+        //         }).then(res => {
+        //             console.log(res.data);
+        //             setNoti(res.data)
+        //         }).catch(error => console.log(error))
+
+        //         await Axios.post('/Too-Panjai/findRecieve/'+user_id,{
+        //         }).then(res => {
+        //             //console.log(res.data);
+        //             setRecieve(res.data)
+        //         }).catch(error => console.log(error))
+        //     }
+        // }
+        // onetime()
         return (
             <div>
+                {this.getNumber()}
                 {/* {this.getNumber()} */}
                 <nav className="NavbarItems">
 
@@ -163,13 +179,15 @@ class Navbar extends Component {
                         </div> */}
                     </span>
                     {PanjaiToken == "null" ? <span></span> : <span class="noti">
-                        <span type="button" className="bell" onClick={(event) => this.openNotiPanel(event)}>
-                            <i class="fas fa-bell"></i>
-                            {
-                                this.state.openState ? <NotiPanel open={this.state.openState} t={this.state.targetNoti} /> : null
-                            }
-
-                        </span>
+                        <a>
+                            <span type="button" className="bell" onClick={(event) => this.openNotiPanel(event)}>
+                                <i class="fas fa-bell"></i>
+                                {
+                                    this.state.openState ? <NotiPanel open={this.state.openState} t={this.state.targetNoti} /> : null
+                                }
+                            </span>
+                            {this.state.noti.length+this.state.recieve.length <= 0 ? <span></span> : <span class="badge">{(this.state.noti.length) + (this.state.recieve.length)}</span>}
+                        </a>
                     </span>
                     }
                     {/* <span class="noti">
@@ -198,14 +216,14 @@ class Navbar extends Component {
 
 
                     {/* <div type="button" href="Login" className="nav-links-mobile">เข้าสู่ระบบ</div> */}
-                   
+
                 </nav>
-               
+
                 {/* <input onChange={(event) => { this.setState({input:event.target.value}); console.log(event,event.target.value) }}></input> */}
-       
+
             </div>
 
-            
+
         )
     }
 }
