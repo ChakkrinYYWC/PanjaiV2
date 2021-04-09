@@ -99,7 +99,7 @@ function Homepage() {
                                                                 <If condition={record._id !== null}>
                                                                     <Then>
                                                                         <Dropdown.Item as="button" >
-                                                                            <Link to="/Too_panjai" className="love">{record._id[0]}</Link>
+                                                                            <Link onClick={} className="love">{record._id[0]}</Link>
                                                                         </Dropdown.Item>
                                                                         <If condition={record._id[1]}>
                                                                             <Then>
