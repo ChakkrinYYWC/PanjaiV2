@@ -20,7 +20,7 @@ import Noti1 from "./components/Noti1/Noti1";
 import search from './pages/searchResult';
 import favorite from './pages/myfavorite';
 import About from "./components/aboutus/aboutus";
-
+import FDTpopup from "./components/category/FDTpopup";
 // import category from './components/category/category';
 import category from './pages/Category';
 import Categoryshow from './pages/Categoryshow';
@@ -48,7 +48,7 @@ function App() {
         <Route path="/myfav" component={favorite}/>
         <Route path="/aboutus" component={About}/>
         <Route path="/testaroundme" component={aroundME}/>
-        
+        <Route path="/FDTpopup" component={FDTpopup}/>
     
       </Switch>
       {/* <Footer /> */}

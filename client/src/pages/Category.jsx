@@ -13,22 +13,32 @@ import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import PostPanjaiForm from '../components/PostPanjai/PostPanjaiForm';
 
 
+
 const styles = theme => ({
     root: {
         margin: 0,
         padding: theme.spacing(2),
+  
     },
     closeButton: {
         position: 'absolute',
         right: theme.spacing(1),
         top: theme.spacing(1),
         color: theme.palette.grey[500],
+  
     },
     margin: {
         margin: theme.spacing(1),
+      
     },
     extendedIcon: {
         marginRight: theme.spacing(1),
+        
+    },
+    button: {
+        background: 'red',
+        color: ' rgba(141, 90, 18, 0.925)',
+      
     }
 });
 
@@ -46,8 +56,20 @@ const DialogTitle = withStyles(styles)((props) => {
     );
 });
 
-function Catego({ classes, ...props }) {
 
+
+    const mystyle = {
+      color: "white",
+      backgroundColor: "rgb(87, 54, 4)",
+      padding: "10px",
+      fontFamily: "Arial",
+      padding: "22px",
+      float: "right", 
+      margin: "360px 140px 0px 0px"
+    };
+
+function Catego({ classes, ...props }) {
+    
     const [current, setCurrent] = useState(0)
     const [open, setOpen] = React.useState(false);
     const [currentId, setCurrentId] = useState(props)
@@ -60,27 +82,30 @@ function Catego({ classes, ...props }) {
         setOpen(false);
     };
 
+  
+        
     return (
 
         <>
             <If condition={currentUser == 'admin'}>
                 <Then>
                     <Provider store={store} >
-                        <Fab size="small"  color="primary" aria-label="add" onClick={handleClickOpen} >
+                        <Category {...{ currentId, setCurrentId }} />
+                       
+                        <Fab style={mystyle} size="small" aria-label="add" onClick={handleClickOpen} >
                             <AddIcon />
                         </Fab>
-              
+
                         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                                 Post Foundation
                         </DialogTitle>
                             <PostFDT {...{ current, setCurrent }} />
                             <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
-                            
                         </Dialog>
 
-                        <Category {...{ currentId, setCurrentId }} />
-                  
+
+                        
 
                     </Provider>
                 </Then>
@@ -93,6 +118,9 @@ function Catego({ classes, ...props }) {
         </>
 
     );
+
+
+
 }
 
 export default Catego;
