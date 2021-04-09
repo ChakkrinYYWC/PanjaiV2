@@ -5,9 +5,11 @@ import './profile.css'
 import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep } from "@material-ui/icons";
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Card, Modal } from 'react-bootstrap';
+import { Link,useHistory } from 'react-router-dom';
 import { Divider, Grid, Paper, Typography, withStyles, ListItem, ListItemText, Button } from '@material-ui/core';
 import moment from 'moment';
+
 var once = false;
 
 const styles = theme => ({
@@ -87,6 +89,7 @@ function Profile({ classes, ...props }) {
     const [phone, setPhone] = useState();
     const [name, setName] = useState();
     const [myPost, setMyPost] = useState([])
+    const route = useHistory()
 
     async function onetime() {
         if (once == false) {
@@ -213,46 +216,44 @@ function Profile({ classes, ...props }) {
                                     </div>
 
                                 </div>
-                            )
+                            ):
 
-                            :
-                            //ข้อมูลปกติ
-                            (
-                                <div>
-                                    <div className="box-text">
-                                        <h1> ประวัติส่วนตัว</h1>
-                                        <div className="textinforuser">
-                                            <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
-                                            <p>{allInform.name}</p>
-                                        </div>
-                                        <div className="textinforuser">
-                                            <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
-                                            <p>{allInform.phone}</p>
-                                        </div>
-                                        <div className="textinforuser">
-                                            <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
-                                            <p>{allInform.address}</p>
-                                        </div>
-                                        <div className="textinforuser">
-                                            <span> <i className="fas fa-envelope"> </i> อีเมล</span>
-                                            <p>{allInform.email}</p>
-                                        </div>
-
-
-                                        <div className="btn-bottom-profile">
-                                            <div className="EditProfile">
-                                                <button className="button" onClick={handleEditProfile}>แก้ใข</button>
-                                            </div>
-                                            <div className="Like">
-                                                <Link to='/myfav'><i className="fab fa-gratipay"></i></Link>
-                                                {/* <Link  to={item.href}></Link> */}
-                                            </div>
-                                        </div>
+                                  (  
+                                                          //ข้อมูลปกติ
+                        
+                            <div>
+                                <div className="box-text">
+                                    <h1> ประวัติส่วนตัว</h1>
+                                    <div className="textinforuser">
+                                        <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
+                                        <p>{allInform.name}</p>
                                     </div>
-
-                                </div>
-                            )
-
+                                    <div className="textinforuser">
+                                        <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
+                                        <p>{allInform.phone}</p>
+                                    </div>
+                                    <div className="textinforuser">
+                                        <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
+                                        <p>{allInform.address}</p>
+                                    </div>
+                                    <div className="textinforuser">
+                                        <span> <i className="fas fa-envelope"> </i> อีเมล</span>
+                                        <p>{allInform.email}</p>
+                                    </div>
+                                  <div className="grid-container">
+                                        <div className="EditProfile">
+                                            <button className="button" onClick={handleEditProfile}>แก้ไข</button>
+                                        </div>
+                                        
+                                        {/* <div className='Like'>
+                                             <Link to="/myfav" className="button1" >โพสที่ถูกใจ</Link>
+                                        </div> */}
+                                        <div className='Like'>
+                                        <button className="button1" onClick={()=>{route.push('/myfav')}}  >
+                                        โพสที่ถูกใจ
+                                        </button>
+                                        </div>
+                                    </div></div></div>)
                         }
                     </section>
 

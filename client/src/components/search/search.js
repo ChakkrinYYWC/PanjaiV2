@@ -74,7 +74,7 @@ export default function Checkboxes() {
             inputProps={{ "aria-label": "checkbox with default color" }
             }
           />
-          <label className="check1" style={{ color: "black" }}>
+          {/* <label className="check1" style={{ color: "black" }}>
             <h2> มูลนิธิ </h2>
           </label>
 
@@ -92,7 +92,7 @@ export default function Checkboxes() {
             defaultChecked
             color="default"
             inputProps={{ "aria-label": "checkbox with default color" }}
-          />
+          /> */}
           <label className="check3" style={{ color: "black" }}>
             <h2> ใกล้ฉัน</h2>
           </label>
