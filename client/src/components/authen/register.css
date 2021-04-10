@@ -25,18 +25,23 @@
     width: 100%;
     padding: 5px 10px;
   }
-  
+
+  /* .reg{
+    width:70%
+  } */
+
   /* /*/
-  .item1{
-    margin: 15px 20px 0px 20px;
+  .item1_reg{
+    margin: 0px 20px 0px 20px;
     align-self: center;
   }
   
-  .item1 > img {
+  .item1_reg > img {
     width: 100%;
   }
-  .item2{
-    margin: 10%;
+  .item2_reg{
+    margin-right: 10%;
+    margin-left: 10%;
     padding: 30px 50px;
   }
   
@@ -62,12 +67,12 @@
   
     }
   
-    .item1 {
+    .item1_reg {
       padding: 0px !important;
     order :1;
   
     }
-    .item2 {
+    .item2_reg {
       
       margin: 0 5%;
       padding: 0px;

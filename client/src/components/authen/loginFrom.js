@@ -58,12 +58,12 @@ function LoginFrom() {
 /*-----------------------------------------------------------*/
     return (
         <div className="grid-container" >
-            <div className="item1">
-                <div className="image">
+            <div className="item1_log">
+                <div className="image_log">
                     <img src={loginImg} />
                 </div>
             </div>
-            <div className="item2">
+            <div className="item2_log">
                 <h3>เข้าสู่ระบบ</h3><br/>
                 <form>
                     <div className="form-group">

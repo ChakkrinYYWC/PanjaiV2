@@ -15,6 +15,7 @@
 
 .form-group {
   padding: 5px;
+  text-align: left;
 }
 
 .form-group > input  { 
@@ -23,15 +24,16 @@
 }
 
 /* /*/
-.item1{
+.item1_log{
   margin: 15px 20px 0px 20px;
   align-self: center;
+  
 }
 
-.item1 > img {
+.item1_log > img {
   width: 100%;
 }
-.item2{
+.item2_log{
   margin: 10%;
   padding: 30px 50px;
 }
@@ -53,12 +55,12 @@
 
   }
 
-  .item1 {
+  .item1_log {
     padding: 0px !important;
   order :1;
 
   }
-  .item2 {
+  .item2_log {
     
     margin: 0 5%;
     padding: 0px;
