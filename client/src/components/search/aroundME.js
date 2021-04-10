@@ -11,11 +11,13 @@ Geocode.setApiKey("AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg");
 Geocode.enableDebug();
 
 function AroundME() {
-
+    
     class Map extends React.PureComponent {
 
         state = {
             mapPosition: {
+                // lat: 13.736717,
+                // lng: 100.523186,
                 lat: 0,
                 lng: 0,
             }

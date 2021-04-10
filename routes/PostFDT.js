@@ -67,6 +67,8 @@ router.post('/', upload.single('image'), async function (req, res) {
         category: req.body.category,
         image: req.file.filename,
         endtime: req.body.endtime,
+        address: req.body.address,
+        phone: req.body.phone,
         lat: req.body.lat,
         lng: req.body.lng,
         item: null
@@ -96,6 +98,8 @@ router.put('/:id', (req, res) => {
         n_item: req.body.n_item,
         promptpay: req.body.promptpay,
         endtime: req.body.endtime,
+        address: req.body.address,
+        phone: req.body.phone,
         lat: req.body.lat,
         lng: req.body.lng
     }
