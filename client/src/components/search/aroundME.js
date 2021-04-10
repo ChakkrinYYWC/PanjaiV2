@@ -126,7 +126,7 @@ function AroundME() {
             )(props =>
                 <>
                     <GoogleMap
-                        defaultZoom={14}
+                        defaultZoom={15}
                         //defaultCenter={{ lat: 0, lng: 0 }}
                         defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
                     >

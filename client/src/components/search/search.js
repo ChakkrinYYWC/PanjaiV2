@@ -66,13 +66,13 @@ export default function Checkboxes() {
           </form>
         </div>
         <div className='flex'>
-          <Checkbox
+          {/* <Checkbox
             className="box1"
             defaultChecked
             color="default"
             inputProps={{ "aria-label": "checkbox with default color" }
             }
-          />
+          /> */}
           {/* <label className="check1" style={{ color: "black" }}>
             <h2> มูลนิธิ </h2>
           </label>
@@ -92,9 +92,9 @@ export default function Checkboxes() {
             color="default"
             inputProps={{ "aria-label": "checkbox with default color" }}
           /> */}
-          <label className="check3" style={{ color: "black" }}>
-            <h2> ใกล้ฉัน</h2>
-          </label>
+          <span className="check3" style={{ color: "black" }}>
+            <Link to ="/testaroundme"> ใกล้ฉัน</Link>
+          </span>
         </div>
       </center>
 
