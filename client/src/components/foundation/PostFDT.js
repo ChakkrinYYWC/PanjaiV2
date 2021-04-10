@@ -15,10 +15,10 @@ import zIndex from '@material-ui/core/styles/zIndex';
 
 const defaultImageSrc = '/image.png'
 
-
 const initialFieldValues = {
     title: '',
     message: '',
+    item: '',
     item1: '',
     item2: '',
     item3: '',
@@ -38,15 +38,15 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
-    
-    
+
+
     },
     root: {
-        
+
         padding: theme.spacing(2),
         padding: "20px 20px 15px 20px",
-      
-       
+
+
     },
     margin: {
         margin: theme.spacing(1),
@@ -74,8 +74,8 @@ const styles = theme => ({
         color: '#a13800',
         backgroundColor: "rgb(248, 242, 236)",
         marginLeft: '25px',
-        
-    },   
+
+    },
     Btn: {
         "&:hover": {
             backgroundColor: "rgb(255, 230, 153)",
@@ -97,7 +97,7 @@ const styles = theme => ({
     titile: {
         width: "50%",
         margin: "0 0 10px 0"
-   
+
     },
     detail: {
         margin: "0 0 10px 0"
@@ -126,6 +126,8 @@ const PostFDT = ({ classes, ...props }) => {
 
     // console.log('*')
     // console.log(props)
+
+    const arr = []
 
     const [{ alt, src }, setImg] = useState({
         src: defaultImageSrc,
@@ -205,11 +207,11 @@ const PostFDT = ({ classes, ...props }) => {
                 alt: 'Upload an Image'
             });
         }
-        if (validate()) {
+        if (validate() && props.current == 0) {
             if (props.current == 0) {
                 console.log('***')
                 const formData = new FormData();
-                
+
                 formData.append('image', file); // appending file
                 formData.append('title', values.title);
                 formData.append('message', values.message);
@@ -227,9 +229,8 @@ const PostFDT = ({ classes, ...props }) => {
 
                 props.createPostFDT(formData, onSuccess) //ส่งค่าไปserver
             }
-            else
-                    props.updatePostFDT(props.current, values, onSuccess)
-        }
+        } else if (props.current != 0)
+            props.updatePostFDT(props.current, values, onSuccess)
 
     }
 
@@ -357,7 +358,7 @@ const PostFDT = ({ classes, ...props }) => {
                             <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
                         </Select>
                     </FormControl><br />
-                    
+
                     <div>
                         <img src={src} alt={alt} className={classes.imgpreview} />
                     </div>
@@ -378,18 +379,20 @@ const PostFDT = ({ classes, ...props }) => {
 
 
                 <DialogActions>
-                    <Button onClick={handleSubmit} 
-                    className={classes.Btn}
-                    color="primary" >
+                    <Button onClick={handleSubmit}
+                        className={classes.Btn}
+                        color="primary" >
                         Post
                 </Button>
                 </DialogActions>
             </form>
         );
     } else {
+        arr.push(values.item)
+        console.log(values.item)
+        console.log(arr)
         return (
             <form noValidate autoComplete="off" className={`${classes.root} ${classes.form}`}>
-
                 <Typography gutterBottom>
                     <TextField
                         id="standard-basic"
@@ -415,8 +418,8 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         name="item"
+                        label="สิ่งของที่รับบริจาค"
                         className={classes.want}
-                        label="ต้องการรับบริจาค"
                         value={values.item}
                         onChange={handleInputChange}
                         {...(errors.item && { error: true, helperText: errors.item })}
@@ -426,21 +429,12 @@ const PostFDT = ({ classes, ...props }) => {
                         name="n_item"
                         label="Number"
                         type="number"
-                        label="จำนวน"
+                        label="จำนวนเงิน"
                         value={values.n_item}
                         onChange={handleInputChange}
                         {...(errors.n_item && { error: true, helperText: errors.n_item })}
                     />
                     <TextField
-                        id="standard-basic"
-                        name="promptpay"
-                        className={classes.promptpay}
-                        label="พร้อมเพย์"
-                        value={values.promptpay}
-                        onChange={handleInputChange}
-                        {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
-                    /><br />
-                     <TextField
                         id="standard-number"
                         name="lat"
                         label="ละติจูด"
@@ -455,6 +449,34 @@ const PostFDT = ({ classes, ...props }) => {
                         value={values.lng}
                         onChange={handleInputChange}
                         {...(errors.lng && { error: true, helperText: errors.lng })}
+                    /><br />
+                    <TextField
+                        id="standard-basic"
+                        name="address"
+                        className={classes.detail}
+                        label="ที่อยู่"
+                        multiline
+                        value={values.address}
+                        onChange={handleInputChange}
+                        {...(errors.address && { error: true, helperText: errors.address })}
+                    />
+                    <TextField
+                        id="standard-number"
+                        name="phone"
+                        type='number'
+                        label="เบอร์โทรศัพท์"
+                        value={values.phone}
+                        onChange={handleInputChange}
+                        {...(errors.phone && { error: true, helperText: errors.phone })}
+                    /><br />
+                    <TextField
+                        id="standard-basic"
+                        name="promptpay"
+                        className={classes.promptpay}
+                        label="พร้อมเพย์"
+                        value={values.promptpay}
+                        onChange={handleInputChange}
+                        {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
                     /><br />
                     {/* <input
                         accept="image/*"
@@ -475,9 +497,9 @@ const PostFDT = ({ classes, ...props }) => {
 
 
                 <DialogActions>
-                    <Button onClick={handleSubmit} 
-                    className={classes.Btn}
-                    color="primary" >
+                    <Button onClick={handleSubmit}
+                        className={classes.Btn}
+                        color="primary" >
                         Post
                 </Button>
                 </DialogActions>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow, MarkerWithLabel } from "react-google-maps"
 import Geocode from "react-geocode";
 import Axios from 'axios'
 import { BrowserRouter as Router, Link, } from "react-router-dom";
@@ -11,7 +11,7 @@ Geocode.setApiKey("AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg");
 Geocode.enableDebug();
 
 function AroundME() {
-    
+
     class Map extends React.PureComponent {
 
         state = {
@@ -109,6 +109,11 @@ function AroundME() {
 
             this.result_kg.sort((a, b) => (a.kg > b.kg) ? 1 : -1) //sortระยะทาง
 
+            const test = (t) => {
+                // this.around.push(e)
+                console.log(t)
+                this.setState({ markers: [t] });
+            }
             const MapWithAMarkerClusterer = compose(
                 withProps({
                     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places",
@@ -138,11 +143,12 @@ function AroundME() {
                             </Marker>
                         ))}
                     </GoogleMap>
-                    <h1>มูลนิธิใกล้ฉัน</h1><br/>
+                    <h1>มูลนิธิใกล้ฉัน</h1><br />
                     {
                         this.result_kg.map(mark => (
                             <>
-                                <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} >{mark.marker.title}</Link>
+                                <button className="btn btn-lg " onClick={() => test(mark.marker)}>{mark.marker.title}</button>
+                                <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} >อ่านเพิ่มเติม</Link>
                                 <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร</h1>
                                 <br />
                             </>

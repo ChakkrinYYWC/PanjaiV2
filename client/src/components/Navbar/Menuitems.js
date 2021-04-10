@@ -37,7 +37,8 @@ const Menuitems = [
         title: 'ข้อมูลส่วนตัว',
         href: '/profile/'+currentUser_id,
         cName: 'nav-links'
-    },
+    }
+    ,
     // {
     //     id: '007',
     //     title: 'ใกล้ฉัน',
