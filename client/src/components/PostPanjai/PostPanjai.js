@@ -60,7 +60,7 @@ const styles = theme => ({
         borderRadius: 5,
         boxShadow: '1px   1px 1px 1px rgba(187, 130, 44, 0.925)',
         color: 'rgba(187, 130, 44, 0.925)',
-        height: 'auto',
+        height: '100%',
         padding: '10px 10px',
         marginBlock: '15px',
         borderRadius: '20px',

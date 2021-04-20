@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component, useRef } from "react";
-import { TextField, withStyles, Button, colors, IconButton, Grid } from "@material-ui/core";
+import { TextField, withStyles, Button, colors, IconButton, Grid, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import useForm from "./useForm";
 import { connect } from "react-redux";
 import * as actions from "../../action/postPanjai";
@@ -7,6 +7,7 @@ import ButterToast, { Cinnamon } from "butter-toast";
 import { AssignmentTurnedIn, Repeat } from "@material-ui/icons";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import axios from 'axios'
+import { province } from "../../Constants/provinces";
 
 const defaultImageSrc = '/image.png'
 
@@ -80,6 +81,11 @@ const styles = theme => ({
     },
     bg1: {
         backgroundColor: 'rgba(187, 130, 44, 0.925)',
+    },
+    select:{
+        '& .MuiPaper-root':{
+            height : '400px'           
+        }
     }
 
 })
@@ -112,7 +118,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         setErrors({
             ...temp
         })
-        return Object.values(temp).every(x => x == "")
+        return Object.values(temp).every(x => x === "")
     }
 
     var {
@@ -217,7 +223,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px'} }}
                         name="title"
-                        variant="filled"
+                
                         label="ชื่อสิ่งของ"
                         size="small"
                         fullWidth
@@ -237,12 +243,12 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
                     <TextField
                         name="message"
-                        variant="filled"
+                
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px'} }}
                         label="ข้อมูลสิ่งของ"
                         fullWidth
                         size="small"
-                        multiline
+         
                         // rows={4}
                         value={values.message}
                         onChange={handleInputChange}
@@ -257,12 +263,11 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
                     <TextField
                         name="contect"
-                        variant="filled"
+            
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali' ,height: '40px' } }}
                         label="เบอร์โทรศัพท์"
                         fullWidth
-                        size="small"
-                        multiline
+                        size="small"      
                         value={values.contect}
                         onChange={handleInputChange}
                         {...(errors.contect && { error: true, helperText: errors.contect })}
@@ -276,18 +281,30 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     alignItems="center"
                 >
 
-                    <TextField
+                    {/* <TextField
                         name="location"
                         variant="filled"
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px' } }}
                         label="จังหวัด"
                         fullWidth
                         size="small"
-                        multiline
                         value={values.location}
                         onChange={handleInputChange}
                         {...(errors.location && { error: true, helperText: errors.location })}
-                    />
+                    /> */}
+                    <FormControl fullWidth className={classes.select}>
+                        <InputLabel >จังหวัด</InputLabel>
+                        <Select
+                            InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px'} }}
+                            name='location'
+                            value={values.location}
+                            fullWidth
+                            onChange = {handleInputChange}
+                            {...(errors.location && { error: true, helperText: errors.location })}
+                        >
+                        {province.map((province)=><MenuItem value={province}>{province}</MenuItem>)}
+                        </Select>
+                    </FormControl>
                 </Grid>
 
 
@@ -318,7 +335,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px'} }}
                         name="title"
                         variant="filled"
-                        label="ชื่อ"
+                        label="ชื่อสิ่งของ"
                         fullWidth
                         className={classes.paper}
                         value={values.title}
@@ -340,7 +357,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px' } }}
                         label="ข้อมูล"
                         fullWidth
-                        multiline
+                       
                         // rows={4}
                         value={values.message}
                         onChange={handleInputChange}
@@ -372,17 +389,29 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     alignItems="center"
                 >
 
-                    <TextField
+                    {/* <TextField
                         name="location"
                         variant="filled"
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px'} }}
                         label="ใส่ชื่อจังหวัด"
                         fullWidth
-                        multiline
+                        
                         value={values.location}
                         onChange={handleInputChange}
                         {...(errors.location && { error: true, helperText: errors.location })}
-                    />
+                    /> */}
+                    <FormControl fullWidth >
+                        <InputLabel >จังหวัด</InputLabel>
+                        <Select
+                            name='location'
+                            value={values.location}
+                            fullWidth
+                            onChange = {handleInputChange}
+                            {...(errors.location && { error: true, helperText: errors.location })}
+                        >
+                        {province.map((province)=><MenuItem value={province}>{province}</MenuItem>)}
+                        </Select>
+                    </FormControl>
                 </Grid>
 
 

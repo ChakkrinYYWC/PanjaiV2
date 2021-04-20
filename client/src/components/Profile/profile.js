@@ -31,12 +31,12 @@ const styles = theme => ({
         margin: theme.spacing(1),
         background: '#a13800'
     },
-    actionDiv: {
-        textAlign: "center"
-    },
+    // actionDiv: {
+    //     textAlign: "center"
+    // },
     post1: {
 
-        borderRadius: 5,
+        // borderRadius: 5,
         boxShadow: '0 2px 3px 2px rgba(85, 52, 4, 0.925)',
         height: 'auto',
         padding: '30px 30px',
@@ -44,13 +44,13 @@ const styles = theme => ({
 
     },
     framepost: {
-        // background: '#f9a825',
-        borderRadius: 5,
-        boxShadow: '0 2px 3px 2px rgba(187, 130, 44, 0.925)',
+        boxShadow: "1px 1px 1px 1px rgba(187, 130, 44, 0.925)",
         color: 'rgba(187, 130, 44, 0.925)',
-        height: 'auto',
+        height: '100%',
         padding: '10px 10px',
-        marginBlock: '15px'
+        borderRadius: "20px",
+        marginBlock: '15px',
+        magin: '10px'
     },
     frampicture: {
         padding: '10px 10px'
@@ -70,10 +70,10 @@ const styles = theme => ({
     color1: {
         color: '#a13800'
     },
-    judjudjud: {
-        marginLeft: '75px'
+    // judjudjud: {
+    //     marginLeft: '75px'
 
-    },
+    // },
 
 })
 
@@ -263,9 +263,12 @@ function Profile({ classes, ...props }) {
                     <p>Post ของฉัน </p>
                 </div>
                 <div>
+                    <Grid container style={{padding:'0 auto'}} spacing={4} >
+                    
                     {
                         myPost.map((record, index) => {
                             return (
+                                
                                 <Grid item xs={12} sm={4} >
                                     {/* {index} */}
                                     <Paper className={classes.framepost}>
@@ -318,6 +321,7 @@ function Profile({ classes, ...props }) {
                             )
                         })
                     }
+                    </Grid>
                 </div>
             </div>
         </div>
