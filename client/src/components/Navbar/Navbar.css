@@ -123,6 +123,9 @@ a.nav-links-mobile {
 .badge {
     background-color: red;
     color: white;
+    border-radius: 50px;
+ 
+
   }
  @media screen and (max-width: 1024px) {
     .NavbarItems {

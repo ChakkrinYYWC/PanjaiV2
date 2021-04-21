@@ -126,7 +126,7 @@ function Homepage() {
                                     </span >
                                 </span >
 
-                                <Modal.Body> <i class='far'>&#xf004;</i></Modal.Body>
+                                <Modal.Body> <i class='far'>&#129409;</i></Modal.Body>
                             </span>
                         </Modal>
                     </div>
