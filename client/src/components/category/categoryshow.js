@@ -187,33 +187,34 @@ function Categoryshow({ classes, ...props }) {
                                                 </center>
                                             </div>
 
-                                            <Dialog
+                                            <Dialog className="ap"
                                                 fullScreen={fullScreen}
                                                 onClose={handleCloseMap}
                                                 aria-labelledby="customized-dialog-title"
                                                 open={open3}
                                             >
-                                                <DialogTitle id="customized-dialog-title" onClose={handleCloseMap} fullScreen={fullScreen} >
-                                                    แผนที่{record.title}
-                                                </DialogTitle>
+                                                <div className="pagemap">
+                                                    <DialogTitle id="customized-dialog-title" onClose={handleCloseMap} fullScreen={fullScreen} >
+                                                        แผนที่{record.title}
+                                                    </DialogTitle>
 
-                                                <DialogContent>
-                                                    <DialogContentText>
-                                                        {/* <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1mAA__Tql3SsFj9vR6dAMudAQlJ_KFj9J" width="640" height="480"></iframe> */}
-                                                        <MapWithAMarker
-                                                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places"
-                                                            loadingElement={<div style={{ height: `100%` }} />}
-                                                            containerElement={<div style={{ height: `400px` }} />}
-                                                            mapElement={<div style={{ height: `100%` }} />}
-                                                        />
-                                                    </DialogContentText>
-                                                </DialogContent>
+                                                    <DialogContent>
+                                                        <DialogContentText>
+                                                            <MapWithAMarker 
+                                                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places"
+                                                                loadingElement={<div style={{ height: `100%` }} />}
+                                                                containerElement={<div style={{ height: `400px` }} />}
+                                                                mapElement={<div style={{ height: `100%` }} />}
+                                                            />
+                                                        </DialogContentText>
+                                                    </DialogContent>
 
-                                                <DialogActions>
-                                                    <Button onClick={handleCloseMap} color="primary">
-                                                        ยกเลิก
+                                                    <DialogActions>
+                                                        <Button onClick={handleCloseMap} color="primary">
+                                                            ยกเลิก
                                                     </Button>
-                                                </DialogActions>
+                                                    </DialogActions>
+                                                </div>
                                             </Dialog>
                                             <div className="info">{record.message}</div>
                                             <div className="bx">
@@ -301,7 +302,10 @@ function Categoryshow({ classes, ...props }) {
                                             <div className="bx">
                                                 <div className="logo" ><i className="fab fa-gratipay"></i></div>
                                                 <div className="infor">สิ่งของที่ต้องการ : {record.item}</div>
+
                                                 <div className="infor">จำนวน : {record.n_item} บาท</div>
+                                                <div className="infor">ที่อยู่ : {record.address}</div>
+                                                <div className="infor">เบอร์โทรศัพท์ : {record.phone} บาท</div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
 
                                             </div>

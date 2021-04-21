@@ -56,9 +56,10 @@
     color: rgb(151, 114, 85);
     
 } */
-.check3 h2 {
+.check3 {
   font-size: 25px;
-   
+  padding-left: 550px;
+  
   margin: 0px;
   font-family: 'Mali', cursive;
   font-weight: bold;

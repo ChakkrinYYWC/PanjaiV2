@@ -11,7 +11,7 @@ function search() {
     return (
         <>
             <Search />
-            <AroundME />
+            {/* <AroundME /> */}
         </>
     )
 }

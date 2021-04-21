@@ -93,6 +93,8 @@ function Category({ classes, ...props }) {
                                                                 <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="Tfound">{record.title}</Link>
                                                                 <div className="information">ต้องการรับบริจาค :{record.item}</div>
                                                                 <div className="information">จำนวน :{record.n_item}</div>
+                                                                <div className="information">ที่อยู่ : {record.address}</div>
+                                                                <div className="information">เบอร์โทรศัพท์ : {record.phone} บาท</div>
                                                                 <div className="information-1">วันที่ลง :{moment(record.Timestamp).calendar()}</div>
                                                                 <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="CardTitle">อ่านเพิ่มเติม</Link>
 
