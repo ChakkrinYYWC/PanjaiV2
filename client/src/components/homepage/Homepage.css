@@ -297,7 +297,12 @@ font-size: 20px;
   text-decoration: none;
   font-size: 13px;
   width: 50%;
+  text-align: center;
+ 
 }
+
+
+
 .lover:hover{
   background-color: #ceb56f;
 }
@@ -325,3 +330,4 @@ background-color: #fdfdfd;
 .pum .fas{
   margin-top: 20px;
 }
+
