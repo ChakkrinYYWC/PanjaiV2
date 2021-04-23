@@ -26,8 +26,9 @@ import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router'
 import GoogleMapReact from 'google-map-react';
 import Axios from 'axios';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, } from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 
+const { compose, withProps, withStateHandlers } = require("recompose");
 
 const styles = theme => ({
     root: {
@@ -125,16 +126,31 @@ function Categoryshow({ classes, ...props }) {
         }
     }
 
-    const MapWithAMarker = withScriptjs(withGoogleMap(props =>
+    const MapWithAMarker = compose(
+        withStateHandlers(() => ({
+            isOpen: true,
+        }), {
+            onToggleOpen: ({ isOpen }) => () => ({
+                isOpen: !isOpen,
+            })
+        }),
+        withScriptjs,
+        withGoogleMap
+    )(props =>
         <GoogleMap
             defaultZoom={15}
             defaultCenter={{ lat: lat, lng: lng }}
         >
             <Marker
                 position={{ lat: lat, lng: lng }}
-            />
+                onClick={props.onToggleOpen}
+            >
+                {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
+                    <h1>{lat}, {lng}</h1>
+                </InfoWindow>}
+            </Marker>
         </GoogleMap>
-    ));
+    );
 
     console.log(props)
 
@@ -200,11 +216,12 @@ function Categoryshow({ classes, ...props }) {
 
                                                     <DialogContent>
                                                         <DialogContentText>
-                                                            <MapWithAMarker 
+                                                            <MapWithAMarker
                                                                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places"
                                                                 loadingElement={<div style={{ height: `100%` }} />}
                                                                 containerElement={<div style={{ height: `400px` }} />}
                                                                 mapElement={<div style={{ height: `100%` }} />}
+                                                                
                                                             />
                                                         </DialogContentText>
                                                     </DialogContent>
@@ -283,7 +300,7 @@ function Categoryshow({ classes, ...props }) {
 
                                                 <DialogContent>
                                                     <DialogContentText>
-                                                    <MapWithAMarker
+                                                        <MapWithAMarker
                                                             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places"
                                                             loadingElement={<div style={{ height: `100%` }} />}
                                                             containerElement={<div style={{ height: `400px` }} />}
