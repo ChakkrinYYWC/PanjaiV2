@@ -90,6 +90,11 @@ const styles = theme => ({
         padding: "0 40px 0 0",
         margin: "0 0 10px 0"
     },
+    latijud: {
+        padding: "0 40px 0 0",
+        margin: "0 0 10px 0"
+    },
+ 
     formControl: {
         padding: "0",
         width: "25%",
@@ -100,9 +105,12 @@ const styles = theme => ({
 
     },
     detail: {
+     
+        padding: "0 55px 0 0",
         margin: "0 0 10px 0"
     },
     promptpay: {
+        padding: "0 40px 0 0",
         margin: "0 0 10px 0"
     }
 
@@ -305,6 +313,8 @@ const PostFDT = ({ classes, ...props }) => {
                         id="standard-number"
                         name="lat"
                         label="ละติจูด"
+                        type="number"
+                        className={classes.latijud}
                         value={values.lat}
                         onChange={handleInputChange}
                         {...(errors.lat && { error: true, helperText: errors.lat })}
@@ -313,6 +323,7 @@ const PostFDT = ({ classes, ...props }) => {
                         id="standard-number"
                         name="lng"
                         label="ลองจิจูด"
+                        type="number"
                         value={values.lng}
                         onChange={handleInputChange}
                         {...(errors.lng && { error: true, helperText: errors.lng })}
@@ -339,6 +350,7 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         name="promptpay"
+                        type="number"
                         className={classes.promptpay}
                         label="พร้อมเพย์"
                         value={values.promptpay}
@@ -438,6 +450,8 @@ const PostFDT = ({ classes, ...props }) => {
                         id="standard-number"
                         name="lat"
                         label="ละติจูด"
+                        type="number"
+                        className={classes.latijud}
                         value={values.lat}
                         onChange={handleInputChange}
                         {...(errors.lat && { error: true, helperText: errors.lat })}
@@ -445,6 +459,7 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-number"
                         name="lng"
+                        type="number"
                         label="ลองจิจูด"
                         value={values.lng}
                         onChange={handleInputChange}
@@ -472,6 +487,7 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         name="promptpay"
+                        type="number"
                         className={classes.promptpay}
                         label="พร้อมเพย์"
                         value={values.promptpay}
@@ -500,7 +516,7 @@ const PostFDT = ({ classes, ...props }) => {
                     <Button onClick={handleSubmit}
                         className={classes.Btn}
                         color="primary" >
-                        Post
+                        save
                 </Button>
                 </DialogActions>
             </form>

@@ -11,7 +11,7 @@ import YouTube from '@u-wave/react-youtube';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 
-
+import Fade from '@material-ui/core/Fade';
 
 
 import Menu from '@material-ui/core/Menu';
@@ -40,7 +40,13 @@ function Homepage() {
     //     setAnchorEl(event.currentTarget);
     // };
  
-   
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+  
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
 
     const popupYet = localStorage.getItem('popupYet')
     const currentUser = localStorage.getItem('currentUser')
@@ -100,14 +106,13 @@ function Homepage() {
                                     <span className="column col-6">
 
                                         <DropdownButton id="dropdown-item-button" title=" สิ่งของ">
-                                           
-                                            <span className="lover">
+
+                                            <div className="container">
                                                 {
                                                     allitem.map((record, index) => {
                                                         return (
-                                                            <span >
-
-                                                               
+                                                            <div className="lover">
+                                          
                                                                 <Dropdown.Item>
                                                                     <Link to={'/FDTpopup'}  className="love"><div>{record._id[0]}</div></Link>
                                                                 </Dropdown.Item>
@@ -126,14 +131,14 @@ function Homepage() {
                                                                         </If>
                                                                     </Then>
                                                                 </If>
-                                                            </span>
+                                                            </div>
                                                         )
                                                     })
                                                 }
                                                 <Dropdown.Item as="button" >
                                                     <Link to='/Too_panjai' className="love"><div>อื่นๆ</div></Link>
                                                 </Dropdown.Item>
-                                            </span >
+                                            </div >
                                         </DropdownButton>
                                     </span >
                                 </span >

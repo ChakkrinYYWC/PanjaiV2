@@ -222,7 +222,7 @@ function Categoryshow({ classes, ...props }) {
                                                 <div className="infor">สิ่งของที่ต้องการ : {record.item}</div>
                                                 <div className="infor">จำนวน : {record.n_item} บาท</div>
                                                 <div className="infor">ที่อยู่ : {record.address}</div>
-                                                <div className="infor">เบอร์โทรศัพท์ : {record.phone} บาท</div>
+                                                <div className="infor">เบอร์โทรศัพท์ : {record.phone} </div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
 
                                             </div>
@@ -270,12 +270,13 @@ function Categoryshow({ classes, ...props }) {
                                                     </Button>
                                                 </center>
                                             </div>
-                                            <Dialog
+                                            <Dialog className="ap"
                                                 fullScreen={fullScreen}
                                                 onClose={handleCloseMap}
                                                 aria-labelledby="customized-dialog-title"
                                                 open={open3}
                                             >
+                                            <div className="pagemap">
                                                 <DialogTitle id="customized-dialog-title" onClose={handleCloseMap}>
                                                     แผนที่{record.title}
                                                 </DialogTitle>
@@ -296,16 +297,16 @@ function Categoryshow({ classes, ...props }) {
                                                         ยกเลิก
                                                     </Button>
                                                 </DialogActions>
+                                                </div>
                                             </Dialog>
 
                                             <div className="info">{record.message}</div>
                                             <div className="bx">
                                                 <div className="logo" ><i className="fab fa-gratipay"></i></div>
                                                 <div className="infor">สิ่งของที่ต้องการ : {record.item}</div>
-
                                                 <div className="infor">จำนวน : {record.n_item} บาท</div>
                                                 <div className="infor">ที่อยู่ : {record.address}</div>
-                                                <div className="infor">เบอร์โทรศัพท์ : {record.phone} บาท</div>
+                                                <div className="infor">เบอร์โทรศัพท์ : {record.phone} </div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
 
                                             </div>
