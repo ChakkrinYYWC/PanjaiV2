@@ -6,7 +6,8 @@ import * as actions from "../../action/postPanjai";
 import ButterToast, { Cinnamon } from "butter-toast";
 import { AssignmentTurnedIn, Repeat } from "@material-ui/icons";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import axios from 'axios'
+import Axios from 'axios'
+import { DeleteSweep } from "@material-ui/icons";
 
 const defaultImageSrc = '/image.png'
 
@@ -22,16 +23,16 @@ const styles = theme => ({
     root: {
         '& .MuiTextField-root': {
             margin: theme.spacing(1)
-            
+
         },
-       
+
     },
     form: {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center'
     },
-    
+
     postBtn: {
         "&:hover": {
             backgroundColor: "rgba(85, 52, 4, 0.925)"
@@ -46,7 +47,7 @@ const styles = theme => ({
         margin: theme.spacing(1),
         background: '#a13800'
     },
-   
+
     topic: {
         color: 'red'
     },
@@ -54,10 +55,8 @@ const styles = theme => ({
         display: 'none',
     },
     imgpreview: {
-        width: "30%",
+        width: "60%",
         marginLeft: '125px',
-        
-
     },
     primary: {
         background: 'white',
@@ -88,11 +87,13 @@ const styles = theme => ({
 const PostPanjaiForm = ({ classes, ...props }) => {
 
     const currentUser = localStorage.getItem('currentUser')
+    const [multi_image, setMulti_image] = useState([]);
+    var test = [];
 
-    const [{ alt, src }, setImg] = useState({
-        src: defaultImageSrc,
-        alt: 'Upload an Image'
-    });
+    // const [{ alt, src }, setImg] = useState([{
+    //     src: defaultImageSrc,
+    //     alt: 'Upload an Image'
+    // }]);
 
     useEffect(() => {
         if (props.currentId != 0) {
@@ -126,21 +127,56 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         setFile
     } = useForm(initialFieldValues, props.setCurrentId)
 
-
-    const showPreview = e => {
-        if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
-            console.log(file);
-            setImg({
-                src: URL.createObjectURL(e.target.files[0]),
-                alt: e.target.files[0].name
-            });
-        }
-        else {
-            let pic = defaultImageSrc
-            setFile(pic)
+    const setPhotos = e => {
+        console.log(e.target.files[0])
+        setFile(e.target.files)
+        
+        if (e.target.files) {
+            const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+            //console.log("filesArray: ", filesArray);
+            setMulti_image((prevImages) => prevImages.concat(filesArray));
+            Array.from(e.target.files).map(
+                (file) => URL.revokeObjectURL(file) // avoid memory leak
+            );
         }
     }
+    console.log(test)
+
+    const renderPhotos = (source) => {
+        // console.log('source: ', source);
+        return source.map((photo) => {
+            return (
+                <>
+                    <img src={photo} alt="" key={photo} className={classes.imgpreview} />
+
+                    <Button variant="contained" color="secondary" onClick={() => onRemoveImg(photo)} component="span">
+                        <DeleteSweep />
+                    </Button>
+                </>
+            );
+        });
+    };
+
+    const onRemoveImg = (url) => {
+        setMulti_image(multi_image.filter(url_old => url_old !== url))
+    }
+
+    console.log(multi_image)
+
+    // const showPreview = e => {
+    //     if (e.target.files && e.target.files[0]) {
+    //         setFile(e.target.files[0]);
+    //         console.log(file);
+    //         setImg({
+    //             src: URL.createObjectURL(e.target.files[0]),
+    //             alt: e.target.files[0].name
+    //         });
+    //     }
+    //     else {
+    //         let pic = defaultImageSrc
+    //         setFile(pic)
+    //     }
+    // }
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -153,21 +189,25 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                 />
             })
             resetForm()
-            setImg({
-                src: defaultImageSrc,
-                alt: 'Upload an Image'
-            });
+            setMulti_image([])
+            // setImg({
+            //     src: defaultImageSrc,
+            //     alt: 'Upload an Image'
+            // });
         }
         if (validate()) {
             if (props.currentId == 0) {
+                console.log(file)
                 const formData = new FormData();
-                formData.append('image', file); // appending file
+                for (let i = 0; i < file.length; i++) {
+                    formData.append('image', file[i]); 
+                }
                 formData.append('title', values.title);
                 formData.append('message', values.message);
                 formData.append('contect', values.contect);
                 formData.append('location', values.location);
-                formData.append('creator', currentUser) ;
-
+                formData.append('creator', currentUser);
+                
                 props.createPostPanjai(formData, onSuccess) //ส่งค่าไปserver
             }
             else
@@ -181,41 +221,46 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         resetForm()
         props.setCurrentId(0);
     }
-    
 
-// post
+
+    // post
     if (props.currentId == 0) {
         return (
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
                 onSubmit={handleSubmit}>
                 <Grid item xs={12} >
-                    <div>
+                    {/* <div>
                         <img src={src} alt={alt} className={classes.imgpreview} />
-                    </div>
+                    </div> */}
+
+                    <div className=''>{renderPhotos(multi_image)}</div>
+
                     <input
                         accept="image/*"
                         className={classes.input}
                         id="icon-button-file"
                         type="file"
-                        onChange={showPreview}
+                        multiple
+                        onChange={setPhotos}
                     />
                     <label htmlFor="icon-button-file" >
                         <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1} >
                             <PhotoCamera />
                         </IconButton>
                     </label>
+
                 </Grid>
 
 
-                <Grid item xs={12} sm={6} 
+                <Grid item xs={12} sm={6}
                     container
                     direction="row"
                     justify="center"
                     alignItems="center"
                 >
-                    <TextField 
+                    <TextField
                         // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px'} }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         name="title"
                         variant="filled"
                         label="ชื่อสิ่งของ"
@@ -238,7 +283,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="message"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px'} }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="ข้อมูลสิ่งของ"
                         fullWidth
                         size="small"
@@ -258,7 +303,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="contect"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali' ,height: '40px' } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="เบอร์โทรศัพท์"
                         fullWidth
                         size="small"
@@ -279,7 +324,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="location"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px' } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="จังหวัด"
                         fullWidth
                         size="small"
@@ -315,7 +360,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                 >
                     <TextField
                         // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px'} }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         name="title"
                         variant="filled"
                         label="ชื่อ"
@@ -337,7 +382,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="message"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px' } }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="ข้อมูล"
                         fullWidth
                         multiline
@@ -356,7 +401,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="contect"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px'} }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="เบอร์โทรศัพท์"
                         fullWidth
                         value={values.contect}
@@ -375,7 +420,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <TextField
                         name="location"
                         variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px'} }}
+                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="ใส่ชื่อจังหวัด"
                         fullWidth
                         multiline
