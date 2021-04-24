@@ -7,51 +7,48 @@ import { Card, Button, Modal } from 'react-bootstrap';
 
 
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    Link,
-    Redirect
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
 } from "react-router-dom";
-
 
 /*----------------------------------------------------------------------*/
 
 function Blacklist() {
+  var blackListPopup = localStorage.getItem('blackListPopup')
+  console.log(blackListPopup)
+  if(blackListPopup == "false"){
+    var isShow = false
+  }
+  if(blackListPopup == "true"){
+    var isShow = true
+  }
+  // const [show, setShow] = useState("");
+  // console.log(show)
 
-    const [display, setDisplay] = useState(false)
-
-    const Handledisplay = () => {
-        setDisplay(!display);
-    }
-    const [show, setShow] = useState(false);
-
-
-    const handleClose = () => {
-        localStorage.setItem('Firstpopup', false);
-        setShow(false);
-    };
-
-
-    useEffect(async () => {
-        // const Firstpopup = localStorage.getItem('Firstpopup');
-        await setShow(localStorage.getItem('Firstpopup'));
-        await localStorage.setItem('Firstpopup', false);
-    }, []);
+  const handleClose = async () => {
+    await localStorage.setItem('blackListPopup', false);
+    console.log(localStorage.getItem('blackListPopup'))
+    window.location.reload()
+  };
 
 
-// ====================================== Blacklist =========================================
-return (
+  // useEffect(async () => {
+  //   // const Firstpopup = localStorage.getItem('Firstpopup');
+  //   await setShow(localStorage.getItem('backListPopup'));
+  // }, []);
+
+  console.log("isShow ="+ isShow)
+  // ====================================== Blacklist =========================================
+  return (
     <div>
       <div className="bigpopup">
-        <Modal className="popup" show={show}>
+        <Modal className="popup" show={isShow}>
           <div className="pd">
-            <Modal.Header
-              className="popuptitle"
-              closeButton
-              onClick={handleClose}
-            >Blacklist
-              {/* <div className="y"></div> */}
+            <Modal.Header className="popuptitle" closeButton onClick={handleClose}>
+              Blacklist
             </Modal.Header>
             <Modal.Body><table width="100%">
 
@@ -60,19 +57,19 @@ return (
                 <td><button > Profile </button></td>
                 <td><button > Release </button></td>
               </tr>
-              <br/>
+              <br />
               <tr>
                 <td>Username2</td>
                 <td><button > Profile </button></td>
                 <td><button > Release </button></td>
-              </tr>  
+              </tr>
             </table>
             </Modal.Body>
-        
 
 
-        
-            
+
+
+
           </div>
         </Modal>
       </div>

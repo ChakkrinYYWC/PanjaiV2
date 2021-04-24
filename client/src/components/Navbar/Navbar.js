@@ -94,27 +94,43 @@ class Navbar extends Component {
   handleClick = () => {
     this.setState({ clicked: !this.state.clicked });
   };
+
+  BlackListOn = async () => {
+    await localStorage.setItem('blackListPopup', true);
+    window.location.reload()
+  }
   render() {
     return (
-    <div>
-      {this.getNumber()}
-      {/* {this.getNumber()} */}
-      <nav className="NavbarItems">
-        <Link to="/" className="navbar-logo">
-          ปันใจ <i className="fab fa-gratipay"></i>
-        </Link>
-        {/* <div className="navbar-logo"><img src="logo.png" width="120px"/></div> */}
+      <div>
+        {this.getNumber()}
+        {/* {this.getNumber()} */}
+        <nav className="NavbarItems">
+          <Link to="/" className="navbar-logo">
+            ปันใจ <i className="fab fa-gratipay"></i>
+          </Link>
+          {/* <div className="navbar-logo"><img src="logo.png" width="120px"/></div> */}
 
-        <div className="menu-icon" onClick={this.handleClick}>
-          <i
-            className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}
-          ></i>
-        </div>
+          <div className="menu-icon" onClick={this.handleClick}>
+            <i
+              className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}
+            ></i>
+          </div>
 
-        <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
-          {Menuitems.map((item, index) => {
-            if (PanjaiToken == "null") {
-              if (index < 5) {
+          <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
+            {Menuitems.map((item, index) => {
+              if (PanjaiToken == "null") {
+                if (index < 5) {
+                  return (
+                    <li className="itemlist" key={index}>
+                      {/* <a href={"#" + item.id}> */}
+                      <a className={item.cName} href={item.href}>
+                        {item.title}
+                      </a>
+                      {/* </a> */}
+                    </li>
+                  );
+                }
+              } else {
                 return (
                   <li className="itemlist" key={index}>
                     {/* <a href={"#" + item.id}> */}
@@ -125,74 +141,70 @@ class Navbar extends Component {
                   </li>
                 );
               }
-            } else {
-              return (
-                <li className="itemlist" key={index}>
-                  {/* <a href={"#" + item.id}> */}
-                  <a className={item.cName} href={item.href}>
-                    {item.title}
-                  </a>
-                  {/* </a> */}
-                </li>
-              );
-            }
-          })}
+            })}
 
-          {/* ============================================================================== */}
-          {currentUser != "admin" ? (
-            <span></span>
-          ) : (
-            <span class="drop">
-              <DropdownButton id="dropdown-item-button" title=" admin">
-                <span className="lover">
-                  <Dropdown.Item as="button">
-                    <Link to="#" className="love">
-                      blacklist{" "}
-                    </Link>
-                  </Dropdown.Item>
-                  <Dropdown.Item as="button">
-                    <Link to="#" className="love">
-                      search{" "}
-                    </Link>
-                  </Dropdown.Item>
-                  <Dropdown.Item as="button">
-                    <Link to="#" className="love">
-                      report
-                      </Link>
-                  </Dropdown.Item>
-                </span>
-              </DropdownButton>
-            </span>
-          )}
+            {/* ============================================================================== */}
+            {currentUser != "admin" ? (
+              <span></span>
+            ) : (
+              // <span class="drop">
+              //   <DropdownButton id="dropdown-item-button" title=" admin">
+              //     <span className="lover">
+              //       <Dropdown.Item as="button">
+              //         <div  className="love">
+              //           <a>Blacklist</a>
+              //         </div>
+              //       </Dropdown.Item>
+              //       <Dropdown.Item as="button">
+              //         <Link to="#" className="love">
+              //           search{" "}
+              //         </Link>
+              //       </Dropdown.Item>
+              //       <Dropdown.Item as="button">
+              //         <Link to="#" className="love">
+              //           report
+              //           </Link>
+              //       </Dropdown.Item>
+              //     </span>
+              //   </DropdownButton>
+              // </span>
+              <span>
+                <div>
+                  <button onClick={() => this.BlackListOn()} ><a>&nbsp;Blacklist&nbsp;</a></button>
+                  <button><a>&nbsp;User&nbsp;</a></button>
+                  <button><a>&nbsp;Report&nbsp;</a></button>
+                </div>
+              </span>
+            )}
 
-          {/* ================================================================================ */}
+            {/* ================================================================================ */}
 
 
-          <li className="itemlist">
-            <If condition={PanjaiToken == "null"}>
-              <Then>
-                <Link to="/Login" className="hidden">
-                  เข้าสู่ระบบ
-                  </Link>
-              </Then>
-              <Else>
+            <li className="itemlist">
+              <If condition={PanjaiToken == "null"}>
                 <Then>
-                  <Link onClick={logout} className="hidden">
-                    ออกจากระบบ
-                    </Link>
+                  <Link to="/Login" className="hidden">
+                    เข้าสู่ระบบ
+                  </Link>
                 </Then>
-              </Else>
-            </If>
-          </li>
-        </ul>
-        <span className="dropdown position-search">
-          <Link
-            to="/searchResult"
-            className="ssearch" /*type="button" data-toggle="dropdown"*/
-          >
-            <i className="fas fa-search"></i>
-          </Link>
-          {/* <div className="dropdown-menu dropdown-menu-right">
+                <Else>
+                  <Then>
+                    <Link onClick={logout} className="hidden">
+                      ออกจากระบบ
+                    </Link>
+                  </Then>
+                </Else>
+              </If>
+            </li>
+          </ul>
+          <span className="dropdown position-search">
+            <Link
+              to="/searchResult"
+              className="ssearch" /*type="button" data-toggle="dropdown"*/
+            >
+              <i className="fas fa-search"></i>
+            </Link>
+            {/* <div className="dropdown-menu dropdown-menu-right">
                             <form>
                                 <input 
                                     onChange={(event) =>{
@@ -205,36 +217,36 @@ class Navbar extends Component {
                                 <button onClick={this.search} type="submit">submit</button>
                             </form>
                         </div> */}
-        </span>
-        {PanjaiToken == "null" ? (
-          <span></span>
-        ) : (
-          <span class="noti">
-            <a>
-              <span
-                type="button"
-                className="bell"
-                onClick={(event) => this.openNotiPanel(event)}
-              >
-                <i class="fas fa-bell"></i>
-                {this.state.openState ? (
-                  <NotiPanel
-                    open={this.state.openState}
-                    t={this.state.targetNoti}
-                  />
-                ) : null}
-              </span>
-              {this.state.noti.length + this.state.recieve.length <= 0 ? (
-                <span></span>
-              ) : (
-                <span class="badge">
-                  {this.state.noti.length + this.state.recieve.length}
-                </span>
-              )}
-            </a>
           </span>
-        )}
-        {/* <span class="noti">
+          {PanjaiToken == "null" ? (
+            <span></span>
+          ) : (
+            <span class="noti">
+              <a>
+                <span
+                  type="button"
+                  className="bell"
+                  onClick={(event) => this.openNotiPanel(event)}
+                >
+                  <i class="fas fa-bell"></i>
+                  {this.state.openState ? (
+                    <NotiPanel
+                      open={this.state.openState}
+                      t={this.state.targetNoti}
+                    />
+                  ) : null}
+                </span>
+                {this.state.noti.length + this.state.recieve.length <= 0 ? (
+                  <span></span>
+                ) : (
+                  <span class="badge">
+                    {this.state.noti.length + this.state.recieve.length}
+                  </span>
+                )}
+              </a>
+            </span>
+          )}
+          {/* <span class="noti">
                         <span type="button" className="bell" onClick={(event) => this.openNotiPanel(event)}>
                             <i class="fas fa-bell"></i>
                             {
@@ -245,29 +257,29 @@ class Navbar extends Component {
 
                     </span> */}
 
-        <If condition={PanjaiToken == "null"}>
-          <Then>
-            <Link to="/Login" className="nav-links-mobile">
-              {" "}
+          <If condition={PanjaiToken == "null"}>
+            <Then>
+              <Link to="/Login" className="nav-links-mobile">
+                {" "}
                 เข้าสู่ระบบ
               </Link>
-          </Then>
-          <Else>
-            <Then>
-              {/* <Avatar>{currentUser.charAt(0).toUpperCase()}</Avatar> */}
-              <Link onClick={logout} className="nav-links-mobile">
-                {" "}
+            </Then>
+            <Else>
+              <Then>
+                {/* <Avatar>{currentUser.charAt(0).toUpperCase()}</Avatar> */}
+                <Link onClick={logout} className="nav-links-mobile">
+                  {" "}
                   ออกจากระบบ
                 </Link>
-            </Then>
-          </Else>
-        </If>
+              </Then>
+            </Else>
+          </If>
 
-        {/* <div type="button" href="Login" className="nav-links-mobile">เข้าสู่ระบบ</div> */}
-      </nav>
+          {/* <div type="button" href="Login" className="nav-links-mobile">เข้าสู่ระบบ</div> */}
+        </nav>
 
-      {/* <input onChange={(event) => { this.setState({input:event.target.value}); console.log(event,event.target.value) }}></input> */}
-    </div>
+        {/* <input onChange={(event) => { this.setState({input:event.target.value}); console.log(event,event.target.value) }}></input> */}
+      </div>
     )
   }
 }
