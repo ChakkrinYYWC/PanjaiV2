@@ -272,7 +272,6 @@ const PostPanjai = ({ classes, ...props }) => {
 
                                                 <Grid container justify="center">
                                                     {record.image.map((image) => (
-
                                                         <img src={'http://localhost:3001/image/' + image} className={classes.picture} />
                                                     ))}
                                                 </Grid>

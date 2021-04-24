@@ -45,7 +45,7 @@ function Category({ ...props }) {
 
     useEffect(async () => {
         await props.fetchAllPostFDT()
-        console.log(props.postFDTList);
+        //console.log(props.postFDTList);
 
         // function getImg(ArrayimgHeader) {
 
@@ -64,7 +64,7 @@ function Category({ ...props }) {
         await setLoading(false);
 
     }, [])
-    console.log(props)
+    //console.log(props)
 
     const data = { data: props.currentId.match.params.name }
     Axios.post('/Foundation/background', data, {
@@ -107,7 +107,11 @@ function Category({ ...props }) {
                                                 return (
                                                     <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
                                                         <Card className="foundat">
-                                                            <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
+
+                                                            {/* <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */} 
+                                                            {record.image.map((image) => (
+                                                                <Card.Img variant="top" img src={'http://localhost:3001/Foundation/' + image}/> //multi image
+                                                            ))}
                                                             <Card.Body>
                                                                 <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="Tfound">{record.title}</Link>
                                                                 <div className="information">ต้องการรับบริจาค :{record.item}</div>

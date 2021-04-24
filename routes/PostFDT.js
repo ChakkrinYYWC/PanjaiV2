@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/background', async (req, res) => {
-    console.log(req.body.data)
+    //console.log(req.body.data)
     let result = await background.aggregate([
         {
             $match: {
@@ -44,7 +44,7 @@ router.post('/background', async (req, res) => {
             }
         }
     ]);
-    console.log(result)
+    //console.log(result)
     res.send(result[0])
     // background.find((err, docs) => {
     //     if (!err)
@@ -76,16 +76,20 @@ router.post('/addFav/:id', (req, res) => {
         }
     })
 })
-router.post('/', upload.single('image'), async function (req, res) {
-    console.log(req.body.item2)
+router.post('/', upload.array('image'), async function (req, res) {
+    // console.log(req.body.item2)
+    var Photo_name = [];
     const allItem = [req.body.item1, req.body.item2, req.body.item3]
+    for (let i = 0; i < req.files.length; i++) {
+        Photo_name.push(req.files[i].filename)
+    }
     var newRecord = new PostFDT({
         title: req.body.title,
         message: req.body.message,
         n_item: req.body.n_item,
         promptpay: req.body.promptpay,
         category: req.body.category,
-        image: req.file.filename,
+        image: Photo_name,
         endtime: req.body.endtime,
         address: req.body.address,
         phone: req.body.phone,

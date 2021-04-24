@@ -192,7 +192,10 @@ function Categoryshow({ classes, ...props }) {
                                             <div className="Tt">{record.title}</div>
                                             <center>
                                                 <div className="image01">
-                                                    <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
+                                                    {record.image.map((image) => (
+                                                        <img variant="top" src={'http://localhost:3001/Foundation/' + image} /> //multi image
+                                                    ))}
+                                                    {/* <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */}
                                                 </div>
                                             </center>
                                             <div className="map">
@@ -221,7 +224,7 @@ function Categoryshow({ classes, ...props }) {
                                                                 loadingElement={<div style={{ height: `100%` }} />}
                                                                 containerElement={<div style={{ height: `400px` }} />}
                                                                 mapElement={<div style={{ height: `100%` }} />}
-                                                                
+
                                                             />
                                                         </DialogContentText>
                                                     </DialogContent>

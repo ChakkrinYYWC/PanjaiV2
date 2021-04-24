@@ -43,7 +43,7 @@ router.post('/', upload.array('image'), (req, res) => {
     for (let i = 0; i < req.files.length; i++) {
         Photo_name.push(req.files[i].filename)
     }
-    console.log(arr)
+    console.log(Photo_name)
     var newRecord = new PostPanjai({
         title: req.body.title,
         message: req.body.message,
