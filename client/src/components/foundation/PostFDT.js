@@ -12,6 +12,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import { PhotoCamera, AssignmentTurnedIn } from "@material-ui/icons"
 import ButterToast, { Cinnamon } from "butter-toast";
 import zIndex from '@material-ui/core/styles/zIndex';
+import { DeleteSweep } from "@material-ui/icons";
 
 const defaultImageSrc = '/image.png'
 
@@ -23,7 +24,7 @@ const initialFieldValues = {
     item2: '',
     item3: '',
     n_item: '',
-    category: null,
+    category: '',
     promptpay: '',
     endtime: '',
     lat: '',
@@ -38,15 +39,10 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
-
-
     },
     root: {
-
         padding: theme.spacing(2),
         padding: "20px 20px 15px 20px",
-
-
     },
     margin: {
         margin: theme.spacing(1),
@@ -104,7 +100,16 @@ const styles = theme => ({
     },
     promptpay: {
         margin: "0 0 10px 0"
-    }
+    },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: 200,
+    },
 
 });
 
@@ -124,15 +129,13 @@ const DialogActions = withStyles((theme) => ({
 
 const PostFDT = ({ classes, ...props }) => {
 
-    // console.log('*')
-    // console.log(props)
-
+    const [multi_image, setMulti_image] = useState([]);
     const arr = []
 
-    const [{ alt, src }, setImg] = useState({
-        src: defaultImageSrc,
-        alt: 'Upload an Image'
-    });
+    // const [{ alt, src }, setImg] = useState({
+    //     src: defaultImageSrc,
+    //     alt: 'Upload an Image'
+    // });
 
     useEffect(() => {
         if (props.current != 0) {
@@ -176,20 +179,55 @@ const PostFDT = ({ classes, ...props }) => {
         setCategory
     } = useForm(initialFieldValues, props.setCurrent)
 
-    const showPreview = e => {
-        if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
-            console.log(file);
-            setImg({
-                src: URL.createObjectURL(e.target.files[0]),
-                alt: e.target.files[0].name
-            });
-        }
-        else {
-            let pic = defaultImageSrc
-            setFile(pic)
+    const setPhotos = e => {
+        console.log(e.target.files[0])
+        setFile(e.target.files)
+
+        if (e.target.files) {
+            const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+            //console.log("filesArray: ", filesArray);
+            setMulti_image((prevImages) => prevImages.concat(filesArray));
+            Array.from(e.target.files).map(
+                (file) => URL.revokeObjectURL(file) // avoid memory leak
+            );
         }
     }
+
+    const renderPhotos = (source) => {
+        // console.log('source: ', source);
+        return source.map((photo) => {
+            return (
+                <>
+                    <img src={photo} alt="" key={photo} className={classes.imgpreview} />
+
+                    <Button variant="contained" color="secondary" onClick={() => onRemoveImg(photo)} component="span">
+                        <DeleteSweep />
+                    </Button>
+                </>
+            );
+        });
+    };
+
+    const onRemoveImg = (url) => {
+        setMulti_image(multi_image.filter(url_old => url_old !== url))
+    }
+
+    console.log(multi_image)
+
+    // const showPreview = e => {
+    //     if (e.target.files && e.target.files[0]) {
+    //         setFile(e.target.files[0]);
+    //         console.log(file);
+    //         setImg({
+    //             src: URL.createObjectURL(e.target.files[0]),
+    //             alt: e.target.files[0].name
+    //         });
+    //     }
+    //     else {
+    //         let pic = defaultImageSrc
+    //         setFile(pic)
+    //     }
+    // }
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -202,17 +240,17 @@ const PostFDT = ({ classes, ...props }) => {
                 />
             })
             resetFormFDT()
-            setImg({
-                src: defaultImageSrc,
-                alt: 'Upload an Image'
-            });
+            setMulti_image([])
         }
         if (validate() && props.current == 0) {
             if (props.current == 0) {
                 console.log('***')
                 const formData = new FormData();
 
-                formData.append('image', file); // appending file
+                for (let i = 0; i < file.length; i++) {
+                    formData.append('image', file[i]);
+                }
+
                 formData.append('title', values.title);
                 formData.append('message', values.message);
                 formData.append('item1', values.item1);
@@ -357,17 +395,30 @@ const PostFDT = ({ classes, ...props }) => {
                             <MenuItem value={"สิ่งแวดล้อม"}>สิ่งแวดล้อม</MenuItem>
                             <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
                         </Select>
-                    </FormControl><br />
+                    </FormControl>
 
-                    <div>
-                        <img src={src} alt={alt} className={classes.imgpreview} />
-                    </div>
+                    <form className={classes.container} noValidate>
+                        <TextField
+                            id="date"
+                            label="สิ้นสุดโครงการ"
+                            type="date"
+                            defaultValue=""
+                            className={classes.textField}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </form><br />
+
+                    <div className=''>{renderPhotos(multi_image)}</div>
+
                     <input
                         accept="image/*"
                         className={classes.input}
                         id="icon-button-file"
                         type="file"
-                        onChange={showPreview}
+                        multiple
+                        onChange={setPhotos}
                     />
                     <label htmlFor="icon-button-file">
                         <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1} >

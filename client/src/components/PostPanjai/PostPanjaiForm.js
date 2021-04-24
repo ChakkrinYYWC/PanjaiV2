@@ -88,7 +88,6 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
     const currentUser = localStorage.getItem('currentUser')
     const [multi_image, setMulti_image] = useState([]);
-    var test = [];
 
     // const [{ alt, src }, setImg] = useState([{
     //     src: defaultImageSrc,
@@ -140,7 +139,6 @@ const PostPanjaiForm = ({ classes, ...props }) => {
             );
         }
     }
-    console.log(test)
 
     const renderPhotos = (source) => {
         // console.log('source: ', source);
