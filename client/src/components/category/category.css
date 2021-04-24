@@ -13,6 +13,14 @@
   
 }
 
+.btcate{
+padding: 20px 0 0px 0px;
+
+
+}
+
+
+
 
 .dek p {
   margin: 0px;
@@ -29,7 +37,7 @@
 }
 
 .Title{
-    padding-top: 80px;
+    padding-top: 50px;
     font-size: 25px;
     font-weight: bolder;
     color:rgba(77, 50, 9, 0.925);
