@@ -37,14 +37,19 @@ router.get('/', (req, res) => {
             console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
     })
 })
-
-router.post('/', upload.single('image'), (req, res) => {
+        
+router.post('/', upload.array('image'), (req, res) => {
+    var Photo_name = [];
+    for (let i = 0; i < req.files.length; i++) {
+        Photo_name.push(req.files[i].filename)
+    }
+    console.log(Photo_name)
     var newRecord = new PostPanjai({
         title: req.body.title,
         message: req.body.message,
         contect: req.body.contect,
         location: req.body.location,
-        image: req.file.filename,
+        image: Photo_name,
         creator : req.body.creator
     })
     console.log(newRecord)

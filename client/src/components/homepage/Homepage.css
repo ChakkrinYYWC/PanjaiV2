@@ -296,14 +296,32 @@ font-size: 20px;
   color: #7c580b;
   text-decoration: none;
   font-size: 13px;
-  width: 50%;
+text-align: center;
+ 
 }
+/* .here{
+  padding-right: 1000px;
+} */
+ .column .container{
+ height: 300px;
+ overflow: hidden;
+ overflow-y: scroll;
+ padding: 0px;
+
+}
+/* .lover{
+  text-align: left;
+  padding: 0px;
+} */
+
+
+/* 
 .lover:hover{
   background-color: #ceb56f;
-}
+} */
 
 .love:hover{
-  color: #553b03;
+  color: #271c03;
   text-decoration: none;
 background-color: #fdfdfd;
   font-weight: bold;
@@ -324,4 +342,8 @@ background-color: #fdfdfd;
 
 .pum .fas{
   margin-top: 20px;
+}
+
+.dropdown-item {
+  padding: 0px;
 }

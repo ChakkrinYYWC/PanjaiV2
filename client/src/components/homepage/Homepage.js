@@ -11,10 +11,14 @@ import YouTube from '@u-wave/react-youtube';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 
-// import Card from 'react-bootstrap/Card';
-import { Card, Button, Modal } from 'react-bootstrap';
+import Fade from '@material-ui/core/Fade';
 
-import SplitButton from 'react-bootstrap/SplitButton'
+
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+// import Card from 'react-bootstrap/Card';
+import { Card,Button, Modal } from 'react-bootstrap';
+
 
 import {
     BrowserRouter as Router,
@@ -29,6 +33,20 @@ import { model } from 'mongoose';
 /*----------------------------------------------------------------------*/
 var once = false;
 function Homepage() {
+    
+    // const [anchorEl, setAnchorEl] = React.useState(null);
+
+    // const handleClick = (event) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
+ 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+  
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
 
     const popupYet = localStorage.getItem('popupYet')
     const currentUser = localStorage.getItem('currentUser')
@@ -75,27 +93,26 @@ function Homepage() {
                     <div className="bigpopup">
                         <Modal className="popup" show={show}>
                             <span className="p">
-                                <Modal.Header className="popuptitle" closeButton onClick={handleClose}>
-                                    {/* <div className="y">คุณต้องการบริจาคอะไร?</div> */}
-                                </Modal.Header>
+                                <Modal.Header className="popuptitle" closeButton onClick={handleClose}></Modal.Header>
                                 <Modal.Body><i class='fas'>&#xf1bb;</i> ยินดีต้อนรับเข้าสู่ปันใจ <i class='fas'>&#xf1bb;</i></Modal.Body>
-
-                                {/* <Modal.Body> <i className="fab fa-gratipay"></i></Modal.Body> */}
                                 <Modal.Body>คุณต้องการบริจาคสิ่งใดหรือไม่ ?</Modal.Body>
 
                                 <span className="pum row m-0">
                                     <span className="column col-6">
                                         <Button className="pummoney" href="/#003" variant="primary" onClick={handleClose}>
                                             เงิน
-                            </Button>
+                                        </Button>
                                     </span >
                                     <span className="column col-6">
+
                                         <DropdownButton id="dropdown-item-button" title=" สิ่งของ">
-                                            <span className="lover">
+
+                                            <div className="container">
                                                 {
                                                     allitem.map((record, index) => {
                                                         return (
-                                                            <span>
+                                                            <div className="lover">
+                                          
                                                                 <Dropdown.Item>
                                                                     <Link to={'/FDTpopup'}  className="love"><div>{record._id[0]}</div></Link>
                                                                 </Dropdown.Item>
@@ -114,20 +131,23 @@ function Homepage() {
                                                                         </If>
                                                                     </Then>
                                                                 </If>
-                                                            </span>
+                                                            </div>
                                                         )
                                                     })
                                                 }
                                                 <Dropdown.Item as="button" >
-                                                    <Link to='/Too_panjai' className="love"><div><a>  อื่นๆ</a></div></Link>
+                                                    <Link to='/Too_panjai' className="love"><div>อื่นๆ</div></Link>
                                                 </Dropdown.Item>
-                                            </span >
+                                            </div >
                                         </DropdownButton>
                                     </span >
                                 </span >
 
-                                <Modal.Body> <i class='far'>&#xf004;</i></Modal.Body>
+                                <Modal.Body> <i class='far'>&#129409;</i></Modal.Body>
                             </span>
+
+
+
                         </Modal>
                     </div>
                 </Then>
@@ -295,22 +315,7 @@ function Homepage() {
                 </ul>
 
             </div>
-            {/* <YouTube
-                video="Billkin song [รวมเพลงบิวกิ้น] cover"
-                autoplay
-            /> */}
-
-            {/* <video width="320" height="240" controls>
-  <source src="movie.mp4" type="video/mp4">
-  <source src="movie.ogg" type="video/ogg">
-  Your browser does not support the video tag.
-</video> */}
-
-            {/* <Player className="vdo"
-      playsInline
-      poster="/assets/poster.png"
-      src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-    /> */}
+           
         </div>
 
 

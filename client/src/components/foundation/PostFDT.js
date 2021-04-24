@@ -12,23 +12,26 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import { PhotoCamera, AssignmentTurnedIn } from "@material-ui/icons"
 import ButterToast, { Cinnamon } from "butter-toast";
 import zIndex from '@material-ui/core/styles/zIndex';
+import { DeleteSweep } from "@material-ui/icons";
 
 const defaultImageSrc = '/image.png'
-
 
 const initialFieldValues = {
     title: '',
     message: '',
+    item: '',
     item1: '',
     item2: '',
     item3: '',
     n_item: '',
-    category: null,
+    category: '',
     promptpay: '',
     endtime: '',
     lat: '',
     lng: '',
     imageFile: null,
+    address: '',
+    phone: '',
 }
 
 const styles = theme => ({
@@ -36,15 +39,10 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
-    
-    
     },
     root: {
-        
         padding: theme.spacing(2),
         padding: "20px 20px 15px 20px",
-      
-       
     },
     margin: {
         margin: theme.spacing(1),
@@ -72,8 +70,8 @@ const styles = theme => ({
         color: '#a13800',
         backgroundColor: "rgb(248, 242, 236)",
         marginLeft: '25px',
-        
-    },   
+
+    },
     Btn: {
         "&:hover": {
             backgroundColor: "rgb(255, 230, 153)",
@@ -88,6 +86,11 @@ const styles = theme => ({
         padding: "0 40px 0 0",
         margin: "0 0 10px 0"
     },
+    latijud: {
+        padding: "0 40px 0 0",
+        margin: "0 0 10px 0"
+    },
+ 
     formControl: {
         padding: "0",
         width: "25%",
@@ -95,14 +98,26 @@ const styles = theme => ({
     titile: {
         width: "50%",
         margin: "0 0 10px 0"
-   
+
     },
     detail: {
+     
+        padding: "0 55px 0 0",
         margin: "0 0 10px 0"
     },
     promptpay: {
+        padding: "0 40px 0 0",
         margin: "0 0 10px 0"
-    }
+    },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: 200,
+    },
 
 });
 
@@ -122,13 +137,13 @@ const DialogActions = withStyles((theme) => ({
 
 const PostFDT = ({ classes, ...props }) => {
 
-    // console.log('*')
-    // console.log(props)
+    const [multi_image, setMulti_image] = useState([]);
+    const arr = []
 
-    const [{ alt, src }, setImg] = useState({
-        src: defaultImageSrc,
-        alt: 'Upload an Image'
-    });
+    // const [{ alt, src }, setImg] = useState({
+    //     src: defaultImageSrc,
+    //     alt: 'Upload an Image'
+    // });
 
     useEffect(() => {
         if (props.current != 0) {
@@ -149,6 +164,8 @@ const PostFDT = ({ classes, ...props }) => {
         temp.n_item = values.n_item ? "" : "กรุณาใส่ข้อมูล."
         temp.lat = values.lat ? "" : "กรุณาใส่ข้อมูล."
         temp.lng = values.lng ? "" : "กรุณาใส่ข้อมูล."
+        temp.address = values.address ? "" : "กรุณาใส่ข้อมูล."
+        temp.phone = values.phone ? "" : "กรุณาใส่ข้อมูล."
         // temp.category = values.category ? "" : "กรุณาใส่ข้อมูล."
         temp.promptpay = values.promptpay ? "" : "กรุณาใส่ข้อมูล."
         setErrors({
@@ -170,20 +187,55 @@ const PostFDT = ({ classes, ...props }) => {
         setCategory
     } = useForm(initialFieldValues, props.setCurrent)
 
-    const showPreview = e => {
-        if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
-            console.log(file);
-            setImg({
-                src: URL.createObjectURL(e.target.files[0]),
-                alt: e.target.files[0].name
-            });
-        }
-        else {
-            let pic = defaultImageSrc
-            setFile(pic)
+    const setPhotos = e => {
+        console.log(e.target.files[0])
+        setFile(e.target.files)
+
+        if (e.target.files) {
+            const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+            //console.log("filesArray: ", filesArray);
+            setMulti_image((prevImages) => prevImages.concat(filesArray));
+            Array.from(e.target.files).map(
+                (file) => URL.revokeObjectURL(file) // avoid memory leak
+            );
         }
     }
+
+    const renderPhotos = (source) => {
+        // console.log('source: ', source);
+        return source.map((photo) => {
+            return (
+                <>
+                    <img src={photo} alt="" key={photo} className={classes.imgpreview} />
+
+                    <Button variant="contained" color="secondary" onClick={() => onRemoveImg(photo)} component="span">
+                        <DeleteSweep />
+                    </Button>
+                </>
+            );
+        });
+    };
+
+    const onRemoveImg = (url) => {
+        setMulti_image(multi_image.filter(url_old => url_old !== url))
+    }
+
+    console.log(multi_image)
+
+    // const showPreview = e => {
+    //     if (e.target.files && e.target.files[0]) {
+    //         setFile(e.target.files[0]);
+    //         console.log(file);
+    //         setImg({
+    //             src: URL.createObjectURL(e.target.files[0]),
+    //             alt: e.target.files[0].name
+    //         });
+    //     }
+    //     else {
+    //         let pic = defaultImageSrc
+    //         setFile(pic)
+    //     }
+    // }
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -196,23 +248,25 @@ const PostFDT = ({ classes, ...props }) => {
                 />
             })
             resetFormFDT()
-            setImg({
-                src: defaultImageSrc,
-                alt: 'Upload an Image'
-            });
+            setMulti_image([])
         }
-        if (validate()) {
+        if (validate() && props.current == 0) {
             if (props.current == 0) {
                 console.log('***')
                 const formData = new FormData();
-                
-                formData.append('image', file); // appending file
+
+                for (let i = 0; i < file.length; i++) {
+                    formData.append('image', file[i]);
+                }
+
                 formData.append('title', values.title);
                 formData.append('message', values.message);
                 formData.append('item1', values.item1);
                 formData.append('item2', values.item2);
                 formData.append('item3', values.item3);
                 formData.append('n_item', values.n_item);
+                formData.append('address', values.address);
+                formData.append('phone', values.phone);
                 formData.append('category', category);
                 formData.append('promptpay', values.promptpay);
                 formData.append('endtime', values.endtime);
@@ -221,9 +275,8 @@ const PostFDT = ({ classes, ...props }) => {
 
                 props.createPostFDT(formData, onSuccess) //ส่งค่าไปserver
             }
-            else
-                    props.updatePostFDT(props.current, values, onSuccess)
-        }
+        } else if (props.current != 0)
+            props.updatePostFDT(props.current, values, onSuccess)
 
     }
 
@@ -295,8 +348,47 @@ const PostFDT = ({ classes, ...props }) => {
                         {...(errors.n_item && { error: true, helperText: errors.n_item })}
                     />
                     <TextField
+                        id="standard-number"
+                        name="lat"
+                        label="ละติจูด"
+                        type="number"
+                        className={classes.latijud}
+                        value={values.lat}
+                        onChange={handleInputChange}
+                        {...(errors.lat && { error: true, helperText: errors.lat })}
+                    />
+                    <TextField
+                        id="standard-number"
+                        name="lng"
+                        label="ลองจิจูด"
+                        type="number"
+                        value={values.lng}
+                        onChange={handleInputChange}
+                        {...(errors.lng && { error: true, helperText: errors.lng })}
+                    /><br />
+                    <TextField
+                        id="standard-basic"
+                        name="address"
+                        className={classes.detail}
+                        label="ที่อยู่"
+                        multiline
+                        value={values.address}
+                        onChange={handleInputChange}
+                        {...(errors.address && { error: true, helperText: errors.address })}
+                    />
+                    <TextField
+                        id="standard-number"
+                        name="phone"
+                        type='number'
+                        label="เบอร์โทรศัพท์"
+                        value={values.phone}
+                        onChange={handleInputChange}
+                        {...(errors.phone && { error: true, helperText: errors.phone })}
+                    /><br />
+                    <TextField
                         id="standard-basic"
                         name="promptpay"
+                        type="number"
                         className={classes.promptpay}
                         label="พร้อมเพย์"
                         value={values.promptpay}
@@ -315,32 +407,30 @@ const PostFDT = ({ classes, ...props }) => {
                             <MenuItem value={"สิ่งแวดล้อม"}>สิ่งแวดล้อม</MenuItem>
                             <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
                         </Select>
-                    </FormControl><br />
-                    <TextField
-                        id="standard-number"
-                        name="lat"
-                        label="ละติจูด"
-                        value={values.lat}
-                        onChange={handleInputChange}
-                        {...(errors.lat && { error: true, helperText: errors.lat })}
-                    />
-                    <TextField
-                        id="standard-number"
-                        name="lng"
-                        label="ลองจิจูด"
-                        value={values.lng}
-                        onChange={handleInputChange}
-                        {...(errors.lng && { error: true, helperText: errors.lng })}
-                    /><br />
-                    <div>
-                        <img src={src} alt={alt} className={classes.imgpreview} />
-                    </div>
+                    </FormControl>
+
+                    <form className={classes.container} noValidate>
+                        <TextField
+                            id="date"
+                            label="สิ้นสุดโครงการ"
+                            type="date"
+                            defaultValue=""
+                            className={classes.textField}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </form><br />
+
+                    <div className=''>{renderPhotos(multi_image)}</div>
+
                     <input
                         accept="image/*"
                         className={classes.input}
                         id="icon-button-file"
                         type="file"
-                        onChange={showPreview}
+                        multiple
+                        onChange={setPhotos}
                     />
                     <label htmlFor="icon-button-file">
                         <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1} >
@@ -352,18 +442,20 @@ const PostFDT = ({ classes, ...props }) => {
 
 
                 <DialogActions>
-                    <Button onClick={handleSubmit} 
-                    className={classes.Btn}
-                    color="primary" >
+                    <Button onClick={handleSubmit}
+                        className={classes.Btn}
+                        color="primary" >
                         Post
                 </Button>
                 </DialogActions>
             </form>
         );
     } else {
+        arr.push(values.item)
+        console.log(values.item)
+        console.log(arr)
         return (
             <form noValidate autoComplete="off" className={`${classes.root} ${classes.form}`}>
-
                 <Typography gutterBottom>
                     <TextField
                         id="standard-basic"
@@ -389,8 +481,8 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-basic"
                         name="item"
+                        label="สิ่งของที่รับบริจาค"
                         className={classes.want}
-                        label="ต้องการรับบริจาค"
                         value={values.item}
                         onChange={handleInputChange}
                         {...(errors.item && { error: true, helperText: errors.item })}
@@ -400,24 +492,17 @@ const PostFDT = ({ classes, ...props }) => {
                         name="n_item"
                         label="Number"
                         type="number"
-                        label="จำนวน"
+                        label="จำนวนเงิน"
                         value={values.n_item}
                         onChange={handleInputChange}
                         {...(errors.n_item && { error: true, helperText: errors.n_item })}
                     />
                     <TextField
-                        id="standard-basic"
-                        name="promptpay"
-                        className={classes.promptpay}
-                        label="พร้อมเพย์"
-                        value={values.promptpay}
-                        onChange={handleInputChange}
-                        {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
-                    /><br />
-                     <TextField
                         id="standard-number"
                         name="lat"
                         label="ละติจูด"
+                        type="number"
+                        className={classes.latijud}
                         value={values.lat}
                         onChange={handleInputChange}
                         {...(errors.lat && { error: true, helperText: errors.lat })}
@@ -425,10 +510,40 @@ const PostFDT = ({ classes, ...props }) => {
                     <TextField
                         id="standard-number"
                         name="lng"
+                        type="number"
                         label="ลองจิจูด"
                         value={values.lng}
                         onChange={handleInputChange}
                         {...(errors.lng && { error: true, helperText: errors.lng })}
+                    /><br />
+                    <TextField
+                        id="standard-basic"
+                        name="address"
+                        className={classes.detail}
+                        label="ที่อยู่"
+                        multiline
+                        value={values.address}
+                        onChange={handleInputChange}
+                        {...(errors.address && { error: true, helperText: errors.address })}
+                    />
+                    <TextField
+                        id="standard-number"
+                        name="phone"
+                        type='number'
+                        label="เบอร์โทรศัพท์"
+                        value={values.phone}
+                        onChange={handleInputChange}
+                        {...(errors.phone && { error: true, helperText: errors.phone })}
+                    /><br />
+                    <TextField
+                        id="standard-basic"
+                        name="promptpay"
+                        type="number"
+                        className={classes.promptpay}
+                        label="พร้อมเพย์"
+                        value={values.promptpay}
+                        onChange={handleInputChange}
+                        {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
                     /><br />
                     {/* <input
                         accept="image/*"
@@ -449,10 +564,10 @@ const PostFDT = ({ classes, ...props }) => {
 
 
                 <DialogActions>
-                    <Button onClick={handleSubmit} 
-                    className={classes.Btn}
-                    color="primary" >
-                        Post
+                    <Button onClick={handleSubmit}
+                        className={classes.Btn}
+                        color="primary" >
+                        save
                 </Button>
                 </DialogActions>
             </form>

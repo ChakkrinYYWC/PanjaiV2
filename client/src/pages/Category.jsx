@@ -60,12 +60,12 @@ const DialogTitle = withStyles(styles)((props) => {
 
     const mystyle = {
       color: "white",
-      backgroundColor: "rgb(87, 54, 4)",
+      backgroundColor: "rgb(172, 115, 57)",
       padding: "10px",
       fontFamily: "Arial",
       padding: "22px",
       float: "right", 
-      margin: "360px 140px 0px 0px"
+      margin: "410px 140px 0px 0px"
     };
 
 function Catego({ classes, ...props }) {

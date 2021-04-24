@@ -236,7 +236,6 @@ const PostPanjai = ({ classes, ...props }) => {
                                                     <Grid item xs={8}>
                                                         <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
                                                             {record.title}
-
                                                         </Typography>
                                                     </Grid>
 
@@ -272,20 +271,18 @@ const PostPanjai = ({ classes, ...props }) => {
 
                                                     </Grid>}
 
-
                                                 </Grid>
 
                                                 <div className={classes.frontpost}>
                                                     ข้อมูล : {record.message}
                                                 </div>
+
                                                 <Grid container justify="center">
-                                                    <div className={classes.frampicture} >
-                                                        <img src={'http://localhost:3001/image/' + record.image} className={classes.picture} />
-                                                    </div>
+                                                    {record.image.map((image) => (
+                                                        <img src={'http://localhost:3001/image/' + image} className={classes.picture} />
+                                                    ))}
                                                 </Grid>
-                                                <div className={`${classes.color1} ${classes.frontpost}`}>
-                                                    เวลาที่ลง : {moment(record.Timestamp).calendar()}
-                                                </div>
+
                                                 <div className={`${classes.color1} ${classes.frontpost}`}>
                                                     โทร : {record.contect}
                                                 </div>
@@ -295,7 +292,9 @@ const PostPanjai = ({ classes, ...props }) => {
                                                 <div className={`${classes.color1} ${classes.frontpost}`}>
                                                     ผู้สร้าง : {record.creator}
                                                 </div>
-
+                                                <div className={`${classes.color1} ${classes.frontpost}`}>
+                                                    {moment(record.Timestamp).calendar()}
+                                                </div>
                                                 <Grid container justify="center">
                                                     <div className={classes.botton1}>
                                                         <If condition={currentUser == record.creator}>
