@@ -213,7 +213,7 @@
   }
   .box-text p {
     font-style: 18px;
-    font-weight: 300;
+    font-weight: 100;
     line-height: 30px;
     letter-spacing: 0.25px;
     margin-bottom: 15px;
@@ -225,7 +225,7 @@
     padding: 20px 20px 10px 20px;
   }
   .button {
-    background-color: rgba(108, 96, 209, 0.925);
+    background-color: rgba(151, 133, 74, 0.925);
     color: white;
     width: 100px;
     font-family: "Mali", cursive;
