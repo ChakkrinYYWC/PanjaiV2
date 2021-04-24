@@ -107,7 +107,7 @@ function Profile({ classes, ...props }) {
             }).catch(error => console.log(error))
         }
     }
-    onetime()
+    
 
 
     const CancelUpdate = () => {
@@ -130,24 +130,25 @@ function Profile({ classes, ...props }) {
 
     useEffect(() => {
 
-        const getprofile = () => {
+        // const getprofile = () => {
 
-            //fetch from server
+        //     //fetch from server
 
-            //ข้อมูล Demo
-            // setprofile(
-            //     {
+        //     //ข้อมูล Demo
+        //     // setprofile(
+        //     //     {
 
-            //         name: "june",
-            //         phone: "28178799812",
-            //         address: "พระราชวัง ประเทศอังกฤษ",
-            //         email: "june@gamil.com"
+        //     //         name: "june",
+        //     //         phone: "28178799812",
+        //     //         address: "พระราชวัง ประเทศอังกฤษ",
+        //     //         email: "june@gamil.com"
 
-            //     }
-            // )
-        }
+        //     //     }
+        //     // )
+        // }
 
-        getprofile();
+        // getprofile();
+        onetime();
 
     }, [])
 
@@ -249,7 +250,7 @@ function Profile({ classes, ...props }) {
                                              <Link to="/myfav" className="button1" >โพสที่ถูกใจ</Link>
                                         </div> */}
                                         <div className='Like'>
-                                        <button className="button1" onClick={()=>{route.push('/myfav')}}  >
+                                        <button className="button1" type="button" onClick={()=>{route.push('/myfav')}}  >
                                         โพสที่ถูกใจ
                                         </button>
                                         </div>
@@ -264,9 +265,10 @@ function Profile({ classes, ...props }) {
                 </div>
                 <div>
                     <Grid container style={{padding:'0 auto'}} spacing={4} >
-                    
+                    {/* {console.log(myPost)} */}
                     {
                         myPost.map((record, index) => {
+                            
                             return (
                                 
                                 <Grid item xs={12} sm={4} >
@@ -289,7 +291,8 @@ function Profile({ classes, ...props }) {
                                                     </div>
                                                     <Grid container justify="center">
                                                         <div className={classes.frampicture} >
-                                                            <img src={'http://localhost:3001/image/' + record.image} className={classes.picture} />
+                                                            {console.log(record)}
+                                                            <img  src={'http://localhost:3001/image/' + record.image} alt={record.message} className={classes.picture} />
                                                         </div>
                                                     </Grid>
                                                     <div className={`${classes.color1} ${classes.frontpost}`}>
