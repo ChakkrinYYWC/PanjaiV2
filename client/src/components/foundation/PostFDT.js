@@ -64,12 +64,15 @@ const styles = theme => ({
 
     },
     buttonicondel: {
+        "&:hover": {
+            color: "rgb(255, 255, 255)",
+        },
         width: "10%",
         hight: "5%",
         padding: "0",
         fontSize: '5px',
         
-        right: "90px"
+        right: "87px"
     },
     color1: {
         "&:hover": {
