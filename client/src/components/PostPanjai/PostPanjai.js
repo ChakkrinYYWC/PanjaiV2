@@ -16,6 +16,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import Icon from '@material-ui/core/Icon';
 import Axios from 'axios';
+import Slideshow from './Slideshow';
 
 const currentUser = localStorage.getItem('currentUser')
 const currentUser_id = localStorage.getItem('currentUser_id')
@@ -25,7 +26,7 @@ const styles = theme => ({
     paper: {
         margin: theme.spacing(3),
         padding: theme.spacing(2),
-        
+
     },
     smMargin: {
         "&:hover": {
@@ -54,7 +55,7 @@ const styles = theme => ({
         marginBlock: '15px'
 
     },
-// กรอบโพส
+    // กรอบโพส
     framepost: {
         // background: '#f9a825',
         borderRadius: 5,
@@ -84,13 +85,13 @@ const styles = theme => ({
         color: '#a13800'
     },
     judjudjud: {
-        display:'flex',
+        display: 'flex',
         justifyContent: 'flex-end'
     },
     bg1: {
         backgroundColor: 'rgba(187, 130, 44, 0.925)',
     }
-    
+
 
 })
 
@@ -183,7 +184,7 @@ const PostPanjai = ({ classes, ...props }) => {
 
     const reportItem = id => {
         if (window.confirm('รายงานโพสนี้ใช่หรือไม่?')) {
-            const data = {id, currentUser, currentUser_id }
+            const data = { id, currentUser, currentUser_id }
             Axios.post('/report/' + id, data, {
             }).then(res => {
                 console.log(res)
@@ -199,10 +200,16 @@ const PostPanjai = ({ classes, ...props }) => {
     // console.log( props.postPanjaiList[2])
     // console.log( props.postPanjaiList[1])
     props.postPanjaiList.sort((a, b) => (a._id > b._id) ? -1 : 1) //sortdata
-    //console.log(props.postPanjaiList)
+    //console.log(pro   ps.postPanjaiList)
+    const urlArray = [
+        "https://dj.lnwfile.com/k5jt1b.jpg",
+        "https://gc.lnwfile.com/hlwt5d.jpg",
+        "https://pbs.twimg.com/media/DbZSHVNVQAceHgM.jpg"
+    ]
 
     return (
         <>
+            <Slideshow data={urlArray} />
             <Grid container justify="center" >
                 <Grid item lg={4}>
                     {/* กรอบโพส */}
@@ -232,39 +239,39 @@ const PostPanjai = ({ classes, ...props }) => {
 
                                                         </Typography>
                                                     </Grid>
-                                                   
-                                                    {currentUser !== record.creator && <Grid item sm={4} className={classes.judjudjud}>
-                                                                <IconButton
-                                                                    aria-label="more"
-                                                                    aria-controls="long-menu"
-                                                                    aria-haspopup="true"
-                                                                    onClick={handleClick}
-                                                                    
-                                                                >
-                                                                    <MoreVertIcon />
-                                                                </IconButton>
-                                                                <Menu
-                                                                    id="long-menu"
-                                                                    anchorEl={anchorEl}
-                                                                    keepMounted
-                                                                    open={open}
-                                                                    onClose={handleClose}
-                                                                    PaperProps={{
-                                                                        style: {
-                                                                            maxHeight: ITEM_HEIGHT * 4.5,
-                                                                            width: '20ch',
-                                                                        },
-                                                                    }}
-                                                                >
-                                                                    {options.map((option) => (
-                                                                        <MenuItem key={option} onClick={() => handleChange(record._id, option)}>
-                                                                            {option}
-                                                                        </MenuItem>
-                                                                    ))}
-                                                                </Menu>
 
-                                                            </Grid>}
-                                   
+                                                    {currentUser !== record.creator && <Grid item sm={4} className={classes.judjudjud}>
+                                                        <IconButton
+                                                            aria-label="more"
+                                                            aria-controls="long-menu"
+                                                            aria-haspopup="true"
+                                                            onClick={handleClick}
+
+                                                        >
+                                                            <MoreVertIcon />
+                                                        </IconButton>
+                                                        <Menu
+                                                            id="long-menu"
+                                                            anchorEl={anchorEl}
+                                                            keepMounted
+                                                            open={open}
+                                                            onClose={handleClose}
+                                                            PaperProps={{
+                                                                style: {
+                                                                    maxHeight: ITEM_HEIGHT * 4.5,
+                                                                    width: '20ch',
+                                                                },
+                                                            }}
+                                                        >
+                                                            {options.map((option) => (
+                                                                <MenuItem key={option} onClick={() => handleChange(record._id, option)}>
+                                                                    {option}
+                                                                </MenuItem>
+                                                            ))}
+                                                        </Menu>
+
+                                                    </Grid>}
+
 
                                                 </Grid>
 
@@ -331,7 +338,6 @@ const PostPanjai = ({ classes, ...props }) => {
 
                                                     </div>
                                                 </Grid>
-
 
                                                 {/* รูปแบบช่อง */}
                                             </ListItemText>
