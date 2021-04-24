@@ -25,7 +25,7 @@ const styles = theme => ({
     paper: {
         margin: theme.spacing(3),
         padding: theme.spacing(2),
-        
+
     },
     smMargin: {
         "&:hover": {
@@ -54,7 +54,7 @@ const styles = theme => ({
         marginBlock: '15px'
 
     },
-// กรอบโพส
+    // กรอบโพส
     framepost: {
         // background: '#f9a825',
         borderRadius: 5,
@@ -84,13 +84,13 @@ const styles = theme => ({
         color: '#a13800'
     },
     judjudjud: {
-        display:'flex',
+        display: 'flex',
         justifyContent: 'flex-end'
     },
     bg1: {
         backgroundColor: 'rgba(187, 130, 44, 0.925)',
     }
-    
+
 
 })
 
@@ -183,7 +183,7 @@ const PostPanjai = ({ classes, ...props }) => {
 
     const reportItem = id => {
         if (window.confirm('รายงานโพสนี้ใช่หรือไม่?')) {
-            const data = {id, currentUser, currentUser_id }
+            const data = { id, currentUser, currentUser_id }
             Axios.post('/report/' + id, data, {
             }).then(res => {
                 console.log(res)
@@ -229,56 +229,53 @@ const PostPanjai = ({ classes, ...props }) => {
                                                     <Grid item xs={8}>
                                                         <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
                                                             {record.title}
-
                                                         </Typography>
                                                     </Grid>
-                                                   
-                                                    {currentUser !== record.creator && <Grid item sm={4} className={classes.judjudjud}>
-                                                                <IconButton
-                                                                    aria-label="more"
-                                                                    aria-controls="long-menu"
-                                                                    aria-haspopup="true"
-                                                                    onClick={handleClick}
-                                                                    
-                                                                >
-                                                                    <MoreVertIcon />
-                                                                </IconButton>
-                                                                <Menu
-                                                                    id="long-menu"
-                                                                    anchorEl={anchorEl}
-                                                                    keepMounted
-                                                                    open={open}
-                                                                    onClose={handleClose}
-                                                                    PaperProps={{
-                                                                        style: {
-                                                                            maxHeight: ITEM_HEIGHT * 4.5,
-                                                                            width: '20ch',
-                                                                        },
-                                                                    }}
-                                                                >
-                                                                    {options.map((option) => (
-                                                                        <MenuItem key={option} onClick={() => handleChange(record._id, option)}>
-                                                                            {option}
-                                                                        </MenuItem>
-                                                                    ))}
-                                                                </Menu>
 
-                                                            </Grid>}
-                                   
+                                                    {currentUser !== record.creator && <Grid item sm={4} className={classes.judjudjud}>
+                                                        <IconButton
+                                                            aria-label="more"
+                                                            aria-controls="long-menu"
+                                                            aria-haspopup="true"
+                                                            onClick={handleClick}
+
+                                                        >
+                                                            <MoreVertIcon />
+                                                        </IconButton>
+                                                        <Menu
+                                                            id="long-menu"
+                                                            anchorEl={anchorEl}
+                                                            keepMounted
+                                                            open={open}
+                                                            onClose={handleClose}
+                                                            PaperProps={{
+                                                                style: {
+                                                                    maxHeight: ITEM_HEIGHT * 4.5,
+                                                                    width: '20ch',
+                                                                },
+                                                            }}
+                                                        >
+                                                            {options.map((option) => (
+                                                                <MenuItem key={option} onClick={() => handleChange(record._id, option)}>
+                                                                    {option}
+                                                                </MenuItem>
+                                                            ))}
+                                                        </Menu>
+
+                                                    </Grid>}
 
                                                 </Grid>
 
                                                 <div className={classes.frontpost}>
                                                     ข้อมูล : {record.message}
                                                 </div>
+
                                                 <Grid container justify="center">
-                                                    <div className={classes.frampicture} >
-                                                        <img src={'http://localhost:3001/image/' + record.image} className={classes.picture} />
-                                                    </div>
+                                                    {record.image.map((image) => (
+                                                        <img src={'http://localhost:3001/image/' + image} className={classes.picture} />
+                                                    ))}
                                                 </Grid>
-                                                <div className={`${classes.color1} ${classes.frontpost}`}>
-                                                    เวลาที่ลง : {moment(record.Timestamp).calendar()}
-                                                </div>
+
                                                 <div className={`${classes.color1} ${classes.frontpost}`}>
                                                     โทร : {record.contect}
                                                 </div>
@@ -288,7 +285,9 @@ const PostPanjai = ({ classes, ...props }) => {
                                                 <div className={`${classes.color1} ${classes.frontpost}`}>
                                                     ผู้สร้าง : {record.creator}
                                                 </div>
-
+                                                <div className={`${classes.color1} ${classes.frontpost}`}>
+                                                    {moment(record.Timestamp).calendar()}
+                                                </div>
                                                 <Grid container justify="center">
                                                     <div className={classes.botton1}>
                                                         <If condition={currentUser == record.creator}>

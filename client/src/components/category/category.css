@@ -13,6 +13,14 @@
   
 }
 
+.btcate{
+padding: 20px 0 0px 0px;
+
+
+}
+
+
+
 
 .dek p {
   margin: 0px;
@@ -29,7 +37,7 @@
 }
 
 .Title{
-    padding-top: 80px;
+    padding-top: 50px;
     font-size: 25px;
     font-weight: bolder;
     color:rgba(77, 50, 9, 0.925);
@@ -51,8 +59,8 @@
 
   
 .foundat{
-    width: 350px;
-    height: 385px;
+    width: 360px;
+    height: 83%;
     text-align: center;
     border-radius:40px;
     box-shadow: 1px 1px 1px 0px rgba(2, 1, 1, 0.555);
@@ -60,7 +68,7 @@
   }
 
   .foundat Img{
-    height: 180px;
+    height: 185px;
     width:100%;
     border-radius:30px 30px 0  0;
   }

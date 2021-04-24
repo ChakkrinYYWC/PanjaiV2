@@ -1,10 +1,14 @@
 import React, { Component, useEffect, useState } from 'react';
 import './category.css'
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as action from '../../action/postFDT'
 import moment from 'moment';
 import Axios from 'axios';
+import Button from '@material-ui/core/Button';
+
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
     BrowserRouter as Router,
@@ -20,7 +24,8 @@ import { urlencoded } from 'body-parser';
 
 
 
-function Category({ classes, ...props }) {
+function Category({ ...props }) {
+
 
     const [loading, setLoading] = useState(true);
     const [bg, setBg] = useState();
@@ -40,7 +45,7 @@ function Category({ classes, ...props }) {
 
     useEffect(async () => {
         await props.fetchAllPostFDT()
-        console.log(props.postFDTList);
+        //console.log(props.postFDTList);
 
         // function getImg(ArrayimgHeader) {
 
@@ -59,7 +64,7 @@ function Category({ classes, ...props }) {
         await setLoading(false);
 
     }, [])
-    console.log(props)
+    //console.log(props)
 
     const data = { data: props.currentId.match.params.name }
     Axios.post('/Foundation/background', data, {
@@ -69,6 +74,8 @@ function Category({ classes, ...props }) {
     }).catch(error => {
         console.log(error)
     })
+
+
 
     return (
         <>
@@ -80,6 +87,18 @@ function Category({ classes, ...props }) {
                         <div className="dek" style={{ backgroundImage: `url(${bg})` }}>
                             <div className="box-white">
 
+                                <div className="btcate">
+
+                                    <ButtonGroup variant="text" aria-label="text primary button group">
+                                        <Button href="/Foundation/เด็กและเยาวชน">เด็กและเยาวชน</Button>
+                                        <Button href="/Foundation/ผู้สูงอายุ">ผู้สูงอายุ</Button>
+                                        <Button href="/Foundation/สัตว์">สัตว์</Button>
+                                        <Button href="/Foundation/ผู้พิการและผู้ป่วย">ผู้พิการและผู้ป่วย</Button>
+                                        <Button href="/Foundation/สิ่งแวดล้อม">สิ่งแวดล้อม</Button>
+                                        <Button href="/Foundation/อื่นๆ">อื่นๆ</Button>
+                                    </ButtonGroup>
+                                </div>
+
                                 <div className="Title"><i className="fab fa-gratipay"></i>{props.currentId.match.params.name}<i className="fab fa-gratipay"></i></div>
                                 <div className="foundation">
                                     <div className="row m-0">
@@ -88,11 +107,17 @@ function Category({ classes, ...props }) {
                                                 return (
                                                     <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
                                                         <Card className="foundat">
-                                                            <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
+
+                                                            {/* <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */} 
+                                                            {record.image.map((image) => (
+                                                                <Card.Img variant="top" img src={'http://localhost:3001/Foundation/' + image}/> //multi image
+                                                            ))}
                                                             <Card.Body>
                                                                 <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="Tfound">{record.title}</Link>
                                                                 <div className="information">ต้องการรับบริจาค :{record.item}</div>
-                                                                <div className="information">จำนวน :{record.n_item}</div>
+                                                                <div className="information">จำนวน : {record.n_item} บาท</div>
+                                                                <div className="information">ที่อยู่ : {record.address}</div>
+                                                                <div className="information">เบอร์โทรศัพท์ : {record.phone} </div>
                                                                 <div className="information-1">วันที่ลง :{moment(record.Timestamp).calendar()}</div>
                                                                 <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="CardTitle">อ่านเพิ่มเติม</Link>
 
@@ -104,6 +129,7 @@ function Category({ classes, ...props }) {
                                         }
                                     </div>
                                 </div>
+                               
                             </div>
                             {/* <div>21866666673</div> */}
                             {/* <footer id="sticky-footer" >

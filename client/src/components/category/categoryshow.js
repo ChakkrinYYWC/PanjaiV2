@@ -26,8 +26,9 @@ import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router'
 import GoogleMapReact from 'google-map-react';
 import Axios from 'axios';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, } from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 
+const { compose, withProps, withStateHandlers } = require("recompose");
 
 const styles = theme => ({
     root: {
@@ -125,16 +126,31 @@ function Categoryshow({ classes, ...props }) {
         }
     }
 
-    const MapWithAMarker = withScriptjs(withGoogleMap(props =>
+    const MapWithAMarker = compose(
+        withStateHandlers(() => ({
+            isOpen: true,
+        }), {
+            onToggleOpen: ({ isOpen }) => () => ({
+                isOpen: !isOpen,
+            })
+        }),
+        withScriptjs,
+        withGoogleMap
+    )(props =>
         <GoogleMap
             defaultZoom={15}
             defaultCenter={{ lat: lat, lng: lng }}
         >
             <Marker
                 position={{ lat: lat, lng: lng }}
-            />
+                onClick={props.onToggleOpen}
+            >
+                {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
+                    <h1>{lat}, {lng}</h1>
+                </InfoWindow>}
+            </Marker>
         </GoogleMap>
-    ));
+    );
 
     console.log(props)
 
@@ -176,7 +192,10 @@ function Categoryshow({ classes, ...props }) {
                                             <div className="Tt">{record.title}</div>
                                             <center>
                                                 <div className="image01">
-                                                    <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
+                                                    {record.image.map((image) => (
+                                                        <img variant="top" src={'http://localhost:3001/Foundation/' + image} /> //multi image
+                                                    ))}
+                                                    {/* <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */}
                                                 </div>
                                             </center>
                                             <div className="map">
@@ -200,11 +219,12 @@ function Categoryshow({ classes, ...props }) {
 
                                                     <DialogContent>
                                                         <DialogContentText>
-                                                            <MapWithAMarker 
+                                                            <MapWithAMarker
                                                                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places"
                                                                 loadingElement={<div style={{ height: `100%` }} />}
                                                                 containerElement={<div style={{ height: `400px` }} />}
                                                                 mapElement={<div style={{ height: `100%` }} />}
+
                                                             />
                                                         </DialogContentText>
                                                     </DialogContent>
@@ -222,7 +242,7 @@ function Categoryshow({ classes, ...props }) {
                                                 <div className="infor">สิ่งของที่ต้องการ : {record.item}</div>
                                                 <div className="infor">จำนวน : {record.n_item} บาท</div>
                                                 <div className="infor">ที่อยู่ : {record.address}</div>
-                                                <div className="infor">เบอร์โทรศัพท์ : {record.phone} บาท</div>
+                                                <div className="infor">เบอร์โทรศัพท์ : {record.phone} </div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
 
                                             </div>
@@ -270,19 +290,20 @@ function Categoryshow({ classes, ...props }) {
                                                     </Button>
                                                 </center>
                                             </div>
-                                            <Dialog
+                                            <Dialog className="ap"
                                                 fullScreen={fullScreen}
                                                 onClose={handleCloseMap}
                                                 aria-labelledby="customized-dialog-title"
                                                 open={open3}
                                             >
+                                            <div className="pagemap">
                                                 <DialogTitle id="customized-dialog-title" onClose={handleCloseMap}>
                                                     แผนที่{record.title}
                                                 </DialogTitle>
 
                                                 <DialogContent>
                                                     <DialogContentText>
-                                                    <MapWithAMarker
+                                                        <MapWithAMarker
                                                             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places"
                                                             loadingElement={<div style={{ height: `100%` }} />}
                                                             containerElement={<div style={{ height: `400px` }} />}
@@ -296,16 +317,16 @@ function Categoryshow({ classes, ...props }) {
                                                         ยกเลิก
                                                     </Button>
                                                 </DialogActions>
+                                                </div>
                                             </Dialog>
 
                                             <div className="info">{record.message}</div>
                                             <div className="bx">
                                                 <div className="logo" ><i className="fab fa-gratipay"></i></div>
                                                 <div className="infor">สิ่งของที่ต้องการ : {record.item}</div>
-
                                                 <div className="infor">จำนวน : {record.n_item} บาท</div>
                                                 <div className="infor">ที่อยู่ : {record.address}</div>
-                                                <div className="infor">เบอร์โทรศัพท์ : {record.phone} บาท</div>
+                                                <div className="infor">เบอร์โทรศัพท์ : {record.phone} </div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
 
                                             </div>

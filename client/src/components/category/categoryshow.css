@@ -93,13 +93,13 @@
 
 
 .box-box .botton {
-    background-color:rgba(104, 64, 5, 0.925);
+ 
     color: white;
     /* margin: 0px 620px 30px 570px; */
     font-family: 'Mali', cursive;
     float: right; 
     margin: 10px 7px 0px 0px  ;
-    background-color: rgb(87, 54, 4);
+    background-color:  rgba(161, 128, 79, 0.925) ;
 }
 
 
