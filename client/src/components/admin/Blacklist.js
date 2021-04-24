@@ -33,14 +33,7 @@ function Blacklist() {
     console.log(localStorage.getItem('blackListPopup'))
     window.location.reload()
   };
-
-
-  // useEffect(async () => {
-  //   // const Firstpopup = localStorage.getItem('Firstpopup');
-  //   await setShow(localStorage.getItem('backListPopup'));
-  // }, []);
-
-  console.log("isShow ="+ isShow)
+  
   // ====================================== Blacklist =========================================
   return (
     <div>

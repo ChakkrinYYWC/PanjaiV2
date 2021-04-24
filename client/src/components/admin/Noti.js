@@ -18,31 +18,28 @@ import {
 
 function Noti() {
 
-    const [display, setDisplay] = useState(false)
+  var blackListPopup = localStorage.getItem('blackListPopup')
+  console.log(blackListPopup)
+  if(blackListPopup == "false"){
+    var isShow = false
+  }
+  if(blackListPopup == "true"){
+    var isShow = true
+  }
+  // const [show, setShow] = useState("");
+  // console.log(show)
 
-    const Handledisplay = () => {
-        setDisplay(!display);
-    }
-    const [show, setShow] = useState(false);
-
-
-    const handleClose = () => {
-        localStorage.setItem('Firstpopup', false);
-        setShow(false);
-    };
-
-
-    useEffect(async () => {
-        // const Firstpopup = localStorage.getItem('Firstpopup');
-        await setShow(localStorage.getItem('Firstpopup'));
-        await localStorage.setItem('Firstpopup', false);
-    }, []);
+  const handleClose = async () => {
+    await localStorage.setItem('blackListPopup', false);
+    console.log(localStorage.getItem('blackListPopup'))
+    window.location.reload()
+  };
 
 // ==================================== FDT Report ====================================================
 return (
     <div>
       <div className="bigpopup">
-        <Modal className="popup" show={show}>
+        <Modal className="popup" show={isShow}>
           <div className="bp">
             <Modal.Header
               className="popuptitle"
