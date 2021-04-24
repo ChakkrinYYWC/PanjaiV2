@@ -16,6 +16,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import Icon from '@material-ui/core/Icon';
 import Axios from 'axios';
+import Slideshow from './Slideshow';
 
 const currentUser = localStorage.getItem('currentUser')
 const currentUser_id = localStorage.getItem('currentUser_id')
@@ -60,7 +61,7 @@ const styles = theme => ({
         borderRadius: 5,
         boxShadow: '1px   1px 1px 1px rgba(187, 130, 44, 0.925)',
         color: 'rgba(187, 130, 44, 0.925)',
-        height: 'auto',
+        height: '100%',
         padding: '10px 10px',
         marginBlock: '15px',
         borderRadius: '20px',
@@ -199,10 +200,16 @@ const PostPanjai = ({ classes, ...props }) => {
     // console.log( props.postPanjaiList[2])
     // console.log( props.postPanjaiList[1])
     props.postPanjaiList.sort((a, b) => (a._id > b._id) ? -1 : 1) //sortdata
-    //console.log(props.postPanjaiList)
+    //console.log(pro   ps.postPanjaiList)
+    const urlArray = [
+        "https://dj.lnwfile.com/k5jt1b.jpg",
+        "https://gc.lnwfile.com/hlwt5d.jpg",
+        "https://pbs.twimg.com/media/DbZSHVNVQAceHgM.jpg"
+    ]
 
     return (
         <>
+            <Slideshow data={urlArray} />
             <Grid container justify="center" >
                 <Grid item lg={4}>
                     {/* กรอบโพส */}
@@ -330,7 +337,6 @@ const PostPanjai = ({ classes, ...props }) => {
 
                                                     </div>
                                                 </Grid>
-
 
                                                 {/* รูปแบบช่อง */}
                                             </ListItemText>
