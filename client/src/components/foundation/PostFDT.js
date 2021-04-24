@@ -12,8 +12,8 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import { PhotoCamera, AssignmentTurnedIn } from "@material-ui/icons"
 import ButterToast, { Cinnamon } from "butter-toast";
 import zIndex from '@material-ui/core/styles/zIndex';
-import { DeleteSweep } from "@material-ui/icons";
 
+import DeleteIcon from '@material-ui/icons/Delete';
 const defaultImageSrc = '/image.png'
 
 const initialFieldValues = {
@@ -58,9 +58,18 @@ const styles = theme => ({
         minWidth: 120,
     },
     imgpreview: {
-        marginTop: "20px",
-        width: "18%",
+        marginBottom: "20px",
+        width: "20%",
+     
 
+    },
+    buttonicondel: {
+        width: "10%",
+        hight: "5%",
+        padding: "0",
+        fontSize: '5px',
+        
+        right: "90px"
     },
     color1: {
         "&:hover": {
@@ -118,7 +127,7 @@ const styles = theme => ({
         marginRight: theme.spacing(1),
         width: 200,
     },
-
+   
 });
 
 const DialogContent = withStyles((theme) => ({
@@ -206,10 +215,11 @@ const PostFDT = ({ classes, ...props }) => {
         return source.map((photo) => {
             return (
                 <>
+               
                     <img src={photo} alt="" key={photo} className={classes.imgpreview} />
-
-                    <Button variant="contained" color="secondary" onClick={() => onRemoveImg(photo)} component="span">
-                        <DeleteSweep />
+ 
+                    <Button className={classes.buttonicondel} variant="contained"  color="secondary" onClick={() => onRemoveImg(photo)} component="span">
+                       Delete
                     </Button>
                 </>
             );
