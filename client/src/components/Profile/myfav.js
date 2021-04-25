@@ -97,13 +97,13 @@ function Myfav({ classes }) {
     return false;
   }
 
-  const requestItem = (id) => {
+  const requestItem =  (id) => {
     const data = { currentUser_id, currentUser };
     Axios.post("/Too-Panjai/addRequest/" + id, data, {})
       .then((res) => {
         console.log(res);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error));  
   };
 
   

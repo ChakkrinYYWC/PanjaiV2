@@ -1,10 +1,14 @@
 import React, { Component, useEffect, useState } from 'react';
 import './category.css'
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as action from '../../action/postFDT'
 import moment from 'moment';
 import Axios from 'axios';
+import Button from '@material-ui/core/Button';
+
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
     BrowserRouter as Router,
@@ -20,7 +24,8 @@ import { urlencoded } from 'body-parser';
 
 
 
-function Category({ classes, ...props }) {
+function Category({ ...props }) {
+
 
     const [loading, setLoading] = useState(true);
     const [bg, setBg] = useState();
@@ -70,6 +75,8 @@ function Category({ classes, ...props }) {
         console.log(error)
     })
 
+
+
     return (
         <>
             {
@@ -79,6 +86,18 @@ function Category({ classes, ...props }) {
                     <>
                         <div className="dek" style={{ backgroundImage: `url(${bg})` }}>
                             <div className="box-white">
+
+                                <div className="btcate">
+
+                                    <ButtonGroup variant="text" aria-label="text primary button group">
+                                        <Button href="/Foundation/เด็กและเยาวชน">เด็กและเยาวชน</Button>
+                                        <Button href="/Foundation/ผู้สูงอายุ">ผู้สูงอายุ</Button>
+                                        <Button href="/Foundation/สัตว์">สัตว์</Button>
+                                        <Button href="/Foundation/ผู้พิการและผู้ป่วย">ผู้พิการและผู้ป่วย</Button>
+                                        <Button href="/Foundation/สิ่งแวดล้อม">สิ่งแวดล้อม</Button>
+                                        <Button href="/Foundation/อื่นๆ">อื่นๆ</Button>
+                                    </ButtonGroup>
+                                </div>
 
                                 <div className="Title"><i className="fab fa-gratipay"></i>{props.currentId.match.params.name}<i className="fab fa-gratipay"></i></div>
                                 <div className="foundation">
@@ -92,6 +111,7 @@ function Category({ classes, ...props }) {
                                                             {/* <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */} 
                                                             {record.image.map((image) => (
                                                                 <Card.Img variant="top" img src={'http://localhost:3001/Foundation/' + image}/> //multi image
+                                                                
                                                             ))}
                                                             <Card.Body>
                                                                 <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="Tfound">{record.title}</Link>
@@ -110,6 +130,7 @@ function Category({ classes, ...props }) {
                                         }
                                     </div>
                                 </div>
+                               
                             </div>
                             {/* <div>21866666673</div> */}
                             {/* <footer id="sticky-footer" >

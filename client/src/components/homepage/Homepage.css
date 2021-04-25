@@ -221,6 +221,7 @@
     background-color: rgba(0, 0, 0, 0.144);
     color:rgb(133, 102, 2) ;
     width: 100%;
+    height: 100%;
     justify-items: center;
     
   
@@ -347,3 +348,67 @@ background-color: #fdfdfd;
 .dropdown-item {
   padding: 0px;
 }
+
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100%;
+  background-color: #000;
+}
+
+/*responsive*/
+@media only screen and (max-width: 1024px) {
+  .p{
+    width: 580px;
+    font-size: 30px;
+    height: 500px;
+} 
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 2rem;
+}
+
+
+}
+
+
+@media only screen and (max-width: 768px) {
+  
+  .p{
+    width: 360px;
+    
+    height: 320px;
+
+    font-size: 20px;
+    
+} 
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .3rem;
+  outline: 0;
+}
+
+.popup .row {
+  padding: 0px 60px 0px 60px;
+}
+
+ 
+
+}    
