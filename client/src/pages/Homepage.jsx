@@ -4,11 +4,12 @@ import { useState } from 'react';
 import Foundation from './aroundME'
 import Home from '../components/homepage/Homepage'
 import Search from '../components/search/search'
-import Admin from '../components/admin/User'
+import User from '../components/admin/User'
 import Noti_report from '../components/admin/Noti'
 import Black from '../components/admin/Blacklist'
-
-
+import { store } from "../action/store";
+import { Provider } from "react-redux";
+import ButterToast, { POS_RIGHT, POS_TOP } from "butter-toast";
 
 import {
     BrowserRouter as Router,
@@ -29,6 +30,11 @@ function Homepage() {
             {/* <Foundation/> */}
             <Home/>
             <Black/>
+            <User/>
+            <Provider store={store}>
+                <Noti_report/>
+                <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
+            </Provider>
             {/* <Black/>
             <Uad/> */}
             {/* <Search/> */}

@@ -99,6 +99,14 @@ class Navbar extends Component {
     await localStorage.setItem('blackListPopup', true);
     window.location.reload()
   }
+  ReportOn = async () => {
+    await localStorage.setItem('reportPopup', true);
+    window.location.reload()
+  }
+  UserOn = async () => {
+    await localStorage.setItem('userPopup', true);
+    window.location.reload()
+  }
   render() {
     return (
       <div>
@@ -147,34 +155,34 @@ class Navbar extends Component {
             {currentUser != "admin" ? (
               <span></span>
             ) : (
-              // <span class="drop">
-              //   <DropdownButton id="dropdown-item-button" title=" admin">
-              //     <span className="lover">
-              //       <Dropdown.Item as="button">
-              //         <div  className="love">
-              //           <a>Blacklist</a>
-              //         </div>
-              //       </Dropdown.Item>
-              //       <Dropdown.Item as="button">
-              //         <Link to="#" className="love">
-              //           search{" "}
-              //         </Link>
-              //       </Dropdown.Item>
-              //       <Dropdown.Item as="button">
-              //         <Link to="#" className="love">
-              //           report
-              //           </Link>
-              //       </Dropdown.Item>
-              //     </span>
-              //   </DropdownButton>
-              // </span>
-              <span>
-                <div>
-                  <button onClick={() => this.BlackListOn()} ><a>&nbsp;Blacklist&nbsp;</a></button>
-                  <button><a>&nbsp;User&nbsp;</a></button>
-                  <button><a>&nbsp;Report&nbsp;</a></button>
-                </div>
+              <span class="drop">
+                <DropdownButton id="dropdown-item-button" title=" admin">
+                  <span className="lover">
+                    <Dropdown.Item as="button">
+                      <div onClick={() => this.BlackListOn()} className="love">
+                        <a>Blacklist</a>
+                      </div>
+                    </Dropdown.Item>
+                    <Dropdown.Item as="button">
+                      <div onClick={() => this.UserOn()} className="love">
+                        <a>User</a>
+                      </div>
+                    </Dropdown.Item>
+                    <Dropdown.Item as="button">
+                      <div onClick={() => this.ReportOn()} className="love">
+                        <a>Report</a>
+                      </div>
+                    </Dropdown.Item>
+                  </span>
+                </DropdownButton>
               </span>
+              // <span>
+              //   <div>
+              //     <button onClick={() => this.BlackListOn()} ><a>&nbsp;Blacklist&nbsp;</a></button>
+              //     <button><a>&nbsp;User&nbsp;</a></button>
+              //     <button><a>&nbsp;Report&nbsp;</a></button>
+              //   </div>
+              // </span>
             )}
 
             {/* ================================================================================ */}

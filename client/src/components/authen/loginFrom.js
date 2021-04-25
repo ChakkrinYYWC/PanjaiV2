@@ -37,7 +37,10 @@ function LoginFrom() {
         }).then( async function(res){
             console.log(res);
             if(res.data[0]) {
-                await localStorage.setItem('Firstpopup', true);
+                if(res.data == "You are baned!"){
+                    window.alert(res.data)
+                }else{
+                    await localStorage.setItem('Firstpopup', true);
                 await localStorage.setItem('PanjaiToken', res.data[0]);
                 await localStorage.setItem('currentUser', res.data[1]);
                 await localStorage.setItem('currentUser_id', res.data[2]);
@@ -47,7 +50,10 @@ function LoginFrom() {
                 await localStorage.setItem('currentUser_name', res.data[6])
                 await localStorage.setItem('popupYet', false)
                 await localStorage.setItem('blackListPopup', false)
+                await localStorage.setItem('reportPopup', false);
+                await localStorage.setItem('userPopup', false);
                 window.location.href = "http://localhost:3000"
+                }
             } else {
                 window.alert("Username or password incorrect.")
             }
