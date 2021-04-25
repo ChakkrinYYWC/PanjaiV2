@@ -278,22 +278,21 @@ const PostPanjai = ({ classes, ...props }) => {
                                                     Array_image = [],
                                                     record.image.map((image, index) => {
                                                         Array_image.push('http://localhost:3001/image/' + image)
-                                                    })
+                                                    }),
+                                                    < Grid container justify="center">
+                                                        <SlideShow
+                                                            images={Array_image}
+                                                            width="400px"
+                                                            imagesWidth="400px"
+                                                            imagesHeight="200px"
+                                                            imagesHeightMobile="56vw"
+                                                            thumbnailsWidth="920px"
+                                                            thumbnailsHeight="12vw"
+                                                            className={classes.picture}
+                                                            indicators thumbnails fixedImagesHeight
+                                                        />
+                                                    </Grid>
                                                 }
-
-                                                <Grid container justify="center">
-                                                    <SlideShow
-                                                        images={Array_image}
-                                                        width="200px"
-                                                        imagesWidth="200px"
-                                                        imagesHeight="200px"
-                                                        imagesHeightMobile="56vw"
-                                                        thumbnailsWidth="920px"
-                                                        thumbnailsHeight="12vw"
-                                                        className={classes.picture}
-                                                        indicators thumbnails fixedImagesHeight
-                                                    />
-                                                </Grid>
 
                                                 <div className={`${classes.color1} ${classes.frontpost}`}>
                                                     โทร : {record.contect}
