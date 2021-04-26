@@ -118,11 +118,7 @@ function Homepage() {
                                                             <div className="lover">
 
                                                                 <Dropdown.Item>
-<<<<<<< HEAD
                                                                     <Link to={'/FDTpopup'} onClick={() => FDTclicked(record._id[0])}  className="love"><div>{record._id[0]}</div></Link>
-=======
-                                                                    <Link to={'/FDTpopup'} className="love"><div>{record._id[0]}</div></Link>
->>>>>>> a43c69d4f82e0cf14c748e6c91f33489eeafdb42
                                                                 </Dropdown.Item>
                                                                 <If condition={record._id[1]}>
                                                                     <Then>
