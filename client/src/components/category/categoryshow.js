@@ -72,6 +72,7 @@ function Categoryshow({ classes, ...props }) {
     const currentUser = localStorage.getItem('currentUser')
     const [lat, setLat] = useState();
     const [lng, setLng] = useState();
+    const [name, setName] = useState();
 
     useEffect(() => {
         props.fetchAllPostFDT()
@@ -103,8 +104,8 @@ function Categoryshow({ classes, ...props }) {
             setLat(res.data.lat)
             setLng(res.data.lng)
         }).catch(error => console.log(error))
-
         setOpen3(true);
+       setName(e)
     };
 
     const handleCloseMap = () => {
@@ -147,7 +148,7 @@ function Categoryshow({ classes, ...props }) {
                 onClick={props.onToggleOpen}
             >
                 {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
-                    <h1>{lat}, {lng}</h1>
+                    <h1>{name}</h1>
                 </InfoWindow>}
             </Marker>
         </GoogleMap>
@@ -162,7 +163,6 @@ function Categoryshow({ classes, ...props }) {
                 props.postFDTList.filter(fdt => fdt._id == props.currentId.match.params.id).map((record, index) => {
                     return (
                         <>
-
                             <div className="postfdt">
                                 <If condition={currentUser == 'admin'}>
 
@@ -203,7 +203,7 @@ function Categoryshow({ classes, ...props }) {
                                             </center>
                                             <div className="map">
                                                 <center>
-                                                    <Button className="map" variant="contained" onClick={() => handleClickOpenMap()} >
+                                                    <Button className="map" variant="contained" onClick={() => handleClickOpenMap(record.title)} >
                                                         แผนที่
                                                     </Button>
                                                 </center>
@@ -227,7 +227,6 @@ function Categoryshow({ classes, ...props }) {
                                                                 loadingElement={<div style={{ height: `100%` }} />}
                                                                 containerElement={<div style={{ height: `400px` }} />}
                                                                 mapElement={<div style={{ height: `100%` }} />}
-
                                                             />
                                                         </DialogContentText>
                                                     </DialogContent>
@@ -247,7 +246,9 @@ function Categoryshow({ classes, ...props }) {
                                                 <div className="infor">ที่อยู่ : {record.address}</div>
                                                 <div className="infor">เบอร์โทรศัพท์ : {record.phone} </div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
-                                                <div className="infor">วันสิ้นสุดโครงการ : {moment(record.endtime).calendar()}</div>
+                                                <div className="infor">วันสิ้นสุดโครงการ : {record.endtime}</div>
+                                                {/* <div className="infor">วันที่สิ้นสุดโครงการ : {record.endtime}</div> */}
+
                                             </div>
                                             <center><Button variant="contained" onClick={handleClickOpen}>
                                                 บริจาค
@@ -331,8 +332,8 @@ function Categoryshow({ classes, ...props }) {
                                                 <div className="infor">ที่อยู่ : {record.address}</div>
                                                 <div className="infor">เบอร์โทรศัพท์ : {record.phone} </div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
-                                                <div className="infor">วันสิ้นสุดโครงการ : {moment(record.endtime).calendar()}</div>
-
+                                                {/* <div className="infor">วันสิ้นสุดโครงการ : {moment(record.endtime).calendar()}</div> */}
+                                                <div className="infor">วันสิ้นสุดโครงการ : {record.endtime}</div>
                                             </div>
                                             <center>
                                                 <Button variant="contained" onClick={handleClickOpen}>

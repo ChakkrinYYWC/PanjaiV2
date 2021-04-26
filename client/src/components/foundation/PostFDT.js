@@ -12,7 +12,6 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import { PhotoCamera, AssignmentTurnedIn } from "@material-ui/icons"
 import ButterToast, { Cinnamon } from "butter-toast";
 import zIndex from '@material-ui/core/styles/zIndex';
-
 import DeleteIcon from '@material-ui/icons/Delete';
 import 'date-fns';
 import Grid from '@material-ui/core/Grid';
@@ -23,6 +22,7 @@ import {
     KeyboardDatePicker,
 } from '@material-ui/pickers';
 import { data } from 'jquery';
+import { tag } from "../../Constants/provinces";
 
 const defaultImageSrc = '/image.png'
 
@@ -188,7 +188,8 @@ const PostFDT = ({ classes, ...props }) => {
         temp.lng = values.lng ? "" : "กรุณาใส่ข้อมูล."
         temp.address = values.address ? "" : "กรุณาใส่ข้อมูล."
         temp.phone = values.phone ? "" : "กรุณาใส่ข้อมูล."
-        // temp.category = values.category ? "" : "กรุณาใส่ข้อมูล."
+        //temp.endtime = values.endtime ? "" : "กรุณาใส่ข้อมูล."
+        temp.category = values.category ? "" : "กรุณาใส่ข้อมูล."
         temp.promptpay = values.promptpay ? "" : "กรุณาใส่ข้อมูล."
         setErrors({
             ...temp
@@ -210,7 +211,7 @@ const PostFDT = ({ classes, ...props }) => {
     } = useForm(initialFieldValues, props.setCurrent)
 
     const setPhotos = e => {
-        console.log(e.target.files[0])
+        // console.log(e.target.files[0])
         setFile(e.target.files)
 
         if (e.target.files) {
@@ -243,7 +244,7 @@ const PostFDT = ({ classes, ...props }) => {
         setMulti_image(multi_image.filter(url_old => url_old !== url))
     }
 
-    console.log(multi_image)
+    // console.log(multi_image)
 
     // const showPreview = e => {
     //     if (e.target.files && e.target.files[0]) {
@@ -273,6 +274,8 @@ const PostFDT = ({ classes, ...props }) => {
             resetFormFDT()
             setMulti_image([])
         }
+        console.log(validate())
+        console.log(props.current)
         if (validate() && props.current == 0) {
             if (props.current == 0) {
                 console.log('***')
@@ -290,7 +293,8 @@ const PostFDT = ({ classes, ...props }) => {
                 formData.append('n_item', values.n_item);
                 formData.append('address', values.address);
                 formData.append('phone', values.phone);
-                formData.append('category', category);
+                formData.append('category', values.category);
+                // formData.append('category', category);
                 formData.append('promptpay', values.promptpay);
                 formData.append('endtime',selectedDate);
                 formData.append('lat', values.lat);
@@ -311,6 +315,10 @@ const PostFDT = ({ classes, ...props }) => {
     const handleDateChange = (date) => {
         setSelectedDate(date);
         console.log(date);
+    };
+
+    const handleChangeDate = e => {
+        console.log(e.target)
     };
 
     if (props.current == 0) {
@@ -424,7 +432,7 @@ const PostFDT = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
                     />
-                    <FormControl className={classes.formControl}>
+                    {/* <FormControl className={classes.formControl}>
                         <InputLabel id="demo-simple-select-helper-label">หมวดหมู่</InputLabel>
                         <Select
                             onChange={handleChange}
@@ -436,20 +444,23 @@ const PostFDT = ({ classes, ...props }) => {
                             <MenuItem value={"สิ่งแวดล้อม"}>สิ่งแวดล้อม</MenuItem>
                             <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
                         </Select>
+                    </FormControl> */}
+
+                    <FormControl className={classes.select}>
+                        <InputLabel >จังหวัด</InputLabel>
+                        <Select
+                            InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
+                            name='category'
+                            value={values.category}
+                            fullWidth
+                            onChange={handleInputChange}
+                            {...(errors.category && { error: true, helperText: errors.category })}
+                        >
+                            {tag.map((tag) => <MenuItem value={tag}>{tag}</MenuItem>)}
+                        </Select>
                     </FormControl>
 
-                    {/* <form className={classes.container} noValidate>
-                        <TextField
-                            id="date"
-                            label="สิ้นสุดโครงการ"
-                            type="date"
-                            defaultValue=""
-                            className={classes.textField}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </form><br /> */}
+          
 
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <Grid container >
@@ -469,6 +480,16 @@ const PostFDT = ({ classes, ...props }) => {
 
                         </Grid>
                     </MuiPickersUtilsProvider>
+                    {/* <TextField
+                        id="standard-basic"
+                        label="สิ้นสุดโครงการ"
+                        className={classes.endtime}
+                        name="endtime"
+                        value={values.endtime}
+                        onChange={handleInputChange}
+                        {...(errors.endtime && { error: true, helperText: errors.endtime })}
+                    /> */}
+
                     <div className=''>{renderPhotos(multi_image)}</div>
 
                     <input
@@ -499,8 +520,8 @@ const PostFDT = ({ classes, ...props }) => {
         );
     } else {
         arr.push(values.item)
-        console.log(values.item)
-        console.log(arr)
+        // console.log(values.item)
+        // console.log(arr)
         return (
             <form noValidate autoComplete="off" className={`${classes.root} ${classes.form}`}>
                 <Typography gutterBottom>

@@ -29,5 +29,12 @@ export default {
             update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
             delete: id => axios.delete(url + id)
         }
+    },
+    profile(url = baseUrl + 'profile/') {
+        return {
+            fetchAll: () => axios.get(url),
+            fetchById: id => axios.get(url + id),
+            update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
+        }
     }
 }

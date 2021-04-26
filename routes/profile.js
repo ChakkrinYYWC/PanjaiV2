@@ -69,6 +69,33 @@ server.post('/update/:id', function (req, res) {
 
 });
 
+server.get('/', (req, res) => {
+    console.log('*')
+    user.find({}, (err, docs) => {
+        if (!err)
+            res.send(docs)
+        else
+            console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
+    })
+})
+
+server.put('/:id', (req, res) => {
+
+    var updatedRecord = {
+        name: req.body.name,
+        address: req.body.address,
+        phone: req.body.phone,
+    }
+
+    user.findByIdAndUpdate(req.params.id, { $set: updatedRecord }, { new: true }, function(error,update){
+        if(!error){
+            res.send(update)
+        }else{
+            console.log('Error #3 : '+error)
+        }
+    })
+})
+
 server.get('/userInformation/:id',async function (req, res) {
     //console.log(req.params.id)
     let result = await user.aggregate([
