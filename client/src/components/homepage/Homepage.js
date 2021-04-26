@@ -184,8 +184,9 @@ function Homepage() {
             {/* ---------------------------------category------------------------------------- */}
             <div className="category" id="003">
                 <h3>หมวดหมู่มูลนิธิ</h3>
+                <center>
                 <div className="row m-0">
-                    <div className="column col-4">
+                    <div className="column col-xs-6 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/pngegg.png" />
                             <Card.Body>
@@ -194,7 +195,7 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-4">
+                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/2.png" />
                             <Card.Body className="">
@@ -203,7 +204,7 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-4">
+                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/e.png" />
                             <Card.Body>
@@ -214,7 +215,7 @@ function Homepage() {
                     </div>
                 </div>
                 <div className="row m-0">
-                    <div className="column col-4">
+                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/4.png" />
                             <Card.Body>
@@ -223,7 +224,7 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-4">
+                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/5.1.png" />
                             <Card.Body>
@@ -232,7 +233,7 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-4">
+                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/6.png" />
                             <Card.Body>
@@ -242,6 +243,7 @@ function Homepage() {
                         </Card>
                     </div>
                 </div>
+                </center>
             </div>
 
             {/* ----------------------------ตู้ปันใจ------------------------------------------ */}

@@ -65,7 +65,7 @@ const DialogTitle = withStyles(styles)((props) => {
       fontFamily: "Arial",
       padding: "22px",
       float: "right", 
-      margin: "410px 140px 0px 0px"
+      margin: "25% 10% 0px 0px"
     };
 
 function Catego({ classes, ...props }) {
@@ -108,11 +108,13 @@ function Catego({ classes, ...props }) {
                         
 
                     </Provider>
+                    
                 </Then>
                 <Else>
                     <Provider store={store}>
                         <Category {...{ currentId, setCurrentId }} />
                     </Provider>
+                    
                 </Else>
             </If>
         </>

@@ -10,6 +10,7 @@
 
 }
 
+
 .image01 img {
     height: 100%;
     width: 50%;
@@ -135,8 +136,7 @@
 
 @media only screen and (max-width: 1024px) {
     .box-box {
-        margin: 100px 50px 100px 50px;
-       
+        margin: 150px 50px 270px 50px;
     }
   
     .info {
@@ -188,7 +188,7 @@
 
 @media only screen and (max-width: 768px) {
     .box-box {
-        margin: 0px 0px 0px 0px;
+        margin: 40px 0px 45px 0px;
         width: 100%;
     }
     .Tt {
@@ -236,5 +236,25 @@
         font-size: 20px;
         margin-bottom: 10px;
         
+    }
+    .pagemap {
+        width: 300px;
+        height: 100%;
+        font-family: 'Mali', cursive;
+        padding: 0px;
+    }
+    .pagemap .MuiDialogContent-root {
+        flex: 1 1 auto;
+        padding: 0px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .pagemap  .MuiTypography-h6 {
+        font-size: 0.9rem;
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        font-weight: 500;
+        line-height: 1.6;
+        letter-spacing: 0.0075em;
     }
 }
