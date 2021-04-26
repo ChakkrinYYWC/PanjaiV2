@@ -49,6 +49,7 @@ export default function Checkboxes() {
   }
 
   return (
+    <div className ='doublebg' >
     <div className='background-search'>
       <center>
         <div className="search-bar">
@@ -60,11 +61,12 @@ export default function Checkboxes() {
                 }}
                 type="text"
                 className="ui-input"
-                placeholder="ค้นหา" />
+                placeholder="ชื่อมูลนิธิ, สิ่งของ" />
               <button onClick={Search} type='submit' className="search-bt">ค้นหา</button>
             </div>
           </form>
         </div>
+        </center>
         <div className='flex'>
           {/* <Checkbox
             className="box1"
@@ -93,10 +95,10 @@ export default function Checkboxes() {
             inputProps={{ "aria-label": "checkbox with default color" }}
           /> */}
           <span className="check3" style={{ color: "black" }}>
-            <Link to ="/testaroundme"> ใกล้ฉัน</Link>
+           <Link to ="/testaroundme" align = 'right' >ใกล้ฉัน</Link>
           </span>
         </div>
-      </center>
+      
 
       <div className="bg2">
         <center className="head">
@@ -109,7 +111,7 @@ export default function Checkboxes() {
             postFDT.map((record, index) => {
               return (
                 <div className="column col-4">
-                  <Card className="foundat">
+                  <Card className="foundat3">
                     <img
                       variant="top"
                       src={'http://localhost:3001/image/' + record.image}
@@ -319,6 +321,7 @@ export default function Checkboxes() {
           </div> */}
         </div>
       </div>
+    </div>
     </div>
   );
 }

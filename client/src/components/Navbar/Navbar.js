@@ -125,7 +125,22 @@ class Navbar extends Component {
                   </li>
                 );
               }
-            } else {
+            }
+            else if (currentUser == "admin"){
+              if (index < 3) {
+                return (
+                  <li className="itemlist" key={index}>
+                    {/* <a href={"#" + item.id}> */}
+                    <a className={item.cName} href={item.href}>
+                      {item.title}
+                    </a>
+                    {/* </a> */}
+                  </li>
+                );
+              }
+            }
+            
+            else {
               return (
                 <li className="itemlist" key={index}>
                   {/* <a href={"#" + item.id}> */}
@@ -147,17 +162,17 @@ class Navbar extends Component {
                 <span className="lover">
                   <Dropdown.Item as="button">
                     <Link to="#" className="love">
-                      blacklist{" "}
+                    &ensp;blacklist{" "}
                     </Link>
                   </Dropdown.Item>
                   <Dropdown.Item as="button">
                     <Link to="#" className="love">
-                      search{" "}
+                    &ensp;search{" "}
                     </Link>
                   </Dropdown.Item>
                   <Dropdown.Item as="button">
                     <Link to="#" className="love">
-                      report
+                    &ensp;report{" "}
                       </Link>
                   </Dropdown.Item>
                 </span>

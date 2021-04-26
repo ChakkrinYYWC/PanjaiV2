@@ -6,6 +6,10 @@ import { BrowserRouter as Router, Link, } from "react-router-dom";
 import { compose, withProps, withHandlers, withStateHandlers, withState } from "recompose";
 
 
+
+import { Card, Button, Modal } from 'react-bootstrap';
+import "./GGMap.css";
+
 // const { compose, withProps, withHandlers, withStateHandlers, withState } = require("recompose");
 Geocode.setApiKey("AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg");
 Geocode.enableDebug();
@@ -130,16 +134,20 @@ class Map extends React.PureComponent {
             })
         }
         const MapWithAMarkerClusterer = compose(
+            
             withProps({
                 googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places",
                 loadingElement: <div style={{ height: `100%` }} />,
                 containerElement: <div style={{ height: `400px` }} />,
                 mapElement: <div style={{ height: `100%` }} />,
+                
             }),
             withScriptjs,
             withGoogleMap
         )(props =>
             <>
+            
+            <div className="ggmap">
                 <GoogleMap
                     defaultZoom={15}
                     //defaultCenter={{ lat: 0, lng: 0 }}
@@ -158,15 +166,33 @@ class Map extends React.PureComponent {
                         </Marker>
                     ))}
                 </GoogleMap>
-                <h1>มูลนิธิใกล้ฉัน</h1><br />
+            
+               
+                <h3>มูลนิธิใกล้ฉัน</h3><br />
+                </div>
+                
+                
                 {
                     result_kg.map(mark => (
-                        <>
-                            <button className="btn btn-lg " onClick={() => SelectMarker(mark)}>{mark.marker.title}</button>
-                            <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} >อ่านเพิ่มเติม</Link>
-                            <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร</h1>
-                            <br />
-                        </>
+                    <>
+                        <center><div classname = "space" >
+                            <Card className="foundat">
+                            <Card.Img
+                                variant="top"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
+                            />
+
+                                <button className="btn btn-lg " onClick={() => SelectMarker(mark)}>{mark.marker.title}</button>
+                                <Card.Body>
+                                    <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} >อ่านเพิ่มเติม</Link>
+                                    <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร </h1>
+                                </Card.Body>
+                                <br />
+
+                            </Card>
+                        </div></center>
+                    
+                    </>
                     ))
                 }
             </>
