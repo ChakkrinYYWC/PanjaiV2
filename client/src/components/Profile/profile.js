@@ -6,7 +6,7 @@ import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep } from "@material-ui/icons";
 import Axios from 'axios';
 import { Card, Modal } from 'react-bootstrap';
-import { Link,useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Divider, Grid, Paper, Typography, withStyles, ListItem, ListItemText, Button } from '@material-ui/core';
 import moment from 'moment';
 
@@ -28,8 +28,9 @@ const styles = theme => ({
         "&:hover": {
             backgroundColor: "rgba(85, 52, 4, 0.925)"
         },
-        margin: theme.spacing(1),
-        background: '#a13800'
+        margin: '0 auto',
+        background: '#a13800',
+        display: 'block'
     },
     // actionDiv: {
     //     textAlign: "center"
@@ -107,7 +108,7 @@ function Profile({ classes, ...props }) {
             }).catch(error => console.log(error))
         }
     }
-    
+
 
 
     const CancelUpdate = () => {
@@ -175,7 +176,7 @@ function Profile({ classes, ...props }) {
                             //สามารถแก้ไขๆด้
                             (
                                 <div>
-                                    <div className="box-text">
+                                    <div className="box-text-profile">
                                         <h1> ประวัติส่วนตัว</h1>
                                         <div className="textinforuser">
                                             <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล</span>
@@ -217,113 +218,116 @@ function Profile({ classes, ...props }) {
                                     </div>
 
                                 </div>
-                            ):
+                            ) :
 
-                                  (  
-                                                          //ข้อมูลปกติ
-                        
-                            <div>
-                                <div className="box-text">
-                                    <h1> ประวัติส่วนตัว</h1>
-                                    <div className="textinforuser">
-                                        <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
-                                        <p>{allInform.name}</p>
-                                    </div>
-                                    <div className="textinforuser">
-                                        <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
-                                        <p>{allInform.phone}</p>
-                                    </div>
-                                    <div className="textinforuser">
-                                        <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
-                                        <p>{allInform.address}</p>
-                                    </div>
-                                    <div className="textinforuser">
-                                        <span> <i className="fas fa-envelope"> </i> อีเมล</span>
-                                        <p>{allInform.email}</p>
-                                    </div>
-                                  <div className="grid-container">
-                                        <div className="EditProfile">
-                                            <button className="button" onClick={handleEditProfile}>แก้ไข</button>
+                            (
+                                //ข้อมูลปกติ
+
+                                <div>
+                                    <div className="box-text-profile">
+                                        <h1> ประวัติส่วนตัว</h1>
+                                        <div className="textinforuser">
+                                            <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
+                                            <p>{allInform.name}</p>
                                         </div>
-                                        
-                                        {/* <div className='Like'>
+                                        <div className="textinforuser">
+                                            <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
+                                            <p>{allInform.phone}</p>
+                                        </div>
+                                        <div className="textinforuser">
+                                            <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
+                                            <p>{allInform.address}</p>
+                                        </div>
+                                        <div className="textinforuser">
+                                            <span> <i className="fas fa-envelope"> </i> อีเมล</span>
+                                            <p>{allInform.email}</p>
+                                        </div>
+                                        <div className="grid-container1">
+                                            <div className="EditProfile">
+                                                <button className="button" onClick={handleEditProfile}>แก้ไข</button>
+                                            </div>
+
+                                            {/* <div className='Like'>
                                              <Link to="/myfav" className="button1" >โพสที่ถูกใจ</Link>
                                         </div> */}
-                                        <div className='Like'>
-                                        <button className="button1" type="button" onClick={()=>{route.push('/myfav')}}  >
-                                        โพสที่ถูกใจ
+                                            <div className='Like'>
+                                                <button className="button1" type="button" onClick={() => { route.push('/myfav') }}  >
+                                                    โพสที่ถูกใจ
                                         </button>
+                                            </div>
                                         </div>
-                                    </div></div></div>)
+                                    </div>
+                                </div>)
                         }
                     </section>
 
 
                 </div>
+                <br/>
                 <div className="Post">
-                    <p>Post ของฉัน </p>
+                    <span>Post ของฉัน </span>
                 </div>
                 <div>
-                    <Grid container style={{padding:'0 auto'}} spacing={4} >
-                    {/* {console.log(myPost)} */}
-                    {
-                        myPost.map((record, index) => {
-                            
-                            return (
-                                
-                                <Grid item xs={12} sm={4} >
-                                    {/* {index} */}
-                                    <Paper className={classes.framepost}>
-                                        <Fragment key={index}>
-                                            <ListItem>
-                                                <ListItemText>
+                    <Grid container style={{ padding: '0 auto' }} spacing={4} >
+                        {/* {console.log(myPost)} */}
+                        {
+                            myPost.map((record, index) => {
 
-                                                    <Grid container>
-                                                        <Grid item xs={8}>
-                                                            <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
-                                                                {record.title}
-                                                            </Typography>
+                                return (
+
+                                    <Grid item xs={12} sm={4} >
+                                        {/* {index} */}
+                                        <Paper className={classes.framepost}>
+                                            <Fragment key={index}>
+                                                <ListItem>
+                                                    <ListItemText>
+
+                                                        <Grid container>
+                                                            <Grid item xs={8}>
+                                                                <Typography variant='h5' className={`${classes.color1} ${classes.frontpost}`}>
+                                                                    {record.title}
+                                                                </Typography>
+                                                            </Grid>
                                                         </Grid>
-                                                    </Grid>
 
-                                                    <div className={classes.frontpost}>
-                                                        ข้อมูล : {record.message}
-                                                    </div>
-                                                    <Grid container justify="center">
-                                                        <div className={classes.frampicture} >
-                                                            {console.log(record)}
-                                                            <img  src={'http://localhost:3001/image/' + record.image} alt={record.message} className={classes.picture} />
+                                                        <div className={classes.frontpost}>
+                                                            ข้อมูล : {record.message}
                                                         </div>
-                                                    </Grid>
-                                                    <div className={`${classes.color1} ${classes.frontpost}`}>
-                                                        เวลาที่ลง : {moment(record.Timestamp).calendar()}
-                                                    </div>
-                                                    <div className={`${classes.color1} ${classes.frontpost}`}>
-                                                        โทร : {record.contect}
-                                                    </div>
-                                                    <div className={`${classes.color1} ${classes.frontpost}`}>
-                                                        จังหวัด : {record.location}
-                                                    </div>
-                                                    <div className={`${classes.color1} ${classes.frontpost}`}>
-                                                        ผู้สร้าง : {record.creator}
-                                                    </div>
-                                                    {/* รูปแบบช่อง */}
-                                                </ListItemText>
-                                            </ListItem>
-                                        </Fragment>
-                                        <Button variant="contained" color="secondary" size="small"
-                                            className={`${classes.smMargin1} ${classes.frontpost}`}
-                                            onClick={() => onDelete(record._id)}>
-                                            ลบ
+                                                        <Grid container justify="center">
+                                                            <div className={classes.frampicture} >
+                                                                {console.log(record)}
+                                                                <img src={'http://localhost:3001/image/' + record.image} alt={record.message} className={classes.picture} />
+                                                            </div>
+                                                        </Grid>
+                                                        <div className={`${classes.color1} ${classes.frontpost}`}>
+                                                            เวลาที่ลง : {moment(record.Timestamp).calendar()}
+                                                        </div>
+                                                        <div className={`${classes.color1} ${classes.frontpost}`}>
+                                                            โทร : {record.contect}
+                                                        </div>
+                                                        <div className={`${classes.color1} ${classes.frontpost}`}>
+                                                            จังหวัด : {record.location}
+                                                        </div>
+                                                        <div className={`${classes.color1} ${classes.frontpost}`}>
+                                                            ผู้สร้าง : {record.creator}
+                                                        </div>
+                                                        {/* รูปแบบช่อง */}
+                                                    </ListItemText>
+                                                </ListItem>
+                                            </Fragment>
+                                            <Button variant="contained" color="secondary" size="small"
+                                                className={`${classes.smMargin1} ${classes.frontpost}`}
+                                                onClick={() => onDelete(record._id)}>
+                                                ลบ
                                         </Button>
-                                    </Paper>
-                                </Grid>
-                                // <div>
-                                //     <h1>{record.title}</h1><br/>ข้อมูล: {record.message}<br/>ผู้สร้าง: {record.creator}<br/><br/>
-                                // </div>
-                            )
-                        })
-                    }
+                                        </Paper>
+                                    </Grid>
+                                    // <div>
+                                    //     <h1>{record.title}</h1><br/>ข้อมูล: {record.message}<br/>ผู้สร้าง: {record.creator}<br/><br/>
+                                    // </div>
+                                )
+                            })
+                        }
                     </Grid>
                 </div>
             </div>
