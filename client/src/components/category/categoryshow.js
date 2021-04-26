@@ -28,6 +28,7 @@ import GoogleMapReact from 'google-map-react';
 import Axios from 'axios';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 
+// import Slideshow from "./PostPanjai/Slideshow";  
 const { compose, withProps, withStateHandlers } = require("recompose");
 
 const styles = theme => ({
@@ -156,6 +157,7 @@ function Categoryshow({ classes, ...props }) {
     console.log(props)
 
     return (
+        
         <>
             {
                 props.postFDTList.filter(fdt => fdt._id == props.currentId.match.params.id).map((record, index) => {
@@ -193,6 +195,7 @@ function Categoryshow({ classes, ...props }) {
                                             <center>
                                                 <div className="image01">
                                                     {record.image.map((image) => (
+                                                        // <Slideshow src={'http://localhost:3001/Foundation/' + image} />
                                                         <img variant="top" src={'http://localhost:3001/Foundation/' + image} /> //multi image
                                                     ))}
                                                     {/* <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */}
@@ -207,7 +210,7 @@ function Categoryshow({ classes, ...props }) {
                                             </div>
 
                                             <Dialog className="ap"
-                                                fullScreen={fullScreen}
+                                                // fullScreen={fullScreen}
                                                 onClose={handleCloseMap}
                                                 aria-labelledby="customized-dialog-title"
                                                 open={open3}
@@ -238,11 +241,12 @@ function Categoryshow({ classes, ...props }) {
                                             <div className="info">{record.message}</div>
                                             <div className="bx">
                                                 <div className="logo" ><i className="fab fa-gratipay"></i></div>
-                                                <div className="infor">สิ่งของที่ต้องการ : {record.item}</div>
+                                                <div className="infor">สิ่งของที่ต้องการ : {record.item} </div>
                                                 <div className="infor">จำนวน : {record.n_item} บาท</div>
                                                 <div className="infor">ที่อยู่ : {record.address}</div>
                                                 <div className="infor">เบอร์โทรศัพท์ : {record.phone} </div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
+                                                <div className="infor">วันสิ้นสุดโครงการ : {record.endtime}</div>
                                                 {/* <div className="infor">วันที่สิ้นสุดโครงการ : {record.endtime}</div> */}
 
                                             </div>
@@ -251,7 +255,7 @@ function Categoryshow({ classes, ...props }) {
                                             </Button></center>
 
                                             <Dialog
-                                                fullScreen={fullScreen}
+                                                // fullScreen={fullScreen}
                                                 open={open}
                                                 onClose={handleClose}
                                                 aria-labelledby="responsive-dialog-title"
@@ -291,7 +295,7 @@ function Categoryshow({ classes, ...props }) {
                                                 </center>
                                             </div>
                                             <Dialog className="ap"
-                                                fullScreen={fullScreen}
+                                                // fullScreen={fullScreen}
                                                 onClose={handleCloseMap}
                                                 aria-labelledby="customized-dialog-title"
                                                 open={open3}
@@ -328,7 +332,8 @@ function Categoryshow({ classes, ...props }) {
                                                 <div className="infor">ที่อยู่ : {record.address}</div>
                                                 <div className="infor">เบอร์โทรศัพท์ : {record.phone} </div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
-
+                                                {/* <div className="infor">วันสิ้นสุดโครงการ : {moment(record.endtime).calendar()}</div> */}
+                                                <div className="infor">วันสิ้นสุดโครงการ : {record.endtime}</div>
                                             </div>
                                             <center>
                                                 <Button variant="contained" onClick={handleClickOpen}>
@@ -337,7 +342,7 @@ function Categoryshow({ classes, ...props }) {
                                             </center>
 
                                             <Dialog
-                                                fullScreen={fullScreen}
+                                                // fullScreen={fullScreen}
                                                 open={open}
                                                 onClose={handleClose}
                                                 aria-labelledby="responsive-dialog-title"

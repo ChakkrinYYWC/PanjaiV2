@@ -10,7 +10,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Menuitems from "./Menuitems";
 import "./Navbar.css";
 //import { find } from '../../../../model/user';
-
+import { Badge } from '@material-ui/core';
 const PanjaiToken = localStorage.getItem("PanjaiToken");
 //console.log("PanjaiToken: "+PanjaiToken)
 const user_id = localStorage.getItem("currentUser_id");
@@ -225,6 +225,42 @@ class Navbar extends Component {
                                 <button onClick={this.search} type="submit">submit</button>
                             </form>
                         </div> */}
+<<<<<<< HEAD
+=======
+        </span>
+        {PanjaiToken == "null" ? (
+          <span></span>
+        ) : (
+          <span class="noti">
+            <a>
+              <span
+                type="button"
+                className="bell"
+                onClick={(event) => this.openNotiPanel(event)}
+              >
+                <i class="fas fa-bell"></i>
+                {this.state.openState ? (
+                  <NotiPanel
+                    open={this.state.openState}
+                    t={this.state.targetNoti}
+                  />
+                ) : null}
+              </span>
+              {this.state.noti.length + this.state.recieve.length <= 0 ? (
+                <span></span>
+              ) : (
+                <div className="badge">
+                  {this.state.noti.length + this.state.recieve.length}
+                </div>
+              //   <Badge className="badge"
+              //   anchorOrigin={{
+              //     vertical: 'top',
+              //     horizontal: 'right',
+              //   }}
+              // >
+              )}
+            </a>
+>>>>>>> 1eb13f50c639835466600bf808c4280cc7a63d5b
           </span>
           {PanjaiToken == "null" ? (
             <span></span>
