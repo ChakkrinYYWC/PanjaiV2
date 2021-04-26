@@ -32,14 +32,9 @@ const Menuitems = [
     {
         id: '005',
         title: 'วิธีใช้',
-<<<<<<< HEAD
-        href: '/',
+        href: '/tutorial',
         cName: 'nav-links',
         for : "all"
-=======
-        href: '/tutorial',
-        cName: 'nav-links'
->>>>>>> 1eb13f50c639835466600bf808c4280cc7a63d5b
     },
     
     {

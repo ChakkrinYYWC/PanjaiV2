@@ -86,6 +86,10 @@ function Homepage() {
     onetime()
     console.log(allitem)
 
+    async function FDTclicked(data){
+        await localStorage.setItem('FDTclicked', data)
+    }
+
     return (
         <div>
             <If condition={currentUser !== null && popupYet == 'false'}>
@@ -114,18 +118,18 @@ function Homepage() {
                                                             <div className="lover">
                                           
                                                                 <Dropdown.Item>
-                                                                    <Link to={'/FDTpopup'}  className="love"><div>{record._id[0]}</div></Link>
+                                                                    <Link to={'/FDTpopup'} onClick={() => FDTclicked(record._id[0])}  className="love"><div>{record._id[0]}</div></Link>
                                                                 </Dropdown.Item>
                                                                 <If condition={record._id[1]}>
                                                                     <Then>
                                                                         <Dropdown.Item>
-                                                                            <Link to={'/FDTpopup'} className="love"><div>{record._id[1]}</div></Link>
+                                                                            <Link to={'/FDTpopup'} onClick={() => FDTclicked(record._id[1])} className="love"><div>{record._id[1]}</div></Link>
                                                                         </Dropdown.Item>
 
                                                                         <If condition={record._id[2]}>
                                                                             <Then>
                                                                                 <Dropdown.Item>
-                                                                                    <Link to={'/FDTpopup'} className="love"><div>{record._id[2]}</div></Link>
+                                                                                    <Link to={'/FDTpopup'} onClick={() => FDTclicked(record._id[2])} className="love"><div>{record._id[2]}</div></Link>
                                                                                 </Dropdown.Item>
                                                                             </Then>
                                                                         </If>

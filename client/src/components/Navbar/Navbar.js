@@ -225,8 +225,6 @@ class Navbar extends Component {
                                 <button onClick={this.search} type="submit">submit</button>
                             </form>
                         </div> */}
-<<<<<<< HEAD
-=======
         </span>
         {PanjaiToken == "null" ? (
           <span></span>
@@ -260,35 +258,7 @@ class Navbar extends Component {
               // >
               )}
             </a>
->>>>>>> 1eb13f50c639835466600bf808c4280cc7a63d5b
           </span>
-          {PanjaiToken == "null" ? (
-            <span></span>
-          ) : (
-            <span class="noti">
-              <a>
-                <span
-                  type="button"
-                  className="bell"
-                  onClick={(event) => this.openNotiPanel(event)}
-                >
-                  <i class="fas fa-bell"></i>
-                  {this.state.openState ? (
-                    <NotiPanel
-                      open={this.state.openState}
-                      t={this.state.targetNoti}
-                    />
-                  ) : null}
-                </span>
-                {this.state.noti.length + this.state.recieve.length <= 0 ? (
-                  <span></span>
-                ) : (
-                  <span class="badge">
-                    {this.state.noti.length + this.state.recieve.length}
-                  </span>
-                )}
-              </a>
-            </span>
           )}
           {/* <span class="noti">
                         <span type="button" className="bell" onClick={(event) => this.openNotiPanel(event)}>
