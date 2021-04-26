@@ -16,6 +16,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import Icon from '@material-ui/core/Icon';
 import Axios from 'axios';
+import Slideshow from './Slideshow';
+import SlideShow from 'react-image-show';
 
 const currentUser = localStorage.getItem('currentUser')
 const currentUser_id = localStorage.getItem('currentUser_id')
@@ -60,7 +62,7 @@ const styles = theme => ({
         borderRadius: 5,
         boxShadow: '1px   1px 1px 1px rgba(187, 130, 44, 0.925)',
         color: 'rgba(187, 130, 44, 0.925)',
-        height: 'auto',
+        height: '100%',
         padding: '10px 10px',
         marginBlock: '15px',
         borderRadius: '20px',
@@ -104,6 +106,9 @@ const ITEM_HEIGHT = 48;
 const PostPanjai = ({ classes, ...props }) => {
 
     const [currentId, setCurrentId] = useState(0)
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    var Array_image = [];
 
     useEffect(() => {
         props.fetchAllPostPanjai()
@@ -137,8 +142,7 @@ const PostPanjai = ({ classes, ...props }) => {
         setCurrentId(id);
     }
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
+
     const [select, setSelect] = React.useState('');
 
     const handleChange = (id, option) => {
@@ -190,19 +194,19 @@ const PostPanjai = ({ classes, ...props }) => {
             }).catch(error => console.log(error))
         }
     }
-    for (let i = props.postPanjaiList.length; i > 0; i--) {
-        // console.log('*' + i)
-        // console.log(props.postPanjaiList[i - 1])
-    }
-    // console.log( props.postPanjaiList[4])
-    // console.log( props.postPanjaiList[3])
-    // console.log( props.postPanjaiList[2])
-    // console.log( props.postPanjaiList[1])
+
     props.postPanjaiList.sort((a, b) => (a._id > b._id) ? -1 : 1) //sortdata
-    //console.log(props.postPanjaiList)
+
+    // const urlArray = [
+    //     "https://dj.lnwfile.com/k5jt1b.jpg",
+    //     "https://gc.lnwfile.com/hlwt5d.jpg",
+    //     "https://pbs.twimg.com/media/DbZSHVNVQAceHgM.jpg",
+    //     "http://localhost:3001/image/image-1619203503293.jpg"
+    // ]
 
     return (
         <>
+            {/* <Slideshow data={urlArray} /> */}
             <Grid container justify="center" >
                 <Grid item lg={4}>
                     {/* กรอบโพส */}
@@ -270,11 +274,25 @@ const PostPanjai = ({ classes, ...props }) => {
                                                     ข้อมูล : {record.message}
                                                 </div>
 
-                                                <Grid container justify="center">
-                                                    {record.image.map((image) => (
-                                                        <img src={'http://localhost:3001/image/' + image} className={classes.picture} />
-                                                    ))}
-                                                </Grid>
+                                                {
+                                                    Array_image = [],
+                                                    record.image.map((image, index) => {
+                                                        Array_image.push('http://localhost:3001/image/' + image)
+                                                    }),
+                                                    < Grid container justify="center">
+                                                        <SlideShow
+                                                            images={Array_image}
+                                                            width="400px"
+                                                            imagesWidth="400px"
+                                                            imagesHeight="200px"
+                                                            imagesHeightMobile="56vw"
+                                                            thumbnailsWidth="920px"
+                                                            thumbnailsHeight="12vw"
+                                                            className={classes.picture}
+                                                            indicators thumbnails fixedImagesHeight
+                                                        />
+                                                    </Grid>
+                                                }
 
                                                 <div className={`${classes.color1} ${classes.frontpost}`}>
                                                     โทร : {record.contect}
@@ -330,7 +348,6 @@ const PostPanjai = ({ classes, ...props }) => {
 
                                                     </div>
                                                 </Grid>
-
 
                                                 {/* รูปแบบช่อง */}
                                             </ListItemText>

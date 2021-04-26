@@ -77,7 +77,8 @@ router.post('/addFav/:id', (req, res) => {
     })
 })
 router.post('/', upload.array('image'), async function (req, res) {
-    // console.log(req.body.item2)
+    console.log('******')
+    console.log(req.body.category)
     var Photo_name = [];
     const allItem = [req.body.item1, req.body.item2, req.body.item3]
     for (let i = 0; i < req.files.length; i++) {

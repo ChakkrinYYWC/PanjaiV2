@@ -12,7 +12,8 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import { PhotoCamera, AssignmentTurnedIn } from "@material-ui/icons"
 import ButterToast, { Cinnamon } from "butter-toast";
 import zIndex from '@material-ui/core/styles/zIndex';
-import { DeleteSweep } from "@material-ui/icons";
+import DeleteIcon from '@material-ui/icons/Delete';
+import { tag } from "../../Constants/provinces";
 
 const defaultImageSrc = '/image.png'
 
@@ -58,9 +59,21 @@ const styles = theme => ({
         minWidth: 120,
     },
     imgpreview: {
-        marginTop: "20px",
-        width: "18%",
+        marginBottom: "20px",
+        width: "20%",
 
+
+    },
+    buttonicondel: {
+        "&:hover": {
+            color: "rgb(255, 255, 255)",
+        },
+        width: "10%",
+        hight: "5%",
+        padding: "0",
+        fontSize: '5px',
+
+        right: "87px"
     },
     color1: {
         "&:hover": {
@@ -90,7 +103,7 @@ const styles = theme => ({
         padding: "0 40px 0 0",
         margin: "0 0 10px 0"
     },
- 
+
     formControl: {
         padding: "0",
         width: "25%",
@@ -101,7 +114,7 @@ const styles = theme => ({
 
     },
     detail: {
-     
+
         padding: "0 55px 0 0",
         margin: "0 0 10px 0"
     },
@@ -166,7 +179,8 @@ const PostFDT = ({ classes, ...props }) => {
         temp.lng = values.lng ? "" : "กรุณาใส่ข้อมูล."
         temp.address = values.address ? "" : "กรุณาใส่ข้อมูล."
         temp.phone = values.phone ? "" : "กรุณาใส่ข้อมูล."
-        // temp.category = values.category ? "" : "กรุณาใส่ข้อมูล."
+        //temp.endtime = values.endtime ? "" : "กรุณาใส่ข้อมูล."
+        temp.category = values.category ? "" : "กรุณาใส่ข้อมูล."
         temp.promptpay = values.promptpay ? "" : "กรุณาใส่ข้อมูล."
         setErrors({
             ...temp
@@ -188,7 +202,7 @@ const PostFDT = ({ classes, ...props }) => {
     } = useForm(initialFieldValues, props.setCurrent)
 
     const setPhotos = e => {
-        console.log(e.target.files[0])
+        // console.log(e.target.files[0])
         setFile(e.target.files)
 
         if (e.target.files) {
@@ -206,10 +220,11 @@ const PostFDT = ({ classes, ...props }) => {
         return source.map((photo) => {
             return (
                 <>
+
                     <img src={photo} alt="" key={photo} className={classes.imgpreview} />
 
-                    <Button variant="contained" color="secondary" onClick={() => onRemoveImg(photo)} component="span">
-                        <DeleteSweep />
+                    <Button className={classes.buttonicondel} variant="contained" color="secondary" onClick={() => onRemoveImg(photo)} component="span">
+                        Delete
                     </Button>
                 </>
             );
@@ -220,7 +235,7 @@ const PostFDT = ({ classes, ...props }) => {
         setMulti_image(multi_image.filter(url_old => url_old !== url))
     }
 
-    console.log(multi_image)
+    // console.log(multi_image)
 
     // const showPreview = e => {
     //     if (e.target.files && e.target.files[0]) {
@@ -250,6 +265,8 @@ const PostFDT = ({ classes, ...props }) => {
             resetFormFDT()
             setMulti_image([])
         }
+        console.log(validate())
+        console.log(props.current)
         if (validate() && props.current == 0) {
             if (props.current == 0) {
                 console.log('***')
@@ -267,7 +284,8 @@ const PostFDT = ({ classes, ...props }) => {
                 formData.append('n_item', values.n_item);
                 formData.append('address', values.address);
                 formData.append('phone', values.phone);
-                formData.append('category', category);
+                formData.append('category', values.category);
+                // formData.append('category', category);
                 formData.append('promptpay', values.promptpay);
                 formData.append('endtime', values.endtime);
                 formData.append('lat', values.lat);
@@ -282,6 +300,10 @@ const PostFDT = ({ classes, ...props }) => {
 
     const handleChange = e => {
         setCategory(e.target.value);
+    };
+
+    const handleChangeDate = e => {
+        console.log(e.target)
     };
 
     if (props.current == 0) {
@@ -395,7 +417,7 @@ const PostFDT = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
                     />
-                    <FormControl className={classes.formControl}>
+                    {/* <FormControl className={classes.formControl}>
                         <InputLabel id="demo-simple-select-helper-label">หมวดหมู่</InputLabel>
                         <Select
                             onChange={handleChange}
@@ -407,20 +429,31 @@ const PostFDT = ({ classes, ...props }) => {
                             <MenuItem value={"สิ่งแวดล้อม"}>สิ่งแวดล้อม</MenuItem>
                             <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
                         </Select>
+                    </FormControl> */}
+
+                    <FormControl className={classes.select}>
+                        <InputLabel >จังหวัด</InputLabel>
+                        <Select
+                            InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
+                            name='category'
+                            value={values.category}
+                            fullWidth
+                            onChange={handleInputChange}
+                            {...(errors.category && { error: true, helperText: errors.category })}
+                        >
+                            {tag.map((tag) => <MenuItem value={tag}>{tag}</MenuItem>)}
+                        </Select>
                     </FormControl>
 
-                    <form className={classes.container} noValidate>
-                        <TextField
-                            id="date"
-                            label="สิ้นสุดโครงการ"
-                            type="date"
-                            defaultValue=""
-                            className={classes.textField}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </form><br />
+                    {/* <TextField
+                        id="standard-basic"
+                        label="สิ้นสุดโครงการ"
+                        className={classes.endtime}
+                        name="endtime"
+                        value={values.endtime}
+                        onChange={handleInputChange}
+                        {...(errors.endtime && { error: true, helperText: errors.endtime })}
+                    /> */}
 
                     <div className=''>{renderPhotos(multi_image)}</div>
 
@@ -452,8 +485,8 @@ const PostFDT = ({ classes, ...props }) => {
         );
     } else {
         arr.push(values.item)
-        console.log(values.item)
-        console.log(arr)
+        // console.log(values.item)
+        // console.log(arr)
         return (
             <form noValidate autoComplete="off" className={`${classes.root} ${classes.form}`}>
                 <Typography gutterBottom>
