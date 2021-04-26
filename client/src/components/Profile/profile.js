@@ -49,8 +49,9 @@ const styles = theme => ({
         "&:hover": {
             backgroundColor: "rgba(85, 52, 4, 0.925)"
         },
-        margin: theme.spacing(1),
-        background: '#a13800'
+        margin: '0 auto',
+        background: '#a13800',
+        display: 'block'
     },
     // actionDiv: {
     //     textAlign: "center"
@@ -140,6 +141,7 @@ function Profile({ classes, ...props }) {
         }
     }
 
+
     useEffect(() => {
         onetime();
         setErrors({})
@@ -217,9 +219,8 @@ function Profile({ classes, ...props }) {
                         {edit ?
                             //สามารถแก้ไขได้
                             (
-                                <>
-
-                                    <div className="box-text">
+                                <div>
+                                    <div className="box-text-profile">
                                         <h1> ประวัติส่วนตัว</h1>
                                         <div className="textinforuser">
                                             <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล</span>
@@ -272,57 +273,14 @@ function Profile({ classes, ...props }) {
                                         </div>
                                     </div>
 
-                                </>
-                                // <div>
-                                //     <div className="box-text">
-                                //         <h1> ประวัติส่วนตัว</h1>
-                                //         <div className="textinforuser">
-                                //             <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล</span>
-                                //             <input
-                                //                 type="text"
-                                //                 name='name'
-                                //                 value={values.name}
-                                //                 // onChange={(e) => { setName(e.target.value) }}>
-                                //                 onChange={handleInputChange}>
-                                //             </input>
-                                //         </div>
-                                //         <div className="textinforuser">
-                                //             <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
-                                //             <input
-                                //                 type="text"
-                                //                 name='phone'
-                                //                 // value={allInform.phone}
-                                //                 onChange={(e) => { setPhone(e.target.value) }}></input>
-                                //         </div>
-                                //         <div className="textinforuser">
-                                //             <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
-                                //             <input
-                                //                 type="text"
-                                //                 name='address'
-                                //                 // value={allInform.address}
-                                //                 onChange={(e) => { setAddress(e.target.value) }}></input>
-                                //         </div>
-                                //         <div className="textinforuser">
-                                //             <span> <i className="fas fa-envelope"> </i> อีเมล</span>
-                                //             <p>{allInform.email}</p>
-                                //         </div>
-
-                                //         <div className="confirm-and-cancelEditProfile">
-                                //             <div className="confirmEditProfile">
-                                //                 <button className="button" onClick={confirmUpdate}>บันทึก</button>
-                                //             </div>
-                                //             <div className="cancelEditProfile">
-                                //                 <button className="button" onClick={CancelUpdate}>ยกเลิก</button>
-                                //             </div>
-                                //         </div>
-                                //     </div>
-
-                                // </div>
+                                </div>
                             ) :
+
                             (
                                 //ข้อมูลปกติ
+
                                 <div>
-                                    <div className="box-text">
+                                    <div className="box-text-profile">
                                         <h1> ประวัติส่วนตัว</h1>
                                         <div className="textinforuser">
                                             <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
@@ -340,7 +298,7 @@ function Profile({ classes, ...props }) {
                                             <span> <i className="fas fa-envelope"> </i> อีเมล</span>
                                             <p>{allInform.email}</p>
                                         </div>
-                                        <div className="grid-container">
+                                        <div className="grid-container1">
                                             <div className="EditProfile">
                                                 <button className="button" onClick={handleEditProfile}>แก้ไข</button>
                                             </div>
@@ -353,14 +311,17 @@ function Profile({ classes, ...props }) {
                                                     โพสที่ถูกใจ
                                         </button>
                                             </div>
-                                        </div></div></div>)
+                                        </div>
+                                    </div>
+                                </div>)
                         }
                     </section>
 
 
                 </div>
+                <br/>
                 <div className="Post">
-                    <p>Post ของฉัน </p>
+                    <span>Post ของฉัน </span>
                 </div>
                 <div>
                     <Grid container style={{ padding: '0 auto' }} spacing={4} >
@@ -390,6 +351,7 @@ function Profile({ classes, ...props }) {
                                                         </div>
                                                         <Grid container justify="center">
                                                             <div className={classes.frampicture} >
+                                                                {console.log(record)}
                                                                 <img src={'http://localhost:3001/image/' + record.image} alt={record.message} className={classes.picture} />
                                                             </div>
                                                         </Grid>

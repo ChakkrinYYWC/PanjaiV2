@@ -45,11 +45,11 @@
   padding: 10px 20px;
 }
 
-.box-text {
+.box-text-profile {
   padding: 30px 70px 30px 35px;
   font-family: "Mali", cursive;
 }
-.box-text h1 {
+.box-text-profile h1 {
   font-weight: bold;
   color: rgba(85, 52, 4, 0.925);
   margin-bottom: 45px;
@@ -58,7 +58,7 @@
   text-align: center;
 }
 
-.box-text p {
+.box-text-profile p {
   font-style: 24px;
   font-weight: 300;
   color: rgba(85, 52, 4, 0.925);
@@ -68,7 +68,7 @@
   /* font-family: 'Mali', cursive; */
 }
 
-.box-text span {
+.box-text-profile span {
   font-style: 24px;
   font-weight: 900;
   color: rgba(85, 52, 4, 0.925);
@@ -94,7 +94,7 @@
   background-color: rgba(82, 60, 28, 0.925);
 }
 .button1 {
-  background-color: rgba(136, 96, 36, 0.925);
+  background-color: rgba(114, 39, 9, 0.925);
   color: white;
   width: 140px;
   font-family: "Mali", cursive;
@@ -106,21 +106,24 @@
   padding: 1px;
 }
 .button1:hover {
-  background-color: rgba(82, 60, 28, 0.925);
+  background-color: rgba(172, 89, 34, 0.925);
   color: white;
   text-decoration: none;
 }
 .Like {
-  padding-top: 100px;
+  padding-top: 0px;
 }
 
-.Post {
+.Post  {
   font-family: "Mali", cursive;
   font-size: 24px;
   font-weight: bold;
-  color: #2e2e2e;
-  margin-bottom: 45px;
+  color: #aa8238;
+  margin-bottom: 20px;
+  text-shadow: rgb(185, 175, 131) 0.1em 0.1em 0.2em
+
 }
+
 .EditProfile {
   justify-self: center;
 }
@@ -133,49 +136,139 @@
   justify-self: center;
 }
 
-.grid-container {
+.grid-container1 {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 10px;
-
   padding: 10px;
 }
 
-.grid-container > div {
+.grid-container1 > div {
   text-align: center;
+}
+.box-text-profile .fa-envelope  {
+  padding: 0px;
+  color: rgb(112, 87, 37);
 }
 
 @media screen and (max-width: 1024px) {
+  .container {
+    font-family: Roboto;
+    font-size: 16px;
+    color: #000000;
+  }
+  
   .box {
-    margin: 0;
-    grid-template-columns: 100%;
+    margin: 50px;
+    display: grid;
+    grid-gap: 1rem;
+    box-shadow: 0px 7px 7px 4px rgba(206, 206, 206, 0.397);
+    justify-items: center;
+    background-color: rgba(221, 217, 208, 0.699);
   }
-  .box-text h1 {
-    font-size: 20px;
-    margin-bottom: 20px;
+  .box-img img {
+    width: 100%;
+    height: 100%;
+    padding: 0;
   }
-  .box-text p {
+  .btn-bottom-profile {
+    display: grid;
+    grid-template-columns: 1fr 35px;
+    padding: 10px 20px;
+  }
+  /* .Like {
+      align-items: center;
+      font-size: 35px;
+      color: #521d1d;
+      margin-right: 120px;
+  } */
+  .confirm-and-cancelEditProfile {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    padding: 10px 20px;
+  }
+  
+  .box-text-profile {
+    padding: 30px 70px 30px 35px;
+    font-family: "Mali", cursive;
+  }
+  .box-text-profile h1 {
+    font-weight: bold;
+    color: rgba(85, 52, 4, 0.925);
+    margin-bottom: 45px;
+    /* font-family: 'Mali', cursive; */
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .box-text-profile p {
     font-style: 24px;
     font-weight: 300;
+    color: rgba(85, 52, 4, 0.925);
     line-height: 30px;
     letter-spacing: 0.25px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
+    /* font-family: 'Mali', cursive; */
   }
-  .box-text {
-    padding: 10px 50px 20px 55px;
+  
+  .box-text-profile span {
+    font-style: 24px;
+    font-weight: 900;
+    color: rgba(85, 52, 4, 0.925);
+    line-height: 30px;
+    letter-spacing: 0.25px;
+    /* margin-bottom: 15px; */
+    /* font-family: 'Mali', cursive; */
+    font-size: 16px;
   }
-  .box img {
-    padding: 20px 20px 10px 20px;
-  }
+  
   .button {
-    background-color: rgba(108, 96, 209, 0.925);
+    
     color: white;
-    width: 100px;
+    width: 80px;
     font-family: "Mali", cursive;
     padding: 5px 8px;
+    border-radius: 50px;
+    text-decoration: none;
+    height: 35px;
+    padding: 1px;
   }
+  /* .button:hover {
+    background-color: rgba(82, 60, 28, 0.925);
+  } */
+  .button1 {
+    
+    color: white;
+    width: 140px;
+    font-family: "Mali", cursive;
+    padding: 8px 8px;
+    border-radius: 50px;
+    text-decoration: none;
+    height: 35px;
+    border-color: rgb(12, 3, 3);
+    padding: 1px;
+  }
+  .button1:hover {
+    
+    color: white;
+    text-decoration: none;
+  }
+  .Like {
+    padding-top: 0px;
+  }
+  
+  .Post  {
+    font-family: "Mali", cursive;
+    font-size: 24px;
+    font-weight: bold;
+    color: #aa8238;
+    margin-bottom: 20px;
+    text-shadow: rgb(185, 175, 131) 0.1em 0.1em 0.2em
+  
+  }
+  
   .EditProfile {
-    justify-self: right;
+    justify-self: center;
   }
   .textinforuser {
     display: grid;
@@ -183,77 +276,177 @@
     align-items: center;
   }
   .Like {
-    /* justify-self: right;
-    display: grid; */
-    padding: 0px 50px 0px 40px;
-    text-align: right;
+    justify-self: center;
   }
-  .btn-bottom-profile {
+  
+  .grid-container1 {
     display: grid;
-    grid-template-columns: 250px 1fr;
-    padding: 10px 20px;
-    align-items: center;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    padding: 10px;
   }
-  .confirm-and-cancelEditProfile {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    padding: 10px 20px;
+  
+  .grid-container1 > div {
+    text-align: center;
+  }
+  .box-text-profile .fa-envelope  {
+    padding: 0px;
+    color: rgb(112, 87, 37);
   }
 }
 
 @media screen and (max-width: 376px) {
+  .container {
+    font-family: Roboto;
+    font-size: 12px;
+    
+  }
+  
   .box {
-    margin: 0;
-    grid-template-columns: 100%;
-    grid-gap: 1rem;
-  }
-  .box-text h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  .box-text p {
-    font-style: 18px;
-    font-weight: 100;
-    line-height: 30px;
-    letter-spacing: 0.25px;
-    margin-bottom: 15px;
-  }
-  .box-text {
-    padding: 0px;
-  }
-  .box img {
-    padding: 20px 20px 10px 20px;
-  }
-  .button {
-    background-color: rgba(151, 133, 74, 0.925);
-    color: white;
-    width: 100px;
-    font-family: "Mali", cursive;
-    padding: 5px 8px;
-  }
-  .EditProfile {
-    justify-self: right;
-  }
-  .textinforuser {
+    margin: 5px;
     display: grid;
-    grid-template-columns: 150px 1fr;
-    align-items: center;
+    grid-gap: 1rem;
+   
+    justify-items: center;
+    background-color: rgba(221, 217, 208, 0.699);
   }
-  .Like {
-    /* justify-self: right;
-    display: grid; */
-    padding: 0px 50px 0px 40px;
-    text-align: right;
+  .box-img img {
+    width: 100%;
+    height: 100%;
+    padding: 0;
   }
   .btn-bottom-profile {
     display: grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 35px 35px;
     padding: 10px 20px;
+  }
+  /* .Like {
+      align-items: center;
+      font-size: 35px;
+      color: #521d1d;
+      margin-right: 120px;
+  } */
+  .confirm-and-cancelEditProfile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 5px 10px;
+  }
+  
+  .box-text-profile {
+    padding: 10px  10px 10px 10px;
+    font-family: "Mali", cursive;
+    width: 350px;
+  }
+  .box-text-profile h1 {
+    font-weight: bold;
+    color: rgba(85, 52, 4, 0.925);
+    margin-bottom: 24px;
+    /* font-family: 'Mali', cursive; */
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .box-text-profile p {
+    font-style: 24px;
+    font-weight: 300;
+    color: rgba(85, 52, 4, 0.925);
+    line-height: 30px;
+    letter-spacing: 0.25px;
+    /* margin-bottom: 15px; */
+    /* font-family: 'Mali', cursive; */
+    font-size: 12px;
+    width: 180px;
+  }
+  
+  .box-text-profile span {
+    font-style: 24px;
+    font-weight: 900;
+    color: rgba(85, 52, 4, 0.925);
+    line-height: 30px;
+    letter-spacing: 0.25px;
+    /* margin-bottom: 15px; */
+    /* font-family: 'Mali', cursive; */
+    font-size: 12px;
+    
+  }
+  
+  .button {
+    
+    color: white;
+    width: 40px;
+    font-family: "Mali", cursive;
+    padding: 5px 8px;
+    border-radius: 50px;
+    text-decoration: none;
+    height: 25px;
+    padding: 1px;
+  }
+  /* .button:hover {
+    background-color: rgba(82, 60, 28, 0.925);
+  } */
+  .button1 {
+    
+    color: white;
+    width: 80px;
+    font-family: "Mali", cursive;
+    padding: 8px 8px;
+    border-radius: 50px;
+    text-decoration: none;
+    height: 25px;
+    border-color: rgb(12, 3, 3);
+    padding: 1px;
+  }
+  .button1:hover {
+    
+    color: white;
+    text-decoration: none;
+  }
+  .Like {
+    padding-top: 0px;
+  }
+  
+  .Post  {
+    font-family: "Mali", cursive;
+    font-size: 24px;
+    font-weight: bold;
+    color: #aa8238;
+    margin-bottom: 20px;
+    text-shadow: rgb(185, 175, 131) 0.1em 0.1em 0.2em
+  
+  }
+  
+  .EditProfile {
+    justify-self: center;
+  }
+  .textinforuser {
+    display: grid;
+    grid-template-columns: 100px 90px;
     align-items: center;
+  }
+  .Like {
+    justify-self: center;
+  }
+  
+  .grid-container1 {
+    display: grid;
+    grid-template-columns: 80px 80px;
+    grid-gap: 10px;
+    padding: 10px 50px;
+    
+  }
+  
+  .grid-container1 > div {
+    text-align: center;
+  }
+  .box-text-profile .fa-envelope  {
+    padding: 0px;
+    color: rgb(112, 87, 37);
   }
   .confirm-and-cancelEditProfile {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    padding: 10px 20px;
-  }
+    grid-template-columns: 80px 80px;
+    padding: 10px 80px;
+    
+}
+ 
 }
