@@ -13,6 +13,15 @@ import { PhotoCamera, AssignmentTurnedIn } from "@material-ui/icons"
 import ButterToast, { Cinnamon } from "butter-toast";
 import zIndex from '@material-ui/core/styles/zIndex';
 import DeleteIcon from '@material-ui/icons/Delete';
+import 'date-fns';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+import { data } from 'jquery';
 import { tag } from "../../Constants/provinces";
 
 const defaultImageSrc = '/image.png'
@@ -287,7 +296,7 @@ const PostFDT = ({ classes, ...props }) => {
                 formData.append('category', values.category);
                 // formData.append('category', category);
                 formData.append('promptpay', values.promptpay);
-                formData.append('endtime', values.endtime);
+                formData.append('endtime',selectedDate);
                 formData.append('lat', values.lat);
                 formData.append('lng', values.lng);
 
@@ -300,6 +309,12 @@ const PostFDT = ({ classes, ...props }) => {
 
     const handleChange = e => {
         setCategory(e.target.value);
+    };
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+        console.log(date);
     };
 
     const handleChangeDate = e => {
@@ -445,6 +460,26 @@ const PostFDT = ({ classes, ...props }) => {
                         </Select>
                     </FormControl>
 
+          
+
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <Grid container >
+                            <KeyboardDatePicker
+                                disableToolbar
+                                variant="inline"
+                                format="MM/dd/yyyy"
+                                margin="normal"
+                                id="date-picker-inline"
+                                label="วันสิ้นสุดโครงการ"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date',
+                                }}
+                            />
+
+                        </Grid>
+                    </MuiPickersUtilsProvider>
                     {/* <TextField
                         id="standard-basic"
                         label="สิ้นสุดโครงการ"
@@ -593,6 +628,43 @@ const PostFDT = ({ classes, ...props }) => {
                     <div>
                         <img src={src} alt={alt} className={classes.imgpreview} />
                     </div> */}
+      
+
+
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <Grid container >
+                            <KeyboardDatePicker
+                                disableToolbar
+                                variant="inline"
+                                format="MM/dd/yyyy"
+                                margin="normal"
+                                id="date-picker-inline"
+                                label="วันสิ้นสุดโครงการ"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date',
+                                }}
+                            />
+
+                        </Grid>
+                    </MuiPickersUtilsProvider>
+                    <div className=''>{renderPhotos(multi_image)}</div>
+
+                    <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="icon-button-file"
+                        type="file"
+                        multiple
+                        onChange={setPhotos}
+                    />
+                    <label htmlFor="icon-button-file">
+                        <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1} >
+                            <PhotoCamera />
+                        </IconButton>
+                    </label>
+
                 </Typography>
 
 

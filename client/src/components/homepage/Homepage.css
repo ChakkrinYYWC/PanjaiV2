@@ -8,7 +8,7 @@
 /*Category*/
 .category{
   background-color: rgb(255, 236, 179);
-  height: 700px;
+  height: 100%;
   width: 100%;
   margin: 0;
   font-family: 'Mali', cursive;
@@ -359,6 +359,47 @@ background-color: #fdfdfd;
   height: 100%;
   background-color: #000;
 }
+/* dasbord */
+.Total-donation{
+  background-color:rgba(231, 222, 208, 0.925) ;
+  height: 350px;
+  width: 100%;
+  margin: 0;
+  font-family: 'Mali', cursive;
+
+}
+.grid-container-donation {
+  display: grid;
+  grid-template-columns: 500px 500px ;
+  padding: 50px 250px;
+
+}
+.grid-item-donation {
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+.text-donation-money p {
+  color: #7c580b;
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: rgb(231, 189, 140) 0.1em 0.1em 0.1em
+
+}
+.text-donation-people p {
+  color: #7c580b;
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: rgb(231, 189, 140) 0.1em 0.1em 0.1em
+}
+.nunber-donation-money p {
+  color: #7c580b;
+  font-size: 30px;
+}
+.nunber-donation-people p {
+  color: #7c580b;
+  font-size: 30px;
+}
 
 /*responsive*/
 @media only screen and (max-width: 1024px) {
@@ -409,6 +450,34 @@ background-color: #fdfdfd;
   padding: 0px 60px 0px 60px;
 }
 
+.d-block {
+  height: 300px;
+  position: relative;
+}
+h3 {
+  padding: 40px;
+  font-size: 25px;
+  
+}
+.cardd Img {
+  height: 100px;
+  width: 100px;
+}
+.row {
+  padding: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
  
+}
+.cardd {
+  width: 120px;
+  height: 110px;
+  text-align: center;
+  border-radius: 100px;
+  padding: 0px;
+  margin: 0px;
+  /* box-shadow: 5px 40px 2px 0 rgb(250 250 249 / 81%); */
+}
 
 }    

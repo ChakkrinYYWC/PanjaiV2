@@ -17,7 +17,7 @@ import Fade from '@material-ui/core/Fade';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 // import Card from 'react-bootstrap/Card';
-import { Card,Button, Modal } from 'react-bootstrap';
+import { Card, Button, Modal } from 'react-bootstrap';
 
 
 import {
@@ -33,20 +33,20 @@ import { model } from 'mongoose';
 /*----------------------------------------------------------------------*/
 var once = false;
 function Homepage() {
-    
+
     // const [anchorEl, setAnchorEl] = React.useState(null);
 
     // const handleClick = (event) => {
     //     setAnchorEl(event.currentTarget);
     // };
- 
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-  
+
     const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
-  
+
 
     const popupYet = localStorage.getItem('popupYet')
     const currentUser = localStorage.getItem('currentUser')
@@ -112,9 +112,9 @@ function Homepage() {
                                                     allitem.map((record, index) => {
                                                         return (
                                                             <div className="lover">
-                                          
+
                                                                 <Dropdown.Item>
-                                                                    <Link to={'/FDTpopup'}  className="love"><div>{record._id[0]}</div></Link>
+                                                                    <Link to={'/FDTpopup'} className="love"><div>{record._id[0]}</div></Link>
                                                                 </Dropdown.Item>
                                                                 <If condition={record._id[1]}>
                                                                     <Then>
@@ -184,8 +184,9 @@ function Homepage() {
             {/* ---------------------------------category------------------------------------- */}
             <div className="category" id="003">
                 <h3>หมวดหมู่มูลนิธิ</h3>
+                <center>
                 <div className="row m-0">
-                    <div className="column col-4">
+                    <div className="column col-xs-6 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/pngegg.png" />
                             <Card.Body>
@@ -194,7 +195,7 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-4">
+                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/2.png" />
                             <Card.Body className="">
@@ -203,7 +204,7 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-4">
+                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/e.png" />
                             <Card.Body>
@@ -214,7 +215,7 @@ function Homepage() {
                     </div>
                 </div>
                 <div className="row m-0">
-                    <div className="column col-4">
+                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/4.png" />
                             <Card.Body>
@@ -223,7 +224,7 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-4">
+                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/5.1.png" />
                             <Card.Body>
@@ -232,7 +233,7 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-4">
+                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/6.png" />
                             <Card.Body>
@@ -242,6 +243,7 @@ function Homepage() {
                         </Card>
                     </div>
                 </div>
+                </center>
             </div>
 
             {/* ----------------------------ตู้ปันใจ------------------------------------------ */}
@@ -315,7 +317,35 @@ function Homepage() {
                 </ul>
 
             </div>
-           
+
+            {/* ----------------------------dastbord------------------------------------------ */}
+            <div className="Total-donation">
+
+                <div class="grid-container-donation">
+                    <div class="grid-item-donation">
+                        <span className="text-donation-money">
+                            <p>ยอดบริจาคทั้งหมด</p>
+                        </span>
+                    </div>
+                    <div class="grid-item-donation">
+                        <span className="text-donation-people">
+                            <p>จำนวนผู้บริจาคทั้งหมด</p>
+                        </span>
+                    </div>
+                    <div class="grid-item-donation">
+                        <span className="nunber-donation-money">
+                            <p>2,000,000 บาท</p>
+                        </span>
+                    </div>
+                    <div class="grid-item-donation">
+                        <span className="nunber-donation-people">
+                            <p>50 คน</p>
+                        </span>
+                    </div>
+                    
+                </div>
+
+            </div>
         </div>
 
 
