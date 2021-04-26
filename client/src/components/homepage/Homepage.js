@@ -84,7 +84,7 @@ function Homepage() {
         }
     }
     onetime()
-    //console.log(allitem)
+    console.log(allitem)
 
     return (
         <div>

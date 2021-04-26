@@ -31,12 +31,12 @@ const styles = theme => ({
         margin: theme.spacing(1),
         background: '#a13800'
     },
-    actionDiv: {
-        textAlign: "center"
-    },
+    // actionDiv: {
+    //     textAlign: "center"
+    // },
     post1: {
 
-        borderRadius: 5,
+        // borderRadius: 5,
         boxShadow: '0 2px 3px 2px rgba(85, 52, 4, 0.925)',
         height: 'auto',
         padding: '30px 30px',
@@ -44,13 +44,13 @@ const styles = theme => ({
 
     },
     framepost: {
-        // background: '#f9a825',
-        borderRadius: 5,
-        boxShadow: '0 2px 3px 2px rgba(187, 130, 44, 0.925)',
+        boxShadow: "1px 1px 1px 1px rgba(187, 130, 44, 0.925)",
         color: 'rgba(187, 130, 44, 0.925)',
-        height: 'auto',
+        height: '100%',
         padding: '10px 10px',
-        marginBlock: '15px'
+        borderRadius: "20px",
+        marginBlock: '15px',
+        magin: '10px'
     },
     frampicture: {
         padding: '10px 10px'
@@ -70,10 +70,10 @@ const styles = theme => ({
     color1: {
         color: '#a13800'
     },
-    judjudjud: {
-        marginLeft: '75px'
+    // judjudjud: {
+    //     marginLeft: '75px'
 
-    },
+    // },
 
 })
 
@@ -107,7 +107,7 @@ function Profile({ classes, ...props }) {
             }).catch(error => console.log(error))
         }
     }
-    onetime()
+    
 
 
     const CancelUpdate = () => {
@@ -130,24 +130,25 @@ function Profile({ classes, ...props }) {
 
     useEffect(() => {
 
-        const getprofile = () => {
+        // const getprofile = () => {
 
-            //fetch from server
+        //     //fetch from server
 
-            //ข้อมูล Demo
-            // setprofile(
-            //     {
+        //     //ข้อมูล Demo
+        //     // setprofile(
+        //     //     {
 
-            //         name: "june",
-            //         phone: "28178799812",
-            //         address: "พระราชวัง ประเทศอังกฤษ",
-            //         email: "june@gamil.com"
+        //     //         name: "june",
+        //     //         phone: "28178799812",
+        //     //         address: "พระราชวัง ประเทศอังกฤษ",
+        //     //         email: "june@gamil.com"
 
-            //     }
-            // )
-        }
+        //     //     }
+        //     // )
+        // }
 
-        getprofile();
+        // getprofile();
+        onetime();
 
     }, [])
 
@@ -249,7 +250,7 @@ function Profile({ classes, ...props }) {
                                              <Link to="/myfav" className="button1" >โพสที่ถูกใจ</Link>
                                         </div> */}
                                         <div className='Like'>
-                                        <button className="button1" onClick={()=>{route.push('/myfav')}}  >
+                                        <button className="button1" type="button" onClick={()=>{route.push('/myfav')}}  >
                                         โพสที่ถูกใจ
                                         </button>
                                         </div>
@@ -263,9 +264,13 @@ function Profile({ classes, ...props }) {
                     <p>Post ของฉัน </p>
                 </div>
                 <div>
+                    <Grid container style={{padding:'0 auto'}} spacing={4} >
+                    {/* {console.log(myPost)} */}
                     {
                         myPost.map((record, index) => {
+                            
                             return (
+                                
                                 <Grid item xs={12} sm={4} >
                                     {/* {index} */}
                                     <Paper className={classes.framepost}>
@@ -286,7 +291,8 @@ function Profile({ classes, ...props }) {
                                                     </div>
                                                     <Grid container justify="center">
                                                         <div className={classes.frampicture} >
-                                                            <img src={'http://localhost:3001/image/' + record.image} className={classes.picture} />
+                                                            {console.log(record)}
+                                                            <img  src={'http://localhost:3001/image/' + record.image} alt={record.message} className={classes.picture} />
                                                         </div>
                                                     </Grid>
                                                     <div className={`${classes.color1} ${classes.frontpost}`}>
@@ -318,6 +324,7 @@ function Profile({ classes, ...props }) {
                             )
                         })
                     }
+                    </Grid>
                 </div>
             </div>
         </div>

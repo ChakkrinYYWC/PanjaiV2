@@ -111,6 +111,7 @@ function Category({ ...props }) {
                                                             {/* <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */} 
                                                             {record.image.map((image) => (
                                                                 <Card.Img variant="top" img src={'http://localhost:3001/Foundation/' + image}/> //multi image
+                                                                
                                                             ))}
                                                             <Card.Body>
                                                                 <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="Tfound">{record.title}</Link>
