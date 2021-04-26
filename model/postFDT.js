@@ -10,7 +10,7 @@ var PostFDT = mongoose.model('PostFDT',{
     n_item: Number,
     category: String,
     promptpay: String,
-    endtime: String,
+    endtime: Date,
     lat: Number,
     lng: Number,
     address: String,

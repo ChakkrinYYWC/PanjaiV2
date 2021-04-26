@@ -124,7 +124,8 @@ a.nav-links-mobile {
     background-color: red;
     color: white;
     border-radius: 50px;
- 
+    padding: 2.5px 6px 2.5px 6px;
+    vertical-align: top;
 
   }
  @media screen and (max-width: 1024px) {

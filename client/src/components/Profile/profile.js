@@ -1,16 +1,37 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as action from '../../action/postPanjai'
+import * as action2 from '../../action/profile'
 import './profile.css'
 import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep } from "@material-ui/icons";
 import Axios from 'axios';
 import { Card, Modal } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
-import { Divider, Grid, Paper, Typography, withStyles, ListItem, ListItemText, Button } from '@material-ui/core';
+import { Divider, Grid, Paper, Typography, withStyles, ListItem, ListItemText, Button, TextField } from '@material-ui/core';
 import moment from 'moment';
+import useForm from '../PostPanjai/useForm'
+import { AssignmentTurnedIn } from "@material-ui/icons";
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import FilledInput from '@material-ui/core/FilledInput';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 var once = false;
+
+const initialFieldValues = {
+    name: '',
+    adress: '',
+    phone: '',
+}
 
 const styles = theme => ({
     paper: {
@@ -75,20 +96,31 @@ const styles = theme => ({
     //     marginLeft: '75px'
 
     // },
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    margin: {
+        margin: theme.spacing(1),
+    },
+    withoutLabel: {
+        marginTop: theme.spacing(3),
+    },
+    textField: {
+        width: '25ch',
+    },
 
 })
 
 function Profile({ classes, ...props }) {
 
+    console.log(props)
     const currentUserID = localStorage.getItem("currentUser_id")
     const currentUser = localStorage.getItem("currentUser")
     const [allInform, setAllInform] = useState("");
     // false = ยังไม่ได้กด edit
     const [edit, setedit] = useState(false);
     //ข้อมูลโปรไฟล์
-    const [address, setAddress] = useState();
-    const [phone, setPhone] = useState();
-    const [name, setName] = useState();
     const [myPost, setMyPost] = useState([])
     const route = useHistory()
 
@@ -103,13 +135,39 @@ function Profile({ classes, ...props }) {
 
             await Axios.get('/profile/postInformation/' + currentUser, {
             }).then(res => {
-                console.log(res.data)
+                //console.log(res.data)
                 setMyPost(res.data)
             }).catch(error => console.log(error))
         }
     }
 
 
+    useEffect(() => {
+        onetime();
+        setErrors({})
+
+    }, [])
+
+
+    const validate = () => {
+        let temp = { ...errors }
+        temp.name = values.name ? "" : "กรุณาใส่ข้อมูล."
+        temp.address = values.address ? "" : "กรุณาใส่ข้อมูล."
+        temp.phone = values.phone ? "" : "กรุณาใส่ข้อมูล."
+        setErrors({
+            ...temp
+        })
+        return Object.values(temp).every(x => x === "")
+    }
+
+    var {
+        values,
+        setValues,
+        errors,
+        setErrors,
+        handleInputChange,
+        resetForm
+    } = useForm(initialFieldValues, currentUserID)
 
     const CancelUpdate = () => {
         setedit(false);
@@ -118,40 +176,6 @@ function Profile({ classes, ...props }) {
     function handleEditProfile() {
         setedit(true);
     }
-
-    // อัพเดตโปรไฟล์
-    const confirmUpdate = (event) => {
-        const data = [phone, address, name]
-        Axios.post('/profile/update/' + currentUserID, data, {
-        }).then(res => {
-            console.log(res)
-            window.location.href = "http://localhost:3000/profile/" + currentUserID
-        }).catch(error => console.log(error))
-    }
-
-    useEffect(() => {
-
-        // const getprofile = () => {
-
-        //     //fetch from server
-
-        //     //ข้อมูล Demo
-        //     // setprofile(
-        //     //     {
-
-        //     //         name: "june",
-        //     //         phone: "28178799812",
-        //     //         address: "พระราชวัง ประเทศอังกฤษ",
-        //     //         email: "june@gamil.com"
-
-        //     //     }
-        //     // )
-        // }
-
-        // getprofile();
-        onetime();
-
-    }, [])
 
     const onDelete = id => {
         const onSuccess = () => {
@@ -163,8 +187,28 @@ function Profile({ classes, ...props }) {
                 />
             })
         }
-        if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?'))
+        if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')){
             props.deletePostMessage(id, onSuccess)
+            window.location.href = "http://localhost:3000/profile/" + currentUserID
+        }
+    }
+
+    // อัพเดตโปรไฟล์
+    const handleSubmit = e => {
+        e.preventDefault()
+        const onSuccess = () => {
+            ButterToast.raise({
+                content: <Cinnamon.Crisp title="โปรไฟล์อัพเดต"
+                    content="Submitted successfully"
+                    scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+                    icon={<AssignmentTurnedIn />}
+                />
+            })
+        }
+        if (validate()) {
+            props.updateProfile(currentUserID, values, onSuccess)
+            window.location.href = "http://localhost:3000/profile/" + currentUserID
+        }
     }
 
     return (
@@ -173,43 +217,55 @@ function Profile({ classes, ...props }) {
                 <div className="box">
                     <section>
                         {edit ?
-                            //สามารถแก้ไขๆด้
+                            //สามารถแก้ไขได้
                             (
                                 <div>
                                     <div className="box-text-profile">
                                         <h1> ประวัติส่วนตัว</h1>
                                         <div className="textinforuser">
                                             <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล</span>
-                                            <input
-                                                type="text"
-                                                name='name'
-                                                // value={allInform.name}
-                                                onChange={(e) => { setName(e.target.value) }}></input>
+                                            <TextField
+                                                name="name"
+                                                variant="filled"
+
+                                                fullWidth
+                                                size="small"
+                                                value={values.name}
+                                                onChange={handleInputChange}
+                                                {...(errors.name && { error: true, helperText: errors.name })}
+                                            />
                                         </div>
                                         <div className="textinforuser">
                                             <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
-                                            <input
-                                                type="text"
-                                                name='phone'
-                                                // value={allInform.phone}
-                                                onChange={(e) => { setPhone(e.target.value) }}></input>
+                                            <TextField
+                                                id="standard-basic"
+                                                name="phone"
+                                                type='number'
+                                                variant="filled"
+
+                                                fullWidth
+                                                size="small"
+                                                value={values.phone}
+                                                onChange={handleInputChange}
+                                                {...(errors.phone && { error: true, helperText: errors.phone })}
+                                            />
                                         </div>
                                         <div className="textinforuser">
                                             <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
-                                            <input
-                                                type="text"
-                                                name='address'
-                                                // value={allInform.address}
-                                                onChange={(e) => { setAddress(e.target.value) }}></input>
-                                        </div>
-                                        <div className="textinforuser">
-                                            <span> <i className="fas fa-envelope"> </i> อีเมล</span>
-                                            <p>{allInform.email}</p>
-                                        </div>
+                                            <TextField
+                                                name="address"
+                                                variant="filled"
 
+                                                fullWidth
+                                                size="small"
+                                                value={values.address}
+                                                onChange={handleInputChange}
+                                                {...(errors.address && { error: true, helperText: errors.address })}
+                                            />
+                                        </div>
                                         <div className="confirm-and-cancelEditProfile">
                                             <div className="confirmEditProfile">
-                                                <button className="button" onClick={confirmUpdate}>บันทึก</button>
+                                                <button className="button" onClick={handleSubmit}>บันทึก</button>
                                             </div>
                                             <div className="cancelEditProfile">
                                                 <button className="button" onClick={CancelUpdate}>ยกเลิก</button>
@@ -341,7 +397,8 @@ const mapStateToProps = state => ({
 
 const mapActionToProps = {
     fetchAllPostPanjai: action.fetchAll,
+    fetchAllProfile: action2.fetchAll,
     deletePostMessage: action.Delete,
-    createPostPanjai: action.create
+    updateProfile: action2.update
 }
 export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(Profile));

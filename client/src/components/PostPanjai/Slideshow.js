@@ -6,6 +6,7 @@ const Slideshow = (props) => {
     console.log(props);
     return (
         <div>
+            <img src={'http://localhost:3001/image/' + props} />
             <SlideShow
                 images={props.data}
                 width="920px"

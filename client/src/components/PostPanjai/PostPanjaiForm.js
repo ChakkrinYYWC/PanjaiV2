@@ -80,9 +80,9 @@ const styles = theme => ({
     bg1: {
         backgroundColor: 'rgba(187, 130, 44, 0.925)',
     },
-    select:{
-        '& .MuiPaper-root':{
-            height : '400px'           
+    select: {
+        '& .MuiPaper-root': {
+            height: '400px'
         }
     }
 
@@ -134,7 +134,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
     const setPhotos = e => {
         console.log(e.target.files[0])
         setFile(e.target.files)
-        
+
         if (e.target.files) {
             const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
             //console.log("filesArray: ", filesArray);
@@ -164,23 +164,6 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         setMulti_image(multi_image.filter(url_old => url_old !== url))
     }
 
-    console.log(multi_image)
-
-    // const showPreview = e => {
-    //     if (e.target.files && e.target.files[0]) {
-    //         setFile(e.target.files[0]);
-    //         console.log(file);
-    //         setImg({
-    //             src: URL.createObjectURL(e.target.files[0]),
-    //             alt: e.target.files[0].name
-    //         });
-    //     }
-    //     else {
-    //         let pic = defaultImageSrc
-    //         setFile(pic)
-    //     }
-    // }
-
     const handleSubmit = e => {
         e.preventDefault()
         const onSuccess = () => {
@@ -203,14 +186,14 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                 console.log(file)
                 const formData = new FormData();
                 for (let i = 0; i < file.length; i++) {
-                    formData.append('image', file[i]); 
+                    formData.append('image', file[i]);
                 }
                 formData.append('title', values.title);
                 formData.append('message', values.message);
                 formData.append('contect', values.contect);
                 formData.append('location', values.location);
                 formData.append('creator', currentUser);
-                
+
                 props.createPostPanjai(formData, onSuccess) //ส่งค่าไปserver
             }
             else
@@ -225,6 +208,22 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         props.setCurrentId(0);
     }
 
+    //console.log(multi_image)
+
+    // const showPreview = e => {
+    //     if (e.target.files && e.target.files[0]) {
+    //         setFile(e.target.files[0]);
+    //         console.log(file);
+    //         setImg({
+    //             src: URL.createObjectURL(e.target.files[0]),
+    //             alt: e.target.files[0].name
+    //         });
+    //     }
+    //     else {
+    //         let pic = defaultImageSrc
+    //         setFile(pic)
+    //     }
+    // }
 
     // post
     if (props.currentId == 0) {
@@ -265,7 +264,6 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         name="title"
-                
                         label="ชื่อสิ่งของ"
                         size="small"
                         fullWidth
@@ -290,7 +288,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         label="ข้อมูลสิ่งของ"
                         fullWidth
                         size="small"
-         
+
                         // rows={4}
                         value={values.message}
                         onChange={handleInputChange}
@@ -304,12 +302,13 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     alignItems="center" >
 
                     <TextField
+                        type='number'
                         name="contect"
                         variant="filled"
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="เบอร์โทรศัพท์"
                         fullWidth
-                        size="small"      
+                        size="small"
                         value={values.contect}
                         onChange={handleInputChange}
                         {...(errors.contect && { error: true, helperText: errors.contect })}
@@ -337,14 +336,14 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     <FormControl fullWidth className={classes.select}>
                         <InputLabel >จังหวัด</InputLabel>
                         <Select
-                            InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali',height: '40px'} }}
+                            InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                             name='location'
                             value={values.location}
                             fullWidth
-                            onChange = {handleInputChange}
+                            onChange={handleInputChange}
                             {...(errors.location && { error: true, helperText: errors.location })}
                         >
-                        {province.map((province)=><MenuItem value={province}>{province}</MenuItem>)}
+                            {province.map((province) => <MenuItem value={province}>{province}</MenuItem>)}
                         </Select>
                     </FormControl>
                 </Grid>
@@ -399,7 +398,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="ข้อมูล"
                         fullWidth
-                       
+
                         // rows={4}
                         value={values.message}
                         onChange={handleInputChange}
@@ -448,10 +447,10 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                             name='location'
                             value={values.location}
                             fullWidth
-                            onChange = {handleInputChange}
+                            onChange={handleInputChange}
                             {...(errors.location && { error: true, helperText: errors.location })}
                         >
-                        {province.map((province)=><MenuItem value={province}>{province}</MenuItem>)}
+                            {province.map((province) => <MenuItem value={province}>{province}</MenuItem>)}
                         </Select>
                     </FormControl>
                 </Grid>

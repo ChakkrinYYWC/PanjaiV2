@@ -8,7 +8,7 @@
 /*Category*/
 .category{
   background-color: rgb(255, 236, 179);
-  height: 700px;
+  height: 100%;
   width: 100%;
   margin: 0;
   font-family: 'Mali', cursive;
@@ -450,6 +450,34 @@ background-color: #fdfdfd;
   padding: 0px 60px 0px 60px;
 }
 
+.d-block {
+  height: 300px;
+  position: relative;
+}
+h3 {
+  padding: 40px;
+  font-size: 25px;
+  
+}
+.cardd Img {
+  height: 100px;
+  width: 100px;
+}
+.row {
+  padding: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
  
+}
+.cardd {
+  width: 120px;
+  height: 110px;
+  text-align: center;
+  border-radius: 100px;
+  padding: 0px;
+  margin: 0px;
+  /* box-shadow: 5px 40px 2px 0 rgb(250 250 249 / 81%); */
+}
 
 }    

@@ -10,7 +10,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Menuitems from "./Menuitems";
 import "./Navbar.css";
 //import { find } from '../../../../model/user';
-
+import { Badge } from '@material-ui/core';
 const PanjaiToken = localStorage.getItem("PanjaiToken");
 //console.log("PanjaiToken: "+PanjaiToken)
 const user_id = localStorage.getItem("currentUser_id");
@@ -227,9 +227,15 @@ class Navbar extends Component {
               {this.state.noti.length + this.state.recieve.length <= 0 ? (
                 <span></span>
               ) : (
-                <span class="badge">
+                <div className="badge">
                   {this.state.noti.length + this.state.recieve.length}
-                </span>
+                </div>
+              //   <Badge className="badge"
+              //   anchorOrigin={{
+              //     vertical: 'top',
+              //     horizontal: 'right',
+              //   }}
+              // >
               )}
             </a>
           </span>
