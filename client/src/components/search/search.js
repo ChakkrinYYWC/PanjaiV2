@@ -29,7 +29,7 @@ export default function Checkboxes() {
 
   const Search = (event) => {
     event.preventDefault()
-    Axios.get('/search/' + searchInput, {
+    Axios.get('/TPJ&FDT/search/' + searchInput, {
     }).then(async function (res) {
       //console.log(res)
       setPostTPJ(res.data.postTPJ)

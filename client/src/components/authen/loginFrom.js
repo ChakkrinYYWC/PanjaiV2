@@ -37,16 +37,23 @@ function LoginFrom() {
         }).then( async function(res){
             console.log(res);
             if(res.data[0]) {
-                localStorage.setItem('Firstpopup', true);
-                localStorage.setItem('PanjaiToken', res.data[0]);
-                localStorage.setItem('currentUser', res.data[1]);
-                localStorage.setItem('currentUser_id', res.data[2]);
-                localStorage.setItem('currentUser_email', res.data[3]);
-                localStorage.setItem('currentUser_address', res.data[4]);
-                localStorage.setItem('currentUser_phone', res.data[5]);
-                localStorage.setItem('currentUser_name', res.data[6])
+                if(res.data == "You are baned!"){
+                    window.alert(res.data)
+                }else{
+                    await localStorage.setItem('Firstpopup', true);
+                await localStorage.setItem('PanjaiToken', res.data[0]);
+                await localStorage.setItem('currentUser', res.data[1]);
+                await localStorage.setItem('currentUser_id', res.data[2]);
+                await localStorage.setItem('currentUser_email', res.data[3]);
+                await localStorage.setItem('currentUser_address', res.data[4]);
+                await localStorage.setItem('currentUser_phone', res.data[5]);
+                await localStorage.setItem('currentUser_name', res.data[6])
                 await localStorage.setItem('popupYet', false)
+                await localStorage.setItem('blackListPopup', false)
+                await localStorage.setItem('reportPopup', false);
+                await localStorage.setItem('userPopup', false);
                 window.location.href = "http://localhost:3000"
+                }
             } else {
                 window.alert("Username or password incorrect.")
             }
