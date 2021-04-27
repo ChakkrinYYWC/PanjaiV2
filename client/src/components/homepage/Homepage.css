@@ -1,20 +1,18 @@
- 
- .d-block{
-    height: 610px;
-    position: relative;
-  }
-
+.d-block {
+  height: 610px;
+  position: relative;
+}
 
 /*Category*/
-.category{
+.category {
   background-color: rgb(255, 236, 179);
   height: 100%;
   width: 100%;
   margin: 0;
-  font-family: 'Mali', cursive;
+  font-family: "Mali", cursive;
 }
 
-.cardd{
+.cardd {
   width: 195px;
   height: 190px;
   text-align: center;
@@ -22,25 +20,24 @@
   /* box-shadow: 5px 40px 2px 0 rgba(250, 250, 249, 0.808); */
 }
 
-.cardd Img{
+.cardd Img {
   height: 170px;
   width: 170px;
 }
 
 .cardd img {
- margin-inline: 10px;
+  margin-inline: 10px;
 }
 
-.CardTitle{
-  color:rgba(110, 76, 26, 0.925);
+.CardTitle {
+  color: rgba(110, 76, 26, 0.925);
   font-size: 18px;
   text-decoration-line: none;
-  
 }
 
-.CardTitle:hover{
-  color:rgba(253, 253, 253, 0.925);
-  background-color: rgba(161, 128, 79, 0.925) ;
+.CardTitle:hover {
+  color: rgba(253, 253, 253, 0.925);
+  background-color: rgba(161, 128, 79, 0.925);
   border-radius: 10px;
 
   text-decoration-line: none;
@@ -48,203 +45,187 @@
   font-size: 19px;
 }
 
-.row{
+.row {
   padding-bottom: 50px;
   padding-right: 400px;
   padding-left: 400px;
- 
 }
 
 /* tupanjai */
-.tupanjai{
-  
-  background-color:rgba(177, 146, 99, 0.925) ;
+.tupanjai {
+  background-color: rgba(177, 146, 99, 0.925);
   height: 550px;
   width: 100%;
   margin: 0;
-  font-family: 'Mali', cursive;
-
+  font-family: "Mali", cursive;
 }
 
-.tupanjai .row{
+.tupanjai .row {
   padding-right: 0px;
   padding-left: 0px;
   padding-bottom: 0px;
 }
 
-.tpjj{
+.tpjj {
   text-align: center;
   padding-top: 190px;
 }
 
-.tpjj p{
+.tpjj p {
   font-size: 25px;
   color: white;
-  text-shadow: 2px 2px 4px  rgba(43, 18, 2, 0.925);
+  text-shadow: 2px 2px 4px rgba(43, 18, 2, 0.925);
 }
-.tpjj a{
+.tpjj a {
   font-size: 45px;
-  font-family: 'Chonburi', cursive;
+  font-family: "Chonburi", cursive;
   color: rgba(77, 50, 9, 0.925);
   text-decoration-line: none;
- 
+
   font-weight: bold;
   text-shadow: 5px 5px 2px rgba(231, 229, 226, 0.925);
 }
-.tpjj .tpj:hover{
+.tpjj .tpj:hover {
   font-size: 55px;
-  
 }
 
-.tpjj .far{
+.tpjj .far {
   color: white;
   text-shadow: none;
   font-size: 40px;
 }
 
-
-  /*รอยยิ้ม*/
-  h1, p {
-    font-size: 15px;
-    margin-top: 15px;
-    padding: 0px;
-    font-family: 'Mali', cursive;
-    color: rgb(32, 17, 6);
-  }
-
-  h2 {
-    font-size: 30px;
-    margin: 70px;
-    text-align: center;
-    font-family: 'Mali', cursive;
-    font-weight: bold;
-    color: rgb(151, 114, 85);
-    
-  }
-
-  h3{
-    padding: 50px;
-    font-size: 40px;
-    text-align: center;
-    font-weight: bold;
-    color: rgba(141, 90, 18, 0.925);
-  
-  }
-
-  .card{
-    background-image: url("../img/01.jpg"); 
-    
-  }   
-
-  ul.card-stacks {
-
-    list-style-type: none;
-    margin: 0px 450px 0px;
-    padding: 0px;
-    position: relative;
-    cursor: pointer;
-    height:670px;
-
-  }
-
-  ul.card-stacks li.stack {
-    position: absolute;
-    left: 0px;
-    transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.02);
-  }
-
-  ul.card-stacks li.stack ul.cards-down li.card {
-    transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.22);
-    left: 0px;
-    transition-delay: 0.4s;
-    background: #FFF;
-    overflow: hidden;
-    height: 200px;
-    width: 210px;
-    border-radius:10px;
-    position: absolute;
-    top: 0px;
-    box-shadow: 3px 4px 2px 0 rgba(85, 52, 4, 0.925);
-  }
-
-  ul.card-stacks li.stack ul.cards-down li.card img {
-    max-width: 100%;
-    height: 80%;
-  }
-  
-  ul.card-stacks li.stack ul.cards-down li.card div.content {
-    padding: 5px 5px;
-  }
-
-  ul.card-stacks li.stack ul.cards-down li.card.card-1 {
-    z-index: 10;
-    transform: rotateZ(-2deg);
-  }
-
-  ul.card-stacks li.stack ul.cards-down li.card.card-2 {
-    z-index: 9;
-    transform: rotateZ(-7deg);
-  }
-
-  ul.card-stacks li.stack ul.cards-down li.card.card-3 {
-    z-index: 8;
-    transform: rotateZ(5deg);
-  }
-
-  ul.card-stacks.transition li.stack.stack-1 {
-    left: 0px;
-  }
-
-  ul.card-stacks.transition li.stack.stack-2 {
-    left: 220px;
-  }
-
-  ul.card-stacks.transition li.stack.stack-3 {
-    left: 440px;
-  }
-
-  ul.card-stacks.transition li.stack ul.cards-down li.card {
-    transform: rotateZ(0deg);
-  }
-
-  ul.card-stacks.transition li.stack ul.cards-down li.card.card-1 {
-    top: 440px;
-  }
-
-  ul.card-stacks.transition li.stack ul.cards-down li.card.card-2 {
-    top: 220px;
-  }
- 
-
-  .bigpopup{
-    text-align: center; 
-    background-color: rgba(0, 0, 0, 0.144);
-    color:rgb(133, 102, 2) ;
-    width: 100%;
-    height: 100%;
-    justify-items: center;
-    
-  
+/*รอยยิ้ม*/
+h1,
+p {
+  font-size: 15px;
+  margin-top: 15px;
+  padding: 0px;
+  font-family: "Mali", cursive;
+  color: rgb(32, 17, 6);
 }
 
-.popup{
-    margin-top: 100px;
-    color:rgb(124, 96, 4);
-    text-align: center; 
-   
+h2 {
+  font-size: 30px;
+  margin: 70px;
+  text-align: center;
+  font-family: "Mali", cursive;
+  font-weight: bold;
+  color: rgb(151, 114, 85);
 }
 
+h3 {
+  padding: 50px;
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: rgba(141, 90, 18, 0.925);
+}
 
-.p{
+.card {
+  background-image: url("../img/01.jpg");
+}
 
-    height: 320px;
-    width: 500px;
-    background-color: rgb(255, 255, 255);
-    font-size: 20px;
-    
-} 
+ul.card-stacks {
+  list-style-type: none;
+  margin: 0px 450px 0px;
+  padding: 0px;
+  position: relative;
+  cursor: pointer;
+  height: 670px;
+}
 
- /* .pum Button{
+ul.card-stacks li.stack {
+  position: absolute;
+  left: 0px;
+  transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.02);
+}
+
+ul.card-stacks li.stack ul.cards-down li.card {
+  transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.22);
+  left: 0px;
+  transition-delay: 0.4s;
+  background: #fff;
+  overflow: hidden;
+  height: 200px;
+  width: 210px;
+  border-radius: 10px;
+  position: absolute;
+  top: 0px;
+  box-shadow: 3px 4px 2px 0 rgba(85, 52, 4, 0.925);
+}
+
+ul.card-stacks li.stack ul.cards-down li.card img {
+  max-width: 100%;
+  height: 80%;
+}
+
+ul.card-stacks li.stack ul.cards-down li.card div.content {
+  padding: 5px 5px;
+}
+
+ul.card-stacks li.stack ul.cards-down li.card.card-1 {
+  z-index: 10;
+  transform: rotateZ(-2deg);
+}
+
+ul.card-stacks li.stack ul.cards-down li.card.card-2 {
+  z-index: 9;
+  transform: rotateZ(-7deg);
+}
+
+ul.card-stacks li.stack ul.cards-down li.card.card-3 {
+  z-index: 8;
+  transform: rotateZ(5deg);
+}
+
+ul.card-stacks.transition li.stack.stack-1 {
+  left: 0px;
+}
+
+ul.card-stacks.transition li.stack.stack-2 {
+  left: 220px;
+}
+
+ul.card-stacks.transition li.stack.stack-3 {
+  left: 440px;
+}
+
+ul.card-stacks.transition li.stack ul.cards-down li.card {
+  transform: rotateZ(0deg);
+}
+
+ul.card-stacks.transition li.stack ul.cards-down li.card.card-1 {
+  top: 440px;
+}
+
+ul.card-stacks.transition li.stack ul.cards-down li.card.card-2 {
+  top: 220px;
+}
+
+.bigpopup {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.144);
+  color: rgb(133, 102, 2);
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+}
+
+.popup {
+  margin-top: 100px;
+  color: rgb(124, 96, 4);
+  text-align: center;
+}
+
+.p {
+  height: 320px;
+  width: 500px;
+  background-color: rgb(255, 255, 255);
+  font-size: 20px;
+}
+
+/* .pum Button{
 color: rgb(255, 255, 255);
 background-color: rgb(109, 83, 0);
 height: 30px;
@@ -252,13 +233,13 @@ margin: 10px;
 font-size: 20px;
  } */
 
- .pum .pummoney{
+.pum .pummoney {
   background-color: rgb(109, 83, 0);
-   width: 90%;
-   font-size: 20px;
-   margin-top: 10px;
- }
- .pum .btn {
+  width: 90%;
+  font-size: 20px;
+  margin-top: 10px;
+}
+.pum .btn {
   color: rgb(255, 255, 255);
   background-color: rgb(230, 184, 0);
   padding: 9px 15px;
@@ -271,84 +252,85 @@ font-size: 20px;
 .pum .btn:hover {
   color: rgb(255, 255, 255);
   background-color: rgb(136, 105, 3);
-
 }
 
-.pum btn-check:active+.btn-primary, .btn-check:checked+.btn-primary, .btn-primary.active, .btn-primary:active, .show>.btn-primary.dropdown-toggle {
+.pum btn-check:active + .btn-primary,
+.btn-check:checked + .btn-primary,
+.btn-primary.active,
+.btn-primary:active,
+.show > .btn-primary.dropdown-toggle {
   color: rgb(255, 255, 255);
   background-color: #ceb56f;
   border-color: #f8b628;
 }
 
-.pum .btn-check:active+.btn-primary:focus, .btn-check:checked+.btn-primary:focus, .btn-primary.active:focus, .btn-primary:active:focus, .show>.btn-primary.dropdown-toggle:focus {
+.pum .btn-check:active + .btn-primary:focus,
+.btn-check:checked + .btn-primary:focus,
+.btn-primary.active:focus,
+.btn-primary:active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 50%);
 }
 .pum .btn-primary {
-
   border-color: rgb(240, 236, 236);
 }
 
-.pum primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+.pum primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
   color: #fff;
   background-color: #ceb56f;
   border-color: #f8b628;
 }
-.love{
+.love {
   color: #7c580b;
   text-decoration: none;
   font-size: 13px;
-text-align: center;
- 
+  text-align: center;
 }
 /* .here{
   padding-right: 1000px;
 } */
- .column .container{
- height: 300px;
- overflow: hidden;
- overflow-y: scroll;
- padding: 0px;
-
+.column .container {
+  height: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 0px;
 }
 /* .lover{
   text-align: left;
   padding: 0px;
 } */
 
-
 /* 
 .lover:hover{
   background-color: #ceb56f;
 } */
 
-.love:hover{
+.love:hover {
   color: #271c03;
   text-decoration: none;
-background-color: #fdfdfd;
+  background-color: #fdfdfd;
   font-weight: bold;
-  font-family: 'Mali', cursive;
+  font-family: "Mali", cursive;
 }
 
 .popup .row {
-  padding: 0px  140px 0px 140px; 
-
+  padding: 0px 140px 0px 140px;
 }
 
-.pum .dropdown{
+.pum .dropdown {
   color: white;
   text-decoration: none;
   padding: 0px;
-
 }
 
-.pum .fas{
+.pum .fas {
   margin-top: 20px;
 }
 
 .dropdown-item {
   padding: 0px;
 }
-
 
 .modal-backdrop {
   position: fixed;
@@ -360,7 +342,7 @@ background-color: #fdfdfd;
   background-color: #000;
 }
 /* dasbord */
-.Total-donation{
+/* .Total-donation{
   background-color:rgba(231, 222, 208, 0.925) ;
   height: 350px;
   width: 100%;
@@ -399,85 +381,101 @@ background-color: #fdfdfd;
 .nunber-donation-people p {
   color: #7c580b;
   font-size: 30px;
+} */
+
+.bg-dashboaed {
+  background-color: rgba(231, 222, 208, 0.925);
+  height: auto;
+  width: 100%;
+  margin: 0;
+  font-family: "Mali", cursive;
+  padding: 20px;
+}
+.bg-dashboaed1 {
+  background-color: rgb(248, 248, 247);
+  height: 80%;
+  width: 70%;
+  padding: 10px 50px;
+  display: block;
+  margin: 0 auto;
+  font-family: "Mali", cursive;
+}
+.bg-dashboaed p {
+  color: rgba(102, 66, 9, 0.925);
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
 }
 
 /*responsive*/
 @media only screen and (max-width: 1024px) {
-  .p{
+  .p {
     width: 580px;
     font-size: 30px;
     height: 500px;
-} 
-.modal-body {
-  position: relative;
-  flex: 1 1 auto;
-  padding: 2rem;
+  }
+  .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 2rem;
+  }
 }
-
-
-}
-
 
 @media only screen and (max-width: 768px) {
-  
-  .p{
+  .p {
     width: 360px;
-    
+
     height: 320px;
 
     font-size: 20px;
-    
-} 
-.modal-body {
-  position: relative;
-  flex: 1 1 auto;
-  padding: 1rem;
-}
-.modal-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  pointer-events: auto;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,.2);
-  border-radius: .3rem;
-  outline: 0;
-}
+  }
+  .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+  }
+  .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+  }
 
-.popup .row {
-  padding: 0px 60px 0px 60px;
-}
+  .popup .row {
+    padding: 0px 60px 0px 60px;
+  }
 
-.d-block {
-  height: 300px;
-  position: relative;
+  .d-block {
+    height: 300px;
+    position: relative;
+  }
+  h3 {
+    padding: 40px;
+    font-size: 25px;
+  }
+  .cardd Img {
+    height: 100px;
+    width: 100px;
+  }
+  .row {
+    padding: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .cardd {
+    width: 120px;
+    height: 110px;
+    text-align: center;
+    border-radius: 100px;
+    padding: 0px;
+    margin: 0px;
+    /* box-shadow: 5px 40px 2px 0 rgb(250 250 249 / 81%); */
+  }
 }
-h3 {
-  padding: 40px;
-  font-size: 25px;
-  
-}
-.cardd Img {
-  height: 100px;
-  width: 100px;
-}
-.row {
-  padding: 0px;
-  padding-bottom: 0px;
-  padding-right: 0px;
-  padding-left: 0px;
- 
-}
-.cardd {
-  width: 120px;
-  height: 110px;
-  text-align: center;
-  border-radius: 100px;
-  padding: 0px;
-  margin: 0px;
-  /* box-shadow: 5px 40px 2px 0 rgb(250 250 249 / 81%); */
-}
-
-}    
