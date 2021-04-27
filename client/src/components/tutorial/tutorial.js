@@ -6,7 +6,12 @@ class tutorial extends Component{
     render() {
         return (
             
-                 <div>ig : forthhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</div>
+                 <div className="bg-tutorial">
+                     <div className="bg-tutorial1">
+                         
+                     </div>
+
+                 </div>
         )
     }
 }

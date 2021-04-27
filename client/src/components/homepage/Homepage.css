@@ -372,6 +372,47 @@ background-color: #fdfdfd;
   height: 100%;
   background-color: #000;
 }
+/* dasbord */
+.Total-donation{
+  background-color:rgba(231, 222, 208, 0.925) ;
+  height: 350px;
+  width: 100%;
+  margin: 0;
+  font-family: 'Mali', cursive;
+
+}
+.grid-container-donation {
+  display: grid;
+  grid-template-columns: 500px 500px ;
+  padding: 50px 250px;
+
+}
+.grid-item-donation {
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+.text-donation-money p {
+  color: #7c580b;
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: rgb(231, 189, 140) 0.1em 0.1em 0.1em
+
+}
+.text-donation-people p {
+  color: #7c580b;
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: rgb(231, 189, 140) 0.1em 0.1em 0.1em
+}
+.nunber-donation-money p {
+  color: #7c580b;
+  font-size: 30px;
+}
+.nunber-donation-people p {
+  color: #7c580b;
+  font-size: 30px;
+}
 
 /*responsive*/
 @media only screen and (max-width: 1024px) {

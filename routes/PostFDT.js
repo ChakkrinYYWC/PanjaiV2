@@ -194,6 +194,26 @@ router.post('/allItemInFDT', async function (req, res) {
     res.send(result)
 })
 
+router.get('/FDTpopup/:word',async (req, res) => {
+    console.log(req.params.word)
+    let result = await PostFDT.aggregate([
+        {
+            $unwind: "$item"
+        },
+        {
+            $match: {
+                "item" : req.params.word
+            }
+        },
+        {
+            $sort: {
+                "n_item": -1
+            }
+        }
+    ])
+    //console.log(result)
+    res.send(result)
+})
 
 // router.get('/:id', (req, res) => {
 //     console.log(req.params.id)

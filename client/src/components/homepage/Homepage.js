@@ -17,7 +17,7 @@ import Fade from '@material-ui/core/Fade';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 // import Card from 'react-bootstrap/Card';
-import { Card,Button, Modal } from 'react-bootstrap';
+import { Card, Button, Modal } from 'react-bootstrap';
 
 
 import {
@@ -33,20 +33,20 @@ import { model } from 'mongoose';
 /*----------------------------------------------------------------------*/
 var once = false;
 function Homepage() {
-    
+
     // const [anchorEl, setAnchorEl] = React.useState(null);
 
     // const handleClick = (event) => {
     //     setAnchorEl(event.currentTarget);
     // };
- 
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-  
+
     const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
-  
+
 
     const popupYet = localStorage.getItem('popupYet')
     const currentUser = localStorage.getItem('currentUser')
@@ -84,7 +84,11 @@ function Homepage() {
         }
     }
     onetime()
-    //console.log(allitem)
+    console.log(allitem)
+
+    async function FDTclicked(data){
+        await localStorage.setItem('FDTclicked', data)
+    }
 
     return (
         <div>
@@ -112,20 +116,20 @@ function Homepage() {
                                                     allitem.map((record, index) => {
                                                         return (
                                                             <div className="lover">
-                                          
+
                                                                 <Dropdown.Item>
-                                                                    <Link to={'/FDTpopup'}  className="love"><div>{record._id[0]}</div></Link>
+                                                                    <Link to={'/FDTpopup'} onClick={() => FDTclicked(record._id[0])}  className="love"><div>{record._id[0]}</div></Link>
                                                                 </Dropdown.Item>
                                                                 <If condition={record._id[1]}>
                                                                     <Then>
                                                                         <Dropdown.Item>
-                                                                            <Link to={'/FDTpopup'} className="love"><div>{record._id[1]}</div></Link>
+                                                                            <Link to={'/FDTpopup'} onClick={() => FDTclicked(record._id[1])} className="love"><div>{record._id[1]}</div></Link>
                                                                         </Dropdown.Item>
 
                                                                         <If condition={record._id[2]}>
                                                                             <Then>
                                                                                 <Dropdown.Item>
-                                                                                    <Link to={'/FDTpopup'} className="love"><div>{record._id[2]}</div></Link>
+                                                                                    <Link to={'/FDTpopup'} onClick={() => FDTclicked(record._id[2])} className="love"><div>{record._id[2]}</div></Link>
                                                                                 </Dropdown.Item>
                                                                             </Then>
                                                                         </If>
@@ -319,7 +323,35 @@ function Homepage() {
                 </ul>
 
             </div>
-           
+
+            {/* ----------------------------dastbord------------------------------------------ */}
+            <div className="Total-donation">
+
+                <div class="grid-container-donation">
+                    <div class="grid-item-donation">
+                        <span className="text-donation-money">
+                            <p>ยอดบริจาคทั้งหมด</p>
+                        </span>
+                    </div>
+                    <div class="grid-item-donation">
+                        <span className="text-donation-people">
+                            <p>จำนวนผู้บริจาคทั้งหมด</p>
+                        </span>
+                    </div>
+                    <div class="grid-item-donation">
+                        <span className="nunber-donation-money">
+                            <p>2,000,000 บาท</p>
+                        </span>
+                    </div>
+                    <div class="grid-item-donation">
+                        <span className="nunber-donation-people">
+                            <p>50 คน</p>
+                        </span>
+                    </div>
+                    
+                </div>
+
+            </div>
         </div>
 
 
