@@ -71,7 +71,7 @@ function SearchUser() {
                   onChange={(event) => {
                     setUserSearchInput(event.target.value)
                   }} />
-                <button onClick={userSearch()} className="search-bt">
+                <button onClick={() => userSearch()} className="search-bt">
                   ค้นหา
                 </button>
               </div><br />
