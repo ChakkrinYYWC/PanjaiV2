@@ -5,10 +5,20 @@ import Axios from 'axios'
 import { BrowserRouter as Router, Link, } from "react-router-dom";
 import { compose, withProps, withHandlers, withStateHandlers, withState } from "recompose";
 
+import {
+    Divider,
+    Grid,
+    Paper,
+    Typography,
+    withStyles,
+    ListItem,
+    ListItemText,
+    Container,
+    Button,
+  } from "@material-ui/core";
 
-
-import { Card, Button, Modal } from 'react-bootstrap';
 import "./GGMap.css";
+
 
 // const { compose, withProps, withHandlers, withStateHandlers, withState } = require("recompose");
 Geocode.setApiKey("AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg");
@@ -168,33 +178,79 @@ class Map extends React.PureComponent {
                 </GoogleMap>
             
                
-                <h3>มูลนิธิใกล้ฉัน</h3><br />
+                <p className ="hh" >มูลนิธิใกล้ฉัน</p><br />
+                {/* <h3>มูลนิธิใกล้ฉัน</h3><br /> */}
                 </div>
+
+                <Container style={{marginTop: '30px'}}>
+                <Grid container style={{padding:'0 auto'}} spacing={4}>
                 
-                
-                {
+
+
+
+                { 
                     result_kg.map(mark => (
                     <>
-                        <center><div classname = "space" >
-                            <Card className="foundat">
-                            <Card.Img
-                                variant="top"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
-                            />
+                       
 
-                                <button className="btn btn-lg " onClick={() => SelectMarker(mark)}>{mark.marker.title}</button>
-                                <Card.Body>
-                                    <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} >อ่านเพิ่มเติม</Link>
-                                    <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร </h1>
-                                </Card.Body>
-                                <br />
+                    <Grid item xs={12} sm={4}>
+                        {/* {index} */}
+                        <Paper onClick={() => SelectMarker(mark)} >
+                            <center> 
 
-                            </Card>
-                        </div></center>
+                                <div className ="bta">
+                                    {/* <button className="btn btn-lg " onClick={() => SelectMarker(mark)}>{mark.marker.title}</button> */}
+                                     <h1>{mark.marker.title}</h1>
+                                </div> 
+                            </center>
+                                 {/* <Fragment key={index}> */}
+                            <ListItem>
+
+                                <ListItemText>
+
+                                    <center>
+
+
+                                    <Typography variant="h5" >
+
+                                     <div >
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"/>  
+                                     </div>
+
+                                    </Typography>
+                                
+
+                               
+                                  <Grid container justify="center">
+                                        <div >
+
+                                        <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} >อ่านเพิ่มเติม</Link>
+                                     <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร </h1>
+                                    
+                                        </div>
+                                 </Grid>
+
+                                    </center>
+
+                                    {/* รูปแบบช่อง */}
+                                </ListItemText>
+                            </ListItem>
+                            {/* <Divider component='li' /> */}
+                            {/* </Fragment> */}
+                        </Paper>
+                     </Grid>
+
+
+
                     
                     </>
                     ))
                 }
+
+        </Grid>
+        </Container>
+            
+
             </>
         );
 
