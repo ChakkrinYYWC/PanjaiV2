@@ -18,9 +18,10 @@ const middleware = require('../middleware/mdw');
 const user = require('../model/user');
 var { PostPanjai } = require('../model/postPanjai')
 var { PostFDT } = require('../model/postFDT')
+var { Report } = require('../model/report')
 
 
-server.get('/:word',async (req, res) => {
+server.get('/TPJ&FDT/:word',async (req, res) => {
     const keyword = req.params.word
     //console.log('Search: '+keyword)
     let postTPJ = await PostPanjai.aggregate([
@@ -60,7 +61,77 @@ server.get('/:word',async (req, res) => {
         },
     ])
 
+    
+
     const result = {postTPJ, postFDT}
+    //console.log(result)
+    res.send(result)
+})
+
+server.get('/findUser/:word',async (req, res) => {
+    const keyword = req.params.word
+    //console.log('Search: '+keyword)
+    let result = await user.aggregate([
+        {
+            $match: {
+                "isbaned" : "no"
+            }
+        },
+        {
+            $addFields: {
+                result: {
+                    $regexMatch: {
+                        input: "$username",
+                        regex: keyword,
+                        options: "i"
+                    }
+                }
+            }
+        },
+        {
+            $match: {
+                "result" : true
+            }
+        },
+    ])
+    //console.log(result)
+    res.send(result)
+})
+
+server.get('/findBanedUser',async (req, res) => {
+    const keyword = req.params.word
+    //console.log('Search: '+keyword)
+    let result = await user.aggregate([
+        {
+            $match: {
+                "isbaned" : "yes"
+            }
+        },
+    ])
+    //console.log(result)
+    res.send(result)
+})
+
+server.get('/postreport',async (req, res) => {
+    let result = await Report.aggregate([
+        {
+            $lookup:
+            {
+                localField: "post_id",
+                from: "PostPanjai",
+                foreignField: "_id",
+                as: "post"
+            }
+        },
+        {
+            $unwind: "$post"
+        },
+        {
+            $project : {
+                "_id": 0,
+            }
+        },
+    ])
     //console.log(result)
     res.send(result)
 })

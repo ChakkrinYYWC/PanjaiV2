@@ -1,78 +1,94 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import './ModalNoti.css'
-
+import Axios from 'axios';
 
 import { Card, Button, Modal } from 'react-bootstrap';
 
 
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    Link,
-    Redirect
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
 } from "react-router-dom";
-
-
+var once = false;
 /*----------------------------------------------------------------------*/
 
 function Blacklist() {
+  const [foundUser, setFoundUser] = useState([])
 
-    const [display, setDisplay] = useState(false)
+  var blackListPopup = localStorage.getItem('blackListPopup')
+  //console.log(blackListPopup)
+  if (blackListPopup == "false") {
+    var isShow = false
+  }
+  if (blackListPopup == "true") {
+    var isShow = true
+  }
+  // const [show, setShow] = useState("");
+  // console.log(show)
 
-    const Handledisplay = () => {
-        setDisplay(!display);
-    }
-    const [show, setShow] = useState(false);
+  const handleClose = async () => {
+    await localStorage.setItem('blackListPopup', false);
+    //console.log(localStorage.getItem('blackListPopup'))
+    window.location.reload()
+  };
+
+  if(once == false){
+    Axios.get('/search/findBanedUser', {
+    }).then(async function (res) {
+      setFoundUser(res.data)
+    }).catch(error => console.log(error))
+    once = true
+  }
+
+  function UnBanUser(data){
+    Axios.get('/authenticate/unBanUser/' + data, {
+    }).then(res => {
+        //console.log(res)
+        window.location.reload()
+    }).catch(error => console.log(error))
+  }
 
 
-    const handleClose = () => {
-        localStorage.setItem('Firstpopup', false);
-        setShow(false);
-    };
-
-
-    useEffect(async () => {
-        // const Firstpopup = localStorage.getItem('Firstpopup');
-        await setShow(localStorage.getItem('Firstpopup'));
-        await localStorage.setItem('Firstpopup', false);
-    }, []);
-
-
-// ====================================== Blacklist =========================================
-return (
+  // ====================================== Blacklist =========================================
+  return (
     <div>
       <div className="bigpopup">
-        <Modal className="popup" show={show}>
+        <Modal className="popup" show={isShow}>
           <div className="pd">
-            <Modal.Header
-              className="popuptitle"
-              closeButton
-              onClick={handleClose}
-            >Blacklist
-              {/* <div className="y"></div> */}
+            <Modal.Header className="popuptitle" closeButton onClick={handleClose}>
+              Blacklist
             </Modal.Header>
             <Modal.Body><table width="100%">
+              {
+                foundUser.map((record, index) => {
+                  return (
+                    <div>
+                      <div>
+                        <a>{record.username}</a>
+                        <button onClick={() => UnBanUser(record._id)}>Unban</button>
+                      </div>
+                    </div>
+                  )
+                })
 
-              <tr>
+              }
+              {/* <tr>
                 <td>Username1</td>
                 <td><button > Profile </button></td>
                 <td><button > Release </button></td>
               </tr>
-              <br/>
+              <br />
               <tr>
                 <td>Username2</td>
                 <td><button > Profile </button></td>
                 <td><button > Release </button></td>
-              </tr>  
+              </tr> */}
             </table>
             </Modal.Body>
-        
-
-
-        
-            
           </div>
         </Modal>
       </div>
