@@ -153,7 +153,7 @@ function Homepage() {
                 </Then>
             </If>
             {/* ----------------------slideshow------------------------------------------------*/}
-            <Carousel>
+            <Carousel className="slideshow">
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
@@ -186,8 +186,9 @@ function Homepage() {
                 <h3>หมวดหมู่มูลนิธิ</h3>
                 <center>
                 <div className="row m-0">
-                    <div className="column col-xs-6 col-sm-3 col-md-3 col-lg-4">
-                        <Card className="cardd">
+ 
+                    <div className="column col-6 col-lg-4 ">
+                        <Card className="cardd y">
                             <Card.Img variant="top" src="/pngegg.png" />
                             <Card.Body>
                                 <Link to="/Foundation/เด็กและเยาวชน" className="CardTitle">เด็กและเยาวชน</Link>
@@ -195,7 +196,8 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
+                  
+                    <div className="column col-6 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/2.png" />
                             <Card.Body className="">
@@ -204,8 +206,8 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
-                        <Card className="cardd">
+                    <div className="column col-6 col-lg-4">
+                        <Card className="cardd y">
                             <Card.Img variant="top" src="/e.png" />
                             <Card.Body>
                                 <Link to="/Foundation/สัตว์" className="CardTitle">สัตว์</Link>
@@ -213,9 +215,9 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                </div>
-                <div className="row m-0">
-                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
+           
+          
+                    <div className="column col-6 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/4.png" />
                             <Card.Body>
@@ -224,8 +226,8 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
-                        <Card className="cardd">
+                    <div className="column col-6 col-lg-4">
+                        <Card className="cardd y">
                             <Card.Img variant="top" src="/5.1.png" />
                             <Card.Body>
                                 <Link to="/Foundation/สิ่งแวดล้อม" className="CardTitle">สิ่งแวดล้อม</Link>
@@ -233,7 +235,7 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
+                    <div className="column col-6 col-lg-4">
                         <Card className="cardd">
                             <Card.Img variant="top" src="/6.png" />
                             <Card.Body>
@@ -242,19 +244,19 @@ function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                </div>
+                    </div>
                 </center>
             </div>
 
             {/* ----------------------------ตู้ปันใจ------------------------------------------ */}
             <div className="tupanjai" id="1">
-                <div className="row">
-                    <div className="col-sm-4">
+                <div className="row ">
+                    <div className="column col-12 col-lg-6">
                         <div className="too">
-                            <img src="to1.png" width="750" height="600"></img>
+                            <img src="to1.png"></img>
                         </div>
                     </div>
-                    <div className="col-sm-8">
+                    <div className="column col-12 col-lg-6">
                         <div className="tpjj">
                             <p>  สำหรับคนที่ต้องการสิ่งของหรือต้องการบริจาคสิ่งของ  </p>
                             <p>แต่ไม่รู้จะไปบริจาคที่ไหน สามารถบริจาคได้ที่ </p>
@@ -264,7 +266,7 @@ function Homepage() {
                 </div>
             </div>
             {/* ----------------------------รอยยิ้ม------------------------------------------ */}
-            <div className="card">
+            <div className="card smile">
                 <ul className={display ? "card-stacks transition" : "card-stacks"}
                     onClick={Handledisplay}
                 >

@@ -1,9 +1,13 @@
  
  .d-block{
-    height: 610px;
+    height: 650px;
     position: relative;
   }
 
+  .category .col-lg-4 {
+
+    padding: 20px;
+  }
 
 /*Category*/
 .category{
@@ -49,7 +53,7 @@
 }
 
 .row{
-  padding-bottom: 50px;
+  padding-bottom: 100px;
   padding-right: 400px;
   padding-left: 400px;
  
@@ -72,9 +76,11 @@
   padding-bottom: 0px;
 }
 
-.tpjj{
+
+.tpjj {
   text-align: center;
   padding-top: 190px;
+  padding-right: 100px;
 }
 
 .tpjj p{
@@ -103,7 +109,13 @@
 }
 
 
+
   /*รอยยิ้ม*/
+  .too img{
+    width:750px;
+    height:600px;
+  }
+
   h1, p {
     font-size: 15px;
     margin-top: 15px;
@@ -139,13 +151,14 @@
   ul.card-stacks {
 
     list-style-type: none;
-    margin: 0px 450px 0px;
+    margin: 0px 380px 0px;
     padding: 0px;
     position: relative;
     cursor: pointer;
     height:670px;
 
   }
+  
 
   ul.card-stacks li.stack {
     position: absolute;
@@ -196,11 +209,11 @@
   }
 
   ul.card-stacks.transition li.stack.stack-2 {
-    left: 220px;
+    left: 270px;
   }
 
   ul.card-stacks.transition li.stack.stack-3 {
-    left: 440px;
+    left: 540px;
   }
 
   ul.card-stacks.transition li.stack ul.cards-down li.card {
@@ -373,13 +386,65 @@ background-color: #fdfdfd;
   padding: 2rem;
 }
 
-
+.row {
+  padding-bottom: 100px;
+  padding-right: 200px;
+  padding-left: 200px;
+}
+.tpjj p{
+  font-size: 19px;
+  color: white;
+  text-shadow: 2px 2px 4px  rgba(43, 18, 2, 0.925);
+}
+.tupanjai img {
+  vertical-align: middle;
+  width: 600px;
+  height: 500px;
+}
+.tpjj {
+  text-align: center;
+  padding-top: 150px;
+  padding-right: 20px;
+}
+.tpjj a {
+  font-size: 35px;
+}
+.tupanjai {
+  height: 500px;
+}
+ul.card-stacks {
+  list-style-type: none;
+  margin: 50px 180px 0px;
+  padding: 0px;
+  position: relative;
+  cursor: pointer;
+  height: 670px;
+}
+h2 {
+  font-size: 30px;
+  margin: 70px;
+  text-align: center;
+  font-family: 'Mali', cursive;
+  font-weight: bold;
+  color: rgb(151, 114, 85);
+}
+.tupanjai .column {
+  padding: 0px;
+}
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: 0px; 
+ margin-left: 0px;
+}
 }
 
 
 @media only screen and (max-width: 768px) {
   
-  .p{
+ .p{
     width: 360px;
     
     height: 320px;
@@ -410,13 +475,12 @@ background-color: #fdfdfd;
 }
 
 .d-block {
-  height: 300px;
+  height: 250px;
   position: relative;
 }
 h3 {
-  padding: 40px;
+  padding: 40px 0 10px 0;
   font-size: 25px;
-  
 }
 .cardd Img {
   height: 100px;
@@ -435,8 +499,129 @@ h3 {
   text-align: center;
   border-radius: 100px;
   padding: 0px;
-  margin: 0px;
-  /* box-shadow: 5px 40px 2px 0 rgb(250 250 249 / 81%); */
+  margin: 0px; 
+
+ }
+
+ul.card-stacks {
+
+  margin: 0px 20px 0px 60px;
+  height: 450px;
+}
+ul.card-stacks.transition li.stack.stack-1 {
+  left: -40px;
 }
 
+ul.card-stacks.transition li.stack.stack-2 {
+  left: 75px;
+}
+ul.card-stacks.transition li.stack.stack-3 {
+  left: 190px;
+}
+ul.card-stacks.transition li.stack ul.cards-down li.card.card-2 {
+  top: 130px;
+}
+ul.card-stacks.transition li.stack ul.cards-down li.card.card-3 {
+  top: 0px;
+}
+h2 {
+  font-size: 20px;
+  margin: 70px 0px 50px 0px;
+}
+ul.card-stacks li.stack ul.cards-down li.card {
+
+    height: 100px;
+    width: 100px;
+
+}
+
+.smile .card{
+  background-image: url("../img/01.jpg"); 
+  width: 100%;
+}  
+.smile p {
+  font-size: 5px;
+  margin-top: 0px;
+  padding: 0px;
+  font-family: 'Mali', cursive;
+  color: rgb(32, 17, 6);
+}
+ul.card-stacks li.stack ul.cards-down li.card div.content {
+  padding: 10px 0px;
+}
+
+.smile .col-lg-4 {
+  padding: 20px 0px 10px 0px;
+}
+
+
+.CardTitle {
+  
+  font-size: 15px;
+
+}
+.category {
+  background-color: rgb(255, 236, 179);
+  height: 600px;
+  width: 100%;
+  margin: 0;
+  font-family: 'Mali', cursive;
+}
+.category .card-body {
+  flex: 1 1 auto;
+  padding: 5px 20px 20px 0px;
+  width: 150px;
+}
+
+
+.tpjj p {
+  font-size: 14px;
+  padding: 0px 0px 0px 10px;
+  color: white;
+  text-shadow: 2px 2px 4px rgb(43 18 2 / 93%);
+}
+.tupanjai {
+  height: 600px;
+}
+.tpjj {
+  text-align: center;
+  padding-top: 0px;
+  padding-right: 0px;
+}
+.tupanjai img {
+  vertical-align: middle;
+  width: 375px;
+  height: 350px;
+}
+.tupanjai p {
+  font-size: 18px;
+  margin-top: 0px;
+  padding: 0px 50px 0px 50px;
+  font-family: 'Mali', cursive;
+}
+.tpjj a {
+  font-size: 25px;
+}
+.tpjj .far {
+  color: white;
+  text-shadow: none;
+  font-size: 25px;
+}
+.CardTitle:hover {
+  color: rgba(253, 253, 253, 0.925);
+  background-color: rgba(161, 128, 79, 0.925);
+  border-radius: 10px;
+  text-decoration-line: none;
+  padding: 3px;
+  font-size: 15px;
+}
+.tpjj .tpj:hover {
+  font-size: 35px;
+}
+
+.popup .p {
+  width: 360px;
+  height: 320px;
+  font-size: 20px;
+}
 }    
