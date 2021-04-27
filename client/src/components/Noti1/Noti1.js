@@ -42,8 +42,8 @@ function Notification({open,t}) {
         const data ={recieveId}
         Axios.post('/Too-Panjai/deleteRecieve', data,{
         }).then(res => {
+            window.location.reload()
         }).catch(error => console.log(error))
-        window.location.reload()
     }
 
     const [ noti, setNoti ] = useState([])

@@ -4,6 +4,7 @@ import { Card, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as action from '../../action/postFDT'
 import moment from 'moment';
+import Axios from 'axios';
 
 import {
     BrowserRouter as Router,
@@ -12,35 +13,56 @@ import {
     Link,
     Redirect
 } from "react-router-dom";
-
+var once = false
 
 function Popup({ classes, ...props }) {
-    alert("The URL of this page is: " + window.location.href);
+    const [foundFDT, setFoundFDT] = useState([]);
+
+    const FDTword = localStorage.getItem('FDTclicked')
+    async function onetime() {
+        if (once == false) {
+            Axios.get('/Foundation/FDTpopup/' + FDTword, {
+            }).then(res => {
+                console.log(res.data);
+                setFoundFDT(res.data)
+            }).catch(error => console.log(error))
+            once = true;
+        }
+    }
+    onetime()
     return (
 
         <div className="dek" >
             <div className="box-white">
 
-                <div className="Title"><i className="fab fa-gratipay"></i>อยากกินนมเย็น<i className="fab fa-gratipay"></i></div>
+                <div className="Title"><i className="fab fa-gratipay"></i>มูลนิธิที่ต้องการ "{foundFDT[0].item}"<i className="fab fa-gratipay"></i></div>
                 <div className="foundation">
                     <div className="row m-0">
 
 
-                        <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
-                            <Card className="foundat">
-                                <Card.Img variant="top" src={'http://localhost:3001/Foundation/'} />
-                                <Card.Body>
-                                    <Link to={"/Foundation"} className="Tfound">ฃื่อโครงการ</Link>
-                                    <div className="information">ต้องการรับบริจาค :</div>
-                                    <div className="information">จำนวน :</div>
-                                    <div className="information-1">วันที่ลง :</div>
-                                    <Link to={"/Foundation"} className="CardTitle">อ่านเพิ่มเติม</Link>
 
-                                </Card.Body>
-                            </Card>
-                        </div>
+                        {
+                            foundFDT.map((record, index) => {
+                                return (
+                                    <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                        <Card className="foundat">
+                                            <Card.Img variant="top" src={'http://localhost:3001/Foundation/'+record.image} />
+                                            <Card.Body>
+                                                <Link to={"/Foundation"} className="Tfound">{record.title}</Link>
+                                                <div className="information">ต้องการรับบริจาค : {record.item}</div>
+                                                <div className="information">จำนวน : {record.n_item}</div>
+                                                <div className="information-1">วันที่ลง : {record.Timestamp}</div>
+                                                <Link to={"/Foundation/" + record.category + "/" + record._id} className="CardTitle">อ่านเพิ่มเติม</Link>
 
-                        
+                                            </Card.Body>
+                                        </Card>
+                                    </div>
+                                )
+                            })
+
+                        }
+
+
 
                     </div>
                 </div>
