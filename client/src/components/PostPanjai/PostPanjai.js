@@ -297,7 +297,7 @@ const PostPanjai = ({ classes, ...props }) => {
                           <Grid container justify="center">
                             <SlideShow className="imageslide"
                               images={Array_image}
-                              // width="0px"
+                              width="400px"
                               imagesWidth="400px"
                               imagesHeight="200px"
                               imagesHeightMobile="56vw"
