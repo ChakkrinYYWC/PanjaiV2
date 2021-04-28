@@ -1,14 +1,13 @@
 .search-bar{
     padding: 5% 3% 5% 3%;
-    font-family: 'Mali', cursive;
-    
+    /* font-family: 'Mali', cursive; */
 }
+
 .ui-input{
     width: 50%;
     height: auto;
     margin-right: 2%;
     font-size: 15pt;
-   
 }
 
 .search-bt{
@@ -19,8 +18,8 @@
     font-family: 'Mali', cursive;
     border-radius: 10px;
     color: aliceblue;
-    
 }
+
 .search-bt:hover{
     background-color: rgb(95, 74, 32);
     font-size: 20px;
@@ -58,12 +57,12 @@
 } */
 .check3 {
   font-size: 25px;
-  padding-left: 550px;
-  
+  padding-left: 70% ;  
+
   margin: 0px;
   font-family: 'Mali', cursive;
   font-weight: bold;
-  color: rgb(151, 114, 85);
+  /* color: rgb(151, 114, 85); */
 }
 /* .MuiIconButton-label {
   margin-left: 500px;
@@ -78,7 +77,7 @@
 } */
 .box3{
   zoom: 140%;
-  
+
 }
 
 
@@ -165,7 +164,7 @@
   }
   
   .foundation .row{
-    padding: 30px 90px 60px 10px;
+    /* padding: 30px 90px 60px 10px; */
  
   }
 
@@ -195,7 +194,7 @@
     color:rgba(253, 253, 253, 0.925);
     background-color: rgba(161, 128, 79, 0.925) ;
     border-radius: 6px;
-    padding: 5px;
+    padding: 3px;
 
 
   }
@@ -221,9 +220,10 @@
   
 
 .bg2{
-    padding: 0% 15% 0% 15%;
-    /* background-color: rgb(235, 198, 77); */
-    font-family: 'Mali', cursive; 
+    /* padding: 0% 5% 0% 15%; */
+      /* background-color: rgb(235, 198, 77); */
+    font-family: 'Mali', cursive;
+     
 }
 
 .head{
@@ -239,7 +239,7 @@
 }
 
 .bg2 .row {
-    padding: 0% 10% 0% 5%;
+    padding: 0% 10% 0% 12%;
     /* padding-bottom: 50px;
     padding-right: 100px;
     padding-left: 100px; */
@@ -258,7 +258,31 @@
 }
 .background-search {
   background-color:  rgb(226, 221, 204);
-  height:2500px;
+  height: auto;
   
-  
+}
+
+
+
+
+@media only screen and (max-width: 1024px) {
+
+  .bg2 .row {
+    padding: 0% 10% 0% 2%;
+}
+
+
+}
+
+@media only screen and (max-width: 768px) {
+
+
+  .bg2 .row {
+    padding: 0%;
+}
+
+
+
+
+
 }
