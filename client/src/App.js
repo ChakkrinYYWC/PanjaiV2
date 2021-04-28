@@ -20,6 +20,7 @@ import Noti1 from "./components/Noti1/Noti1";
 import search from './pages/searchResult';
 import favorite from './pages/myfavorite';
 import About from "./components/aboutus/aboutus";
+import tutorial from "./components/tutorial/tutorial";
 import FDTpopup from "./components/category/FDTpopup";
 // import category from './components/category/category';
 import category from './pages/Category';
@@ -51,7 +52,7 @@ function App() {
         <Route path="/testaroundme" component={aroundME}/>
         <Route path="/pay-coin" component={Coin}/>
         <Route path="/FDTpopup" component={FDTpopup}/>
-    
+        <Route path="/tutorial" component={tutorial}/>
       </Switch>
       {/* <Footer /> */}
     </Router>

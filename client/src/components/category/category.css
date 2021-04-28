@@ -14,11 +14,9 @@
 }
 
 .btcate{
-padding: 20px 0 0px 0px;
-
+  padding: 20px 0 0px 0px;
 
 }
-
 
 
 
@@ -32,7 +30,7 @@ padding: 20px 0 0px 0px;
     margin: 340px 120px 100px 120px;
     box-shadow: 0px 7px 7px 4px rgba(206, 206, 206, 0.397);
     justify-items: center;
-  
+
 
 }
 
@@ -60,7 +58,7 @@ padding: 20px 0 0px 0px;
   
 .foundat{
     width: 360px;
-    height: 83%;
+    height: 85%;
     text-align: center;
     border-radius:40px;
     box-shadow: 1px 1px 1px 0px rgba(2, 1, 1, 0.555);
@@ -134,7 +132,20 @@ padding: 20px 0 0px 0px;
     margin-bottom: 10px
 
   }
-  
+  .btcate .MuiButton-root {
+    color: rgb(94, 57, 10);
+    padding: 6px 16px;
+    font-size: 1rem;
+    font-family: 'Mali', cursive;
+  }
+
+ 
+  .image01 img {
+    height: 90%;
+    width: 100%;
+    justify-items: center;
+   
+}
 
   /*responsive*/
 @media only screen and (max-width: 1024px) {
@@ -143,13 +154,13 @@ padding: 20px 0 0px 0px;
  
   }
   .Title{
-    padding-top: 35px;
+    padding-top: 15px;
     font-size: 18px;
     }
 
     .foundat{
       width:280px;
-      height: 295px;
+      height: 340px;
       margin-bottom: 0px;
     }
     .foundat Img{
@@ -176,6 +187,20 @@ padding: 20px 0 0px 0px;
       margin-bottom: 0px
   
     }
+    .imgslide .ss-images-track {
+      height: 260px;
+      
+  }
+  .imgslide .slide-show {
+    width: 200px;
+}
+/* .slide-show .ss-images-size {
+  width: 280px;
+}
+.slide-show .ss-images-size {
+  width: 280px;
+}
+     */
 }
 @media only screen and (max-width: 768px) {
   
@@ -200,7 +225,7 @@ padding: 20px 0 0px 0px;
 
   .foundat{
     width:240px;
-    height: 240px;
+    height: 290px;
     margin-bottom: 0px;
   }
 
@@ -238,4 +263,18 @@ padding: 20px 0 0px 0px;
   }
 
 
+  .btcate {
+    padding: 10px 0px;
+}
+
+.btcate .MuiButton-root {
+  color: rgba(99, 61, 11, 0.87);
+  padding: 0px 0px;
+  font-size: 0.5rem;
+
+
+}
+.imgslide .ss-images-track {
+  height: 140px;
+}
 }    

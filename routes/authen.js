@@ -60,30 +60,40 @@ server.get('/login', (req, res) => {
     })
 })
 
-server.post("/login", function (req, res, next) {
+server.post("/login", async function (req, res, next) {
     //console.log('username: '+req.body.username)
     //console.log('password: '+req.body.password)
     //console.log('token: '+req.body.PanjaiToken)
-    passport.authenticate('local', async function (err, Userdata) {
-        //console.log(Userdata)
-        if (err) {
-            console.log(err)
-            res.send(err);
-        }
-        const token = jwt.sign({ id: Userdata.username }, jwtConfig.secret);
-        //console.log("token: " + token)
-        user.findByIdAndUpdate(Userdata, { accessToken: token }, await function (error, update) {
-            if (error) {
-                console.log(error)
-                res.send(error)
+    user.findOne({ username: req.body.username }, await function (error, found) {
+        if (error) {
+            console.log(error)
+        } else {
+            if (found.isbaned == "yes") {
+                res.send("You are baned!")
             } else {
-                //console.log("User logged in");
-                const data = [token, Userdata.username, Userdata._id, Userdata.email, Userdata.address, Userdata.phone, Userdata.name, Userdata.coin]
-                //console.log(data)
-                res.send(data)
+                passport.authenticate('local', async function (err, Userdata) {
+                    //console.log(Userdata)
+                    if (err) {
+                        console.log(err)
+                        res.send(err);
+                    }
+                    const token = jwt.sign({ id: Userdata.username }, jwtConfig.secret);
+                    //console.log("token: " + token)
+                    user.findByIdAndUpdate(Userdata, { accessToken: token }, await function (error, update) {
+                        if (error) {
+                            console.log(error)
+                            res.send(error)
+                        } else {
+                            //console.log("User logged in");
+                            const data = [token, Userdata.username, Userdata._id, Userdata.email, Userdata.address, Userdata.phone, Userdata.name]
+                            //console.log(data)
+                            res.send(data)
+                        }
+                    })
+                })(req, res, next);
             }
-        })
-    })(req, res, next);
+        }
+    })
 })
 // server.post('/login', function(req, res, next) {
 //     console.log('username: '+ req.body.username)
@@ -138,7 +148,7 @@ server.get('/register', (req, res) => {
 })
 server.post("/register", upload.single('IDcard'), function (req, res) {
     console.log('filename: ' + req.file.filename)
-    user.register(new user({ name: req.body.name, username: req.body.username, idcard: req.file.filename, email: req.body.email, address: req.body.address, phone: req.body.phone,coin: 0, accessToken: null }), req.body.password, function (error, user) {
+    user.register(new user({ name: req.body.name, username: req.body.username, idcard: req.file.filename, email: req.body.email, address: req.body.address, phone: req.body.phone, coin: 0, accessToken: null, isbaned: "no" }), req.body.password, function (error, user) {
         if (error) {
             console.log("error: " + error);
             res.send(error)
@@ -158,35 +168,63 @@ server.get("/regisimage/:idcard", function (req, res) {
     //http://localhost:3001/authenticate/regisimage/IDcard-1609956164208.jpg
 })
 /*-------------------------------------------------------------------------------*/
-server.put('/userUpdate', function (req, res) {
-    const selectid = req.body.id;
-    const newUsername = req.body.username;
-    console.log(selectid)
-    console.log(newUsername)
-    user.findByIdAndUpdate(selectid, { username: newUsername }, function (error, update) {
-        if (error) {
+server.get("/banUser/:id", function(req, res){
+    console.log(req.params.id)
+    user.findByIdAndUpdate(req.params.id, {isbaned: "yes"}, function(error,update){
+        if(error){
             console.log(error)
-        } else {
-            //res.redirect('/dinsor/'+req.params.id)
+            res.send(error)
+        }else{
             //console.log(update)
-            res.send({ _id: selectid, username: newUsername });
+            console.log("User Baned");
+            res.sendStatus(200)
         }
     })
-});
+})
 /*-------------------------------------------------------------------------------*/
-server.delete('/userRemove/:id', function (req, res) {
-    const selectid = req.params.id;
-    console.log(selectid)
-    user.findByIdAndDelete(selectid, function (error, remove) {
-        if (error) {
+server.get("/unBanUser/:id", function(req, res){
+    console.log(req.params.id)
+    user.findByIdAndUpdate(req.params.id, {isbaned: "no"}, function(error,update){
+        if(error){
             console.log(error)
-        } else {
-            //res.redirect('/dinsor/'+req.params.id)
+            res.send(error)
+        }else{
             //console.log(update)
-            res.send(remove);
+            console.log("User unbaned");
+            res.sendStatus(200)
         }
     })
-});
+})
+/*-------------------------------------------------------------------------------*/
+// server.put('/userUpdate', function (req, res) {
+//     const selectid = req.body.id;
+//     const newUsername = req.body.username;
+//     console.log(selectid)
+//     console.log(newUsername)
+//     user.findByIdAndUpdate(selectid, {username:newUsername}, function(error,update){
+//         if(error){
+//             console.log(error)
+//         }else{
+//             //res.redirect('/dinsor/'+req.params.id)
+//             //console.log(update)
+//             res.send({_id : selectid ,username:newUsername});
+//         }
+//     })
+// });
+/*-------------------------------------------------------------------------------*/
+// server.delete('/userRemove/:id', function (req, res) {
+//     const selectid = req.params.id;
+//     console.log(selectid)
+//     user.findByIdAndDelete(selectid, function(error,remove){
+//         if(error){
+//             console.log(error)
+//         }else{
+//             //res.redirect('/dinsor/'+req.params.id)
+//             //console.log(update)
+//             res.send(remove);
+//         }
+//     })
+// });
 /*-------------------------------------------------------------------------------*/
 server.post('/information/:id', (req, res) => {
 

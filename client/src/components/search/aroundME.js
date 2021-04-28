@@ -5,6 +5,22 @@ import Axios from 'axios'
 import { BrowserRouter as Router, Link, } from "react-router-dom";
 import { compose, withProps, withHandlers, withStateHandlers, withState } from "recompose";
 
+import {
+    Divider,
+    Grid,
+    Paper,
+    Typography,
+    withStyles,
+    ListItem,
+    ListItemText,
+    Container,
+    Button,
+  } from "@material-ui/core";
+
+  import { Card } from "react-bootstrap";
+
+import "./GGMap.css";
+
 
 // const { compose, withProps, withHandlers, withStateHandlers, withState } = require("recompose");
 Geocode.setApiKey("AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg");
@@ -130,16 +146,20 @@ class Map extends React.PureComponent {
             })
         }
         const MapWithAMarkerClusterer = compose(
+            
             withProps({
                 googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places",
                 loadingElement: <div style={{ height: `100%` }} />,
                 containerElement: <div style={{ height: `400px` }} />,
                 mapElement: <div style={{ height: `100%` }} />,
+                
             }),
             withScriptjs,
             withGoogleMap
         )(props =>
             <>
+            
+            <div className="ggmap">
                 <GoogleMap
                     defaultZoom={15}
                     //defaultCenter={{ lat: 0, lng: 0 }}
@@ -158,17 +178,75 @@ class Map extends React.PureComponent {
                         </Marker>
                     ))}
                 </GoogleMap>
-                <h1>มูลนิธิใกล้ฉัน</h1><br />
-                {
+            
+                <p className="hh"><i className="fab fa-gratipay"></i>&nbsp;&nbsp;มูลนิธิใกล้ฉัน&nbsp;&nbsp;<i className="fab fa-gratipay"></i></p>
+
+                {/* <p className ="hh" >มูลนิธิใกล้ฉัน</p><br /> */}
+                {/* <h3>มูลนิธิใกล้ฉัน</h3><br /> */}
+                </div>
+
+                {/* <Container style={{marginTop: '30px'}}>
+                <Grid container style={{padding:'0 auto'}} spacing={4}>
+                 */}
+
+                <div className="foundation">
+                <div className="row m-0">
+
+                { 
                     result_kg.map(mark => (
                         <>
-                            <button className="btn btn-lg " onClick={() => SelectMarker(mark)}>{mark.marker.title}</button>
-                            <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} >อ่านเพิ่มเติม</Link>
-                            <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร</h1>
-                            <br />
+
+
+
+                             <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                <Card onClick={() => SelectMarker(mark)} className="foundat">
+
+                                    {/* <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */} 
+                               
+                                     <Card.Img variant="top" img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"/> 
+                                     {/* //multi image  */}
+                                    <Card.Body>
+                                        <div>{mark.marker.title}</div>
+                                        <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร </h1>
+                                        <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} className="CardTitle">อ่านเพิ่มเติม</Link>
+                                        
+                                    </Card.Body>
+                                </Card>
+                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      
                         </>
                     ))
                 }
+
+            
+            </div>
+            </div>
+
             </>
         );
 

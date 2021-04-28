@@ -10,6 +10,7 @@ let userSchema = new mongoose.Schema({
     phone : String,
     accessToken : String,
     coin: Number,
+    isbaned : String,
     favorite : {
         type: mongoose.Schema.Types.ObjectId,
         ref: "postPanjai"
