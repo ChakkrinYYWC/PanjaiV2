@@ -179,8 +179,9 @@ class Map extends React.PureComponent {
                     ))}
                 </GoogleMap>
             
-               
-                <p className ="hh" >มูลนิธิใกล้ฉัน</p><br />
+                <p className="hh"><i className="fab fa-gratipay"></i>&nbsp;&nbsp;มูลนิธิใกล้ฉัน&nbsp;&nbsp;<i className="fab fa-gratipay"></i></p>
+
+                {/* <p className ="hh" >มูลนิธิใกล้ฉัน</p><br /> */}
                 {/* <h3>มูลนิธิใกล้ฉัน</h3><br /> */}
                 </div>
 
@@ -237,52 +238,11 @@ class Map extends React.PureComponent {
 
 
 
-                        {/* <Grid item xs={12} sm={4}>
-                                <Paper  onClick={() => SelectMarker(mark)} >
-                                    <center> 
-
-                                        <div className ="bta">
-                                            <h1>{mark.marker.title}</h1>
-                                        </div> 
-                                    </center>
-                                    <ListItem>
-
-                                        <ListItemText>
-
-                                            <center>
-
-
-                                            <Typography variant="h5" >
-
-                                            <div >
-                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"/>  
-                                            </div>
-
-                                            </Typography>
-                                        
-
-                                    
-                                        <Grid container justify="center">
-                                                <div >
-
-                                                <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} >อ่านเพิ่มเติม</Link>
-                                            <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร </h1>
-                                            
-                                                </div>
-                                        </Grid>
-
-                                            </center>
-
-                                        </ListItemText>
-                                    </ListItem>
-                                </Paper>
-                            </Grid>   */}
+                      
                         </>
                     ))
                 }
 
-        {/* </Grid>
-        </Container> */}
             
             </div>
             </div>

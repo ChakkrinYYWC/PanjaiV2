@@ -21,7 +21,7 @@ var { PostFDT } = require('../model/postFDT')
 var { Report } = require('../model/report')
 
 
-server.get('TPJ&FDT/:word',async (req, res) => {
+server.get('/TPJ&FDT/:word',async (req, res) => {
     const keyword = req.params.word
     //console.log('Search: '+keyword)
     let postTPJ = await PostPanjai.aggregate([
