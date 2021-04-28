@@ -58,7 +58,7 @@
   
 .foundat{
     width: 360px;
-    height: 83%;
+    height: 85%;
     text-align: center;
     border-radius:40px;
     box-shadow: 1px 1px 1px 0px rgba(2, 1, 1, 0.555);
@@ -139,6 +139,14 @@
     font-family: 'Mali', cursive;
   }
 
+ 
+  .image01 img {
+    height: 90%;
+    width: 100%;
+    justify-items: center;
+   
+}
+
   /*responsive*/
 @media only screen and (max-width: 1024px) {
   .box-white{
@@ -179,8 +187,20 @@
       margin-bottom: 0px
   
     }
-
-    
+    .imgslide .ss-images-track {
+      height: 260px;
+      
+  }
+  .imgslide .slide-show {
+    width: 200px;
+}
+/* .slide-show .ss-images-size {
+  width: 280px;
+}
+.slide-show .ss-images-size {
+  width: 280px;
+}
+     */
 }
 @media only screen and (max-width: 768px) {
   
@@ -252,5 +272,9 @@
   padding: 0px 0px;
   font-size: 0.5rem;
 
+
+}
+.imgslide .ss-images-track {
+  height: 140px;
 }
 }    

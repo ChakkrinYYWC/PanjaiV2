@@ -28,6 +28,9 @@ import GoogleMapReact from 'google-map-react';
 import Axios from 'axios';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import SlideShow from 'react-image-show';
+import { Grid } from '@material-ui/core';
 // import Slideshow from "./PostPanjai/Slideshow";  
 const { compose, withProps, withStateHandlers } = require("recompose");
 
@@ -73,6 +76,7 @@ function Categoryshow({ classes, ...props }) {
     const [lat, setLat] = useState();
     const [lng, setLng] = useState();
     const [name, setName] = useState();
+    var Array_image = [];
 
     useEffect(() => {
         props.fetchAllPostFDT()
@@ -105,7 +109,7 @@ function Categoryshow({ classes, ...props }) {
             setLng(res.data.lng)
         }).catch(error => console.log(error))
         setOpen3(true);
-       setName(e)
+        setName(e)
     };
 
     const handleCloseMap = () => {
@@ -157,7 +161,7 @@ function Categoryshow({ classes, ...props }) {
     console.log(props)
 
     return (
-        
+
         <>
             {
                 props.postFDTList.filter(fdt => fdt._id == props.currentId.match.params.id).map((record, index) => {
@@ -190,16 +194,68 @@ function Categoryshow({ classes, ...props }) {
                                             <Fab className="botton" size="small" color="back" aria-label="add" onClick={() => onDelete(record._id)} >
                                                 <DeleteOutlineRoundedIcon />
                                             </Fab>
+                                            <center>
+                                                <div className="btcate">
 
+                                                    <ButtonGroup variant="text" aria-label="text primary button group">
+                                                        <Button href="/Foundation/เด็กและเยาวชน">เด็กและเยาวชน</Button>
+                                                        <Button href="/Foundation/ผู้สูงอายุ">ผู้สูงอายุ</Button>
+                                                        <Button href="/Foundation/สัตว์">สัตว์</Button>
+                                                        <Button href="/Foundation/ผู้พิการและผู้ป่วย">ผู้พิการและผู้ป่วย</Button>
+                                                        <Button href="/Foundation/สิ่งแวดล้อม">สิ่งแวดล้อม</Button>
+                                                        <Button href="/Foundation/อื่นๆ">อื่นๆ</Button>
+                                                    </ButtonGroup>
+                                                </div></center>
                                             <div className="Tt">{record.title}</div>
                                             <center>
-                                                <div className="image01">
-                                                    {record.image.map((image) => (
-                                                        // <Slideshow src={'http://localhost:3001/Foundation/' + image} />
-                                                        <img variant="top" src={'http://localhost:3001/Foundation/' + image} /> //multi image
-                                                    ))}
-                                                    {/* <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */}
-                                                </div>
+                                                {
+                                                    Array_image = [],
+                                                    record.image.map((image, index) => {
+                                                        Array_image.push('http://localhost:3001/Foundation/' + image)
+                                                    }),
+                                                    < Grid container justify="center">
+                                                        <SlideShow className="imageslide"
+                                                            images={Array_image}
+
+                                                            imagesWidth="600px"
+                                                            imagesHeight="400px"
+                                                            imagesHeightMobile="36vw"
+
+                                                            thumbnailsWidth="920px"
+                                                            thumbnailsHeight="12vw"
+
+                                                            indicators thumbnails fixedImagesHeight
+                                                        />
+                                                    </Grid>
+                                                }
+                                                {/* <div className="image01"> */}
+
+                                                {/* {
+                                                    Array_image = [],
+                                                    record.image.map((image, index) => {
+                                                        <Slideshow src={'http://localhost:3001/Foundation/' + image} />
+                                                         <img variant="top" src={'http://localhost:3001/Foundation/' + image} /> //multi image
+                                                        Array_image.push('http://localhost:3001/Foundation/image/' + image)
+                                                     }),
+                                                    
+                                                     < Grid container justify="center">
+                                                     <SlideShow className="imageslide"
+                                                         images={Array_image}
+                                                     
+                                                         width="400px"
+                                                         imagesWidth="400px"
+                                                         imagesHeight="200px"
+                                                         imagesHeightMobile="56vw"
+                                                         thumbnailsWidth="520px"
+                                                         thumbnailsHeight="12vw"
+                                                         
+                                                         indicators thumbnails fixedImagesHeight
+                                                     />
+                                                 </Grid>
+                                                     <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> 
+                                                
+                                                 } */}
+
                                             </center>
                                             <div className="map">
                                                 <center>
@@ -278,13 +334,45 @@ function Categoryshow({ classes, ...props }) {
                                     </Then>
                                     <Else>
                                         <div className="box-box">
+                                            <center>
+                                                <div className="btcate">
 
+                                                    <ButtonGroup variant="text" aria-label="text primary button group">
+                                                        <Button href="/Foundation/เด็กและเยาวชน">เด็กและเยาวชน</Button>
+                                                        <Button href="/Foundation/ผู้สูงอายุ">ผู้สูงอายุ</Button>
+                                                        <Button href="/Foundation/สัตว์">สัตว์</Button>
+                                                        <Button href="/Foundation/ผู้พิการและผู้ป่วย">ผู้พิการและผู้ป่วย</Button>
+                                                        <Button href="/Foundation/สิ่งแวดล้อม">สิ่งแวดล้อม</Button>
+                                                        <Button href="/Foundation/อื่นๆ">อื่นๆ</Button>
+                                                    </ButtonGroup>
+                                                </div></center>
                                             <div className="Tt">{record.title}</div>
 
                                             <center>
-                                                <div className="image01">
+
+                                                {
+                                                    Array_image = [],
+                                                    record.image.map((image, index) => {
+                                                        Array_image.push('http://localhost:3001/Foundation/' + image)
+                                                    }),
+                                                    < Grid container justify="center">
+                                                        <SlideShow className="imageslide"
+                                                            images={Array_image}
+
+                                                            imagesWidth="600px"
+                                                            imagesHeight="400px"
+                                                            imagesHeightMobile="36vw"
+
+                                                            thumbnailsWidth="920px"
+                                                            thumbnailsHeight="12vw"
+
+                                                            indicators thumbnails fixedImagesHeight
+                                                        />
+                                                    </Grid>
+                                                }
+                                                {/* <div className="image01">
                                                     <img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
-                                                </div>
+                                                </div> */}
                                             </center>
 
                                             <div className="map">
@@ -300,27 +388,27 @@ function Categoryshow({ classes, ...props }) {
                                                 aria-labelledby="customized-dialog-title"
                                                 open={open3}
                                             >
-                                            <div className="pagemap">
-                                                <DialogTitle id="customized-dialog-title" onClose={handleCloseMap}>
-                                                    แผนที่{record.title}
-                                                </DialogTitle>
+                                                <div className="pagemap">
+                                                    <DialogTitle id="customized-dialog-title" onClose={handleCloseMap}>
+                                                        แผนที่{record.title}
+                                                    </DialogTitle>
 
-                                                <DialogContent>
-                                                    <DialogContentText>
-                                                        <MapWithAMarker
-                                                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places"
-                                                            loadingElement={<div style={{ height: `100%` }} />}
-                                                            containerElement={<div style={{ height: `400px` }} />}
-                                                            mapElement={<div style={{ height: `100%` }} />}
-                                                        />
-                                                    </DialogContentText>
-                                                </DialogContent>
+                                                    <DialogContent>
+                                                        <DialogContentText>
+                                                            <MapWithAMarker
+                                                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places"
+                                                                loadingElement={<div style={{ height: `100%` }} />}
+                                                                containerElement={<div style={{ height: `400px` }} />}
+                                                                mapElement={<div style={{ height: `100%` }} />}
+                                                            />
+                                                        </DialogContentText>
+                                                    </DialogContent>
 
-                                                <DialogActions>
-                                                    <Button onClick={handleCloseMap} color="primary">
-                                                        ยกเลิก
+                                                    <DialogActions>
+                                                        <Button onClick={handleCloseMap} color="primary">
+                                                            ยกเลิก
                                                     </Button>
-                                                </DialogActions>
+                                                    </DialogActions>
                                                 </div>
                                             </Dialog>
 
@@ -335,10 +423,12 @@ function Categoryshow({ classes, ...props }) {
                                                 {/* <div className="infor">วันสิ้นสุดโครงการ : {moment(record.endtime).calendar()}</div> */}
                                                 <div className="infor">วันสิ้นสุดโครงการ : {record.endtime}</div>
                                             </div>
-                                            <center>
+                                            <center >
+                                                
                                                 <Button variant="contained" onClick={handleClickOpen}>
                                                     บริจาค
                                                 </Button>
+                                                
                                             </center>
 
                                             <Dialog

@@ -16,9 +16,10 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import Icon from '@material-ui/core/Icon';
 import Axios from 'axios';
-import Slideshow from './Slideshow';
+// import Slideshow from './Slideshow';
 import SlideShow from 'react-image-show';
 
+import './PostPanjai.css'
 const currentUser = localStorage.getItem('currentUser')
 const currentUser_id = localStorage.getItem('currentUser_id')
 
@@ -280,13 +281,13 @@ const PostPanjai = ({ classes, ...props }) => {
                                                         Array_image.push('http://localhost:3001/image/' + image)
                                                     }),
                                                     < Grid container justify="center">
-                                                        <SlideShow
+                                                        <SlideShow className="imageslide"
                                                             images={Array_image}
                                                             width="400px"
                                                             imagesWidth="400px"
                                                             imagesHeight="200px"
                                                             imagesHeightMobile="56vw"
-                                                            thumbnailsWidth="920px"
+                                                            thumbnailsWidth="520px"
                                                             thumbnailsHeight="12vw"
                                                             className={classes.picture}
                                                             indicators thumbnails fixedImagesHeight

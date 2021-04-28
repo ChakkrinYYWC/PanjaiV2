@@ -35,7 +35,7 @@ const initialFieldValues = {
     item3: '',
     n_item: '',
     category: '',
-    promptpay: '',
+    // promptpay: '',
     endtime: '',
     lat: '',
     lng: '',
@@ -127,10 +127,10 @@ const styles = theme => ({
         padding: "0 55px 0 0",
         margin: "0 0 10px 0"
     },
-    promptpay: {
-        padding: "0 40px 0 0",
-        margin: "0 0 10px 0"
-    },
+    // promptpay: {
+    //     padding: "0 40px 0 0",
+    //     margin: "0 0 10px 0"
+    // },
     container: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -181,8 +181,8 @@ const PostFDT = ({ classes, ...props }) => {
         temp.title = values.title ? "" : "กรุณาใส่ข้อมูล."
         temp.message = values.message ? "" : "กรุณาใส่ข้อมูล."
         temp.item1 = values.item1 ? "" : "กรุณาใส่ข้อมูล."
-        temp.item2 = values.item2 ? "" : "กรุณาใส่ข้อมูล."
-        temp.item3 = values.item3 ? "" : "กรุณาใส่ข้อมูล."
+        // temp.item2 = values.item2 ? "" : "กรุณาใส่ข้อมูล."
+        // temp.item3 = values.item3 ? "" : "กรุณาใส่ข้อมูล."
         temp.n_item = values.n_item ? "" : "กรุณาใส่ข้อมูล."
         temp.lat = values.lat ? "" : "กรุณาใส่ข้อมูล."
         temp.lng = values.lng ? "" : "กรุณาใส่ข้อมูล."
@@ -190,7 +190,7 @@ const PostFDT = ({ classes, ...props }) => {
         temp.phone = values.phone ? "" : "กรุณาใส่ข้อมูล."
         //temp.endtime = values.endtime ? "" : "กรุณาใส่ข้อมูล."
         temp.category = values.category ? "" : "กรุณาใส่ข้อมูล."
-        temp.promptpay = values.promptpay ? "" : "กรุณาใส่ข้อมูล."
+        // temp.promptpay = values.promptpay ? "" : "กรุณาใส่ข้อมูล."
         setErrors({
             ...temp
         })
@@ -295,7 +295,7 @@ const PostFDT = ({ classes, ...props }) => {
                 formData.append('phone', values.phone);
                 formData.append('category', values.category);
                 // formData.append('category', category);
-                formData.append('promptpay', values.promptpay);
+                // formData.append('promptpay', values.promptpay);
                 formData.append('endtime',selectedDate);
                 formData.append('lat', values.lat);
                 formData.append('lng', values.lng);
@@ -422,7 +422,7 @@ const PostFDT = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.phone && { error: true, helperText: errors.phone })}
                     /><br />
-                    <TextField
+                    {/* <TextField
                         id="standard-basic"
                         name="promptpay"
                         type="number"
@@ -431,7 +431,7 @@ const PostFDT = ({ classes, ...props }) => {
                         value={values.promptpay}
                         onChange={handleInputChange}
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
-                    />
+                    /> */}
                     {/* <FormControl className={classes.formControl}>
                         <InputLabel id="demo-simple-select-helper-label">หมวดหมู่</InputLabel>
                         <Select
@@ -446,10 +446,10 @@ const PostFDT = ({ classes, ...props }) => {
                         </Select>
                     </FormControl> */}
 
-                    <FormControl className={classes.select}>
-                        <InputLabel >จังหวัด</InputLabel>
+                    <FormControl className={classes.formControl}>
+                        <InputLabel >หมวดหมู่</InputLabel>
                         <Select
-                            InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
+                            InputProps={{ style: { border: '3px',  fontFamily: 'mali', height: '40px' } }}
                             name='category'
                             value={values.category}
                             fullWidth
@@ -603,7 +603,7 @@ const PostFDT = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.phone && { error: true, helperText: errors.phone })}
                     /><br />
-                    <TextField
+                    {/* <TextField
                         id="standard-basic"
                         name="promptpay"
                         type="number"
@@ -612,7 +612,7 @@ const PostFDT = ({ classes, ...props }) => {
                         value={values.promptpay}
                         onChange={handleInputChange}
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
-                    /><br />
+                    /><br /> */}
                     {/* <input
                         accept="image/*"
                         className={classes.input}
