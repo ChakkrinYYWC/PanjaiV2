@@ -17,6 +17,7 @@ var authenticate = require('./routes/authen')
 var findsomething = require('./routes/search');
 var profileRoute = require('./routes/profile')
 var reportRoute = require('./routes/report')
+var paymentRoute = require('./routes/Payment')
 const { profile } = require("console");
 
 const app = express();
@@ -59,6 +60,7 @@ app.use('/Foundation', postFDTRoutes)
 app.use('/search', findsomething)
 app.use('/profile', profileRoute)
 app.use('/report', reportRoute)
+app.use('/pay-coin', paymentRoute)
 
 // app.post('/signin/facebook', async (req, res) => {
 //     console.log('Request -->', req.body.user)

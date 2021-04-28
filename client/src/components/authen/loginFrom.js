@@ -45,6 +45,7 @@ function LoginFrom() {
                 localStorage.setItem('currentUser_address', res.data[4]);
                 localStorage.setItem('currentUser_phone', res.data[5]);
                 localStorage.setItem('currentUser_name', res.data[6])
+                localStorage.setItem('currentUser_coin', res.data[7])
                 await localStorage.setItem('popupYet', false)
                 window.location.href = "http://localhost:3000"
             } else {

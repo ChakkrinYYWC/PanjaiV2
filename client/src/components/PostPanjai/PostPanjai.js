@@ -123,7 +123,7 @@ const PostPanjai = ({ classes, ...props }) => {
         const onSuccess = () => {
             ButterToast.raise({
                 content: <Cinnamon.Crisp title="ตู้ปันใจ"
-                    content="Deleted successfully"
+                    content="ลบโพสต์เสร็จสมบูรณ์"
                     scheme={Cinnamon.Crisp.SCHEME_PURPLE}
                     icon={<DeleteSweep />}
                 />

@@ -25,6 +25,7 @@ import FDTpopup from "./components/category/FDTpopup";
 import category from './pages/Category';
 import Categoryshow from './pages/Categoryshow';
 import { Category } from '@material-ui/icons';
+import Coin from './pages/Coin';
 // import PrivateRoute from 'react-private-route'
 
 
@@ -48,6 +49,7 @@ function App() {
         <Route path="/myfav" component={favorite}/>
         <Route path="/aboutus" component={About}/>
         <Route path="/testaroundme" component={aroundME}/>
+        <Route path="/pay-coin" component={Coin}/>
         <Route path="/FDTpopup" component={FDTpopup}/>
     
       </Switch>

@@ -9,6 +9,7 @@ let userSchema = new mongoose.Schema({
     address : String,
     phone : String,
     accessToken : String,
+    coin: Number,
     favorite : {
         type: mongoose.Schema.Types.ObjectId,
         ref: "postPanjai"
