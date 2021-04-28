@@ -11,20 +11,29 @@
     color: rgba(141, 90, 18, 0.925)
 }
 
+
 .bta h1{
     width:100%;
     font-weight: bold;
 /*     background-color: bisque; */
     margin-bottom: 0%;
     padding-bottom: 0%;
-   
 }
 
 .space{
     margin-bottom: 5%;
     padding-bottom: 5%;
+}
+
+@media only screen and (max-width: 1024px){
+
+
+
 
 }
+    
+    
+
 
 @media only screen and (max-width: 768px){
 .hh{

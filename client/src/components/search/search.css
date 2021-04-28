@@ -1,15 +1,13 @@
 .search-bar{
     padding: 5% 3% 5% 3%;
     /* font-family: 'Mali', cursive; */
-    
-    
 }
+
 .ui-input{
     width: 50%;
     height: auto;
     margin-right: 2%;
     font-size: 15pt;
-   
 }
 
 .search-bt{
@@ -20,8 +18,8 @@
     font-family: 'Mali', cursive;
     border-radius: 10px;
     color: aliceblue;
-    
 }
+
 .search-bt:hover{
     background-color: rgb(95, 74, 32);
     font-size: 20px;
@@ -166,7 +164,7 @@
   }
   
   .foundation .row{
-    padding: 30px 90px 60px 10px;
+    /* padding: 30px 90px 60px 10px; */
  
   }
 
@@ -222,9 +220,10 @@
   
 
 .bg2{
-    padding: 0% 15% 0% 15%;
+    /* padding: 0% 5% 0% 15%; */
       /* background-color: rgb(235, 198, 77); */
-    font-family: 'Mali', cursive; 
+    font-family: 'Mali', cursive;
+     
 }
 
 .head{
@@ -240,7 +239,7 @@
 }
 
 .bg2 .row {
-    padding: 0% 10% 0% 5%;
+    padding: 0% 10% 0% 12%;
     /* padding-bottom: 50px;
     padding-right: 100px;
     padding-left: 100px; */
@@ -259,80 +258,31 @@
 }
 .background-search {
   background-color:  rgb(226, 221, 204);
-  height: 100%;
+  height: auto;
   
 }
 
 
-.foundat3{
-  width: 360px;
-  height: 83%;
-  text-align: center;
-  border-radius:40px;
-  box-shadow: 1px 1px 1px 0px rgba(2, 1, 1, 0.555);
-  margin: 40px;
-}
 
-.foundat3 Img{
-  height: 185px;
-  width:100%;
-  border-radius:30px 30px 0  0;
-}
-
-.foundat3 .CardTitle{
-  text-decoration-line: none;
-  font-size: 13px;
-  color:rgba(253, 253, 253, 0.925);
-  background-color: rgba(161, 128, 79, 0.925) ;
-  border-radius: 6px;
-  padding: 3px;
-
-
-}
-
-.foundat3 .CardTitle:hover{
-  font-size: 13.5px;
-  text-decoration-line: underline;
-}
 
 @media only screen and (max-width: 1024px) {
-  .foundat3{
-    width:280px;
-    height: 295px;
-    margin-bottom: 5px;
-  }
-  .foundat3 Img{
-    height: 140px;
 
-  }
-  .foundat3 .CardTitle{
-    font-size: 10px;   
-  }
+  .bg2 .row {
+    padding: 0% 10% 0% 2%;
+}
+
+
 }
 
 @media only screen and (max-width: 768px) {
-  
-  .foundat3{
-    width:240px;
-    height: 240px;
-    margin-bottom: 5px;
-  }
 
 
-  .foundat3 Img{
-    height: 100px;
-
-  }
-
-  .foundation3 .row{
-    padding: 0px 0px 0px 0px;
-
-  } 
-  
-
-  .foundat .CardTitle{
-    font-size: 10px;
-  }
+  .bg2 .row {
+    padding: 0%;
+}
 
 
-}    
+
+
+
+}

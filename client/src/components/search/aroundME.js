@@ -17,6 +17,8 @@ import {
     Button,
   } from "@material-ui/core";
 
+  import { Card } from "react-bootstrap";
+
 import "./GGMap.css";
 
 
@@ -182,74 +184,108 @@ class Map extends React.PureComponent {
                 {/* <h3>มูลนิธิใกล้ฉัน</h3><br /> */}
                 </div>
 
-                <Container style={{marginTop: '30px'}}>
+                {/* <Container style={{marginTop: '30px'}}>
                 <Grid container style={{padding:'0 auto'}} spacing={4}>
-                
+                 */}
 
-
+                <div className="foundation">
+                <div className="row m-0">
 
                 { 
                     result_kg.map(mark => (
-                    <>
-                       
-
-                    <Grid item xs={12} sm={4}>
-                        {/* {index} */}
-                        <Paper onClick={() => SelectMarker(mark)} >
-                            <center> 
-
-                                <div className ="bta">
-                                    {/* <button className="btn btn-lg " onClick={() => SelectMarker(mark)}>{mark.marker.title}</button> */}
-                                     <h1>{mark.marker.title}</h1>
-                                </div> 
-                            </center>
-                                 {/* <Fragment key={index}> */}
-                            <ListItem>
-
-                                <ListItemText>
-
-                                    <center>
+                        <>
 
 
-                                    <Typography variant="h5" >
 
-                                     <div >
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"/>  
-                                     </div>
+                             <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                <Card onClick={() => SelectMarker(mark)} className="foundat">
 
-                                    </Typography>
-                                
-
+                                    {/* <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */} 
                                
-                                  <Grid container justify="center">
-                                        <div >
+                                     <Card.Img variant="top" img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"/> 
+                                     {/* //multi image  */}
+                                    <Card.Body>
+                                        <div>{mark.marker.title}</div>
+                                        <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร </h1>
+                                        <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} className="CardTitle">อ่านเพิ่มเติม</Link>
+                                        
+                                    </Card.Body>
+                                </Card>
+                             </div>
 
-                                        <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} >อ่านเพิ่มเติม</Link>
-                                     <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร </h1>
-                                    
-                                        </div>
-                                 </Grid>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        {/* <Grid item xs={12} sm={4}>
+                                <Paper  onClick={() => SelectMarker(mark)} >
+                                    <center> 
+
+                                        <div className ="bta">
+                                            <h1>{mark.marker.title}</h1>
+                                        </div> 
                                     </center>
+                                    <ListItem>
 
-                                    {/* รูปแบบช่อง */}
-                                </ListItemText>
-                            </ListItem>
-                            {/* <Divider component='li' /> */}
-                            {/* </Fragment> */}
-                        </Paper>
-                     </Grid>
+                                        <ListItemText>
+
+                                            <center>
 
 
+                                            <Typography variant="h5" >
 
-                    
-                    </>
+                                            <div >
+                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"/>  
+                                            </div>
+
+                                            </Typography>
+                                        
+
+                                    
+                                        <Grid container justify="center">
+                                                <div >
+
+                                                <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} >อ่านเพิ่มเติม</Link>
+                                            <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร </h1>
+                                            
+                                                </div>
+                                        </Grid>
+
+                                            </center>
+
+                                        </ListItemText>
+                                    </ListItem>
+                                </Paper>
+                            </Grid>   */}
+                        </>
                     ))
                 }
 
-        </Grid>
-        </Container>
+        {/* </Grid>
+        </Container> */}
             
+            </div>
+            </div>
 
             </>
         );

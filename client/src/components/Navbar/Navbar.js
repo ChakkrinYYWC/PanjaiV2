@@ -153,8 +153,6 @@ class Navbar extends Component {
                 }
               }
               
-              
-              
               else {
                 return (
                   <li className="itemlist" key={index}>
