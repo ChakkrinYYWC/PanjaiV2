@@ -44,10 +44,6 @@ export default function Checkboxes() {
   // console.log(postTPJ)
   console.log(postFDT)
 
-  function Loop() {
-
-  }
-
   return (
     <div className='background-search'>
       <center>
@@ -93,7 +89,7 @@ export default function Checkboxes() {
             inputProps={{ "aria-label": "checkbox with default color" }}
           /> */}
           <span className="check3" style={{ color: "black" }}>
-            <Link to ="/testaroundme"> ใกล้ฉัน</Link>
+            <Link to="/testaroundme"> ใกล้ฉัน</Link>
           </span>
         </div>
       </center>

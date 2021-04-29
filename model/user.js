@@ -1,20 +1,23 @@
-const   mongoose = require('mongoose'),
-        passportLocalMongoose = require('passport-local-mongoose');
+const mongoose = require('mongoose'),
+    passportLocalMongoose = require('passport-local-mongoose');
 
 let userSchema = new mongoose.Schema({
-    name : String,
-    username : String,
-    idcard : String,
-    email : String,
-    address : String,
-    phone : String,
-    accessToken : String,
-    isbaned : String,
-    favorite : {
+    name: String,
+    username: String,
+    idcard: String,
+    email: String,
+    address: String,
+    phone: String,
+    accessToken: String,
+    isbaned: String,
+    month: Number,
+    year: Number,
+    piece_available: Number,
+    favorite: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "postPanjai"
     },
-    request : {
+    request: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "postPanjai"
     },
@@ -22,7 +25,7 @@ let userSchema = new mongoose.Schema({
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: "postPanjai",
     // },
-    recieve : {
+    recieve: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "postPanjai"
     },

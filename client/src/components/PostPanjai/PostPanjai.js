@@ -34,6 +34,9 @@ import SlideShow from "react-image-show";
 
 const currentUser = localStorage.getItem("currentUser");
 const currentUser_id = localStorage.getItem("currentUser_id");
+const user_id = localStorage.getItem('currentUser_id')
+
+var once = false
 
 const styles = (theme) => ({
   paper: {
@@ -113,6 +116,17 @@ const PostPanjai = ({ classes, ...props }) => {
   const open = Boolean(anchorEl);
   var Array_image = [];
 
+  // async function onetime() {
+  //   if (once == false) {
+  //     await Axios.post('/search/getPieceAvailable/' + user_id, {
+  //     }).then(async res => {
+  //       await localStorage.setItem('pieceAvailable', res.data)
+  //     }).catch(error => console.log(error))
+  //     once = true
+  //   }
+  // }
+  // onetime()
+
   useEffect(() => {
     props.fetchAllPostPanjai();
     window.scrollTo({
@@ -176,7 +190,9 @@ const PostPanjai = ({ classes, ...props }) => {
     if (window.confirm("Do you want to request?")) {
       Axios.post("/Too-Panjai/addRequest/" + id, data, {})
         .then((res) => {
-          console.log(res);
+          if (res) {
+            window.alert(res.data)
+          }
         })
         .catch((error) => console.log(error));
     }
@@ -288,28 +304,28 @@ const PostPanjai = ({ classes, ...props }) => {
 
                       {
                         ((Array_image = []),
-                        record.image.map((image, index) => {
-                          Array_image.push(
-                            "http://localhost:3001/image/" + image
-                          );
-                        }),
-                        (
-                          <Grid container justify="center">
-                            <SlideShow
-                              images={Array_image}
-                              width="200px"
-                              imagesWidth="200px"
-                              imagesHeight="100px"
-                              imagesHeightMobile="56vw"
-                              thumbnailsWidth="920px"
-                              thumbnailsHeight="12vw"
-                              className={classes.picture}
-                              indicators
-                              thumbnails
-                              fixedImagesHeight
-                            />
-                          </Grid>
-                        ))
+                          record.image.map((image, index) => {
+                            Array_image.push(
+                              "http://localhost:3001/image/" + image
+                            );
+                          }),
+                          (
+                            <Grid container justify="center">
+                              <SlideShow
+                                images={Array_image}
+                                width="200px"
+                                imagesWidth="200px"
+                                imagesHeight="100px"
+                                imagesHeightMobile="56vw"
+                                thumbnailsWidth="920px"
+                                thumbnailsHeight="12vw"
+                                className={classes.picture}
+                                indicators
+                                thumbnails
+                                fixedImagesHeight
+                              />
+                            </Grid>
+                          ))
                       }
 
                       <div className={`${classes.color1} ${classes.frontpost}`}>
