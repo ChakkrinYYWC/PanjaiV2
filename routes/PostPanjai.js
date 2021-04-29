@@ -11,6 +11,7 @@ var { PostPanjai } = require('../model/postPanjai')
 const user = require('../model/user');
 const noti = require('../model/notification');
 const recieve = require('../model/recieve');
+const dashboard = require('../model/dashboard')
 
 const storage = multer.diskStorage({
     destination: './public/uploads/Too-Panjai',
@@ -213,6 +214,31 @@ router.post('/recieveAccept', async function (req, res) {
                 console.log(error)
             } else {
                 console.log("=====piece_available decrease!!=====")
+            }
+        })
+        const wantee = new Date()
+        let find = await dashboard.aggregate([
+            {
+                $match: {
+                    type: "numberOfDonation"
+                }
+            },
+            {
+                $sort: {
+                    "month": 1
+                }
+            },
+            {
+                $match: {
+                    month: wantee.getMonth() + 1
+                }
+            },
+        ])
+        //console.log(find)
+        dashboard.findByIdAndUpdate(find[0]._id, { number: find[0].number + 1 }, (err, docs) => {
+            if (err) {
+                console.log(err)
+                //res.send(docs)
             }
         })
         res.sendStatus(200)

@@ -69,7 +69,7 @@ const Form = ({ ...props }) => {
                     console.log(newcoin)
                 }
 
-                const data = { newcoin }
+                const data = { newcoin, coin }
                 axios.post('/authenticate/mycoin/' + currentUserID, data, {
                 }).then(res => {
                     onSuccess()
