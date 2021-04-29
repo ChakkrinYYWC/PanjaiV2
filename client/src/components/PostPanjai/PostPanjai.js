@@ -33,6 +33,8 @@ import Slideshow from "./Slideshow";
 import SlideShow from "react-image-show";
 import styled from 'styled-components'
 
+import SlideShow from "react-image-show";
+import './PostPanjai.css'
 const currentUser = localStorage.getItem("currentUser");
 const currentUser_id = localStorage.getItem("currentUser_id");
 
@@ -109,60 +111,55 @@ const options = [
 const ITEM_HEIGHT = 48;
 
 const PostPanjai = ({ classes, ...props }) => {
-  const [currentId, setCurrentId] = useState(0);
+
+  const [currentId, setCurrentId] = useState(0)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   var Array_image = [];
 
   useEffect(() => {
-    props.fetchAllPostPanjai();
+    props.fetchAllPostPanjai()
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth",
+      behavior: "smooth"
     });
-  }, []);
+  }, [])
 
-  const onDelete = (id) => {
+  const onDelete = id => {
     const onSuccess = () => {
       ButterToast.raise({
-        content: (
-          <Cinnamon.Crisp
-            title="ตู้ปันใจ"
-            content="Deleted successfully"
-            scheme={Cinnamon.Crisp.SCHEME_PURPLE}
-            icon={<DeleteSweep />}
-          />
-        ),
-      });
-    };
-    if (window.confirm("ต้องการลบโพสนี้ใช่หรือไม่?"))
-      props.deletePostMessage(id, onSuccess);
-  };
+        content: <Cinnamon.Crisp title="ตู้ปันใจ"
+          content="ลบโพสต์เสร็จสมบูรณ์"
+          scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+          icon={<DeleteSweep />}
+        />
+      })
+    }
+    if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?'))
+      props.deletePostMessage(id, onSuccess)
+  }
 
-  const ScrollToTop = (id) => {
+  const ScrollToTop = id => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth",
+      behavior: "smooth"
     });
     setCurrentId(id);
-  };
+  }
 
-  const [select, setSelect] = React.useState("");
+
+  const [select, setSelect] = React.useState('');
 
   const handleChange = (id, option) => {
-    // if (option == 'แก้ไข') {
-    //     ScrollToTop(id)
-    // } else if (option == 'ลบ') {
-    //     onDelete(id)
-    // } else {
-    console.log("*" + option);
-    console.log("*" + id);
-    reportItem(id);
+    console.log('*' + option)
+    console.log('*' + id)
+    reportItem(id)
     // }
     setAnchorEl(null);
   };
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -290,28 +287,26 @@ const PostPanjai = ({ classes, ...props }) => {
 
                       {
                         ((Array_image = []),
-                        record.image.map((image, index) => {
-                          Array_image.push(
-                            "http://localhost:3001/image/" + image
-                          );
-                        }),
-                        (
-                          <Grid container justify="center">
-                            <SlideShow
-                              images={Array_image}
-                              width="200px"
-                              imagesWidth="200px"
-                              imagesHeight="100px"
-                              imagesHeightMobile="56vw"
-                              thumbnailsWidth="920px"
-                              thumbnailsHeight="12vw"
-                              className={classes.picture}
-                              indicators
-                              thumbnails
-                              fixedImagesHeight
-                            />
-                          </Grid>
-                        ))
+                          record.image.map((image, index) => {
+                            Array_image.push(
+                              "http://localhost:3001/image/" + image
+                            );
+                          }),
+                          (
+                            <Grid container justify="center">
+                              <SlideShow className="imageslide"
+                                images={Array_image}
+                                // width="0px"
+                                imagesWidth="400px"
+                                imagesHeight="200px"
+                                imagesHeightMobile="56vw"
+                                thumbnailsWidth="520px"
+                                thumbnailsHeight="12vw"
+                                className={classes.picture}
+                                indicators thumbnails fixedImagesHeight
+                              />
+                            </Grid>
+                          ))
                       }
 
                       <div className={`${classes.color1} ${classes.frontpost}`}>

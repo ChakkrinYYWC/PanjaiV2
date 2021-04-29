@@ -9,6 +9,8 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import { province } from "../../Constants/provinces";
 import { DeleteSweep } from "@material-ui/icons";
 import styled from'styled-components'
+import MaskedInput from 'react-text-mask';
+import Input from '@material-ui/core/Input';
 
 const defaultImageSrc = '/image.png'
 
@@ -109,6 +111,21 @@ const ButtonWrapper = styled.div`
     top: 0;
     right:0;
 `
+function TextMaskCustom(props) {
+    const { inputRef, ...other } = props;
+
+    return (
+        <MaskedInput
+            {...other}
+            ref={(ref) => {
+                inputRef(ref ? ref.inputElement : null);
+            }}
+            mask={[/[0-9]/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            placeholderChar={'\u2000'}
+            showMask
+        />
+    );
+}
 
 
 const PostPanjaiForm = ({ classes, ...props }) => {
@@ -197,7 +214,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         const onSuccess = () => {
             ButterToast.raise({
                 content: <Cinnamon.Crisp title="ตู้ปันใจ"
-                    content="Submitted successfully"
+                    content="โพสต์เสร็จสมบรูณ์"
                     scheme={Cinnamon.Crisp.SCHEME_PURPLE}
                     icon={<AssignmentTurnedIn />}
                 />
@@ -236,23 +253,14 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         props.setCurrentId(0);
     }
 
-    //console.log(multi_image)
+    const handleChange = (event) => {
+        setValues({
+            ...values,
+            [event.target.name]: event.target.value,
+        });
+    };
 
-    // const showPreview = e => {
-    //     if (e.target.files && e.target.files[0]) {
-    //         setFile(e.target.files[0]);
-    //         console.log(file);
-    //         setImg({
-    //             src: URL.createObjectURL(e.target.files[0]),
-    //             alt: e.target.files[0].name
-    //         });
-    //     }
-    //     else {
-    //         let pic = defaultImageSrc
-    //         setFile(pic)
-    //     }
-    // }
-
+    
 
     // post
     if (props.currentId == 0) {
@@ -330,7 +338,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     justify="center"
                     alignItems="center" >
 
-                    <TextField
+                    {/* <TextField
                         type='number'
                         name="contect"
                         variant="filled"
@@ -341,7 +349,20 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         value={values.contect}
                         onChange={handleInputChange}
                         {...(errors.contect && { error: true, helperText: errors.contect })}
-                    />
+                    /> */}
+
+                    <FormControl fullWidth>
+                        <InputLabel htmlFor="formatted-text-mask-input">เบอร์โทรศัพท์</InputLabel>
+                        <Input
+                            value={values.contect}
+                            onChange={handleChange}
+                            name="contect"
+                            id="formatted-text-mask-input"
+                            inputComponent={TextMaskCustom}
+                            {...(errors.contect && { error: true, helperText: errors.contect })}
+                        />
+                    </FormControl>
+
                 </Grid>
 
                 <Grid item xs={12} sm={6}

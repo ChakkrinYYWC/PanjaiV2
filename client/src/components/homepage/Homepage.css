@@ -51,7 +51,7 @@
 }
 
 .row{
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   padding-right: 400px;
   padding-left: 400px;
 }
@@ -452,7 +452,9 @@ font-size: 20px;
     width: 580px;
     font-size: 30px;
     height: 500px;
+    
 } 
+
 .modal-body {
   position: relative;
   flex: 1 1 auto;
@@ -466,7 +468,9 @@ font-size: 20px;
 }
 .tpjj p{
   font-size: 19px;
-  color: white;
+  
+  padding: 0px 0px 0px 100px;
+    color: white;
   text-shadow: 2px 2px 4px  rgba(43, 18, 2, 0.925);
 }
 .tupanjai img {
@@ -748,5 +752,17 @@ ul.card-stacks li.stack ul.cards-down li.card div.content {
   width: 300px;
   margin: 0 auto;
   
+}
+
+.card p {
+  font-size: 10px;
+  margin-top: 5px;
+  padding: 0px;
+  font-family: 'Mali', cursive;
+  color: rgb(32, 17, 6);
+}
+
+ul.card-stacks li.stack ul.cards-down li.card div.content {
+  padding: 0px 0px;
 }
 }    

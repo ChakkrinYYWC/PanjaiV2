@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react'
 import "./search.css";
 import Checkbox from "@material-ui/core/Checkbox";
-import { Button } from "@material-ui/core";
 import { Card } from "react-bootstrap";
 import Axios from 'axios';
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
@@ -14,6 +13,20 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
+
+
+import {
+  Divider,
+  Grid,
+  Paper,
+  Typography,
+  withStyles,
+  ListItem,
+  ListItemText,
+  Container,
+  Button,
+} from "@material-ui/core";
+
 import { Search } from "@material-ui/icons";
 import { render } from 'react-dom';
 import { propTypes } from 'react-bootstrap/esm/Image';
@@ -49,6 +62,7 @@ export default function Checkboxes() {
   }
 
   return (
+    <div className ='doublebg' >
     <div className='background-search'>
       <center>
         <div className="search-bar">
@@ -60,11 +74,12 @@ export default function Checkboxes() {
                 }}
                 type="text"
                 className="ui-input"
-                placeholder="ค้นหา" />
+                placeholder="ชื่อมูลนิธิ, สิ่งของ" />
               <button onClick={Search} type='submit' className="search-bt">ค้นหา</button>
             </div>
           </form>
         </div>
+        </center>
         <div className='flex'>
           {/* <Checkbox
             className="box1"
@@ -93,22 +108,23 @@ export default function Checkboxes() {
             inputProps={{ "aria-label": "checkbox with default color" }}
           /> */}
           <span className="check3" style={{ color: "black" }}>
-            <Link to ="/testaroundme"> ใกล้ฉัน</Link>
+           <Link to ="/testaroundme" align = 'right' >ใกล้ฉัน</Link>
           </span>
         </div>
-      </center>
+      
 
       <div className="bg2">
         <center className="head">
           <h2> มูลนิธิ</h2>
         </center>
-
+        
         <div className="row m-0">
 
           {
             postFDT.map((record, index) => {
               return (
-                <div className="column col-4">
+                
+                <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
                   <Card className="foundat">
                     <img
                       variant="top"
@@ -128,39 +144,12 @@ export default function Checkboxes() {
 
           }
 
-          {/* <div className="column col-4">
-            <Card className="foundat">
-              <Card.Img
-                variant="top"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
-              />
-              <Card.Body>
-                <Link className="Tfound">ชื่อโครงการ</Link>
-                <div className="information">ต้องการรับบริจาค :</div>
-                <div className="information">จำนวน :</div>
-                <div className="information-1">วันที่ลง :</div>
-                <Link className="CardTitle">อ่านเพิ่มเติม</Link>
-              </Card.Body>
-            </Card>
-          </div> */}
 
-          {/* <div className="column col-4">
-            <Card className="foundat">
-              <Card.Img
-                variant="top"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
-              />
-              <Card.Body>
-                <Link className="Tfound">ชื่อโครงการ</Link>
-                <div className="information">ต้องการรับบริจาค :</div>
-                <div className="information">จำนวน :</div>
-                <div className="information-1">วันที่ลง :</div>
-                <Link className="CardTitle">อ่านเพิ่มเติม</Link>
-              </Card.Body>
-            </Card>
-          </div>
+{/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////           */}
 
-          <div className="column col-4">
+     
+          
+            {/* <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
             <Card className="foundat">
               <Card.Img
                 variant="top"
@@ -173,8 +162,10 @@ export default function Checkboxes() {
                 <div className="information-1">วันที่ลง :</div>
                 <Link className="CardTitle">อ่านเพิ่มเติม</Link>
               </Card.Body>
-            </Card>
-          </div> */}
+            </Card></div> */}
+
+
+{/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
         </div>
 
         <center className="head">
@@ -186,6 +177,7 @@ export default function Checkboxes() {
             postTPJ.map((record, index) => {
               return (
                 <div className="column col-4">
+                  {/* <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4"> */}
                   <Card className="foundat">
                     <img
                       variant="top"
@@ -222,6 +214,7 @@ export default function Checkboxes() {
 
           }
           {/* <div className="column col-4">
+          // <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
             <Card className="foundat">
               <Card.Img
                 variant="top"
@@ -254,71 +247,9 @@ export default function Checkboxes() {
             </Card>
           </div> */}
 
-          {/* <div className="column col-4">
-            <Card className="foundat">
-              <Card.Img
-                variant="top"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
-              />
-              <Card.Body>
-                <Link className="Tfound">บริจาคอะไร</Link>
-                <div className="information">ผู้สร้าง :</div>
-                <div className="information">จังหวัด :</div>
-                <div className="information-1">วันที่ลง :</div>
-                <div className="pum">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    className="want" // จำเป็น
-                  >
-                    ขอรับ
-                </Button>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    className="fav"
-                  >
-                    ถูกใจ
-                </Button>
-                </div>
-              </Card.Body>
-            </Card>
-          </div> */}
-
-          {/* <div className="column col-4">
-            <Card className="foundat">
-              <Card.Img
-                variant="top"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
-              />
-              <Card.Body>
-                <Link className="Tfound">บริจาคอะไร</Link>
-                <div className="information">ผู้สร้าง :</div>
-                <div className="information">จังหวัด :</div>
-                <div className="information-1">วันที่ลง :</div>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="small"
-                  className="want" // จำเป็น
-                >
-                  ขอรับ
-                </Button>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  size="small"
-                  className="fav"
-                >
-                  ถูกใจ
-                </Button>
-              </Card.Body>
-            </Card>
-          </div> */}
         </div>
       </div>
+    </div>
     </div>
   );
 }
