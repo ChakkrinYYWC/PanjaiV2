@@ -29,8 +29,10 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { If, Then, ElseIf, Else } from "react-if-elseif-else-render";
 import Icon from "@material-ui/core/Icon";
 import Axios from "axios";
-
+import Slideshow from "./Slideshow";
 import SlideShow from "react-image-show";
+import styled from 'styled-components'
+
 import './PostPanjai.css'
 const currentUser = localStorage.getItem("currentUser");
 const currentUser_id = localStorage.getItem("currentUser_id");
@@ -225,16 +227,17 @@ const PostPanjai = ({ classes, ...props }) => {
   return (
     <>
       {/* <Slideshow data={urlArray} /> */}
-      <Grid container justify="center">
-        <Grid item lg={4}>
           {/* กรอบโพส */}
           {/* <Box bgcolor="primary.main" color="primary.contrastText" p={2}> */}
+          <PostWrapper>
           <Paper className={`${classes.post1} ${classes.bg}`}>
             <PostPanjaiForm {...{ currentId, setCurrentId }} />
           </Paper>
+
+          </PostWrapper>
+         
           {/* </Box> */}
-        </Grid>
-      </Grid>
+     
       <Grid container spacing={3}>
         {/* ฝั่งขวา ใช้ classes.ชื่ออื่่น */}
         {props.postPanjaiList.map((record, index) => {
@@ -299,26 +302,26 @@ const PostPanjai = ({ classes, ...props }) => {
 
                       {
                         ((Array_image = []),
-                          record.image.map((image, index) => {
-                            Array_image.push(
-                              "http://localhost:3001/image/" + image
-                            );
-                          }),
-                          (
-                            <Grid container justify="center">
-                              <SlideShow className="imageslide"
-                                images={Array_image}
-                                // width="0px"
-                                imagesWidth="400px"
-                                imagesHeight="200px"
-                                imagesHeightMobile="56vw"
-                                thumbnailsWidth="520px"
-                                thumbnailsHeight="12vw"
-                                className={classes.picture}
-                                indicators thumbnails fixedImagesHeight
-                              />
-                            </Grid>
-                          ))
+                        record.image.map((image, index) => {
+                          Array_image.push(
+                            "http://localhost:3001/image/" + image
+                          );
+                        }),
+                        (
+                          <Grid container justify="center">
+                            <SlideShow className="imageslide"
+                              images={Array_image}
+                              width="400px"
+                              imagesWidth="400px"
+                              imagesHeight="200px"
+                              imagesHeightMobile="56vw"
+                              thumbnailsWidth="520px"
+                              thumbnailsHeight="12vw"
+                              className={classes.picture}
+                              indicators thumbnails fixedImagesHeight
+                            />
+                          </Grid>
+                        ))
                       }
 
                       <div className={`${classes.color1} ${classes.frontpost}`}>
@@ -420,3 +423,10 @@ export default connect(
   mapStateToProps,
   mapActionToProps
 )(withStyles(styles)(PostPanjai));
+
+const PostWrapper = styled.div`
+  >*{
+    max-width:400px;
+    margin: 0 auto;
+  }
+`

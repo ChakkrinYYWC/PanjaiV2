@@ -18,6 +18,7 @@ const jwtConfig = require("../config/jwtConfig");
 //model
 const user = require('../model/user');
 const dashboard = require('../model/dashboard');
+var { PostFDT } = require('../model/postFDT')
 
 const storage = multer.diskStorage({
     destination: './public/uploads/IDcard',
@@ -281,10 +282,13 @@ server.post('/information/:id', (req, res) => {
 })
 /*-------------------------------------------------------------------------------*/
 server.post('/mycoin/:id', async (req, res) => {
-    //console.log(req.body.coin)
-    //console.log('***')
-    //console.log(req.params.id)
-    //console.log(req.body.newcoin)
+    var newmoney = 0
+    var coin2 = 0
+    // console.log(req.params.id)
+    // console.log(req.body.newcoin)
+    // console.log(req.body.post_id)
+    console.log('เงินที่มีอยู่ : ' + req.body.money)
+    coin2 = req.body.coin * 2
 
     // for (let index = 1; index <= 12; index++) {
     //     dashboard.create({
@@ -322,8 +326,17 @@ server.post('/mycoin/:id', async (req, res) => {
 
     const newData = user.findByIdAndUpdate(req.params.id, { coin: req.body.newcoin }, (err, docs) => {
         if (!err) {
-            //console.log(docs)
             //res.send(docs)
+            newmoney = req.body.money + coin2
+            console.log('เงินที่ได้มา : ' + coin2)
+            console.log('รวมเงิน : ' + newmoney)
+            PostFDT.findByIdAndUpdate(req.body.post_id, { money: newmoney }, { new: true }, (err, docs) => {
+                if (!err)
+                    console.log(docs)
+                //res.send(docs)
+                else
+                    console.log('Error #3 : ' + JSON.stringify(err, undefined, 2))
+            })
         }
         else
             console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))

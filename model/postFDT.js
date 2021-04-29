@@ -14,8 +14,8 @@ var PostFDT = mongoose.model('PostFDT',{
     lat: Number,
     lng: Number,
     address: String,
-    phone: String
-
+    phone: String,
+    money: Number
 },'PostFDT')
 
 
