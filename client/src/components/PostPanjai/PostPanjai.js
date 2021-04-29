@@ -31,6 +31,7 @@ import Icon from "@material-ui/core/Icon";
 import Axios from "axios";
 import Slideshow from "./Slideshow";
 import SlideShow from "react-image-show";
+import styled from 'styled-components'
 
 const currentUser = localStorage.getItem("currentUser");
 const currentUser_id = localStorage.getItem("currentUser_id");
@@ -214,16 +215,17 @@ const PostPanjai = ({ classes, ...props }) => {
   return (
     <>
       {/* <Slideshow data={urlArray} /> */}
-      <Grid container justify="center">
-        <Grid item lg={4}>
           {/* กรอบโพส */}
           {/* <Box bgcolor="primary.main" color="primary.contrastText" p={2}> */}
+          <PostWrapper>
           <Paper className={`${classes.post1} ${classes.bg}`}>
             <PostPanjaiForm {...{ currentId, setCurrentId }} />
           </Paper>
+
+          </PostWrapper>
+         
           {/* </Box> */}
-        </Grid>
-      </Grid>
+     
       <Grid container spacing={3}>
         {/* ฝั่งขวา ใช้ classes.ชื่ออื่่น */}
         {props.postPanjaiList.map((record, index) => {
@@ -411,3 +413,10 @@ export default connect(
   mapStateToProps,
   mapActionToProps
 )(withStyles(styles)(PostPanjai));
+
+const PostWrapper = styled.div`
+  >*{
+    max-width:400px;
+    margin: 0 auto;
+  }
+`

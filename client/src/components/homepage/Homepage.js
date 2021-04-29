@@ -386,7 +386,7 @@ function Homepage() {
       <div className="bg-dashboaed">
         <p>Dashboard</p>
         <div className="bg-dashboaed1">
-          <div style={{ width: 700, margin: "0 auto" }}>
+          <div className="table-dashboaed" >
             <DonationChart />
           </div>
         </div>

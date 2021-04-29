@@ -8,6 +8,7 @@ import { AssignmentTurnedIn, Repeat } from "@material-ui/icons";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import { province } from "../../Constants/provinces";
 import { DeleteSweep } from "@material-ui/icons";
+import styled from'styled-components'
 
 const defaultImageSrc = '/image.png'
 
@@ -55,8 +56,7 @@ const styles = theme => ({
         display: 'none',
     },
     imgpreview: {
-        width: "60%",
-        marginLeft: '125px',
+     
     },
     primary: {
         background: 'white',
@@ -77,16 +77,38 @@ const styles = theme => ({
     paper: {
         fontFamily: 'mali',
     },
-    bg1: {
-        backgroundColor: 'rgba(187, 130, 44, 0.925)',
-    },
+    // bg1: {
+    //     backgroundColor: 'rgba(187, 130, 44, 0.925)',
+    // },
     select: {
         '& .MuiPaper-root': {
             height: '400px'
         }
-    }
+    },
 
 })
+
+const ImageWrapper = styled.div`
+    display:flex;
+    overflow-x:scroll;
+    width:auto;
+`
+
+const ImageBox = styled.div`
+    position: relative;
+    display: inline-block;
+  
+`
+
+const Image = styled.img`
+    height:150px
+`
+
+const ButtonWrapper = styled.div`
+    position :absolute;
+    top: 0;
+    right:0;
+`
 
 
 const PostPanjaiForm = ({ classes, ...props }) => {
@@ -147,17 +169,23 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
     const renderPhotos = (source) => {
         // console.log('source: ', source);
-        return source.map((photo) => {
-            return (
-                <>
-                    <img src={photo} alt="" key={photo} className={classes.imgpreview} />
-
-                    <Button variant="contained" color="secondary" onClick={() => onRemoveImg(photo)} component="span">
-                        <DeleteSweep />
-                    </Button>
-                </>
-            );
-        });
+        return (
+        <ImageWrapper>
+            { source.map((photo) => {
+                return (
+                    <ImageBox>
+                        <Image src={photo} alt="" key={photo} className={classes.imgpreview} />
+                        <ButtonWrapper>
+                            <IconButton color="#000000"  onClick={() => onRemoveImg(photo)}>
+                                <DeleteSweep />
+                            </IconButton>
+                        </ButtonWrapper>                        
+                    </ImageBox>
+                );
+            })}
+        </ImageWrapper>)
+        
+       
     };
 
     const onRemoveImg = (url) => {
@@ -225,6 +253,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
     //     }
     // }
 
+
     // post
     if (props.currentId == 0) {
         return (
@@ -235,8 +264,8 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         <img src={src} alt={alt} className={classes.imgpreview} />
                     </div> */}
 
-                    <div className=''>{renderPhotos(multi_image)}</div>
-
+                   
+                    {renderPhotos(multi_image)}
                     <input
                         accept="image/*"
                         className={classes.input}
@@ -254,7 +283,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                 </Grid>
 
 
-                <Grid item xs={12} sm={6}
+                <Grid item xs={12}  sm={6}
                     container
                     direction="row"
                     justify="center"
