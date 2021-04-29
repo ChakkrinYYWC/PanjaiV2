@@ -321,7 +321,7 @@ function Profile({ classes, ...props }) {
                                         <div className="coin">
 
                                             <p><i class="fas fa-coins"></i> เหรียญของฉัน : {allInform.coin}   
-                                            <span className="kuy">
+                                            <span className="ka">
                                             <Button 
                                                 className="addcoin"
                                                 href="/pay-coin"

@@ -118,7 +118,8 @@ class PayForm extends Component {
                             <div className="money">
                                 <h1 className="addcoinnn"> เติมเหรียญ </h1>
                                  <i class="fa fa-piggy-bank"></i>
-                                <h1>เหรียญของฉัน : {My_coin}</h1>
+                                 
+                                <h1 className="coinofme">เหรียญของฉัน : {My_coin}</h1>
                                 <div className="racarcoin">
                                 {money.map(m => (
                                     <div key={m.id} className="product__item">
