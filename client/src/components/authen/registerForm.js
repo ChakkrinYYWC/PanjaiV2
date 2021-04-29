@@ -48,6 +48,9 @@ function RegisterFrom() {
             formData.append('address', address)
             formData.append('phone', phone)
             formData.append('PanjaiToken', PanjaiToken)
+            const nowDay = new Date();
+            formData.append('month', (nowDay.getMonth() + 1))
+            formData.append('year', nowDay.getFullYear())
             //console.log(JSON.stringify(formData))
             Axios.post('/authenticate/register', formData, {
                 headers: {

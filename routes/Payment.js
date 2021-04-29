@@ -23,14 +23,14 @@ router.post('/', async (req, res, next) => {
     const { email, name, amount, token, user_id, my_coin } = req.body
     if (amount == 2000) {
         coin = my_coin + 10;
-        
+
     } else if (amount == 5000) {
         coin = my_coin + 25;
 
     } else if (amount == 10000) {
         coin = my_coin + 50;
 
-    }else if (amount == 15000) {
+    } else if (amount == 15000) {
         coin = my_coin + 75;
 
     } else if (amount == 20000) {
@@ -74,7 +74,6 @@ router.post('/', async (req, res, next) => {
             amount: charge.amount,
             status: charge.status
         })
-
     } catch (error) {
         console.log(error)
     }

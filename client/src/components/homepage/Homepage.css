@@ -430,7 +430,7 @@ font-size: 20px;
   background-color: rgb(248, 248, 247);
   height: 80%;
   width: 70%;
-  padding: 10px 50px;
+  
   display: block;
   margin: 0 auto;
   font-family: "Mali", cursive;
@@ -440,6 +440,10 @@ font-size: 20px;
   font-size: 30px;
   font-weight: bold;
   text-align: center;
+}
+.table-dashboaed {
+  width: 700px;
+  margin: 0 auto;
 }
 
 /*responsive*/
@@ -511,6 +515,33 @@ h2 {
   flex-wrap: wrap;
   margin-right: 0px; 
  margin-left: 0px;
+}
+.bg-dashboaed {
+  background-color: rgba(231, 222, 208, 0.925);
+  height: auto;
+  width: 100%;
+  margin: 0;
+  font-family: "Mali", cursive;
+  padding: 20px;
+}
+.bg-dashboaed1 {
+  background-color: rgb(248, 248, 247);
+  height: 80%;
+  width: 70%;
+ 
+  display: block;
+  margin: 0 auto;
+  font-family: "Mali", cursive;
+}
+.bg-dashboaed p {
+  color: rgba(102, 66, 9, 0.925);
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+.table-dashboaed {
+  width: 500px;
+  margin: 0 auto;
 }
 }
 
@@ -694,6 +725,33 @@ ul.card-stacks li.stack ul.cards-down li.card div.content {
   width: 360px;
   height: 320px;
   font-size: 20px;
+}.bg-dashboaed {
+  background-color: rgba(231, 222, 208, 0.925);
+  height: auto;
+  width: 100%;
+  margin: 0;
+  font-family: "Mali", cursive;
+  padding: 10px;
+}
+.bg-dashboaed1 {
+  background-color: rgb(248, 248, 247);
+  height: 80%;
+  width: 95%;
+  
+  display: block;
+  margin: 0 auto;
+  font-family: "Mali", cursive;
+}
+.bg-dashboaed p {
+  color: rgba(102, 66, 9, 0.925);
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+.table-dashboaed {
+  width: 300px;
+  margin: 0 auto;
+  
 }
 
 .card p {

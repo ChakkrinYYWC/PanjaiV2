@@ -80,6 +80,9 @@ function Homepage() {
     }
   }
   onetime();
+  async function FDTclicked(data) {
+    localStorage.setItem('FDTclicked', data)
+  }
   //console.log(allitem)
 
   return (
@@ -119,14 +122,14 @@ function Homepage() {
                             <div className="lover">
                               <Dropdown.Item>
                                 <Link to={"/FDTpopup"} className="love">
-                                  <div>{record._id[0]}</div>
+                                  <div onClick={() => FDTclicked(record._id[0])}>{record._id[0]}</div>
                                 </Link>
                               </Dropdown.Item>
                               <If condition={record._id[1]}>
                                 <Then>
                                   <Dropdown.Item>
                                     <Link to={"/FDTpopup"} className="love">
-                                      <div>{record._id[1]}</div>
+                                      <div onClick={() => FDTclicked(record._id[1])}>{record._id[1]}</div>
                                     </Link>
                                   </Dropdown.Item>
 
@@ -134,7 +137,7 @@ function Homepage() {
                                     <Then>
                                       <Dropdown.Item>
                                         <Link to={"/FDTpopup"} className="love">
-                                          <div>{record._id[2]}</div>
+                                          <div onClick={() => FDTclicked(record._id[2])}>{record._id[2]}</div>
                                         </Link>
                                       </Dropdown.Item>
                                     </Then>
@@ -220,8 +223,8 @@ function Homepage() {
                 </Card.Body>
               </Card>
             </div>
-         
-       
+
+
             <div className="column col-6 col-lg-4">
               <Card className="cardd">
                 <Card.Img variant="top" src="/4.png" />
@@ -258,7 +261,7 @@ function Homepage() {
                 </Card.Body>
               </Card>
             </div>
-      
+
           </div>
         </center>
       </div>
@@ -385,9 +388,9 @@ function Homepage() {
 
       {/*</div> */}
       <div className="bg-dashboaed">
-        <p>Dashboard</p>
+        <p>Dashboard ประจำปี {new Date().getFullYear()}</p>
         <div className="bg-dashboaed1">
-          <div style={{ width: 700, margin: "0 auto" }}>
+          <div className="table-dashboaed" >
             <DonationChart />
           </div>
         </div>

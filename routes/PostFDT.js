@@ -76,9 +76,10 @@ router.post('/addFav/:id', (req, res) => {
         }
     })
 })
+
 router.post('/', upload.array('image'), async function (req, res) {
-    console.log('******')
-    console.log(req.body.category)
+    // console.log('******')
+    // console.log(req.body.category)
     var Photo_name = [];
     const allItem = [req.body.item1, req.body.item2, req.body.item3]
     for (let i = 0; i < req.files.length; i++) {
@@ -96,12 +97,13 @@ router.post('/', upload.array('image'), async function (req, res) {
         phone: req.body.phone,
         lat: req.body.lat,
         lng: req.body.lng,
-        item: null
+        item: null,
+        money: 0
     })
     newRecord.save((err, docs) => {
         if (!err)
             console.log("save successful");
-            // res.send(docs)
+        // res.send(docs)
         else
             console.log('Error #2 : ' + JSON.stringify(err, undefined, 2))
     })
@@ -109,7 +111,7 @@ router.post('/', upload.array('image'), async function (req, res) {
     await PostFDT.findByIdAndUpdate(newRecord._id, { item: allItem }, function (error, update) {
         if (error) {
             console.log(error)
-        }else{
+        } else {
             res.send(update)
         }
     })
@@ -132,7 +134,8 @@ router.put('/:id', (req, res) => {
         address: req.body.address,
         phone: req.body.phone,
         lat: req.body.lat,
-        lng: req.body.lng
+        lng: req.body.lng,
+        //money: req.body.money
     }
 
     PostFDT.findByIdAndUpdate(req.params.id, { $set: updatedRecord }, { new: true }, (err, docs) => {
@@ -194,15 +197,15 @@ router.post('/allItemInFDT', async function (req, res) {
     res.send(result)
 })
 
-router.get('/FDTpopup/:word',async (req, res) => {
-    console.log(req.params.word)
+router.get('/FDTpopup/:word', async (req, res) => {
+    //console.log(req.params.word)
     let result = await PostFDT.aggregate([
         {
             $unwind: "$item"
         },
         {
             $match: {
-                "item" : req.params.word
+                "item": req.params.word
             }
         },
         {

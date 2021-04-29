@@ -21,7 +21,7 @@ var { PostFDT } = require('../model/postFDT')
 var { Report } = require('../model/report')
 
 
-server.get('/TPJ&FDT/:word',async (req, res) => {
+server.get('/TPJ&FDT/:word', async (req, res) => {
     const keyword = req.params.word
     //console.log('Search: '+keyword)
     let postTPJ = await PostPanjai.aggregate([
@@ -38,7 +38,7 @@ server.get('/TPJ&FDT/:word',async (req, res) => {
         },
         {
             $match: {
-                "result" : true
+                "result": true
             }
         },
     ])
@@ -56,25 +56,25 @@ server.get('/TPJ&FDT/:word',async (req, res) => {
         },
         {
             $match: {
-                "result" : true
+                "result": true
             }
         },
     ])
 
-    
 
-    const result = {postTPJ, postFDT}
+
+    const result = { postTPJ, postFDT }
     //console.log(result)
     res.send(result)
 })
 
-server.get('/findUser/:word',async (req, res) => {
+server.get('/findUser/:word', async (req, res) => {
     const keyword = req.params.word
     //console.log('Search: '+keyword)
     let result = await user.aggregate([
         {
             $match: {
-                "isbaned" : "no"
+                "isbaned": "no"
             }
         },
         {
@@ -90,7 +90,7 @@ server.get('/findUser/:word',async (req, res) => {
         },
         {
             $match: {
-                "result" : true
+                "result": true
             }
         },
     ])
@@ -98,13 +98,13 @@ server.get('/findUser/:word',async (req, res) => {
     res.send(result)
 })
 
-server.get('/findBanedUser',async (req, res) => {
+server.get('/findBanedUser', async (req, res) => {
     const keyword = req.params.word
     //console.log('Search: '+keyword)
     let result = await user.aggregate([
         {
             $match: {
-                "isbaned" : "yes"
+                "isbaned": "yes"
             }
         },
     ])
@@ -112,7 +112,7 @@ server.get('/findBanedUser',async (req, res) => {
     res.send(result)
 })
 
-server.get('/postreport',async (req, res) => {
+server.get('/postreport', async (req, res) => {
     let result = await Report.aggregate([
         {
             $lookup:
@@ -127,7 +127,7 @@ server.get('/postreport',async (req, res) => {
             $unwind: "$post"
         },
         {
-            $project : {
+            $project: {
                 "_id": 0,
             }
         },
@@ -135,5 +135,18 @@ server.get('/postreport',async (req, res) => {
     //console.log(result)
     res.send(result)
 })
+
+// server.post('/getPieceAvailable/:id', async (req, res) => {
+//     //console.log("UID" + req.params.id)
+//     let result = await user.aggregate([
+//         {
+//             $match: {
+//                 _id: mongoose.Types.ObjectId(req.params.id)
+//             }
+//         },
+//     ])
+//     //console.log(result[0].piece_available)
+//     res.send(result[0].piece_available)
+// })
 
 module.exports = server;
