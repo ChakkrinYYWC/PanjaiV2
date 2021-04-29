@@ -81,6 +81,13 @@ const Form = ({ ...props }) => {
                     }).catch(error => console.log(error))
                 }
 
+                const data = { newcoin, coin }
+                axios.post('/authenticate/mycoin/' + currentUserID, data, {
+                }).then(res => {
+                    onSuccess()
+                    setMycoin(res.data.coin)
+                    //console.log(res.data.coin)
+                }).catch(error => console.log(error))
             }
         }).catch(error => console.log(error))
 
