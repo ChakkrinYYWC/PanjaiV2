@@ -17,8 +17,6 @@ function RegisterFrom() {
     const [phone, setPhone] = useState();
     const [file, setFile] = useState();
 
-    const history = useHistory();
-
     const PanjaiToken = localStorage.getItem('PanjaiToken');
     // Axios.post('/authenticate/register', PanjaiToken,{
     // }).then(res => {
@@ -64,8 +62,7 @@ function RegisterFrom() {
                     window.alert("Error: " + res.data.message)
                     console.log("error")
                 } else {
-                    // window.location.href = "http://localhost:3000/Login"
-                    history.push("/Login");
+                    window.location.href = "/Login"
                 }
             }).catch(error => console.log(error))
         }

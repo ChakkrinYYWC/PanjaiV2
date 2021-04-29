@@ -22,8 +22,6 @@ function LoginFrom() {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
 
-    const history = useHistory();
-
     const PanjaiToken = localStorage.getItem('PanjaiToken');
 
     const uploadFile = (event) => {
@@ -55,8 +53,7 @@ function LoginFrom() {
                     await localStorage.setItem('blackListPopup', false)
                     await localStorage.setItem('reportPopup', false);
                     await localStorage.setItem('userPopup', false);
-                    //window.location.href = "http://localhost:3000"
-                    history.push("/");
+                    window.location.href = "/"
                 }
             } else {
                 window.alert("Username or password incorrect.")

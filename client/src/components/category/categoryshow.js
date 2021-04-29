@@ -78,8 +78,6 @@ function Categoryshow({ classes, ...props }) {
     const [name, setName] = useState();
     var Array_image = [];
 
-    const history = useHistory();
-
     useEffect(() => {
         props.fetchAllPostFDT()
     }, [])
@@ -130,8 +128,7 @@ function Categoryshow({ classes, ...props }) {
         }
         if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')) {
             props.deletePostMessage(id, onSuccess)
-            //window.location.href = "http://localhost:3000/Foundation/" + props.currentId.match.params.name
-            history.push("/Foundation/" + props.currentId.match.params.name);
+            window.location.href = "/Foundation/" + props.currentId.match.params.name
         }
     }
 
