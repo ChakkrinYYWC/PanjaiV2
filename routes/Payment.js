@@ -74,7 +74,6 @@ router.post('/', async (req, res, next) => {
             amount: charge.amount,
             status: charge.status
         })
-
     } catch (error) {
         console.log(error)
     }

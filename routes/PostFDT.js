@@ -103,7 +103,7 @@ router.post('/', upload.array('image'), async function (req, res) {
     newRecord.save((err, docs) => {
         if (!err)
             console.log("save successful");
-            // res.send(docs)
+        // res.send(docs)
         else
             console.log('Error #2 : ' + JSON.stringify(err, undefined, 2))
     })
@@ -111,7 +111,7 @@ router.post('/', upload.array('image'), async function (req, res) {
     await PostFDT.findByIdAndUpdate(newRecord._id, { item: allItem }, function (error, update) {
         if (error) {
             console.log(error)
-        }else{
+        } else {
             res.send(update)
         }
     })
@@ -197,15 +197,15 @@ router.post('/allItemInFDT', async function (req, res) {
     res.send(result)
 })
 
-router.get('/FDTpopup/:word',async (req, res) => {
-    console.log(req.params.word)
+router.get('/FDTpopup/:word', async (req, res) => {
+    //console.log(req.params.word)
     let result = await PostFDT.aggregate([
         {
             $unwind: "$item"
         },
         {
             $match: {
-                "item" : req.params.word
+                "item": req.params.word
             }
         },
         {
