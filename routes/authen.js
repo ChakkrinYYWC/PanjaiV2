@@ -17,6 +17,7 @@ const jwtConfig = require("../config/jwtConfig");
 
 //model
 const user = require('../model/user');
+var { PostFDT } = require('../model/postFDT')
 
 const storage = multer.diskStorage({
     destination: './public/uploads/IDcard',
@@ -168,13 +169,13 @@ server.get("/regisimage/:idcard", function (req, res) {
     //http://localhost:3001/authenticate/regisimage/IDcard-1609956164208.jpg
 })
 /*-------------------------------------------------------------------------------*/
-server.get("/banUser/:id", function(req, res){
+server.get("/banUser/:id", function (req, res) {
     console.log(req.params.id)
-    user.findByIdAndUpdate(req.params.id, {isbaned: "yes"}, function(error,update){
-        if(error){
+    user.findByIdAndUpdate(req.params.id, { isbaned: "yes" }, function (error, update) {
+        if (error) {
             console.log(error)
             res.send(error)
-        }else{
+        } else {
             //console.log(update)
             console.log("User Baned");
             res.sendStatus(200)
@@ -182,13 +183,13 @@ server.get("/banUser/:id", function(req, res){
     })
 })
 /*-------------------------------------------------------------------------------*/
-server.get("/unBanUser/:id", function(req, res){
+server.get("/unBanUser/:id", function (req, res) {
     console.log(req.params.id)
-    user.findByIdAndUpdate(req.params.id, {isbaned: "no"}, function(error,update){
-        if(error){
+    user.findByIdAndUpdate(req.params.id, { isbaned: "no" }, function (error, update) {
+        if (error) {
             console.log(error)
             res.send(error)
-        }else{
+        } else {
             //console.log(update)
             console.log("User unbaned");
             res.sendStatus(200)
@@ -239,14 +240,27 @@ server.post('/information/:id', (req, res) => {
 })
 /*-------------------------------------------------------------------------------*/
 server.post('/mycoin/:id', (req, res) => {
-    console.log('***')
-    console.log(req.params.id)
-    console.log(req.body.newcoin)
+    var newmoney = 0
+    var coin2 = 0
+    // console.log(req.params.id)
+    // console.log(req.body.newcoin)
+    // console.log(req.body.post_id)
+    console.log('เงินที่มีอยู่ : ' + req.body.money)
+    coin2 = req.body.coin * 2
 
     const newData = user.findByIdAndUpdate(req.params.id, { coin: req.body.newcoin }, (err, docs) => {
         if (!err) {
-            //console.log(docs)
             //res.send(docs)
+            newmoney = req.body.money + coin2
+            console.log('เงินที่ได้มา : ' + coin2)
+            console.log('รวมเงิน : ' + newmoney)
+            PostFDT.findByIdAndUpdate(req.body.post_id, { money: newmoney }, { new: true }, (err, docs) => {
+                if (!err)
+                    console.log(docs)
+                //res.send(docs)
+                else
+                    console.log('Error #3 : ' + JSON.stringify(err, undefined, 2))
+            })
         }
         else
             console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))

@@ -59,14 +59,14 @@ class PayForm extends Component {
                 icon={<AssignmentTurnedIn />}
             />
         })
-        window.location.href = "http://localhost:3000/pay-coin" 
+        window.location.href = "/pay-coin" 
     }
 
     createCreditCardCharge = async (email, name, amount, token, user_id, my_coin) => {
         try {
             const res = await axios({
                 method: "POST",
-                url: "http://localhost:3001/pay-coin",
+                url: "http://localhost:3001/pay-coin", //send to server
                 data: { email, name, amount, token, user_id, my_coin },
                 headers: {
                     "Content-Type": "application/json"
