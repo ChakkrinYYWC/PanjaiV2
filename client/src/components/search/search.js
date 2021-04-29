@@ -54,6 +54,26 @@ export default function Checkboxes() {
     setChecked(event.target.checked);
   };
 
+
+  const styles = (theme) => ({
+    smMargin: {
+      "&:hover": {
+        backgroundColor: "rgba(85, 52, 4, 0.925)",
+      },
+      margin: theme.spacing(1),
+      background: "rgba(187, 130, 44, 0.925)",
+    },
+
+    smMargin1: {
+      "&:hover": {
+        backgroundColor: "rgba(85, 52, 4, 0.925)",
+      },
+      margin: theme.spacing(1),
+      background: "#a13800",
+    }
+  });
+
+
   // console.log(postTPJ)
   console.log(postFDT)
 
@@ -185,67 +205,41 @@ export default function Checkboxes() {
                     />
                     <Card.Body>
                       <Link className="Tfound">{record.title}</Link>
+                      <div className="information">ผู้สร้าง :{record.contect}</div>
                       <div className="information">ผู้สร้าง :{record.creator}</div>
                       <div className="information">จังหวัด :{record.location}</div>
                       <div className="information-1">วันที่ลง :{record.Timestamp}</div>
                       <div className="pum">
-                        <Button
+                        <button
                           variant="contained"
-                          color="primary"
+                          // color="primary"
                           size="small"
                           className="want" // จำเป็น
                         >
                           ขอรับ
-                </Button>
-                        <Button
+                </button>
+                        <button
                           variant="contained"
-                          color="secondary"
+                          // color="secondary"
                           size="small"
                           className="fav"
                         >
                           ถูกใจ
-                </Button>
+                </button>
                       </div>
                     </Card.Body>
                   </Card>
                 </div>
+
+
+
+
+
               )
             })
 
           }
-          {/* <div className="column col-4">
-          // <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
-            <Card className="foundat">
-              <Card.Img
-                variant="top"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
-              />
-              <Card.Body>
-                <Link className="Tfound">บริจาคอะไร</Link>
-                <div className="information">ผู้สร้าง :</div>
-                <div className="information">จังหวัด :</div>
-                <div className="information-1">วันที่ลง :</div>
-                <div className="pum">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    className="want" // จำเป็น
-                  >
-                    ขอรับ
-                </Button>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    className="fav"
-                  >
-                    ถูกใจ
-                </Button>
-                </div>
-              </Card.Body>
-            </Card>
-          </div> */}
+         
 
         </div>
       </div>
