@@ -51,6 +51,12 @@ const Menuitems = [
     //     href: '/testaroundme',
     //     cName: 'nav-links'
     // }
+    //     {
+    //     id: '007',
+    //     title: 'Payment',
+    //     href: '/pay-coin',
+    //     cName: 'nav-links'
+    // }
  
   
 ]

@@ -22,8 +22,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import MaskedInput from 'react-text-mask';
 
 var once = false;
 
@@ -112,6 +111,22 @@ const styles = theme => ({
 
 })
 
+function TextMaskCustom(props) {
+    const { inputRef, ...other } = props;
+
+    return (
+        <MaskedInput
+            {...other}
+            ref={(ref) => {
+                inputRef(ref ? ref.inputElement : null);
+            }}
+            mask={[/[0-9]/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            placeholderChar={'\u2000'}
+            showMask
+        />
+    );
+}
+
 function Profile({ classes, ...props }) {
 
     console.log(props)
@@ -181,35 +196,43 @@ function Profile({ classes, ...props }) {
         const onSuccess = () => {
             ButterToast.raise({
                 content: <Cinnamon.Crisp title="ตู้ปันใจ"
-                    content="Deleted successfully"
+                    content="ลบโพสต์เสร็จสมบูรณ์"
                     scheme={Cinnamon.Crisp.SCHEME_PURPLE}
                     icon={<DeleteSweep />}
                 />
             })
         }
-        if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')){
+        if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')) {
             props.deletePostMessage(id, onSuccess)
             window.location.href = "http://localhost:3000/profile/" + currentUserID
         }
     }
 
     // อัพเดตโปรไฟล์
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
         const onSuccess = () => {
             ButterToast.raise({
-                content: <Cinnamon.Crisp title="โปรไฟล์อัพเดต"
-                    content="Submitted successfully"
+                content: <Cinnamon.Crisp title="โปรไฟล์"
+                    content="อัพเดตโปรไฟล์เสร็จสำบูรณ์"
                     scheme={Cinnamon.Crisp.SCHEME_PURPLE}
                     icon={<AssignmentTurnedIn />}
                 />
             })
         }
         if (validate()) {
+            await localStorage.setItem("currentUser_name", values.name)
             props.updateProfile(currentUserID, values, onSuccess)
             window.location.href = "http://localhost:3000/profile/" + currentUserID
         }
     }
+
+    const handleChange = (event) => {
+        setValues({
+            ...values,
+            [event.target.name]: event.target.value,
+        });
+    };
 
     return (
         <div className="back">
@@ -237,7 +260,7 @@ function Profile({ classes, ...props }) {
                                         </div>
                                         <div className="textinforuser">
                                             <span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span>
-                                            <TextField
+                                            {/* <TextField
                                                 id="standard-basic"
                                                 name="phone"
                                                 type='number'
@@ -248,7 +271,19 @@ function Profile({ classes, ...props }) {
                                                 value={values.phone}
                                                 onChange={handleInputChange}
                                                 {...(errors.phone && { error: true, helperText: errors.phone })}
-                                            />
+                                            /> */}
+
+                                            <FormControl fullWidth>
+                                                {/* <InputLabel htmlFor="formatted-text-mask-input">เบอร์โทรศัพท์</InputLabel> */}
+                                                <Input
+                                                    value={values.phone}
+                                                    onChange={handleChange}
+                                                    name="phone"
+                                                    id="formatted-text-mask-input"
+                                                    inputComponent={TextMaskCustom}
+                                                    {...(errors.phone && { error: true, helperText: errors.phone })}
+                                                />
+                                            </FormControl>
                                         </div>
                                         <div className="textinforuser">
                                             <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
@@ -282,6 +317,7 @@ function Profile({ classes, ...props }) {
                                 <div>
                                     <div className="box-text-profile">
                                         <h1> ประวัติส่วนตัว</h1>
+                                        <p>เหรียญของฉัน: {allInform.coin}</p>
                                         <div className="textinforuser">
                                             <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
                                             <p>{allInform.name}</p>
@@ -309,17 +345,18 @@ function Profile({ classes, ...props }) {
                                             <div className='Like'>
                                                 <button className="button1" type="button" onClick={() => { route.push('/myfav') }}  >
                                                     โพสที่ถูกใจ
-                                        </button>
+                                                </button>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>)
+
+                                            <Link to={"/pay-coin"}>เติมเหรียญ</Link>
+
+                                        </div></div></div>)
                         }
                     </section>
 
 
                 </div>
-                <br/>
+                <br />
                 <div className="Post">
                     <span>Post ของฉัน </span>
                 </div>
