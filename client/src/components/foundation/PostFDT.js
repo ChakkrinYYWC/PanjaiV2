@@ -265,8 +265,8 @@ const PostFDT = ({ classes, ...props }) => {
         e.preventDefault()
         const onSuccess = () => {
             ButterToast.raise({
-                content: <Cinnamon.Crisp title="Foundation"
-                    content="Post successfully"
+                content: <Cinnamon.Crisp title="มูลนิธิ"
+                    content="สร้างโพสต์สำหรับมูลนิธิเสร็จสมบูรณ์"
                     scheme={Cinnamon.Crisp.SCHEME_PURPLE}
                     icon={<AssignmentTurnedIn />}
                 />

@@ -108,60 +108,55 @@ const options = [
 const ITEM_HEIGHT = 48;
 
 const PostPanjai = ({ classes, ...props }) => {
-  const [currentId, setCurrentId] = useState(0);
+
+  const [currentId, setCurrentId] = useState(0)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   var Array_image = [];
 
   useEffect(() => {
-    props.fetchAllPostPanjai();
+    props.fetchAllPostPanjai()
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth",
+      behavior: "smooth"
     });
-  }, []);
+  }, [])
 
-  const onDelete = (id) => {
+  const onDelete = id => {
     const onSuccess = () => {
       ButterToast.raise({
-        content: (
-          <Cinnamon.Crisp
-            title="ตู้ปันใจ"
-            content="Deleted successfully"
-            scheme={Cinnamon.Crisp.SCHEME_PURPLE}
-            icon={<DeleteSweep />}
-          />
-        ),
-      });
-    };
-    if (window.confirm("ต้องการลบโพสนี้ใช่หรือไม่?"))
-      props.deletePostMessage(id, onSuccess);
-  };
+        content: <Cinnamon.Crisp title="ตู้ปันใจ"
+          content="ลบโพสต์เสร็จสมบูรณ์"
+          scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+          icon={<DeleteSweep />}
+        />
+      })
+    }
+    if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?'))
+      props.deletePostMessage(id, onSuccess)
+  }
 
-  const ScrollToTop = (id) => {
+  const ScrollToTop = id => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth",
+      behavior: "smooth"
     });
     setCurrentId(id);
-  };
+  }
 
-  const [select, setSelect] = React.useState("");
+
+  const [select, setSelect] = React.useState('');
 
   const handleChange = (id, option) => {
-    // if (option == 'แก้ไข') {
-    //     ScrollToTop(id)
-    // } else if (option == 'ลบ') {
-    //     onDelete(id)
-    // } else {
-    console.log("*" + option);
-    console.log("*" + id);
-    reportItem(id);
+    console.log('*' + option)
+    console.log('*' + id)
+    reportItem(id)
     // }
     setAnchorEl(null);
   };
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

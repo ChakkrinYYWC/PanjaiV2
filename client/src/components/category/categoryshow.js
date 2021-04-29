@@ -119,8 +119,8 @@ function Categoryshow({ classes, ...props }) {
     const onDelete = id => {
         const onSuccess = () => {
             ButterToast.raise({
-                content: <Cinnamon.Crisp title="Foundation"
-                    content="Deleted successfully"
+                content: <Cinnamon.Crisp title="มูลนิธิ"
+                    content="ลบโพสต์สำหรับมูลนิธิเสร็จสมบูรณ์"
                     scheme={Cinnamon.Crisp.SCHEME_PURPLE}
                     icon={<DeleteSweep />}
                 />
@@ -321,6 +321,7 @@ function Categoryshow({ classes, ...props }) {
                                                 <DialogContent>
                                                     <DialogContentText>
                                                         <Form {...record} />
+                                                        <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
                                                     </DialogContentText>
                                                 </DialogContent>
 
@@ -332,6 +333,13 @@ function Categoryshow({ classes, ...props }) {
                                             </Dialog>
                                         </div>
                                     </Then>
+
+
+
+
+
+
+                                    
                                     <Else>
                                         <div className="box-box">
                                             <center>
@@ -442,6 +450,7 @@ function Categoryshow({ classes, ...props }) {
                                                 <DialogContent>
                                                     <DialogContentText>
                                                         <Form {...record} />
+                                                        <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
                                                     </DialogContentText>
                                                 </DialogContent>
 

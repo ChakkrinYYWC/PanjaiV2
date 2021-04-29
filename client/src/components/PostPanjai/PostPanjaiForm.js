@@ -8,6 +8,8 @@ import { AssignmentTurnedIn, Repeat } from "@material-ui/icons";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import { province } from "../../Constants/provinces";
 import { DeleteSweep } from "@material-ui/icons";
+import MaskedInput from 'react-text-mask';
+import Input from '@material-ui/core/Input';
 
 const defaultImageSrc = '/image.png'
 
@@ -87,6 +89,22 @@ const styles = theme => ({
     }
 
 })
+
+function TextMaskCustom(props) {
+    const { inputRef, ...other } = props;
+
+    return (
+        <MaskedInput
+            {...other}
+            ref={(ref) => {
+                inputRef(ref ? ref.inputElement : null);
+            }}
+            mask={[/[0-9]/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            placeholderChar={'\u2000'}
+            showMask
+        />
+    );
+}
 
 
 const PostPanjaiForm = ({ classes, ...props }) => {
@@ -169,7 +187,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         const onSuccess = () => {
             ButterToast.raise({
                 content: <Cinnamon.Crisp title="ตู้ปันใจ"
-                    content="Submitted successfully"
+                    content="โพสต์เสร็จสมบรูณ์"
                     scheme={Cinnamon.Crisp.SCHEME_PURPLE}
                     icon={<AssignmentTurnedIn />}
                 />
@@ -207,6 +225,13 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         resetForm()
         props.setCurrentId(0);
     }
+
+    const handleChange = (event) => {
+        setValues({
+            ...values,
+            [event.target.name]: event.target.value,
+        });
+    };
 
     //console.log(multi_image)
 
@@ -301,7 +326,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     justify="center"
                     alignItems="center" >
 
-                    <TextField
+                    {/* <TextField
                         type='number'
                         name="contect"
                         variant="filled"
@@ -312,7 +337,20 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         value={values.contect}
                         onChange={handleInputChange}
                         {...(errors.contect && { error: true, helperText: errors.contect })}
-                    />
+                    /> */}
+
+                    <FormControl fullWidth>
+                        <InputLabel htmlFor="formatted-text-mask-input">เบอร์โทรศัพท์</InputLabel>
+                        <Input
+                            value={values.contect}
+                            onChange={handleChange}
+                            name="contect"
+                            id="formatted-text-mask-input"
+                            inputComponent={TextMaskCustom}
+                            {...(errors.contect && { error: true, helperText: errors.contect })}
+                        />
+                    </FormControl>
+
                 </Grid>
 
                 <Grid item xs={12} sm={6}
