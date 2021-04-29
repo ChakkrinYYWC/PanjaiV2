@@ -76,9 +76,10 @@ router.post('/addFav/:id', (req, res) => {
         }
     })
 })
+
 router.post('/', upload.array('image'), async function (req, res) {
-    console.log('******')
-    console.log(req.body.category)
+    // console.log('******')
+    // console.log(req.body.category)
     var Photo_name = [];
     const allItem = [req.body.item1, req.body.item2, req.body.item3]
     for (let i = 0; i < req.files.length; i++) {
@@ -96,7 +97,8 @@ router.post('/', upload.array('image'), async function (req, res) {
         phone: req.body.phone,
         lat: req.body.lat,
         lng: req.body.lng,
-        item: null
+        item: null,
+        money: 0
     })
     newRecord.save((err, docs) => {
         if (!err)
@@ -132,7 +134,8 @@ router.put('/:id', (req, res) => {
         address: req.body.address,
         phone: req.body.phone,
         lat: req.body.lat,
-        lng: req.body.lng
+        lng: req.body.lng,
+        //money: req.body.money
     }
 
     PostFDT.findByIdAndUpdate(req.params.id, { $set: updatedRecord }, { new: true }, (err, docs) => {
