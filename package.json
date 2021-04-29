@@ -39,6 +39,7 @@
     "passport-local-mongoose": "^6.0.1",
     "path": "^0.12.7",
     "prettier": "^2.2.1",
+    "react-text-mask": "^5.4.3",
     "recompose": "^0.30.0"
   }
 }

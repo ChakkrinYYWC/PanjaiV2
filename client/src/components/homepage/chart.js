@@ -26,7 +26,6 @@ export async function DashboardData(data) {
   const AA = [65, 59, 80, 81, 56, 55, 40, 88, 56, 68, 78, 37]
 }
 
-console.log(AA)
 
 export const Color = {
   ยอดเงินบริจาคทั้งหมด: "rgb(104, 73, 13)",
