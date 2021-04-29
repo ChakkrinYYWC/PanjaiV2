@@ -196,7 +196,6 @@ function Categoryshow({ classes, ...props }) {
                                             </Fab>
                                             <center>
                                                 <div className="btcate">
-
                                                     <ButtonGroup variant="text" aria-label="text primary button group">
                                                         <Button href="/Foundation/เด็กและเยาวชน">เด็กและเยาวชน</Button>
                                                         <Button href="/Foundation/ผู้สูงอายุ">ผู้สูงอายุ</Button>
@@ -205,7 +204,9 @@ function Categoryshow({ classes, ...props }) {
                                                         <Button href="/Foundation/สิ่งแวดล้อม">สิ่งแวดล้อม</Button>
                                                         <Button href="/Foundation/อื่นๆ">อื่นๆ</Button>
                                                     </ButtonGroup>
-                                                </div></center>
+                                                </div>
+                                                <h1>ยอดเงินบริจาค : {new Intl.NumberFormat().format(record.money)}</h1> 
+                                            </center>
                                             <div className="Tt">{record.title}</div>
                                             <center>
                                                 {
@@ -339,7 +340,9 @@ function Categoryshow({ classes, ...props }) {
 
 
 
-                                    
+
+
+
                                     <Else>
                                         <div className="box-box">
                                             <center>
@@ -432,11 +435,11 @@ function Categoryshow({ classes, ...props }) {
                                                 <div className="infor">วันสิ้นสุดโครงการ : {record.endtime}</div>
                                             </div>
                                             <center >
-                                                
+
                                                 <Button variant="contained" onClick={handleClickOpen}>
                                                     บริจาค
                                                 </Button>
-                                                
+
                                             </center>
 
                                             <Dialog

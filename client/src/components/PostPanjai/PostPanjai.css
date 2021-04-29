@@ -1,15 +1,12 @@
 .slide-show .ss-arrows{
-     
+
         position: absolute;
         width: 300px;
-
         transform: translateY(-500%);
         display: none;
         /* right: 500px; */
         margin: 50px;
         top: 300px;
-
-
-
+        
 }
 
