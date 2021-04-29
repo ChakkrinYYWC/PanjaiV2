@@ -204,7 +204,7 @@ function Profile({ classes, ...props }) {
         }
         if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')) {
             props.deletePostMessage(id, onSuccess)
-            window.location.href = "http://localhost:3000/profile/" + currentUserID
+            window.location.href = "/profile/" + currentUserID
         }
     }
 
@@ -223,7 +223,7 @@ function Profile({ classes, ...props }) {
         if (validate()) {
             await localStorage.setItem("currentUser_name", values.name)
             props.updateProfile(currentUserID, values, onSuccess)
-            window.location.href = "http://localhost:3000/profile/" + currentUserID
+            window.location.href = "/profile/" + currentUserID
         }
     }
 

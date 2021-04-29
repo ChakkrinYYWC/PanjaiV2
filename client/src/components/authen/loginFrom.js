@@ -4,7 +4,7 @@ import { useState } from 'react';
 import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep } from "@material-ui/icons";
 import { TextField, withStyles, Button } from "@material-ui/core";
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 import loginImg from "../img/login.svg";
@@ -53,7 +53,7 @@ function LoginFrom() {
                     await localStorage.setItem('blackListPopup', false)
                     await localStorage.setItem('reportPopup', false);
                     await localStorage.setItem('userPopup', false);
-                    window.location.href = "http://localhost:3000"
+                    window.location.href = "/"
                 }
             } else {
                 window.alert("Username or password incorrect.")

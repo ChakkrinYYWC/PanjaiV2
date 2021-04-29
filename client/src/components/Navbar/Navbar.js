@@ -36,7 +36,7 @@ async function logout() {
         localStorage.setItem("currentUser", null);
         localStorage.setItem("currentUser_id", null);
         localStorage.setItem("currentUser_email", null);
-        window.location.href = "http://localhost:3000";
+        window.location.href = "/";
       }
     })
     .catch((error) => console.log(error));
@@ -138,8 +138,8 @@ class Navbar extends Component {
                     </li>
                   );
                 }
-              } 
-              else if (currentUser == "admin"){
+              }
+              else if (currentUser == "admin") {
                 if (index < 3) {
                   return (
                     <li className="itemlist" key={index}>
@@ -152,7 +152,7 @@ class Navbar extends Component {
                   );
                 }
               }
-              
+
               else {
                 return (
                   <li className="itemlist" key={index}>
@@ -240,40 +240,40 @@ class Navbar extends Component {
                                 <button onClick={this.search} type="submit">submit</button>
                             </form>
                         </div> */}
-        </span>
-        {PanjaiToken == "null" ? (
-          <span></span>
-        ) : (
-          <span class="noti">
-            <a>
-              <span
-                type="button"
-                className="bell"
-                onClick={(event) => this.openNotiPanel(event)}
-              >
-                <i class="fas fa-bell"></i>
-                {this.state.openState ? (
-                  <NotiPanel
-                    open={this.state.openState}
-                    t={this.state.targetNoti}
-                  />
-                ) : null}
-              </span>
-              {this.state.noti.length + this.state.recieve.length <= 0 ? (
-                <span></span>
-              ) : (
-                <div className="badge">
-                  {this.state.noti.length + this.state.recieve.length}
-                </div>
-              //   <Badge className="badge"
-              //   anchorOrigin={{
-              //     vertical: 'top',
-              //     horizontal: 'right',
-              //   }}
-              // >
-              )}
-            </a>
           </span>
+          {PanjaiToken == "null" ? (
+            <span></span>
+          ) : (
+            <span class="noti">
+              <a>
+                <span
+                  type="button"
+                  className="bell"
+                  onClick={(event) => this.openNotiPanel(event)}
+                >
+                  <i class="fas fa-bell"></i>
+                  {this.state.openState ? (
+                    <NotiPanel
+                      open={this.state.openState}
+                      t={this.state.targetNoti}
+                    />
+                  ) : null}
+                </span>
+                {this.state.noti.length + this.state.recieve.length <= 0 ? (
+                  <span></span>
+                ) : (
+                  <div className="badge">
+                    {this.state.noti.length + this.state.recieve.length}
+                  </div>
+                  //   <Badge className="badge"
+                  //   anchorOrigin={{
+                  //     vertical: 'top',
+                  //     horizontal: 'right',
+                  //   }}
+                  // >
+                )}
+              </a>
+            </span>
           )}
           {/* <span class="noti">
                         <span type="button" className="bell" onClick={(event) => this.openNotiPanel(event)}>

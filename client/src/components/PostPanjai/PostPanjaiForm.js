@@ -8,7 +8,7 @@ import { AssignmentTurnedIn, Repeat } from "@material-ui/icons";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import { province } from "../../Constants/provinces";
 import { DeleteSweep } from "@material-ui/icons";
-import styled from'styled-components'
+import styled from 'styled-components'
 import MaskedInput from 'react-text-mask';
 import Input from '@material-ui/core/Input';
 
@@ -58,7 +58,7 @@ const styles = theme => ({
         display: 'none',
     },
     imgpreview: {
-     
+
     },
     primary: {
         background: 'white',
@@ -187,22 +187,22 @@ const PostPanjaiForm = ({ classes, ...props }) => {
     const renderPhotos = (source) => {
         // console.log('source: ', source);
         return (
-        <ImageWrapper>
-            { source.map((photo) => {
-                return (
-                    <ImageBox>
-                        <Image src={photo} alt="" key={photo} className={classes.imgpreview} />
-                        <ButtonWrapper>
-                            <IconButton color="#000000"  onClick={() => onRemoveImg(photo)}>
-                                <DeleteSweep />
-                            </IconButton>
-                        </ButtonWrapper>                        
-                    </ImageBox>
-                );
-            })}
-        </ImageWrapper>)
-        
-       
+            <ImageWrapper>
+                { source.map((photo) => {
+                    return (
+                        <ImageBox>
+                            <Image src={photo} alt="" key={photo} className={classes.imgpreview} />
+                            <ButtonWrapper>
+                                <IconButton color="#000000" onClick={() => onRemoveImg(photo)}>
+                                    <DeleteSweep />
+                                </IconButton>
+                            </ButtonWrapper>
+                        </ImageBox>
+                    );
+                })}
+            </ImageWrapper>)
+
+
     };
 
     const onRemoveImg = (url) => {
@@ -260,85 +260,86 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         });
     };
 
-    
+
 
     // post
     if (props.currentId == 0) {
-        return (
-            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
-                onSubmit={handleSubmit}>
-                <Grid item xs={12} >
-                    {/* <div>
+        if (currentUser !== "null") {
+            return (
+                <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}
+                    onSubmit={handleSubmit}>
+                    <Grid item xs={12} >
+                        {/* <div>
                         <img src={src} alt={alt} className={classes.imgpreview} />
                     </div> */}
 
-                   
-                    {renderPhotos(multi_image)}
-                    <input
-                        accept="image/*"
-                        className={classes.input}
-                        id="icon-button-file"
-                        type="file"
-                        multiple
-                        onChange={setPhotos}
-                    />
-                    <label htmlFor="icon-button-file" >
-                        <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1} >
-                            <PhotoCamera />
-                        </IconButton>
-                    </label>
 
-                </Grid>
+                        {renderPhotos(multi_image)}
+                        <input
+                            accept="image/*"
+                            className={classes.input}
+                            id="icon-button-file"
+                            type="file"
+                            multiple
+                            onChange={setPhotos}
+                        />
+                        <label htmlFor="icon-button-file" >
+                            <IconButton color="primary" aria-label="upload picture" component="span" className={classes.color1} >
+                                <PhotoCamera />
+                            </IconButton>
+                        </label>
 
-
-                <Grid item xs={12}  sm={6}
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="center"
-                >
-                    <TextField
-                        // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
-                        name="title"
-                        label="ชื่อสิ่งของ"
-                        size="small"
-                        fullWidth
-                        className={classes.paper}
-                        value={values.title}
-                        onChange={handleInputChange}
-                        {...(errors.title && { error: true, helperText: errors.title })}
-                    />
-                </Grid>
+                    </Grid>
 
 
-                <Grid item xs={12} sm={6}
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="center" >
+                    <Grid item xs={12} sm={6}
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                    >
+                        <TextField
+                            // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
+                            InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
+                            name="title"
+                            label="ชื่อสิ่งของ"
+                            size="small"
+                            fullWidth
+                            className={classes.paper}
+                            value={values.title}
+                            onChange={handleInputChange}
+                            {...(errors.title && { error: true, helperText: errors.title })}
+                        />
+                    </Grid>
 
-                    <TextField
-                        name="message"
-                        variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
-                        label="ข้อมูลสิ่งของ"
-                        fullWidth
-                        size="small"
 
-                        // rows={4}
-                        value={values.message}
-                        onChange={handleInputChange}
-                        {...(errors.message && { error: true, helperText: errors.message })}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="center" >
+                    <Grid item xs={12} sm={6}
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center" >
 
-                    {/* <TextField
+                        <TextField
+                            name="message"
+                            variant="filled"
+                            InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
+                            label="ข้อมูลสิ่งของ"
+                            fullWidth
+                            size="small"
+
+                            // rows={4}
+                            value={values.message}
+                            onChange={handleInputChange}
+                            {...(errors.message && { error: true, helperText: errors.message })}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center" >
+
+                        {/* <TextField
                         type='number'
                         name="contect"
                         variant="filled"
@@ -351,28 +352,28 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         {...(errors.contect && { error: true, helperText: errors.contect })}
                     /> */}
 
-                    <FormControl fullWidth>
-                        <InputLabel htmlFor="formatted-text-mask-input">เบอร์โทรศัพท์</InputLabel>
-                        <Input
-                            value={values.contect}
-                            onChange={handleChange}
-                            name="contect"
-                            id="formatted-text-mask-input"
-                            inputComponent={TextMaskCustom}
-                            {...(errors.contect && { error: true, helperText: errors.contect })}
-                        />
-                    </FormControl>
+                        <FormControl fullWidth>
+                            <InputLabel htmlFor="formatted-text-mask-input">เบอร์โทรศัพท์</InputLabel>
+                            <Input
+                                value={values.contect}
+                                onChange={handleChange}
+                                name="contect"
+                                id="formatted-text-mask-input"
+                                inputComponent={TextMaskCustom}
+                                {...(errors.contect && { error: true, helperText: errors.contect })}
+                            />
+                        </FormControl>
 
-                </Grid>
+                    </Grid>
 
-                <Grid item xs={12} sm={6}
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="center"
-                >
+                    <Grid item xs={12} sm={6}
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                    >
 
-                    {/* <TextField
+                        {/* <TextField
                         name="location"
                         variant="filled"
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
@@ -383,32 +384,37 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.location && { error: true, helperText: errors.location })}
                     /> */}
-                    <FormControl fullWidth className={classes.select}>
-                        <InputLabel >จังหวัด</InputLabel>
-                        <Select
-                            InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
-                            name='location'
-                            value={values.location}
-                            fullWidth
-                            onChange={handleInputChange}
-                            {...(errors.location && { error: true, helperText: errors.location })}
-                        >
-                            {province.map((province) => <MenuItem value={province}>{province}</MenuItem>)}
-                        </Select>
-                    </FormControl>
-                </Grid>
+                        <FormControl fullWidth className={classes.select}>
+                            <InputLabel >จังหวัด</InputLabel>
+                            <Select
+                                InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
+                                name='location'
+                                value={values.location}
+                                fullWidth
+                                onChange={handleInputChange}
+                                {...(errors.location && { error: true, helperText: errors.location })}
+                            >
+                                {province.map((province) => <MenuItem value={province}>{province}</MenuItem>)}
+                            </Select>
+                        </FormControl>
+                    </Grid>
 
 
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    type="submit"
-                    className={classes.postBtn}
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        type="submit"
+                        className={classes.postBtn}
 
-                >โพสต์</Button>
-            </form>
-        );
+                    >โพสต์</Button>
+                </form>
+            )
+        } else {
+            return (
+                <div><center>Please login to available posting.</center></div>
+            )
+        }
         // กดแก้่ไข
     } else {
         return (
