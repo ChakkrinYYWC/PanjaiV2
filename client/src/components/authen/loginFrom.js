@@ -18,7 +18,7 @@ const styles = theme => ({
 })
 
 function LoginFrom() {
-/*------------------------------------------------------------*/
+    /*------------------------------------------------------------*/
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
 
@@ -28,31 +28,32 @@ function LoginFrom() {
         event.preventDefault()
         // console.log(username)
         // console.log(password)
-        const data = {username, password, PanjaiToken}
+        const data = { username, password, PanjaiToken }
         //console.log(data)
         Axios.post('/authenticate/login', JSON.stringify(data), {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then( async function(res){
+        }).then(async function (res) {
             console.log(res);
-            if(res.data[0]) {
-                if(res.data == "You are baned!"){
+            if (res.data[0]) {
+                if (res.data == "You are baned!") {
                     window.alert(res.data)
-                }else{
+                } else {
                     await localStorage.setItem('Firstpopup', true);
-                await localStorage.setItem('PanjaiToken', res.data[0]);
-                await localStorage.setItem('currentUser', res.data[1]);
-                await localStorage.setItem('currentUser_id', res.data[2]);
-                await localStorage.setItem('currentUser_email', res.data[3]);
-                await localStorage.setItem('currentUser_address', res.data[4]);
-                await localStorage.setItem('currentUser_phone', res.data[5]);
-                await localStorage.setItem('currentUser_name', res.data[6])
-                await localStorage.setItem('popupYet', false)
-                await localStorage.setItem('blackListPopup', false)
-                await localStorage.setItem('reportPopup', false);
-                await localStorage.setItem('userPopup', false);
-                window.location.href = "http://localhost:3000"
+                    await localStorage.setItem('PanjaiToken', res.data[0]);
+                    await localStorage.setItem('currentUser', res.data[1]);
+                    await localStorage.setItem('currentUser_id', res.data[2]);
+                    await localStorage.setItem('currentUser_email', res.data[3]);
+                    await localStorage.setItem('currentUser_address', res.data[4]);
+                    await localStorage.setItem('currentUser_phone', res.data[5]);
+                    await localStorage.setItem('currentUser_name', res.data[6])
+                    await localStorage.setItem('currentUser_coin', res.data[7])
+                    await localStorage.setItem('popupYet', false)
+                    await localStorage.setItem('blackListPopup', false)
+                    await localStorage.setItem('reportPopup', false);
+                    await localStorage.setItem('userPopup', false);
+                    window.location.href = "http://localhost:3000"
                 }
             } else {
                 window.alert("Username or password incorrect.")
@@ -62,7 +63,7 @@ function LoginFrom() {
         }).catch(error => console.log(error))
     }
 
-/*-----------------------------------------------------------*/
+    /*-----------------------------------------------------------*/
     return (
         <div className="grid-container" >
             <div className="item1_log">
@@ -71,27 +72,27 @@ function LoginFrom() {
                 </div>
             </div>
             <div className="item2_log">
-                <h3>เข้าสู่ระบบ</h3><br/>
+                <h3>เข้าสู่ระบบ</h3><br />
                 <form>
                     <div className="form-group">
                         <label>ชื่อผู้ใช้:</label><br />
                         <input
-                        type="text"
-                        placeholder="ชื่อผู้ใช้"
-                        onChange={(event) =>{
-                            setUsername(event.target.value)
-                        }}
+                            type="text"
+                            placeholder="ชื่อผู้ใช้"
+                            onChange={(event) => {
+                                setUsername(event.target.value)
+                            }}
                         >
                         </input>
                     </div>
                     <div className="form-group">
                         <label>รหัสผ่าน:</label><br />
                         <input
-                        type="password"
-                        placeholder="รหัสผ่าน"
-                        onChange={(event) =>{
-                            setPassword(event.target.value)
-                        }}
+                            type="password"
+                            placeholder="รหัสผ่าน"
+                            onChange={(event) => {
+                                setPassword(event.target.value)
+                            }}
                         >
                         </input>
                     </div>
@@ -100,7 +101,7 @@ function LoginFrom() {
                     </div>
                 </form>
                 <div>
-                <br />
+                    <br />
                     <h5>
                         <a href="/Register">ลืมรหัสผ่าน</a> | <a href="/Register">สมัครสมาชิก</a>
                     </h5>

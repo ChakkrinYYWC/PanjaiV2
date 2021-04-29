@@ -165,7 +165,7 @@ server.get('/register', (req, res) => {
 })
 server.post("/register", upload.single('IDcard'), function (req, res) {
     console.log('filename: ' + req.file.filename)
-    user.register(new user({ name: req.body.name, username: req.body.username, idcard: req.file.filename, email: req.body.email, address: req.body.address, phone: req.body.phone, accessToken: null, isbaned: "no", month: req.body.month, year: req.body.year, piece_available: 4 }), req.body.password, function (error, user) {
+    user.register(new user({ name: req.body.name, username: req.body.username, idcard: req.file.filename, email: req.body.email, address: req.body.address, phone: req.body.phone, coin: 0, accessToken: null, isbaned: "no", month: req.body.month, year: req.body.year, piece_available: 4 }), req.body.password, function (error, user) {
         if (error) {
             console.log("error: " + error);
             res.send(error)
@@ -242,5 +242,36 @@ server.get("/unBanUser/:id", function (req, res) {
 //         }
 //     })
 // });
+/*-------------------------------------------------------------------------------*/
+server.post('/information/:id', (req, res) => {
+
+    user.findById(req.params.id, (err, docs) => {
+        if (!err) {
+            //console.log(docs)
+            res.send(docs)
+        }
+        else
+            console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
+    })
+})
+/*-------------------------------------------------------------------------------*/
+server.post('/mycoin/:id', (req, res) => {
+    console.log('***')
+    console.log(req.params.id)
+    console.log(req.body.newcoin)
+
+    const newData = user.findByIdAndUpdate(req.params.id, { coin: req.body.newcoin }, (err, docs) => {
+        if (!err) {
+            //console.log(docs)
+            //res.send(docs)
+        }
+        else
+            console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
+    })
+
+    //console.log(update._update.coin)
+    res.send(newData._update)
+
+})
 /*-------------------------------------------------------------------------------*/
 module.exports = server;

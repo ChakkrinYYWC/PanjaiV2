@@ -190,7 +190,7 @@ function Homepage() {
         <h3>หมวดหมู่มูลนิธิ</h3>
         <center>
           <div className="row m-0">
-            <div className="column col-xs-6 col-sm-3 col-md-3 col-lg-4">
+            <div className="column col-6 col-lg-4">
               <Card className="cardd">
                 <Card.Img variant="top" src="/pngegg.png" />
                 <Card.Body>
@@ -201,7 +201,7 @@ function Homepage() {
                 </Card.Body>
               </Card>
             </div>
-            <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
+            <div className="column col-6 col-lg-4">
               <Card className="cardd">
                 <Card.Img variant="top" src="/2.png" />
                 <Card.Body className="">
@@ -212,7 +212,7 @@ function Homepage() {
                 </Card.Body>
               </Card>
             </div>
-            <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
+            <div className="column col-6 col-lg-4">
               <Card className="cardd">
                 <Card.Img variant="top" src="/e.png" />
                 <Card.Body>
@@ -223,9 +223,9 @@ function Homepage() {
                 </Card.Body>
               </Card>
             </div>
-          </div>
-          <div className="row m-0">
-            <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
+
+
+            <div className="column col-6 col-lg-4">
               <Card className="cardd">
                 <Card.Img variant="top" src="/4.png" />
                 <Card.Body>
@@ -239,7 +239,7 @@ function Homepage() {
                 </Card.Body>
               </Card>
             </div>
-            <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
+            <div className="column col-6 col-lg-4">
               <Card className="cardd">
                 <Card.Img variant="top" src="/5.1.png" />
                 <Card.Body>
@@ -250,7 +250,7 @@ function Homepage() {
                 </Card.Body>
               </Card>
             </div>
-            <div className="column col-xs-3 col-sm-3 col-md-3 col-lg-4">
+            <div className="column col-6 col-lg-4">
               <Card className="cardd">
                 <Card.Img variant="top" src="/6.png" />
                 <Card.Body>
@@ -261,6 +261,7 @@ function Homepage() {
                 </Card.Body>
               </Card>
             </div>
+
           </div>
         </center>
       </div>
@@ -301,7 +302,7 @@ function Homepage() {
                 <img src="https://www.prachachat.net/wp-content/uploads/2020/04/66-5-728x491.jpg" />
                 <div className="content">
                   <center>
-                    <p>" ช่วยกันปันน้ำใจ "</p>
+                    <p>"ช่วยกันปันน้ำใจ"</p>
                   </center>
                 </div>
               </li>
@@ -309,7 +310,7 @@ function Homepage() {
                 <img src="https://home4animals.org/wp-content/uploads/2018/01/img-06.jpg" />
                 <div className="content">
                   <center>
-                    <p>" ทุกชีวิตมีค่า "</p>
+                    <p>"ทุกชีวิตมีค่า"</p>
                   </center>
                 </div>
               </li>
@@ -321,7 +322,7 @@ function Homepage() {
                 <img src="https://f.ptcdn.info/629/060/000/phk8l2zd5SQ1Q10qxsm-o.jpg" />
                 <div className="content">
                   <center>
-                    <p>" คนไทยไม่ทิ้งกัน "</p>
+                    <p>"คนไทยไม่ทิ้งกัน"</p>
                   </center>
                 </div>
               </li>
@@ -329,7 +330,7 @@ function Homepage() {
                 <img src="https://happymom.in.th/upload/d444294a3940ec9ccde7dc5514137f18.jpg" />
                 <div className="content">
                   <center>
-                    <p>" หนูดีใจมากๆเลยค่ะ "</p>
+                    <p>"หนูดีใจมากๆเลยค่ะ"</p>
                   </center>
                 </div>
               </li>
@@ -341,7 +342,7 @@ function Homepage() {
                 <img src="https://4.bp.blogspot.com/-o8CwTuYhYrI/Ui_zq7jfYcI/AAAAAAAAACw/kCQQ6dFBIWo/s1600/yim.jpg" />
                 <div className="content">
                   <center>
-                    <p>" ยิ่งให้ ยิ่งได้ "</p>
+                    <p>"ยิ่งให้ ยิ่งได้"</p>
                   </center>
                 </div>
               </li>
@@ -349,7 +350,7 @@ function Homepage() {
                 <img src="https://obs.line-scdn.net/0hmdaLuIDjMktcNRmSeHxNHGZjMSRvWSFIOANjSABbbH8kViEeaFMpJX83b3t4UHUVMgB_KHs0KXohUiUZYVIp/w644" />
                 <div className="content">
                   <center>
-                    <p>" ขอบคุณนะคะ "</p>
+                    <p>"ขอบคุณนะคะ"</p>
                   </center>
                 </div>
               </li>

@@ -9,7 +9,8 @@ import Button from '@material-ui/core/Button';
 
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
-
+import SlideShow from 'react-image-show';
+import { Grid } from '@material-ui/core';
 import {
     BrowserRouter as Router,
     Route,
@@ -17,7 +18,7 @@ import {
     Link,
     Redirect
 } from "react-router-dom";
-
+import Carousel from 'react-bootstrap/Carousel';
 import imgdek from './dek.png';
 // import old from './old.png';
 import { urlencoded } from 'body-parser';
@@ -25,7 +26,7 @@ import { urlencoded } from 'body-parser';
 
 
 function Category({ ...props }) {
-
+    var Array_image = [];
 
     const [loading, setLoading] = useState(true);
     const [bg, setBg] = useState();
@@ -108,11 +109,14 @@ function Category({ ...props }) {
                                                     <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
                                                         <Card className="foundat">
 
-                                                            {/* <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */} 
-                                                            {record.image.map((image) => (
-                                                                <Card.Img variant="top" img src={'http://localhost:3001/Foundation/' + image}/> //multi image
-                                                                
-                                                            ))}
+                                                            <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image[0]} /> 
+                                                            
+                                                               
+                                                       
+                                                            {/* <Card.Img variant="top" img src={'http://localhost:3001/Foundation/' + image}/> //multi image */}
+
+
+
                                                             <Card.Body>
                                                                 <Link to={"/Foundation/" + props.currentId.match.params.name + "/" + record._id} className="Tfound">{record.title}</Link>
                                                                 <div className="information">ต้องการรับบริจาค : {record.item}</div>
@@ -130,7 +134,7 @@ function Category({ ...props }) {
                                         }
                                     </div>
                                 </div>
-                               
+
                             </div>
                             {/* <div>21866666673</div> */}
                             {/* <footer id="sticky-footer" >

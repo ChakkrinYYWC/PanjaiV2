@@ -7,7 +7,7 @@
     font-family: 'Mali', cursive;
     /* z-index: 20; */
     position: absolute;
-
+    width: 100%;
 }
 
 
@@ -42,13 +42,14 @@
 }
 
 .bx{
-    background-color : rgba(104, 64, 5, 0.651);
+    background-color : rgba(201, 152, 83, 0.993);
     margin: 20px 400px 50px 400px;
     padding: 15px 0 25px 0px;
     box-shadow: 0px 7px 7px 4px rgba(32, 32, 32, 0.397);
     justify-items: center; 
     text-align: center;  
-    border: 3px solid rgb(145, 119, 5);   
+    border: 10px solid rgb(252, 238, 224);
+    border-radius: 40px;
     /* width: 80%; */
 }
 
@@ -67,24 +68,27 @@
     font-size: 20px;
 
 }
+
 .infor{
     font-size: 17px;
     text-align: center;
     font-weight: bold;
     color: rgb(253, 253, 253);
-
 }
 
  .box-box Button {
-    background-color:rgba(104, 64, 5, 0.925);
+    background-color:rgba(143, 105, 1, 0.925);
     color: white;
     font-family: 'Mali', cursive;
     margin: 0px 0px 60px 0px;
-
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 17px;
 } 
 
+
 .map Button{
-    background-color:rgba(71, 73, 105, 0.925);
+    background-color:rgba(136, 28, 28, 0.925);
     color: white;
     border-radius: 30px;
     float: right; 
@@ -132,7 +136,9 @@
     width: 100%;
 
 }
-
+.imageslide .slide-show .ss-thumbnails {
+    width: 920px;
+}
 
 @media only screen and (max-width: 1024px) {
     .box-box {
@@ -151,11 +157,12 @@
         text-align: center;
         width: 50%;
         float: center;
+       
 
     }
     .Tt {
         font-size: 20px;
-        padding: 80px 10px 30px 10px;
+        padding: 50px 10px 50px 10px;
     }
     .image01 img {
         width: 80%;
@@ -172,7 +179,7 @@
         margin: 0px 0px 30px 0px;
     } 
     .map Button{
-        margin: 0px 50px 0px 0px;
+        margin: 0px 100px 0px 0px;
     }
     .box-box .botton {
         margin: 10px 5px 0px 0px  ;
@@ -210,7 +217,7 @@
     }
     .Tt {
         font-size: 16px;
-        padding: 80px 10px 30px 10px;
+        padding: 40px 10px 30px 10px;
     }
     .image01 img {
         width: 80%;
@@ -225,7 +232,10 @@
     }
     .box-box Button {
         margin: 0px 0px 30px 0px;
+        font-size: 14px;
     } 
+
+
     .map Button{
         margin: 0px 50px 0px 0px;
     }

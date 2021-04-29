@@ -138,7 +138,22 @@ class Navbar extends Component {
                     </li>
                   );
                 }
-              } else {
+              } 
+              else if (currentUser == "admin"){
+                if (index < 3) {
+                  return (
+                    <li className="itemlist" key={index}>
+                      {/* <a href={"#" + item.id}> */}
+                      <a className={item.cName} href={item.href}>
+                        {item.title}
+                      </a>
+                      {/* </a> */}
+                    </li>
+                  );
+                }
+              }
+              
+              else {
                 return (
                   <li className="itemlist" key={index}>
                     {/* <a href={"#" + item.id}> */}
