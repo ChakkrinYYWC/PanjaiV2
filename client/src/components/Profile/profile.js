@@ -317,7 +317,23 @@ function Profile({ classes, ...props }) {
                                 <div>
                                     <div className="box-text-profile">
                                         <h1> ประวัติส่วนตัว</h1>
-                                        <p>เหรียญของฉัน: {allInform.coin}</p>
+                                        
+                                        <div className="coin">
+
+                                            <p><i class="fas fa-coins"></i> เหรียญของฉัน : {allInform.coin}   
+                                            <span className="kuy">
+                                            <Button 
+                                                className="addcoin"
+                                                href="/pay-coin"
+                                            >
+                                                 
+                                                เติมเหรียญ
+                                                 <i class="fa fa-piggy-bank"></i>
+                                            </Button>
+                                            </span>
+                                            </p>
+                                            
+                                        </div>
                                         <div className="textinforuser">
                                             <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
                                             <p>{allInform.name}</p>
@@ -348,7 +364,7 @@ function Profile({ classes, ...props }) {
                                                 </button>
                                             </div>
 
-                                            <Link to={"/pay-coin"}>เติมเหรียญ</Link>
+
 
                                         </div></div></div>)
                         }
