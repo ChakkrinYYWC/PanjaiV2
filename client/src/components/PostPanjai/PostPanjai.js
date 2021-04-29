@@ -33,7 +33,6 @@ import Slideshow from "./Slideshow";
 import SlideShow from "react-image-show";
 import styled from 'styled-components'
 
-import SlideShow from "react-image-show";
 import './PostPanjai.css'
 const currentUser = localStorage.getItem("currentUser");
 const currentUser_id = localStorage.getItem("currentUser_id");
