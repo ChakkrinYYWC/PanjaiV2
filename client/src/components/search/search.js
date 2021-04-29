@@ -90,7 +90,7 @@ export default function Checkboxes() {
                   }}
                   type="text"
                   className="ui-input"
-                  placeholder="ชื่อมูลนิธิ, สิ่งของ" />
+                  placeholder="ค้นหามูลนิธิ, สิ่งของ" />
                 <button onClick={Search} type='submit' className="search-bt">ค้นหา</button>
               </div>
             </form>
@@ -201,9 +201,9 @@ export default function Checkboxes() {
                     />
                     <Card.Body>
                       <Link className="Tfound">{record.title}</Link>
-                      <div className="information">ผู้สร้าง :{record.contect}</div>
-                      <div className="information">ผู้สร้าง :{record.creator}</div>
+                      <div className="information">โทร :{record.contect}</div>
                       <div className="information">จังหวัด :{record.location}</div>
+                      <div className="information">ผู้สร้าง :{record.creator}</div>
                       <div className="information-1">วันที่ลง :{record.Timestamp}</div>
                       <div className="pum">
                         <button

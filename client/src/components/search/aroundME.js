@@ -189,7 +189,7 @@ class Map extends React.PureComponent {
                 <Grid container style={{padding:'0 auto'}} spacing={4}>
                  */}
 
-                <div className="foundation">
+                <div className="foundation_dew">
                 <div className="row m-0">
 
                 { 
@@ -246,6 +246,7 @@ class Map extends React.PureComponent {
             
             </div>
             </div>
+      
 
             </>
         );
