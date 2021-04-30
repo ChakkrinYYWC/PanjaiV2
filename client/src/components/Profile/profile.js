@@ -250,7 +250,7 @@ function Profile({ classes, ...props }) {
                                             <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล</span>
                                             <TextField
                                                 name="name"
-                                                variant="filled"
+                                               
 
                                                 fullWidth
                                                 size="small"
@@ -290,7 +290,7 @@ function Profile({ classes, ...props }) {
                                             <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
                                             <TextField
                                                 name="address"
-                                                variant="filled"
+                                               
 
                                                 fullWidth
                                                 size="small"
@@ -301,10 +301,10 @@ function Profile({ classes, ...props }) {
                                         </div>
                                         <div className="confirm-and-cancelEditProfile">
                                             <div className="confirmEditProfile">
-                                                <button className="button" onClick={handleSubmit}>บันทึก</button>
+                                                <button className="button3" onClick={handleSubmit}>บันทึก</button>
                                             </div>
                                             <div className="cancelEditProfile">
-                                                <button className="button" onClick={CancelUpdate}>ยกเลิก</button>
+                                                <button className="button4" onClick={CancelUpdate}>ยกเลิก</button>
                                             </div>
                                         </div>
                                     </div>
@@ -353,7 +353,7 @@ function Profile({ classes, ...props }) {
                                         </div>
                                         <div className="grid-container1">
                                             <div className="EditProfile">
-                                                <button className="button" onClick={handleEditProfile}>แก้ไข</button>
+                                                <button className="button3" onClick={handleEditProfile}>แก้ไข</button>
                                             </div>
 
                                             {/* <div className='Like'>

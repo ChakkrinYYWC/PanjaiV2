@@ -41,8 +41,9 @@
 } */
 .confirm-and-cancelEditProfile {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  padding: 10px 20px;
+  grid-template-columns: 1fr 1fr;
+  padding: 30px 20px;
+  justify-items: center;
 }
 
 .box-text-profile {
@@ -79,8 +80,8 @@
   font-size: 16px;
 }
 
-.button {
-  background-color: rgba(185, 142, 76, 0.925);
+.button3 {
+  background-color: rgba(168, 142, 102, 0.925);
   color: white;
   width: 80px;
   font-family: "Mali", cursive;
@@ -90,8 +91,22 @@
   height: 35px;
   padding: 1px;
 }
-.button:hover {
+.button3:hover {
   background-color: rgba(82, 60, 28, 0.925);
+}
+.button4 {
+  background-color: rgba(87, 75, 58, 0.925);
+  color: white;
+  width: 80px;
+  font-family: "Mali", cursive;
+  padding: 5px 8px;
+  border-radius: 50px;
+  text-decoration: none;
+  height: 35px;
+  padding: 1px;
+}
+.button4:hover {
+  background-color: rgba(228, 216, 198, 0.925);
 }
 .button1 {
   background-color: rgba(114, 39, 9, 0.925);

@@ -12,6 +12,7 @@ import styled from 'styled-components'
 import MaskedInput from 'react-text-mask';
 import Input from '@material-ui/core/Input';
 import axios from 'axios'
+import './PostPanjai.css'
 
 const initialFieldValues = {
     title: '',
@@ -57,7 +58,7 @@ const styles = theme => ({
         display: 'none',
     },
     imgpreview: {
-
+        Color: "rgba(85, 52, 4, 0.925)"
     },
     primary: {
         background: 'white',
@@ -145,7 +146,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
     const validate = async () => {
         console.log(file.length)
         if (file.length == 0) {
-            await settext('กรุณาใส่รูป')
+            await settext('กรุณาใส่รูป') 
         }
         let temp = { ...errors }
         temp.title = values.title ? "" : "กรุณาใส่ข้อมูล."
@@ -306,7 +307,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                             </IconButton>
                         </label>
 
-                        <div>{text}</div>
+                        <div style={{color: "rgb(117, 24, 12)" , textAlign: "center" }}>{text}</div>
                         {/* แสดงเป็นตัวอักษรสีแดง */}
 
                     </Grid>
