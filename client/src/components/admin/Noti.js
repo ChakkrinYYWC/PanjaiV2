@@ -7,7 +7,7 @@ import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep, AccessAlarm, ThreeDRotation, AssignmentTurnedIn } from "@material-ui/icons";
 import { connect } from 'react-redux';
 import * as action from '../../action/postPanjai'
-
+import SlideShow from "react-image-show";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,6 +15,10 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
+import {
+
+  Grid
+} from "@material-ui/core";
 
 var once = false
 /*----------------------------------------------------------------------*/
@@ -90,10 +94,24 @@ function Noti(props) {
                   return (
                     <div className="column  ">
                       <Card className="foundat">
-                        <Card.Img
+
+                        {/* <Card.Img
                           variant="top"
                           src={'http://localhost:3001/image/' + record.post.image}
-                        />
+                        /> */}
+                        <Grid container justify="center">
+                          <SlideShow className="imageslide"
+                            images={record.post.image}
+                            width="400px"
+                            imagesWidth="400px"
+                            imagesHeight="200px"
+                            imagesHeightMobile="56vw"
+                            thumbnailsWidth="520px"
+                            thumbnailsHeight="12vw"
+                            // className={classes.picture}
+                            indicators fixedImagesHeight
+                          />
+                        </Grid>
                         <Card.Body>
                           <Link className="Tfound"></Link>
                           <div className="information">{record.post.title}</div>

@@ -29,7 +29,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { If, Then, ElseIf, Else } from "react-if-elseif-else-render";
 import Icon from "@material-ui/core/Icon";
 import Axios from "axios";
-import Slideshow from "./Slideshow";
+
 import SlideShow from "react-image-show";
 import styled from 'styled-components'
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -340,7 +340,7 @@ const PostPanjai = ({ classes, ...props }) => {
                           imagesHeightMobile="36vw"
                           thumbnailsWidth="520px"
                           thumbnailsHeight="12vw"
-                          className={classes.picture}
+                          // className={classes.picture}
                           indicators  fixedImagesHeight
                         />
                       </Grid>
