@@ -15,9 +15,9 @@ import {
     ListItemText,
     Container,
     Button,
-  } from "@material-ui/core";
+} from "@material-ui/core";
 
-  import { Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 import "./GGMap.css";
 
@@ -107,9 +107,9 @@ class Map extends React.PureComponent {
 
     render() {
 
-        console.log('state' + this.state.mapPosition.lat) //x1
-        console.log('state' + this.state.mapPosition.lng) //y1
-        console.log(this.state.markers)
+        // console.log('state' + this.state.mapPosition.lat) //x1
+        // console.log('state' + this.state.mapPosition.lng) //y1
+        // console.log(this.state.markers)
         var c = 0
         var dlat = 0
         var dlong = 0
@@ -117,16 +117,16 @@ class Map extends React.PureComponent {
 
         var result_kg = [];
         // this.result_kg.push({})
-        console.log(result_kg)
+        //console.log(result_kg)
         this.state.markers.map(marker => (
 
-            console.log(marker.lat),
+            //console.log(marker.lat),
             dlat = latitude - marker.lat,
             dlong = longitude - marker.lng,
             c = Math.sqrt(dlat * dlat + dlong * dlong),
             kg = c / (1 / 108.4),
-            console.log(this.state.mapPosition.latnew),
-            console.log(dlong),
+            //console.log(this.state.mapPosition.latnew),
+            //console.log(dlong),
             result_kg.push({ kg, marker })
 
         ))
@@ -146,43 +146,43 @@ class Map extends React.PureComponent {
             })
         }
         const MapWithAMarkerClusterer = compose(
-            
+
             withProps({
                 googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YoATcEUeQOTMNL6a0V3gDas0yFDV-rg&v=3.exp&libraries=geometry,drawing,places",
                 loadingElement: <div style={{ height: `100%` }} />,
                 containerElement: <div style={{ height: `400px` }} />,
                 mapElement: <div style={{ height: `100%` }} />,
-                
+
             }),
             withScriptjs,
             withGoogleMap
         )(props =>
             <>
-            
-            <div className="ggmap">
-                <GoogleMap
-                    defaultZoom={15}
-                    //defaultCenter={{ lat: 0, lng: 0 }}
-                    defaultCenter={{ lat: this.state.mapPosition.latnew, lng: this.state.mapPosition.lngnew }}
-                >
-                    {props.markers.map(marker => (
-                        <Marker
-                            position={{ lat: marker.lat, lng: marker.lng }}
-                            onClick={props.onToggleOpen}
-                        >
-                            {/* <InfoWindow onCloseClick={props.onToggleOpen}>
+
+                <div className="ggmap">
+                    <GoogleMap
+                        defaultZoom={15}
+                        //defaultCenter={{ lat: 0, lng: 0 }}
+                        defaultCenter={{ lat: this.state.mapPosition.latnew, lng: this.state.mapPosition.lngnew }}
+                    >
+                        {props.markers.map(marker => (
+                            <Marker
+                                position={{ lat: marker.lat, lng: marker.lng }}
+                                onClick={props.onToggleOpen}
+                            >
+                                {/* <InfoWindow onCloseClick={props.onToggleOpen}>
                                 <div>
                                     {"" + marker.title}
                                 </div>
                             </InfoWindow> */}
-                        </Marker>
-                    ))}
-                </GoogleMap>
-            
-                <p className="hh"><i className="fab fa-gratipay"></i>&nbsp;&nbsp;มูลนิธิใกล้ฉัน&nbsp;&nbsp;<i className="fab fa-gratipay"></i></p>
+                            </Marker>
+                        ))}
+                    </GoogleMap>
 
-                {/* <p className ="hh" >มูลนิธิใกล้ฉัน</p><br /> */}
-                {/* <h3>มูลนิธิใกล้ฉัน</h3><br /> */}
+                    <p className="hh"><i className="fab fa-gratipay"></i>&nbsp;&nbsp;มูลนิธิใกล้ฉัน&nbsp;&nbsp;<i className="fab fa-gratipay"></i></p>
+
+                    {/* <p className ="hh" >มูลนิธิใกล้ฉัน</p><br /> */}
+                    {/* <h3>มูลนิธิใกล้ฉัน</h3><br /> */}
                 </div>
 
                 {/* <Container style={{marginTop: '30px'}}>
@@ -190,31 +190,29 @@ class Map extends React.PureComponent {
                  */}
 
                 <div className="foundation_dew">
-                <div className="row m-0">
+                    <div className="row m-0">
 
-                { 
-                    result_kg.map(mark => (
-                        <>
+                        {
+                            result_kg.map(mark => (
+                                <>
 
+                                    <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                        <Card onClick={() => SelectMarker(mark)} className="foundat">
+                                            {console.log(mark.marker.image)}
 
+                                            {/* <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */}
 
-                             <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
-                                <Card onClick={() => SelectMarker(mark)} className="foundat">
+                                            {/* <Card.Img variant="top" img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU" /> */}
+                                            {/* //multi image  */}
+                                            <Card.Img variant="top" img src={mark.marker.image[0]} />
+                                            <Card.Body>
+                                                <div>{mark.marker.title}</div>
+                                                <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร </h1>
+                                                <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} className="CardTitle">อ่านเพิ่มเติม</Link>
 
-                                    {/* <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} /> */} 
-                               
-                                     <Card.Img variant="top" img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"/> 
-                                     {/* //multi image  */}
-                                    <Card.Body>
-                                        <div>{mark.marker.title}</div>
-                                        <h1>ระยะห่าง : {mark.kg.toFixed(3)} กิโลเมตร </h1>
-                                        <Link to={"/Foundation/" + mark.marker.category + "/" + mark.marker._id} className="CardTitle">อ่านเพิ่มเติม</Link>
-                                        
-                                    </Card.Body>
-                                </Card>
-                             </div>
-
-
+                                            </Card.Body>
+                                        </Card>
+                                    </div>
 
 
 
@@ -238,15 +236,17 @@ class Map extends React.PureComponent {
 
 
 
-                      
-                        </>
-                    ))
-                }
 
-            
-            </div>
-            </div>
-      
+
+
+                                </>
+                            ))
+                        }
+
+
+                    </div>
+                </div>
+
 
             </>
         );
