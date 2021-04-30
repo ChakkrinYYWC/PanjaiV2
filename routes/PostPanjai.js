@@ -5,30 +5,13 @@ const fs = require('fs')
 const multer = require('multer')
 const path = require('path')
 const mongoose = require("mongoose");
-// const middleware = require('../middleware/index');
 
 var { PostPanjai } = require('../model/postPanjai')
 const user = require('../model/user');
 const noti = require('../model/notification');
 const recieve = require('../model/recieve');
+const fileUploader = require('./cloudinary');
 const dashboard = require('../model/dashboard')
-
-const storage = multer.diskStorage({
-    destination: './public/uploads/Too-Panjai',
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
-
-const imageFilter = function (req, file, cb) {
-    var ext = path.extname(file.originalname);
-    if (ext !== '.png' && ext !== '.gif' && ext !== '.jpg' && ext !== '.jpeg') {
-        return cb(new Error('Only image is allowed'), false)
-    }
-    cb(null, true);
-};
-
-const upload = multer({ storage: storage, fileFilter: imageFilter });
 
 router.get('/', (req, res) => {
     PostPanjai.find({}, (err, docs) => {
@@ -39,18 +22,17 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', upload.array('image'), (req, res) => {
-    var Photo_name = [];
-    for (let i = 0; i < req.files.length; i++) {
-        Photo_name.push(req.files[i].filename)
-    }
-    console.log(Photo_name)
+router.post('/', fileUploader.array('image'), (req, res) => {
+
+    const urls = []
+    req.files.forEach(file => urls.push(file.path))
+
     var newRecord = new PostPanjai({
         title: req.body.title,
         message: req.body.message,
         contect: req.body.contect,
         location: req.body.location,
-        image: Photo_name,
+        image: urls,
         creator: req.body.creator
     })
     console.log(newRecord)
@@ -122,7 +104,6 @@ router.post('/addRequest/:id', async function (req, res) {
             }
         },
     ])
-    //console.log(post)
     let owner_id = await user.aggregate([
         {
             $match: {
@@ -164,7 +145,6 @@ router.post('/notifications/:id', async function (req, res) {
             }
         }
     ])
-    //console.log(find)
     let result = await noti.aggregate([
         {
             $match: {
@@ -172,8 +152,6 @@ router.post('/notifications/:id', async function (req, res) {
             }
         }
     ])
-    //const result2 = [result[0].owner[0].username, result[0].requester[0].username, result[0].notification[0].title]
-    //console.log(result)
     res.send(result)
 })
 
@@ -284,7 +262,6 @@ router.post('/findRecieve/:id', async function (req, res) {
             }
         }
     ])
-    //console.log(find)
     let result = await recieve.aggregate([
         {
             $match: {
@@ -292,8 +269,7 @@ router.post('/findRecieve/:id', async function (req, res) {
             }
         }
     ])
-    //const result2 = [result[0].owner[0].username, result[0].requester[0].username, result[0].notification[0].title]
-    //console.log(result)
+
     res.send(result)
 })
 

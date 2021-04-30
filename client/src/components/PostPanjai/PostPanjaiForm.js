@@ -11,8 +11,7 @@ import { DeleteSweep } from "@material-ui/icons";
 import styled from 'styled-components'
 import MaskedInput from 'react-text-mask';
 import Input from '@material-ui/core/Input';
-
-const defaultImageSrc = '/image.png'
+import axios from 'axios'
 
 const initialFieldValues = {
     title: '',
@@ -111,32 +110,29 @@ const ButtonWrapper = styled.div`
     top: 0;
     right:0;
 `
-function TextMaskCustom(props) {
-    const { inputRef, ...other } = props;
+// function TextMaskCustom(props) {
+//     const { inputRef, ...other } = props;
 
-    return (
-        <MaskedInput
-            {...other}
-            ref={(ref) => {
-                inputRef(ref ? ref.inputElement : null);
-            }}
-            mask={[/[0-9]/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-            placeholderChar={'\u2000'}
-            showMask
-        />
-    );
-}
+//     return (
+//         <MaskedInput
+//             {...other}
+//             ref={(ref) => {
+//                 inputRef(ref ? ref.inputElement : null);
+//             }}
+//             mask={[/[0-9]/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+//             placeholderChar={'\u2000'}
+//             showMask
+//         />
+//     );
+// }
 
 
 const PostPanjaiForm = ({ classes, ...props }) => {
 
     const currentUser = localStorage.getItem('currentUser')
     const [multi_image, setMulti_image] = useState([]);
-
-    // const [{ alt, src }, setImg] = useState([{
-    //     src: defaultImageSrc,
-    //     alt: 'Upload an Image'
-    // }]);
+    const [url, seturl] = useState()
+    const [imageUrl, setimageUrl] = useState("");
 
     useEffect(() => {
         if (props.currentId != 0) {
@@ -171,7 +167,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
     } = useForm(initialFieldValues, props.setCurrentId)
 
     const setPhotos = e => {
-        console.log(e.target.files[0])
+        //console.log(e.target.files)
         setFile(e.target.files)
 
         if (e.target.files) {
@@ -183,6 +179,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
             );
         }
     }
+
 
     const renderPhotos = (source) => {
         // console.log('source: ', source);
@@ -221,18 +218,17 @@ const PostPanjaiForm = ({ classes, ...props }) => {
             })
             resetForm()
             setMulti_image([])
-            // setImg({
-            //     src: defaultImageSrc,
-            //     alt: 'Upload an Image'
-            // });
         }
         if (validate()) {
             if (props.currentId == 0) {
                 console.log(file)
+
                 const formData = new FormData();
+
                 for (let i = 0; i < file.length; i++) {
                     formData.append('image', file[i]);
                 }
+
                 formData.append('title', values.title);
                 formData.append('message', values.message);
                 formData.append('contect', values.contect);
@@ -259,7 +255,6 @@ const PostPanjaiForm = ({ classes, ...props }) => {
             [event.target.name]: event.target.value,
         });
     };
-
 
 
     // post
@@ -339,20 +334,20 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         justify="center"
                         alignItems="center" >
 
-                        {/* <TextField
-                        type='number'
-                        name="contect"
-                        variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
-                        label="เบอร์โทรศัพท์"
-                        fullWidth
-                        size="small"
-                        value={values.contect}
-                        onChange={handleInputChange}
-                        {...(errors.contect && { error: true, helperText: errors.contect })}
-                    /> */}
+                        <TextField
+                            type='number'
+                            name="contect"
+                            variant="filled"
+                            InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
+                            label="เบอร์โทรศัพท์"
+                            fullWidth
+                            size="small"
+                            value={values.contect}
+                            onChange={handleInputChange}
+                            {...(errors.contect && { error: true, helperText: errors.contect })}
+                        />
 
-                        <FormControl fullWidth>
+                        {/* <FormControl fullWidth>
                             <InputLabel htmlFor="formatted-text-mask-input">เบอร์โทรศัพท์</InputLabel>
                             <Input
                                 value={values.contect}
@@ -362,7 +357,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                                 inputComponent={TextMaskCustom}
                                 {...(errors.contect && { error: true, helperText: errors.contect })}
                             />
-                        </FormControl>
+                        </FormControl> */}
 
                     </Grid>
 
@@ -485,18 +480,6 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                     justify="center"
                     alignItems="center"
                 >
-
-                    {/* <TextField
-                        name="location"
-                        variant="filled"
-                        InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
-                        label="ใส่ชื่อจังหวัด"
-                        fullWidth
-                        
-                        value={values.location}
-                        onChange={handleInputChange}
-                        {...(errors.location && { error: true, helperText: errors.location })}
-                    /> */}
                     <FormControl fullWidth >
                         <InputLabel >จังหวัด</InputLabel>
                         <Select

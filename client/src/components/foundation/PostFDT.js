@@ -232,7 +232,11 @@ const PostFDT = ({ classes, ...props }) => {
 
                     <img src={photo} alt="" key={photo} className={classes.imgpreview} />
 
-                    <Button className={classes.buttonicondel} variant="contained" color="secondary" onClick={() => onRemoveImg(photo)} component="span">
+                    <Button
+                        className={classes.buttonicondel}
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => onRemoveImg(photo)} component="span">
                         Delete
                     </Button>
                 </>
@@ -243,23 +247,6 @@ const PostFDT = ({ classes, ...props }) => {
     const onRemoveImg = (url) => {
         setMulti_image(multi_image.filter(url_old => url_old !== url))
     }
-
-    // console.log(multi_image)
-
-    // const showPreview = e => {
-    //     if (e.target.files && e.target.files[0]) {
-    //         setFile(e.target.files[0]);
-    //         console.log(file);
-    //         setImg({
-    //             src: URL.createObjectURL(e.target.files[0]),
-    //             alt: e.target.files[0].name
-    //         });
-    //     }
-    //     else {
-    //         let pic = defaultImageSrc
-    //         setFile(pic)
-    //     }
-    // }
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -296,26 +283,31 @@ const PostFDT = ({ classes, ...props }) => {
                 formData.append('category', values.category);
                 // formData.append('category', category);
                 // formData.append('promptpay', values.promptpay);
-                formData.append('endtime',selectedDate);
+                formData.append('endtime', values.endtime);
                 formData.append('lat', values.lat);
                 formData.append('lng', values.lng);
 
                 props.createPostFDT(formData, onSuccess) //ส่งค่าไปserver
             }
-        } else if (props.current != 0)
+        } else if (props.current != 0) {
+            console.log(values)
             props.updatePostFDT(props.current, values, onSuccess)
+        }
 
     }
 
     const handleChange = e => {
         setCategory(e.target.value);
     };
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2021-04-30T21:11:54'));
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
+        values.endtime = date
         console.log(date);
     };
+
+    //console.log(values)
 
     const handleChangeDate = e => {
         console.log(e.target)
@@ -379,7 +371,7 @@ const PostFDT = ({ classes, ...props }) => {
                         name="n_item"
                         label="Number"
                         type="number"
-                        label="จำนวนเงิน"
+                        label="จำนวน"
                         value={values.n_item}
                         onChange={handleInputChange}
                         {...(errors.n_item && { error: true, helperText: errors.n_item })}
@@ -432,24 +424,11 @@ const PostFDT = ({ classes, ...props }) => {
                         onChange={handleInputChange}
                         {...(errors.promptpay && { error: true, helperText: errors.promptpay })}
                     /> */}
-                    {/* <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-helper-label">หมวดหมู่</InputLabel>
-                        <Select
-                            onChange={handleChange}
-                        >
-                            <MenuItem value={"เด็กและเยาวชน"}>เด็กและเยาวชน</MenuItem>
-                            <MenuItem value={"ผู้สูงอายุ"}>ผู้สูงอายุ</MenuItem>
-                            <MenuItem value={"สัตว์"}>สัตว์</MenuItem>
-                            <MenuItem value={"ผู้พิการและผู้ป่วย"}>ผู้พิการและผู้ป่วย</MenuItem>
-                            <MenuItem value={"สิ่งแวดล้อม"}>สิ่งแวดล้อม</MenuItem>
-                            <MenuItem value={"อื่นๆ"}>อื่นๆ</MenuItem>
-                        </Select>
-                    </FormControl> */}
 
                     <FormControl className={classes.formControl}>
                         <InputLabel >หมวดหมู่</InputLabel>
                         <Select
-                            InputProps={{ style: { border: '3px',  fontFamily: 'mali', height: '40px' } }}
+                            InputProps={{ style: { border: '3px', fontFamily: 'mali', height: '40px' } }}
                             name='category'
                             value={values.category}
                             fullWidth
@@ -460,7 +439,7 @@ const PostFDT = ({ classes, ...props }) => {
                         </Select>
                     </FormControl>
 
-          
+
 
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <Grid container >
@@ -480,15 +459,6 @@ const PostFDT = ({ classes, ...props }) => {
 
                         </Grid>
                     </MuiPickersUtilsProvider>
-                    {/* <TextField
-                        id="standard-basic"
-                        label="สิ้นสุดโครงการ"
-                        className={classes.endtime}
-                        name="endtime"
-                        value={values.endtime}
-                        onChange={handleInputChange}
-                        {...(errors.endtime && { error: true, helperText: errors.endtime })}
-                    /> */}
 
                     <div className=''>{renderPhotos(multi_image)}</div>
 
@@ -560,7 +530,7 @@ const PostFDT = ({ classes, ...props }) => {
                         name="n_item"
                         label="Number"
                         type="number"
-                        label="จำนวนเงิน"
+                        label="จำนวน"
                         value={values.n_item}
                         onChange={handleInputChange}
                         {...(errors.n_item && { error: true, helperText: errors.n_item })}
@@ -628,10 +598,10 @@ const PostFDT = ({ classes, ...props }) => {
                     <div>
                         <img src={src} alt={alt} className={classes.imgpreview} />
                     </div> */}
-      
 
 
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <Grid container >
                             <KeyboardDatePicker
                                 disableToolbar
@@ -650,7 +620,6 @@ const PostFDT = ({ classes, ...props }) => {
                         </Grid>
                     </MuiPickersUtilsProvider>
                     <div className=''>{renderPhotos(multi_image)}</div>
-
                     <input
                         accept="image/*"
                         className={classes.input}
