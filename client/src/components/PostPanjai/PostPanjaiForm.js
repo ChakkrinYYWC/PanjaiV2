@@ -131,8 +131,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
     const currentUser = localStorage.getItem('currentUser')
     const [multi_image, setMulti_image] = useState([]);
-    const [url, seturl] = useState()
-    const [imageUrl, setimageUrl] = useState("");
+    const [text, settext] = useState()
 
     useEffect(() => {
         if (props.currentId != 0) {
@@ -143,17 +142,24 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         }
     }, [props.currentId])
 
-    const validate = () => {
+    const validate = async () => {
+        console.log(file.length)
+        if (file.length == 0) {
+            await settext('กรุณาใส่รูป')
+        }
         let temp = { ...errors }
         temp.title = values.title ? "" : "กรุณาใส่ข้อมูล."
         temp.message = values.message ? "" : "กรุณาใส่ข้อมูล."
         temp.contect = values.contect ? "" : "กรุณาใส่ข้อมูล."
         temp.location = values.location ? "" : "กรุณาใส่ข้อมูล."
+        //temp.image = text ? 'กรูราใส่รูป' : "กรุณาใส่ข้อมูล."
         setErrors({
             ...temp
         })
         return Object.values(temp).every(x => x === "")
     }
+
+    console.log(text)
 
     var {
         values,
@@ -169,6 +175,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
     const setPhotos = e => {
         //console.log(e.target.files)
         setFile(e.target.files)
+        settext('')
 
         if (e.target.files) {
             const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
@@ -181,32 +188,44 @@ const PostPanjaiForm = ({ classes, ...props }) => {
     }
 
 
-    const renderPhotos = (source) => {
+    const renderPhotos = (source, file) => {
         // console.log('source: ', source);
+        var i = 0;
         return (
             <ImageWrapper>
-                { source.map((photo) => {
-                    return (
-                        <ImageBox>
-                            <Image src={photo} alt="" key={photo} className={classes.imgpreview} />
-                            <ButtonWrapper>
-                                <IconButton color="#000000" onClick={() => onRemoveImg(photo)}>
-                                    <DeleteSweep />
-                                </IconButton>
-                            </ButtonWrapper>
-                        </ImageBox>
-                    );
-                })}
-            </ImageWrapper>)
+                {
+                    source.map((photo) => {
+                        return (
+                            <ImageBox>
+                                <Image src={photo} alt="" key={photo} className={classes.imgpreview} />
+                                <ButtonWrapper>
+                                    <IconButton color="#000000" onClick={() => onRemoveImg(photo)}>
+                                        {/* <IconButton color="#000000" onClick={() => onRemoveImg(photo, file[i])}> */}
+                                        <DeleteSweep />
+                                    </IconButton>
+                                </ButtonWrapper>
+                            </ImageBox>
+                        );
 
+                        i = i + 1
+                    })
+                }
+            </ImageWrapper>)
 
     };
 
     const onRemoveImg = (url) => {
+        // console.log(url)
+        // console.log(fileremove.name)
+        // const filesArray = Array.from(file).filter(f_old => f_old.name !== fileremove.name);
+        // //console.log(filesArray)
+        // setFile(filesArray)
         setMulti_image(multi_image.filter(url_old => url_old !== url))
     }
 
-    const handleSubmit = e => {
+    console.log(file)
+
+    const handleSubmit = async e => {
         e.preventDefault()
         const onSuccess = () => {
             ButterToast.raise({
@@ -218,10 +237,11 @@ const PostPanjaiForm = ({ classes, ...props }) => {
             })
             resetForm()
             setMulti_image([])
+            setFile([])
         }
-        if (validate()) {
+        console.log(validate())
+        if (await validate() && text == '') {
             if (props.currentId == 0) {
-                console.log(file)
 
                 const formData = new FormData();
 
@@ -242,6 +262,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
         }
 
     }
+    //console.log(file.length)
 
     const closeEdit = e => {
         e.preventDefault()
@@ -267,9 +288,10 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         {/* <div>
                         <img src={src} alt={alt} className={classes.imgpreview} />
                     </div> */}
+                        {console.log(file)}
+                        {console.log(multi_image)}
+                        {renderPhotos(multi_image, file)}
 
-
-                        {renderPhotos(multi_image)}
                         <input
                             accept="image/*"
                             className={classes.input}
@@ -283,6 +305,9 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                                 <PhotoCamera />
                             </IconButton>
                         </label>
+
+                        <div>{text}</div>
+                        {/* แสดงเป็นตัวอักษรสีแดง */}
 
                     </Grid>
 
@@ -316,12 +341,12 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
                         <TextField
                             name="message"
-                            variant="filled"
+                            
                             InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                             label="ข้อมูลสิ่งของ"
                             fullWidth
                             size="small"
-
+                            
                             // rows={4}
                             value={values.message}
                             onChange={handleInputChange}
@@ -337,7 +362,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         <TextField
                             type='number'
                             name="contect"
-                            variant="filled"
+                            
                             InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                             label="เบอร์โทรศัพท์"
                             fullWidth
@@ -426,7 +451,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         name="title"
-                        variant="filled"
+                    
                         label="ชื่อสิ่งของ"
                         fullWidth
                         className={classes.paper}
@@ -445,7 +470,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
                     <TextField
                         name="message"
-                        variant="filled"
+                        
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="ข้อมูล"
                         fullWidth
@@ -464,7 +489,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
                     <TextField
                         name="contect"
-                        variant="filled"
+                        
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="เบอร์โทรศัพท์"
                         fullWidth

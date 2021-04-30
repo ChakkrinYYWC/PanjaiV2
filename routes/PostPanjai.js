@@ -10,8 +10,23 @@ var { PostPanjai } = require('../model/postPanjai')
 const user = require('../model/user');
 const noti = require('../model/notification');
 const recieve = require('../model/recieve');
-const fileUploader = require('./cloudinary');
+const cloudinary = require('./cloudinary');
 const dashboard = require('../model/dashboard')
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
+const storage = new CloudinaryStorage({
+    cloudinary,
+    allowedFormats: ['jpg', 'png'],
+    params: {
+        folder: 'Too-Panjai',
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+
+});
+
+const uploadCloud = multer({ storage: storage });
 
 router.get('/', (req, res) => {
     PostPanjai.find({}, (err, docs) => {
@@ -22,7 +37,9 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', fileUploader.array('image'), (req, res) => {
+router.post('/', uploadCloud.array('image'), (req, res) => {
+
+    console.log('***')
 
     const urls = []
     req.files.forEach(file => urls.push(file.path))
