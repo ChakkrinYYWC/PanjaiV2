@@ -139,6 +139,26 @@
 .imageslide .slide-show .ss-thumbnails {
     width: 920px;
 }
+.totaldonate{
+    margin-bottom: 50px;
+    width: 30%;
+    padding: 5px;
+    font-size: 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: rgb(146, 89, 4);
+    background-color: rgba(224, 219, 219, 0.397);
+}
+
+.popupdonate{
+    width: 500px;
+    height: 100%;
+    font-family: 'Mali', cursive;
+}
+.popupdonate .namefdt{
+ padding-top: 20px;
+ font-family: 'Mali', cursive;
+}
 
 @media only screen and (max-width: 1024px) {
     .box-box {
@@ -266,5 +286,15 @@
         font-weight: 500;
         line-height: 1.6;
         letter-spacing: 0.0075em;
+    }
+    .totaldonate{
+        margin-bottom: 50px;
+        width: 70%;
+        padding: 5px;
+        font-size: 18px;
+        border-radius: 20px;
+        font-weight: bold;
+        color: rgb(146, 89, 4);
+        background-color: rgba(224, 219, 219, 0.397);
     }
 }

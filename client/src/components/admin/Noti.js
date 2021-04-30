@@ -56,20 +56,20 @@ function Noti(props) {
 
   const onDelete = id => {
     const onSuccess = () => {
-        ButterToast.raise({
-            content: <Cinnamon.Crisp title="ตู้ปันใจ"
-                content="Deleted successfully"
-                scheme={Cinnamon.Crisp.SCHEME_PURPLE}
-                icon={<DeleteSweep />}
-            />
-        })
+      ButterToast.raise({
+        content: <Cinnamon.Crisp title="ตู้ปันใจ"
+          content="Deleted successfully"
+          scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+          icon={<DeleteSweep />}
+        />
+      })
     }
-    if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')){
+    if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')) {
       props.deletePostMessage(id, onSuccess)
       window.location.reload()
     }
-    
-}
+
+  }
   // ==================================== FDT Report ====================================================
   return (
     <div>

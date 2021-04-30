@@ -42,6 +42,8 @@ const Form = ({ ...props }) => {
     const [money, setMoney] = useState(props.money);
     var newcoin = 0;
 
+    console.log(user_coin)
+
     const onSuccess = () => {
         ButterToast.raise({
             content: <Cinnamon.Crisp title="มูลนิธิ"
@@ -64,11 +66,17 @@ const Form = ({ ...props }) => {
 
             if (window.confirm('คุณต้องการที่จะบริจาค ' + coin + ' เหรียญ ใช่หรือไม่?')) {
 
-                if (newcoin <= 0) {
+                if (newcoin < 0) {
+
                     if (window.confirm('เหรียญของคุณไม่เพียงพอ กรุณาเติมเหรียญ')) {
                         window.location.href = "/pay-coin"
+
+                    } else {
+                        window.location.href = "/Foundation/" + props.category + "/" + props._id
                     }
-                } else {
+                    
+                }else {
+
                     console.log(newcoin)
                     console.log(post_id)
                     const data = { newcoin, coin, post_id, money }
@@ -81,14 +89,9 @@ const Form = ({ ...props }) => {
                     }).catch(error => console.log(error))
                 }
 
-                const data = { newcoin, coin }
-                axios.post('/authenticate/mycoin/' + currentUserID, data, {
-                }).then(res => {
-                    onSuccess()
-                    setMycoin(res.data.coin)
-                    //console.log(res.data.coin)
-                }).catch(error => console.log(error))
             }
+
+                
         }).catch(error => console.log(error))
 
     }

@@ -29,7 +29,9 @@ function Popup({ classes, ...props }) {
             once = true;
         }
     }
+
     onetime()
+
     return (
 
         <div className="dek" >
@@ -43,15 +45,20 @@ function Popup({ classes, ...props }) {
 
                         {
                             foundFDT.map((record, index) => {
+
                                 return (
+
                                     <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
                                         <Card className="foundat">
-                                            <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image} />
+                                            {/* {console.log(record.Image[0])} */}
+                                            <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image[0]} />
                                             <Card.Body>
-                                                <Link to={"/Foundation"} className="Tfound">{record.title}</Link>
+                                                <Link to={"/Foundation/" + record.category + "/" + record._id} className="Tfound">{record.title}</Link>
                                                 <div className="information">ต้องการรับบริจาค : {record.item}</div>
                                                 <div className="information">จำนวน : {record.n_item}</div>
-                                                <div className="information-1">วันที่ลง : {record.Timestamp}</div>
+                                                <div className="information">ที่อยู่ : {record.address}</div>
+                                                <div className="information">เบอร์โทรศัพท์ : {record.phone} </div>
+                                                <div className="information-1">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
                                                 <Link to={"/Foundation/" + record.category + "/" + record._id} className="CardTitle">อ่านเพิ่มเติม</Link>
 
                                             </Card.Body>
