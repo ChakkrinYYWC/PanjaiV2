@@ -7,7 +7,7 @@ import ButterToast, { Cinnamon } from "butter-toast";
 import { DeleteSweep, AccessAlarm, ThreeDRotation, AssignmentTurnedIn } from "@material-ui/icons";
 import { connect } from 'react-redux';
 import * as action from '../../action/postPanjai'
-
+import SlideShow from "react-image-show";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,12 +15,16 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
+import {
+
+  Grid
+} from "@material-ui/core";
 
 var once = false
 /*----------------------------------------------------------------------*/
 
 function Noti(props) {
-  console.log(props)
+  //console.log(props)
 
   const [post, setPost] = useState([])
 
@@ -52,24 +56,24 @@ function Noti(props) {
     }
   }
   onetime()
-  console.log(post)
+  //console.log(post)
 
   const onDelete = id => {
     const onSuccess = () => {
-        ButterToast.raise({
-            content: <Cinnamon.Crisp title="ตู้ปันใจ"
-                content="Deleted successfully"
-                scheme={Cinnamon.Crisp.SCHEME_PURPLE}
-                icon={<DeleteSweep />}
-            />
-        })
+      ButterToast.raise({
+        content: <Cinnamon.Crisp title="ตู้ปันใจ"
+          content="Deleted successfully"
+          scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+          icon={<DeleteSweep />}
+        />
+      })
     }
-    if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')){
+    if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')) {
       props.deletePostMessage(id, onSuccess)
       window.location.reload()
     }
-    
-}
+
+  }
   // ==================================== FDT Report ====================================================
   return (
     <div>
@@ -90,10 +94,24 @@ function Noti(props) {
                   return (
                     <div className="column  ">
                       <Card className="foundat">
-                        <Card.Img
+
+                        {/* <Card.Img
                           variant="top"
                           src={'http://localhost:3001/image/' + record.post.image}
-                        />
+                        /> */}
+                        <Grid container justify="center">
+                          <SlideShow className="imageslide"
+                            images={record.post.image}
+                            width="400px"
+                            imagesWidth="400px"
+                            imagesHeight="200px"
+                            imagesHeightMobile="56vw"
+                            thumbnailsWidth="520px"
+                            thumbnailsHeight="12vw"
+                            // className={classes.picture}
+                            indicators fixedImagesHeight
+                          />
+                        </Grid>
                         <Card.Body>
                           <Link className="Tfound"></Link>
                           <div className="information">{record.post.title}</div>

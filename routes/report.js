@@ -16,26 +16,26 @@ router.get('/', (req, res) => {
     })
 })
 router.post('/addFav/:id', (req, res) => {
-    console.log("Post_id: "+req.params.id)
-    console.log("currentuser_id: "+req.body.currentUser_id)
+    console.log("Post_id: " + req.params.id)
+    console.log("currentuser_id: " + req.body.currentUser_id)
 
-    user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { favorite: req.params.id } }, function(error,update){
-        if(error){
+    user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { favorite: req.params.id } }, function (error, update) {
+        if (error) {
             console.log(error)
         }
     })
 })
 
 router.post('/:id', (req, res) => {
-    console.log("Post_id: " + req.params.id)
-    console.log("currentuser_id: "+req.body.currentUser_id)
-    console.log("currentuser: "+req.body.currentUser)
+    //console.log("Post_id: " + req.body.post_id)
+    //console.log("currentuser_id: " + req.body.currentUser_id)
+    //console.log("currentuser: " + req.body.currentUser)
     var newRecord = new Report({
         from: req.body.currentUser,
         user_id: req.body.currentUser_id,
-        post_id: req.params.id 
+        post_id: req.params.id
     })
-    console.log(newRecord)
+    //console.log(newRecord)
     newRecord.save((err, docs) => {
         if (!err)
             res.send(docs)

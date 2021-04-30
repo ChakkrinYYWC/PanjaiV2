@@ -19,21 +19,22 @@ const jwtConfig = require("../config/jwtConfig");
 const user = require('../model/user');
 const dashboard = require('../model/dashboard');
 var { PostFDT } = require('../model/postFDT')
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('./cloudinary');
 
-const storage = multer.diskStorage({
-    destination: './public/uploads/IDcard',
+const storage = new CloudinaryStorage({
+    cloudinary,
+    allowedFormats: ['jpg', 'png'],
+    params: {
+        folder: 'ID_Card',
+    },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        cb(null, file.originalname);
     }
+
 });
-const imageFilter = function (req, file, cb) {
-    var ext = path.extname(file.originalname);
-    if (ext !== '.png' && ext !== '.gif' && ext !== '.jpg' && ext !== '.jpeg') {
-        return cb(new Error('Only image is allowed'), false)
-    }
-    cb(null, true);
-};
-const upload = multer({ storage: storage, fileFilter: imageFilter });
+
+const uploadCloud = multer({ storage: storage });
 
 /*-------------------------------------------------------------------------------*/
 // server.post('/isLogin',async (req, res)=>{
@@ -87,7 +88,7 @@ server.post("/login", async function (req, res, next) {
                             res.send(error)
                         } else {
                             const data = [token, Userdata.username, Userdata._id, Userdata.email, Userdata.address, Userdata.phone, Userdata.name, Userdata.coin]
-                           
+
                             //console.log(data)
                             res.send(data)
                         }
@@ -189,7 +190,7 @@ server.get('/register', (req, res) => {
             console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
     })
 })
-server.post("/register", upload.single('IDcard'), function (req, res) {
+server.post("/register", uploadCloud.single('IDcard'), function (req, res) {
     console.log('filename: ' + req.file.filename)
     user.register(new user({ name: req.body.name, username: req.body.username, idcard: req.file.filename, email: req.body.email, address: req.body.address, phone: req.body.phone, coin: 0, accessToken: null, isbaned: "no", month: req.body.month, year: req.body.year, piece_available: 4 }), req.body.password, function (error, user) {
         if (error) {
@@ -348,7 +349,7 @@ server.post('/mycoin/:id', async (req, res) => {
 })
 /*-------------------------------------------------------------------------------*/
 server.post('/getdashboard/:id', async (req, res) => {
-    console.log(req.params.id)
+    //console.log(req.params.id)
     const wantee = new Date()
     let check = await dashboard.aggregate([
         {
@@ -383,7 +384,7 @@ server.post('/getdashboard/:id', async (req, res) => {
     ])
     //console.log(find)
     const DATA = [find[0].number, find[1].number, find[2].number, find[3].number, find[4].number, find[5].number, find[6].number, find[7].number, find[8].number, find[9].number, find[10].number, find[11].number]
-    console.log(DATA)
+    //console.log(DATA)
     res.send(DATA)
 })
 /*-------------------------------------------------------------------------------*/

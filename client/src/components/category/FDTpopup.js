@@ -21,12 +21,16 @@ function Popup({ classes, ...props }) {
     const FDTword = localStorage.getItem('FDTclicked')
     async function onetime() {
         if (once == false) {
-            await Axios.get('/Foundation/FDTpopup/' + FDTword, {
-            }).then(async res => {
-                //console.log(res.data);
-                await setFoundFDT(res.data)
-            }).catch(error => console.log(error))
-            once = true;
+            if (FDTword == "เงิน") {
+                window.location.href = "/#003"
+            } else {
+                await Axios.get('/Foundation/FDTpopup/' + FDTword, {
+                }).then(async res => {
+                    //console.log(res.data);
+                    await setFoundFDT(res.data)
+                }).catch(error => console.log(error))
+                once = true;
+            }
         }
     }
 

@@ -145,7 +145,12 @@ function Profile({ classes, ...props }) {
             //once = true;
             await Axios.get('/profile/userInformation/' + currentUserID, {
             }).then(res => {
-                // console.log(res)
+                console.log(res.data)
+                setValues({
+                    name: res.data.name,
+                    phone: res.data.phone,
+                    address: res.data.address
+                })
                 setAllInform(res.data)
             }).catch(error => console.log(error))
 
@@ -156,7 +161,6 @@ function Profile({ classes, ...props }) {
             }).catch(error => console.log(error))
         }
     }
-
 
     useEffect(() => {
         onetime();
@@ -422,7 +426,7 @@ function Profile({ classes, ...props }) {
                                                                                 thumbnailsWidth="350px"
                                                                                 thumbnailsHeight="12vw"
                                                                                 className={classes.picture}
-                                                                                indicators  fixedImagesHeight
+                                                                                indicators fixedImagesHeight
                                                                             />
                                                                         </Grid>
                                                                     ))

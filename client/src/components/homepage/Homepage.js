@@ -81,6 +81,9 @@ function Homepage() {
   }
   onetime();
   async function FDTclicked(data) {
+    if (data == "เงิน") {
+      handleClose()
+    }
     localStorage.setItem('FDTclicked', data)
   }
   //console.log(allitem)

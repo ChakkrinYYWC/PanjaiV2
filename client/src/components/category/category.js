@@ -109,10 +109,10 @@ function Category({ ...props }) {
                                                     <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
                                                         <Card className="foundat">
 
-                                                            <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image[0]} /> 
-                                                            
-                                                               
-                                                       
+                                                            <Card.Img variant="top" src={record.image[0]} />
+
+
+
                                                             {/* <Card.Img variant="top" img src={'http://localhost:3001/Foundation/' + image}/> //multi image */}
 
 
