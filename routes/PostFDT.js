@@ -8,23 +8,22 @@ const mongoose = require("mongoose");
 
 var { PostFDT } = require('../model/postFDT')
 var { background } = require('../model/background')
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('./cloudinary');
 
-const storage = multer.diskStorage({
-    destination: './public/uploads/Foundation',
+const storage = new CloudinaryStorage({
+    cloudinary,
+    allowedFormats: ['jpg', 'png'],
+    params: {
+        folder: 'Foundation',
+    },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        cb(null, file.originalname);
     }
+
 });
 
-const imageFilter = function (req, file, cb) {
-    var ext = path.extname(file.originalname);
-    if (ext !== '.png' && ext !== '.gif' && ext !== '.jpg' && ext !== '.jpeg') {
-        return cb(new Error('Only image is allowed'), false)
-    }
-    cb(null, true);
-};
-
-const upload = multer({ storage: storage, fileFilter: imageFilter });
+const uploadCloud = multer({ storage: storage });
 
 router.get('/', (req, res) => {
     PostFDT.find((err, docs) => {
@@ -77,21 +76,22 @@ router.post('/addFav/:id', (req, res) => {
     })
 })
 
-router.post('/', upload.array('image'), async function (req, res) {
+router.post('/', uploadCloud.array('image'), async function (req, res) {
     // console.log('******')
     // console.log(req.body.category)
-    var Photo_name = [];
+    console.log('***')
+
+    const urls = []
+    req.files.forEach(file => urls.push(file.path))
+
     const allItem = [req.body.item1, req.body.item2, req.body.item3]
-    for (let i = 0; i < req.files.length; i++) {
-        Photo_name.push(req.files[i].filename)
-    }
     var newRecord = new PostFDT({
         title: req.body.title,
         message: req.body.message,
         n_item: req.body.n_item,
         promptpay: req.body.promptpay,
         category: req.body.category,
-        image: Photo_name,
+        image: urls,
         endtime: req.body.endtime,
         address: req.body.address,
         phone: req.body.phone,

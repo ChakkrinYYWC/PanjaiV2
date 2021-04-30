@@ -209,26 +209,20 @@ function Categoryshow({ classes, ...props }) {
                                             </center>
                                             <div className="Tt">{record.title}</div>
                                             <center>
-                                                {
-                                                    Array_image = [],
-                                                    record.image.map((image, index) => {
-                                                        Array_image.push('http://localhost:3001/Foundation/' + image)
-                                                    }),
-                                                    < Grid container justify="center">
-                                                        <SlideShow className="imageslide"
-                                                            images={Array_image}
+                                                < Grid container justify="center">
+                                                    <SlideShow className="imageslide"
+                                                        images={record.image}
 
-                                                            imagesWidth="600px"
-                                                            imagesHeight="400px"
-                                                            imagesHeightMobile="36vw"
+                                                        imagesWidth="600px"
+                                                        imagesHeight="400px"
+                                                        imagesHeightMobile="36vw"
 
-                                                            thumbnailsWidth="920px"
-                                                            thumbnailsHeight="12vw"
+                                                        thumbnailsWidth="920px"
+                                                        thumbnailsHeight="12vw"
 
-                                                            indicators thumbnails fixedImagesHeight
-                                                        />
-                                                    </Grid>
-                                                }
+                                                        indicators thumbnails fixedImagesHeight
+                                                    />
+                                                </Grid>
                                                 {/* <div className="image01"> */}
 
                                                 {/* {
@@ -304,7 +298,7 @@ function Categoryshow({ classes, ...props }) {
                                                 <div className="infor">ที่อยู่ : {record.address}</div>
                                                 <div className="infor">เบอร์โทรศัพท์ : {record.phone} </div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
-                                                <div className="infor">วันสิ้นสุดโครงการ : {moment(record.endtime).calendar()}</div> 
+                                                <div className="infor">วันสิ้นสุดโครงการ : {moment(record.endtime).calendar()}</div>
                                                 {/* <div className="infor">วันที่สิ้นสุดโครงการ : {record.endtime}</div> */}
 
                                             </div>

@@ -20,7 +20,7 @@ var once = false
 /*----------------------------------------------------------------------*/
 
 function Noti(props) {
-  console.log(props)
+  //console.log(props)
 
   const [post, setPost] = useState([])
 
@@ -52,7 +52,7 @@ function Noti(props) {
     }
   }
   onetime()
-  console.log(post)
+  //console.log(post)
 
   const onDelete = id => {
     const onSuccess = () => {
