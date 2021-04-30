@@ -173,7 +173,7 @@ ul.card-stacks {
 
 ul.card-stacks li.stack {
   position: absolute;
-  left: 0px;
+  left: -100px;
   transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.02);
 }
 
@@ -210,20 +210,13 @@ ul.card-stacks li.stack ul.cards-down li.card.card-2 {
   transform: rotateZ(-7deg);
 }
 
-  ul.card-stacks.transition li.stack.stack-2 {
-    left: 270px;
-  }
-
-  ul.card-stacks.transition li.stack.stack-3 {
-    left: 540px;
-  }
 
 ul.card-stacks.transition li.stack.stack-2 {
-  left: 220px;
+  left: 180px;
 }
 
 ul.card-stacks.transition li.stack.stack-3 {
-  left: 440px;
+  left: 460px;
 }
 
 ul.card-stacks.transition li.stack ul.cards-down li.card {
@@ -430,7 +423,7 @@ font-size: 20px;
   background-color: rgb(248, 248, 247);
   height: 80%;
   width: 70%;
-  padding: 10px 50px;
+  
   display: block;
   margin: 0 auto;
   font-family: "Mali", cursive;
@@ -440,6 +433,10 @@ font-size: 20px;
   font-size: 30px;
   font-weight: bold;
   text-align: center;
+}
+.table-dashboaed {
+  width: 700px;
+  margin: 0 auto;
 }
 
 /*responsive*/
@@ -512,6 +509,38 @@ h2 {
   margin-right: 0px; 
  margin-left: 0px;
 }
+.bg-dashboaed {
+  background-color: rgba(231, 222, 208, 0.925);
+  height: auto;
+  width: 100%;
+  margin: 0;
+  font-family: "Mali", cursive;
+  padding: 20px;
+}
+.bg-dashboaed1 {
+  background-color: rgb(248, 248, 247);
+  height: 80%;
+  width: 70%;
+ 
+  display: block;
+  margin: 0 auto;
+  font-family: "Mali", cursive;
+}
+.bg-dashboaed p {
+  color: rgba(102, 66, 9, 0.925);
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+.table-dashboaed {
+  width: 500px;
+  margin: 0 auto;
+}
+ul.card-stacks li.stack {
+  position: absolute;
+  left: -80px;
+  transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.02);
+}
 }
 
 @media only screen and (max-width: 768px) {
@@ -574,6 +603,11 @@ h3 {
 
  }
 
+ ul.card-stacks li.stack {
+  position: absolute;
+  left: 80px;
+  transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.02);
+}
 ul.card-stacks {
 
   margin: 0px 20px 0px 60px;
@@ -661,7 +695,7 @@ ul.card-stacks li.stack ul.cards-down li.card div.content {
 }
 .tupanjai img {
   vertical-align: middle;
-  width: 375px;
+  width: 360px;
   height: 350px;
 }
 .tupanjai p {
@@ -694,6 +728,33 @@ ul.card-stacks li.stack ul.cards-down li.card div.content {
   width: 360px;
   height: 320px;
   font-size: 20px;
+}.bg-dashboaed {
+  background-color: rgba(231, 222, 208, 0.925);
+  height: auto;
+  width: 100%;
+  margin: 0;
+  font-family: "Mali", cursive;
+  padding: 10px;
+}
+.bg-dashboaed1 {
+  background-color: rgb(248, 248, 247);
+  height: 80%;
+  width: 95%;
+  
+  display: block;
+  margin: 0 auto;
+  font-family: "Mali", cursive;
+}
+.bg-dashboaed p {
+  color: rgba(102, 66, 9, 0.925);
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+.table-dashboaed {
+  width: 300px;
+  margin: 0 auto;
+  
 }
 
 .card p {

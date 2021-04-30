@@ -7,7 +7,7 @@ import uuid from "uuid";
 import axios from 'axios';
 import ButterToast, { Cinnamon } from "butter-toast";
 import { AssignmentTurnedIn } from "@material-ui/icons";
-
+import './Form.css'
 
 const fdt_coin = [
     {
@@ -70,11 +70,13 @@ const Form = ({ ...props }) => {
 
                     if (window.confirm('เหรียญของคุณไม่เพียงพอ กรุณาเติมเหรียญ')) {
                         window.location.href = "/pay-coin"
+
                     } else {
                         window.location.href = "/Foundation/" + props.category + "/" + props._id
                     }
+                    
+                }else {
 
-                } else {
                     console.log(newcoin)
                     console.log(post_id)
                     const data = { newcoin, coin, post_id, money }
@@ -88,17 +90,19 @@ const Form = ({ ...props }) => {
                 }
 
             }
+
+                
         }).catch(error => console.log(error))
 
     }
 
     return (
-        <div align="center">
-            <h1>เหรียญของฉัน : {mycoin}</h1>
+        <div className="coindonate" align="center">
+            <h1><i class="fas fa-coins"></i> เหรียญของฉัน : {mycoin}</h1>
             {
                 fdt_coin.map(c => (
                     <>
-                        <Button
+                        <Button className="btcoindonate"
                             onClick={() => handleSubmit(c.coin)}
                             color="primary"
                         >

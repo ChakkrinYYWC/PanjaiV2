@@ -15,6 +15,7 @@ import {
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { ACTION_TYPES } from "../../action/postPanjai";
+import SlideShow from "react-image-show";
 
 const styles = (theme) => ({
   paper: {
@@ -82,10 +83,10 @@ function Myfav({ classes }) {
   const currentUser_phone = localStorage.getItem("currentUser_phone");
   const currentUser_address = localStorage.getItem("currentUser_address");
   const currentUser_id = localStorage.getItem("currentUser_id");
-
+  var Array_image = [];
   const [fav, setFav] = useState([]);
 
-    function GetFav() {
+  function GetFav() {
     Axios.post("/profile/favorite/" + currentUser_id, {})
       .then((res) => {
         console.log(res);
@@ -97,16 +98,16 @@ function Myfav({ classes }) {
     return false;
   }
 
-  const requestItem =  (id) => {
+  const requestItem = (id) => {
     const data = { currentUser_id, currentUser };
     Axios.post("/Too-Panjai/addRequest/" + id, data, {})
       .then((res) => {
         console.log(res);
       })
-      .catch((error) => console.log(error));  
+      .catch((error) => console.log(error));
   };
 
-  
+
 
   const unfavoriteItem = (id) => {
     const data = { currentUser_id, currentUser };
@@ -117,14 +118,14 @@ function Myfav({ classes }) {
       .catch((error) => console.log(error));
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     GetFav()
-  },[])
+  }, [])
 
   return (
-      <Container style={{marginTop: '30px'}}>
-      <Grid container style={{padding:'0 auto'}} spacing={4}>
-        
+    <Container style={{ marginTop: '30px' }}>
+      <Grid container style={{ padding: '0 auto' }} spacing={4}>
+
         {fav.map((record, index) => {
           return (
             <Grid item xs={12} sm={4}>
@@ -144,12 +145,29 @@ function Myfav({ classes }) {
                         ข้อมูล : {record.message}
                       </div>
 
-                      <div className={classes.frampicture}>
-                        <img
-                          src={"http://localhost:3001/image/" + record.image}
-                          className={classes.picture}
-                        />
-                      </div>
+                      {
+                        ((Array_image = []),
+                          record.image.map((image, index) => {
+                            Array_image.push(
+                              "http://localhost:3001/image/" + image
+                            );
+                          }),
+                          (
+                            <Grid container justify="center">
+                              <SlideShow className="imageslide"
+                                images={Array_image}
+                                width="400px"
+                                imagesWidth="300px"
+                                imagesHeight="180px"
+                                imagesHeightMobile="56vw"
+                                thumbnailsWidth="350px"
+                                thumbnailsHeight="12vw"
+                                className={classes.picture}
+                                indicators thumbnails fixedImagesHeight
+                              />
+                            </Grid>
+                          ))
+                      }
 
                       <div className={`${classes.color1} ${classes.frontpost}`}>
                         เวลาที่ลง : {moment(record.Timestamp).calendar()}
@@ -201,7 +219,7 @@ function Myfav({ classes }) {
           );
         })}
       </Grid>
-      </Container>
+    </Container>
   );
 }
 

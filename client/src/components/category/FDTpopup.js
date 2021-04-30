@@ -21,21 +21,23 @@ function Popup({ classes, ...props }) {
     const FDTword = localStorage.getItem('FDTclicked')
     async function onetime() {
         if (once == false) {
-            Axios.get('/Foundation/FDTpopup/' + FDTword, {
-            }).then(res => {
-                console.log(res.data);
-                setFoundFDT(res.data)
+            await Axios.get('/Foundation/FDTpopup/' + FDTword, {
+            }).then(async res => {
+                //console.log(res.data);
+                await setFoundFDT(res.data)
             }).catch(error => console.log(error))
             once = true;
         }
     }
+
     onetime()
+
     return (
 
         <div className="dek" >
             <div className="box-white">
 
-                <div className="Title"><i className="fab fa-gratipay"></i>มูลนิธิที่ต้องการ "{foundFDT[0].item}"<i className="fab fa-gratipay"></i></div>
+                <div className="Title"><i className="fab fa-gratipay"></i>มูลนิธิที่ต้องการ "{localStorage.getItem('FDTclicked')}"<i className="fab fa-gratipay"></i></div>
                 <div className="foundation">
                     <div className="row m-0">
 
@@ -43,15 +45,20 @@ function Popup({ classes, ...props }) {
 
                         {
                             foundFDT.map((record, index) => {
+
                                 return (
+
                                     <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
                                         <Card className="foundat">
-                                            <Card.Img variant="top" src={'http://localhost:3001/Foundation/'+record.image} />
+                                            {/* {console.log(record.Image[0])} */}
+                                            <Card.Img variant="top" src={'http://localhost:3001/Foundation/' + record.image[0]} />
                                             <Card.Body>
-                                                <Link to={"/Foundation"} className="Tfound">{record.title}</Link>
+                                                <Link to={"/Foundation/" + record.category + "/" + record._id} className="Tfound">{record.title}</Link>
                                                 <div className="information">ต้องการรับบริจาค : {record.item}</div>
                                                 <div className="information">จำนวน : {record.n_item}</div>
-                                                <div className="information-1">วันที่ลง : {record.Timestamp}</div>
+                                                <div className="information">ที่อยู่ : {record.address}</div>
+                                                <div className="information">เบอร์โทรศัพท์ : {record.phone} </div>
+                                                <div className="information-1">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
                                                 <Link to={"/Foundation/" + record.category + "/" + record._id} className="CardTitle">อ่านเพิ่มเติม</Link>
 
                                             </Card.Body>

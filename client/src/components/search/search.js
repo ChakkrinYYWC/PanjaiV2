@@ -54,31 +54,47 @@ export default function Checkboxes() {
     setChecked(event.target.checked);
   };
 
+
+  const styles = (theme) => ({
+    smMargin: {
+      "&:hover": {
+        backgroundColor: "rgba(85, 52, 4, 0.925)",
+      },
+      margin: theme.spacing(1),
+      background: "rgba(187, 130, 44, 0.925)",
+    },
+
+    smMargin1: {
+      "&:hover": {
+        backgroundColor: "rgba(85, 52, 4, 0.925)",
+      },
+      margin: theme.spacing(1),
+      background: "#a13800",
+    }
+  });
+
+
   // console.log(postTPJ)
   console.log(postFDT)
 
-  function Loop() {
-
-  }
-
   return (
-    <div className ='doublebg' >
-    <div className='background-search'>
-      <center>
-        <div className="search-bar">
-          <form className="ui-form">
-            <div className="field">
-              <input
-                onChange={(event) => {
-                  setSearchInput(event.target.value)
-                }}
-                type="text"
-                className="ui-input"
-                placeholder="ชื่อมูลนิธิ, สิ่งของ" />
-              <button onClick={Search} type='submit' className="search-bt">ค้นหา</button>
-            </div>
-          </form>
-        </div>
+    <div className='doublebg' >
+      <div className='background-search'>
+        <center>
+          <div className="search-bar">
+            <form className="ui-form">
+              <div className="field">
+                <input
+                  onChange={(event) => {
+                    setSearchInput(event.target.value)
+                  }}
+                  type="text"
+                  className="ui-input"
+                  placeholder="ค้นหามูลนิธิ, สิ่งของ" />
+                <button onClick={Search} type='submit' className="search-bt">ค้นหา</button>
+              </div>
+            </form>
+          </div>
         </center>
         <div className='flex'>
           {/* <Checkbox
@@ -108,47 +124,47 @@ export default function Checkboxes() {
             inputProps={{ "aria-label": "checkbox with default color" }}
           /> */}
           <span className="check3" style={{ color: "black" }}>
-           <Link to ="/testaroundme" align = 'right' >ใกล้ฉัน</Link>
+            <Link to="/testaroundme" align='right' >ใกล้ฉัน</Link>
           </span>
         </div>
-      
-
-      <div className="bg2">
-        <center className="head">
-          <h2> มูลนิธิ</h2>
-        </center>
-        
-        <div className="row m-0">
-
-          {
-            postFDT.map((record, index) => {
-              return (
-                
-                <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
-                  <Card className="foundat">
-                    <img
-                      variant="top"
-                      src={'http://localhost:3001/image/' + record.image}
-                    />
-                    <Card.Body>
-                      <Link className="Tfound">{record.title}</Link>
-                      <div className="information">ต้องการรับบริจาค :{record.item}</div>
-                      <div className="information">จำนวน :{record.n_item}</div>
-                      <div className="information-1">วันที่ลง :{record.Timestamp}</div>
-                      <Link className="CardTitle">อ่านเพิ่มเติม</Link>
-                    </Card.Body>
-                  </Card>
-                </div>
-              )
-            })
-
-          }
 
 
-{/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////           */}
+        <div className="bg2">
+          <center className="head">
+            <h2> มูลนิธิ</h2>
+          </center>
 
-     
-          
+          <div className="row m-0">
+
+            {
+              postFDT.map((record, index) => {
+                return (
+
+                  <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                    <Card className="foundat">
+                      <img
+                        variant="top"
+                        src={'http://localhost:3001/image/' + record.image}
+                      />
+                      <Card.Body>
+                        <Link className="Tfound">{record.title}</Link>
+                        <div className="information">ต้องการรับบริจาค :{record.item}</div>
+                        <div className="information">จำนวน :{record.n_item}</div>
+                        <div className="information-1">วันที่ลง :{record.Timestamp}</div>
+                        <Link className="CardTitle">อ่านเพิ่มเติม</Link>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                )
+              })
+
+            }
+
+
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////           */}
+
+
+
             {/* <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
             <Card className="foundat">
               <Card.Img
@@ -165,14 +181,14 @@ export default function Checkboxes() {
             </Card></div> */}
 
 
-{/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-        </div>
+            {/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          </div>
 
-        <center className="head">
-          <h2> ตู้ปันใจ </h2>{" "}
-        </center>
+          <center className="head">
+            <h2> ตู้ปันใจ </h2>{" "}
+          </center>
 
-        <div className="row m-0">
+          <div className="row m-0">
           {
             postTPJ.map((record, index) => {
               return (
@@ -185,71 +201,40 @@ export default function Checkboxes() {
                     />
                     <Card.Body>
                       <Link className="Tfound">{record.title}</Link>
-                      <div className="information">ผู้สร้าง :{record.creator}</div>
+                      <div className="information">โทร :{record.contect}</div>
                       <div className="information">จังหวัด :{record.location}</div>
+                      <div className="information">ผู้สร้าง :{record.creator}</div>
                       <div className="information-1">วันที่ลง :{record.Timestamp}</div>
                       <div className="pum">
-                        <Button
+                        <button
                           variant="contained"
-                          color="primary"
+                          // color="primary"
                           size="small"
                           className="want" // จำเป็น
                         >
                           ขอรับ
-                </Button>
-                        <Button
+                </button>
+                        <button
                           variant="contained"
-                          color="secondary"
+                          // color="secondary"
                           size="small"
                           className="fav"
                         >
                           ถูกใจ
-                </Button>
+                </button>
                       </div>
                     </Card.Body>
                   </Card>
                 </div>
-              )
-            })
+                )
+              })
 
-          }
-          {/* <div className="column col-4">
-          // <div className="column col-xs-6 col-sm-6 col-md-6 col-lg-4">
-            <Card className="foundat">
-              <Card.Img
-                variant="top"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnmt84Z13XWVUnKhEhuKpf18Kzy190Yz-7g&usqp=CAU"
-              />
-              <Card.Body>
-                <Link className="Tfound">บริจาคอะไร</Link>
-                <div className="information">ผู้สร้าง :</div>
-                <div className="information">จังหวัด :</div>
-                <div className="information-1">วันที่ลง :</div>
-                <div className="pum">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    className="want" // จำเป็น
-                  >
-                    ขอรับ
-                </Button>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    className="fav"
-                  >
-                    ถูกใจ
-                </Button>
-                </div>
-              </Card.Body>
-            </Card>
-          </div> */}
+            }
+       
 
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }

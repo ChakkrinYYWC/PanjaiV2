@@ -4,7 +4,7 @@ import axios from 'axios'
 import uuid from "uuid";
 import { AssignmentTurnedIn } from "@material-ui/icons";
 import ButterToast, { Cinnamon } from "butter-toast";
-
+import './PayForm.css'
 // function PayForm({ money, cart }) {
 
 const money = [
@@ -59,7 +59,7 @@ class PayForm extends Component {
                 icon={<AssignmentTurnedIn />}
             />
         })
-        window.location.href = "/pay-coin" 
+        window.location.href = "/pay-coin"
     }
 
     createCreditCardCharge = async (email, name, amount, token, user_id, my_coin) => {
@@ -110,33 +110,49 @@ class PayForm extends Component {
 
 
         return (
-            <>
-                <div className="money">
-                    <h1>เติมเหรียญ</h1>
-                    <h1>เหรียญของฉัน : {My_coin}</h1>
-                    {money.map(m => (
-                        <div key={m.id} className="product__item">
-                            <h1>{m.title}</h1>
-                            <Checkout
-                                money={new Intl.NumberFormat().format(m.price / 100)}
-                                user_id={currentUserID}
-                                user_name={user_name}
-                                user_email={user_email}
-                                my_coin={My_coin}
-                                //cart={cart}
-                                createCreditCardCharge={this.createCreditCardCharge}
-                            />
 
-                            {/* 
+            <>
+                <div className="big-backgroundcoin">
+                    <center>
+                        <div className="backgroundcoin">
+                            <div className="money">
+                                <h1 className="addcoinnn"> เติมเหรียญ </h1>
+                                 <i class="fa fa-piggy-bank"></i>
+                                 
+                                <h1 className="coinofme">เหรียญของฉัน : {My_coin}</h1>
+                                <div className="racarcoin">
+                                {money.map(m => (
+                                    <div key={m.id} className="product__item">
+                                        <div className="row m-0">
+                                            <div className="column col-6 ">
+                                                <h1><i class="fas fa-coins"></i> {m.title} </h1>
+                                            </div>
+                                            <div className="column col-6 ">
+                                                <Checkout
+                                                    money={new Intl.NumberFormat().format(m.price / 100)}
+                                                    user_id={currentUserID}
+                                                    user_name={user_name}
+                                                    user_email={user_email}
+                                                    my_coin={My_coin}
+                                                    //cart={cart}
+                                                    createCreditCardCharge={this.createCreditCardCharge}
+                                                />
+                                            </div>
+                                        </div>
+                                        {/* 
                         <button className="btn" onClick={addToCart(m.id)}>
                             {new Intl.NumberFormat().format(m.price / 100)} Baht
                         </button> */}
 
+                                    </div>
+                                ))}
+                                </div>
+                            </div>
                         </div>
-                    ))}
+                    </center>
                 </div>
-
             </>
+
         );
     }
 }

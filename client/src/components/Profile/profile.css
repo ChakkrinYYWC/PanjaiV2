@@ -64,7 +64,7 @@
   color: rgba(85, 52, 4, 0.925);
   line-height: 30px;
   letter-spacing: 0.25px;
-  /* margin-bottom: 15px; */
+  margin-bottom: 0px;
   /* font-family: 'Mali', cursive; */
 }
 
@@ -150,6 +150,32 @@
   padding: 0px;
   color: rgb(112, 87, 37);
 }
+
+.coin p{
+
+  color: #7e600d;
+text-align: center;
+font-size: 15px;
+
+
+}
+
+
+.coin .addcoin{
+  color: #cca844;
+  font-family: "Mali", cursive;
+  margin-left: 40px;
+  padding: 0px 5px;
+  background-color: rgba(206, 206, 201, 0.733);
+  border-radius: 20px;
+}
+
+.ka .addcoin{
+  font-size: 10px;
+  color: #cca844;
+}
+
+
 
 @media screen and (max-width: 1024px) {
   .container {
@@ -352,10 +378,11 @@
     color: rgba(85, 52, 4, 0.925);
     line-height: 30px;
     letter-spacing: 0.25px;
-    /* margin-bottom: 15px; */
+    margin-bottom: 5px;
+    margin-top: 5px;
     /* font-family: 'Mali', cursive; */
     font-size: 12px;
-    width: 180px;
+    width: 250px;
   }
   
   .box-text-profile span {
@@ -447,6 +474,14 @@
     grid-template-columns: 80px 80px;
     padding: 10px 80px;
     
+}
+.coin .addcoin{
+  color: #cca844;
+  font-family: "Mali", cursive;
+  margin-left: 30px;
+  padding: 0px 5px;
+  background-color: rgba(206, 206, 201, 0.733);
+  border-radius: 20px;
 }
  
 }

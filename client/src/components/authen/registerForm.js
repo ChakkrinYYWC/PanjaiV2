@@ -2,7 +2,7 @@ import Axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { render } from 'react-dom';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import loginImg from "../img/login.svg";
 import "./register.css";
 
@@ -48,6 +48,9 @@ function RegisterFrom() {
             formData.append('address', address)
             formData.append('phone', phone)
             formData.append('PanjaiToken', PanjaiToken)
+            const nowDay = new Date();
+            formData.append('month', (nowDay.getMonth() + 1))
+            formData.append('year', nowDay.getFullYear())
             //console.log(JSON.stringify(formData))
             Axios.post('/authenticate/register', formData, {
                 headers: {
@@ -59,7 +62,7 @@ function RegisterFrom() {
                     window.alert("Error: " + res.data.message)
                     console.log("error")
                 } else {
-                    window.location.href = "http://localhost:3000/Login"
+                    window.location.href = "/Login"
                 }
             }).catch(error => console.log(error))
         }

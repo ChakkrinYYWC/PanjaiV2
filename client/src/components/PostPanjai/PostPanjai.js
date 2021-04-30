@@ -29,11 +29,16 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { If, Then, ElseIf, Else } from "react-if-elseif-else-render";
 import Icon from "@material-ui/core/Icon";
 import Axios from "axios";
-
+import Slideshow from "./Slideshow";
 import SlideShow from "react-image-show";
+import styled from 'styled-components'
+
 import './PostPanjai.css'
 const currentUser = localStorage.getItem("currentUser");
 const currentUser_id = localStorage.getItem("currentUser_id");
+const user_id = localStorage.getItem('currentUser_id')
+
+var once = false
 
 const styles = (theme) => ({
   paper: {
@@ -114,6 +119,17 @@ const PostPanjai = ({ classes, ...props }) => {
   const open = Boolean(anchorEl);
   var Array_image = [];
 
+  // async function onetime() {
+  //   if (once == false) {
+  //     await Axios.post('/search/getPieceAvailable/' + user_id, {
+  //     }).then(async res => {
+  //       await localStorage.setItem('pieceAvailable', res.data)
+  //     }).catch(error => console.log(error))
+  //     once = true
+  //   }
+  // }
+  // onetime()
+
   useEffect(() => {
     props.fetchAllPostPanjai()
     window.scrollTo({
@@ -171,7 +187,9 @@ const PostPanjai = ({ classes, ...props }) => {
     if (window.confirm("Do you want to request?")) {
       Axios.post("/Too-Panjai/addRequest/" + id, data, {})
         .then((res) => {
-          console.log(res);
+          if (res) {
+            window.alert(res.data)
+          }
         })
         .catch((error) => console.log(error));
     }
@@ -209,16 +227,17 @@ const PostPanjai = ({ classes, ...props }) => {
   return (
     <>
       {/* <Slideshow data={urlArray} /> */}
-      <Grid container justify="center">
-        <Grid item lg={4}>
           {/* กรอบโพส */}
           {/* <Box bgcolor="primary.main" color="primary.contrastText" p={2}> */}
+          <PostWrapper>
           <Paper className={`${classes.post1} ${classes.bg}`}>
             <PostPanjaiForm {...{ currentId, setCurrentId }} />
           </Paper>
+
+          </PostWrapper>
+         
           {/* </Box> */}
-        </Grid>
-      </Grid>
+     
       <Grid container spacing={3}>
         {/* ฝั่งขวา ใช้ classes.ชื่ออื่่น */}
         {props.postPanjaiList.map((record, index) => {
@@ -306,10 +325,10 @@ const PostPanjai = ({ classes, ...props }) => {
                             <SlideShow className="imageslide"
                               images={Array_image}
                               width="400px"
-                              imagesWidth="400px"
-                              imagesHeight="200px"
+                              imagesWidth="300px"
+                              imagesHeight="180px"
                               imagesHeightMobile="56vw"
-                              thumbnailsWidth="520px"
+                              thumbnailsWidth="350px"
                               thumbnailsHeight="12vw"
                               className={classes.picture}
                               indicators thumbnails fixedImagesHeight
@@ -417,3 +436,10 @@ export default connect(
   mapStateToProps,
   mapActionToProps
 )(withStyles(styles)(PostPanjai));
+
+const PostWrapper = styled.div`
+  >*{
+    max-width:400px;
+    margin: 0 auto;
+  }
+`

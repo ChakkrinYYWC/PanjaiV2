@@ -17,6 +17,7 @@ const jwtConfig = require("../config/jwtConfig");
 
 //model
 const user = require('../model/user');
+const dashboard = require('../model/dashboard');
 var { PostFDT } = require('../model/postFDT')
 
 const storage = multer.diskStorage({
@@ -85,10 +86,51 @@ server.post("/login", async function (req, res, next) {
                             console.log(error)
                             res.send(error)
                         } else {
-                            //console.log("User logged in");
                             const data = [token, Userdata.username, Userdata._id, Userdata.email, Userdata.address, Userdata.phone, Userdata.name, Userdata.coin]
+                           
                             //console.log(data)
                             res.send(data)
+                        }
+                    })
+                    let result = await user.aggregate([
+                        {
+                            $match: {
+                                "username": req.body.username
+                            }
+                        },
+                    ])
+                    const nowDay = new Date();
+                    if (result[0].month !== nowDay.getMonth() + 1 || result[0].year !== nowDay.getFullYear()) {
+                        user.findByIdAndUpdate(Userdata, { month: nowDay.getMonth() + 1, year: nowDay.getFullYear(), piece_available: 4 }, await function (error, update) {
+                            if (error) {
+                                console.log(error)
+                            } else {
+                                console.log("=====piece_available Update!!=====")
+                            }
+                        })
+                    }
+                    let find = await dashboard.aggregate([
+                        {
+                            $match: {
+                                type: "numberOfUser"
+                            }
+                        },
+                        {
+                            $sort: {
+                                "month": 1
+                            }
+                        },
+                        {
+                            $match: {
+                                month: nowDay.getMonth() + 1
+                            }
+                        },
+                    ])
+                    //console.log(find)
+                    dashboard.findByIdAndUpdate(find[0]._id, { number: find[0].number + 1 }, (err, docs) => {
+                        if (err) {
+                            console.log(err)
+                            //res.send(docs)
                         }
                     })
                 })(req, res, next);
@@ -149,7 +191,7 @@ server.get('/register', (req, res) => {
 })
 server.post("/register", upload.single('IDcard'), function (req, res) {
     console.log('filename: ' + req.file.filename)
-    user.register(new user({ name: req.body.name, username: req.body.username, idcard: req.file.filename, email: req.body.email, address: req.body.address, phone: req.body.phone, coin: 0, accessToken: null, isbaned: "no" }), req.body.password, function (error, user) {
+    user.register(new user({ name: req.body.name, username: req.body.username, idcard: req.file.filename, email: req.body.email, address: req.body.address, phone: req.body.phone, coin: 0, accessToken: null, isbaned: "no", month: req.body.month, year: req.body.year, piece_available: 4 }), req.body.password, function (error, user) {
         if (error) {
             console.log("error: " + error);
             res.send(error)
@@ -239,7 +281,7 @@ server.post('/information/:id', (req, res) => {
     })
 })
 /*-------------------------------------------------------------------------------*/
-server.post('/mycoin/:id', (req, res) => {
+server.post('/mycoin/:id', async (req, res) => {
     var newmoney = 0
     var coin2 = 0
     // console.log(req.params.id)
@@ -247,6 +289,40 @@ server.post('/mycoin/:id', (req, res) => {
     // console.log(req.body.post_id)
     console.log('เงินที่มีอยู่ : ' + req.body.money)
     coin2 = req.body.coin * 2
+
+    // for (let index = 1; index <= 12; index++) {
+    //     dashboard.create({
+    //         type: "donation",
+    //         number: 0,
+    //         month: index,
+    //         year: new Date().getFullYear()
+    //     })
+    // }
+    const wantee = new Date()
+    let find = await dashboard.aggregate([
+        {
+            $match: {
+                type: "donation"
+            }
+        },
+        {
+            $sort: {
+                "month": 1
+            }
+        },
+        {
+            $match: {
+                month: wantee.getMonth() + 1
+            }
+        },
+    ])
+    //console.log(find)
+    dashboard.findByIdAndUpdate(find[0]._id, { number: find[0].number + req.body.coin }, (err, docs) => {
+        if (err) {
+            console.log(err)
+            //res.send(docs)
+        }
+    })
 
     const newData = user.findByIdAndUpdate(req.params.id, { coin: req.body.newcoin }, (err, docs) => {
         if (!err) {
@@ -269,6 +345,46 @@ server.post('/mycoin/:id', (req, res) => {
     //console.log(update._update.coin)
     res.send(newData._update)
 
+})
+/*-------------------------------------------------------------------------------*/
+server.post('/getdashboard/:id', async (req, res) => {
+    console.log(req.params.id)
+    const wantee = new Date()
+    let check = await dashboard.aggregate([
+        {
+            $match: {
+                type: "donation"
+            }
+        },
+        {
+            $sort: {
+                "month": 1
+            }
+        },
+    ])
+    if (check[0].year !== wantee.getFullYear()) {
+        dashboard.updateMany({}, { year: wantee.getFullYear(), number: 0 }, function (err) {
+            if (err) {
+                console.log(err)
+            }
+        });
+    }
+    let find = await dashboard.aggregate([
+        {
+            $match: {
+                type: req.params.id
+            }
+        },
+        {
+            $sort: {
+                "month": 1
+            }
+        },
+    ])
+    //console.log(find)
+    const DATA = [find[0].number, find[1].number, find[2].number, find[3].number, find[4].number, find[5].number, find[6].number, find[7].number, find[8].number, find[9].number, find[10].number, find[11].number]
+    console.log(DATA)
+    res.send(DATA)
 })
 /*-------------------------------------------------------------------------------*/
 module.exports = server;
