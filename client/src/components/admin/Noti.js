@@ -20,7 +20,7 @@ var once = false
 /*----------------------------------------------------------------------*/
 
 function Noti(props) {
-  console.log(props)
+  //console.log(props)
 
   const [post, setPost] = useState([])
 
@@ -52,24 +52,24 @@ function Noti(props) {
     }
   }
   onetime()
-  console.log(post)
+  //console.log(post)
 
   const onDelete = id => {
     const onSuccess = () => {
-        ButterToast.raise({
-            content: <Cinnamon.Crisp title="ตู้ปันใจ"
-                content="Deleted successfully"
-                scheme={Cinnamon.Crisp.SCHEME_PURPLE}
-                icon={<DeleteSweep />}
-            />
-        })
+      ButterToast.raise({
+        content: <Cinnamon.Crisp title="ตู้ปันใจ"
+          content="Deleted successfully"
+          scheme={Cinnamon.Crisp.SCHEME_PURPLE}
+          icon={<DeleteSweep />}
+        />
+      })
     }
-    if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')){
+    if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')) {
       props.deletePostMessage(id, onSuccess)
       window.location.reload()
     }
-    
-}
+
+  }
   // ==================================== FDT Report ====================================================
   return (
     <div>

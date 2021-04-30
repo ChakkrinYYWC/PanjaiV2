@@ -32,6 +32,8 @@ import Axios from "axios";
 import Slideshow from "./Slideshow";
 import SlideShow from "react-image-show";
 import styled from 'styled-components'
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import './PostPanjai.css'
 const currentUser = localStorage.getItem("currentUser");
@@ -117,11 +119,11 @@ const styles = (theme) => ({
   },
 });
 
-const options = [
-  // 'แก้ไข',
-  // 'ลบ',
-  "รายงานโพสต์",
-];
+// const options = [
+//   // 'แก้ไข',
+//   // 'ลบ',
+//   "รายงานโพสต์",
+// ];
 const ITEM_HEIGHT = 48;
 
 const PostPanjai = ({ classes, ...props }) => {
@@ -180,7 +182,7 @@ const PostPanjai = ({ classes, ...props }) => {
   const handleChange = (id, option) => {
     console.log('*' + option)
     console.log('*' + id)
-    reportItem(id)
+    //reportItem(id)
     // }
     setAnchorEl(null);
   };
@@ -188,9 +190,11 @@ const PostPanjai = ({ classes, ...props }) => {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log(event.currentTarget)
   };
 
   const handleClose = (event) => {
+    console.log(event)
     setAnchorEl(null);
   };
 
@@ -216,10 +220,11 @@ const PostPanjai = ({ classes, ...props }) => {
       .catch((error) => console.log(error));
   };
 
-  const reportItem = (id) => {
+  const reportItem = (post_id) => {
+    console.log(post_id)
     if (window.confirm("รายงานโพสนี้ใช่หรือไม่?")) {
-      const data = { id, currentUser, currentUser_id };
-      Axios.post("/report/" + id, data, {})
+      const data = { post_id, currentUser, currentUser_id };
+      Axios.post("/report/" + post_id, data, {})
         .then((res) => {
           console.log(res);
         })
@@ -239,17 +244,17 @@ const PostPanjai = ({ classes, ...props }) => {
   return (
     <>
       {/* <Slideshow data={urlArray} /> */}
-          {/* กรอบโพส */}
-          {/* <Box bgcolor="primary.main" color="primary.contrastText" p={2}> */}
-          <PostWrapper>
-          <Paper className={`${classes.post1} ${classes.bg}`}>
-            <PostPanjaiForm {...{ currentId, setCurrentId }} />
-          </Paper>
+      {/* กรอบโพส */}
+      {/* <Box bgcolor="primary.main" color="primary.contrastText" p={2}> */}
+      <PostWrapper>
+        <Paper className={`${classes.post1} ${classes.bg}`}>
+          <PostPanjaiForm {...{ currentId, setCurrentId }} />
+        </Paper>
 
-          </PostWrapper>
-         
-          {/* </Box> */}
-     
+      </PostWrapper>
+
+      {/* </Box> */}
+
       <Grid container spacing={3}>
         {/* ฝั่งขวา ใช้ classes.ชื่ออื่่น */}
         {props.postPanjaiList.map((record, index) => {
@@ -272,15 +277,32 @@ const PostPanjai = ({ classes, ...props }) => {
 
                         {currentUser !== record.creator && (
                           <Grid item sm={4} className={classes.judjudjud}>
-                            <IconButton
+                            {/* <IconButton
                               aria-label="more"
                               aria-controls="long-menu"
                               aria-haspopup="true"
                               onClick={handleClick}
                             >
                               <MoreVertIcon />
-                            </IconButton>
-                            <Menu
+                            </IconButton> */}
+                            <DropdownButton id="dropdown-item-button" title="">
+                              <span className="lover">
+                                <Dropdown.Item as="button">
+                                  {/* <div onClick={() => this.BlackListOn()} className="love">
+                                    <a>Blacklist</a>
+                                  </div> */}
+                                  <div
+                                    onClick={() =>
+                                      reportItem(record._id)
+                                      //console.log(record._id)
+                                    }
+                                  >
+                                    รายงานโพสต์
+                              </div>
+                                </Dropdown.Item>
+                              </span>
+                            </DropdownButton>
+                            {/* <Menu
                               id="long-menu"
                               anchorEl={anchorEl}
                               keepMounted
@@ -293,25 +315,22 @@ const PostPanjai = ({ classes, ...props }) => {
                                 },
                               }}
                             >
-                              {options.map((option) => (
-                                <MenuItem
-                                  key={option}
-                                  onClick={() =>
-                                    handleChange(record._id, option)
-                                  }
-                                >
-                                  {option}
-                                </MenuItem>
-                              ))}
-                            </Menu>
+                              <MenuItem
+                                onClick={() =>
+                                  // reportItem(record._id)
+                                  console.log(record._id)
+                                }
+                              >
+                                {record._id}
+                              </MenuItem>
+                            </Menu> */}
                           </Grid>
                         )}
                       </Grid>
-
                       <div className={classes.frontpost}>
                         ข้อมูล : {record.message}
                       </div>
-                      
+
                       <Grid container justify="center">
                         <SlideShow 
                           images={record.image}
