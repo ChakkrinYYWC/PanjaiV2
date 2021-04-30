@@ -167,7 +167,7 @@ text-align: left;
   font-family: "Mali", cursive;
   margin-left: 40px;
   padding: 0px 5px;
-  background-color:#D2B48C;
+  background-color:rgba(206, 206, 201, 0.733);
   border-radius: 20px;
 }
 
@@ -490,23 +490,13 @@ text-align: left;
     padding: 10px 80px;
     
 }
-.coin p{
-  justify-content: center;
-  font-size: 13px;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  gap: 8px;
-  flex-direction: column;
-  }
-  
-  .coin .addcoin{
-    margin-left: 10px;
-    padding: 0px 5px;
-    border-radius: 20px;
-  }
-  .kuy .addcoin{
-    font-size: 10px;
-  }
+.coin .addcoin{
+  color: #cca844;
+  font-family: "Mali", cursive;
+  margin-left: 30px;
+  padding: 0px 5px;
+  background-color: rgba(206, 206, 201, 0.733);
+  border-radius: 20px;
+}
  
 }

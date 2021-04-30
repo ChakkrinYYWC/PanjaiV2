@@ -26,7 +26,9 @@ const useStyles = makeStyles({
        
     },
     bg: {
-        backgroundColor: ' rgb(255, 236, 179)',
+        backgroundColor: 'rgb(255, 236, 179)',
+        
+        
        
     }
     

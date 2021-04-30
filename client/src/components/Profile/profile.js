@@ -301,102 +301,89 @@ function Profile({ classes, ...props }) {
                                                 {...(errors.phone && { error: true, helperText: errors.phone })}
                                             /> */}
 
-                    <FormControl fullWidth>
-                      {/* <InputLabel htmlFor="formatted-text-mask-input">เบอร์โทรศัพท์</InputLabel> */}
-                      <Input
-                        value={values.phone}
-                        onChange={handleChange}
-                        name="phone"
-                        id="formatted-text-mask-input"
-                        inputComponent={TextMaskCustom}
-                        {...(errors.phone && {
-                          error: true,
-                          helperText: errors.phone,
-                        })}
-                      />
-                    </FormControl>
-                  </div>
-                  <div className="textinforuser">
-                    <span>
-                      {" "}
-                      <i className="fas fa-address-card"> </i> ที่อยู่
-                    </span>
-                    <TextField
-                      name="address"
-                      variant="filled"
-                      fullWidth
-                      size="small"
-                      value={values.address}
-                      onChange={handleInputChange}
-                      {...(errors.address && {
-                        error: true,
-                        helperText: errors.address,
-                      })}
-                    />
-                  </div>
-                  <div className="confirm-and-cancelEditProfile">
-                    <div className="confirmEditProfile">
-                      <button className="button" onClick={handleSubmit}>
-                        บันทึก
-                      </button>
-                    </div>
-                    <div className="cancelEditProfile">
-                      <button className="button" onClick={CancelUpdate}>
-                        ยกเลิก
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              //ข้อมูลปกติ
+                                            <FormControl fullWidth>
+                                                {/* <InputLabel htmlFor="formatted-text-mask-input">เบอร์โทรศัพท์</InputLabel> */}
+                                                <Input
+                                                    value={values.phone}
+                                                    onChange={handleChange}
+                                                    name="phone"
+                                                    id="formatted-text-mask-input"
+                                                    inputComponent={TextMaskCustom}
+                                                    {...(errors.phone && { error: true, helperText: errors.phone })}
+                                                />
+                                            </FormControl>
+                                        </div>
+                                        <div className="textinforuser">
+                                            <span> <i className="fas fa-address-card"> </i> ที่อยู่</span>
+                                            <TextField
+                                                name="address"
+                                                variant="filled"
 
-              <div>
-                <div className="box-text-profile">
-                  <h1> ประวัติส่วนตัว</h1>
-                  <div className="textinforuser">
-                    <p>
-                      <span>
-                        {" "}
-                        <i className="fa fa-user"> </i> ชื่อ-นามสกุล{" "}
-                      </span>
-                    </p>
-                    <p>{allInform.name}</p>
-                  </div>
-                  <div className="textinforuser">
-                    <p>
-                      <span>
-                        {" "}
-                        <i className="fas fa-phone"> </i> เบอร์โทรศัพท์
-                      </span>
-                    </p>
-                    <p>{allInform.phone}</p>
-                  </div>
-                  <div className="textinforuser">
-                    <p>
-                      <span>
-                        {" "}
-                        <i className="fas fa-address-card"> </i> ที่อยู่
-                      </span>
-                    </p>
-                    <p>{allInform.address}</p>
-                  </div>
-                  <div className="textinforuser">
-                    <p>
-                      <span>
-                        <i className="fas fa-envelope"> </i>&nbsp;อีเมล
-                      </span>
-                    </p>
-                    <p>{allInform.email}</p>
-                  </div>
-                  <div className="grid-container1">
-                    <div className="EditProfile">
-                      <button className="button" onClick={handleEditProfile}>
-                        แก้ไข
-                      </button>
-                    </div>
+                                                fullWidth
+                                                size="small"
+                                                value={values.address}
+                                                onChange={handleInputChange}
+                                                {...(errors.address && { error: true, helperText: errors.address })}
+                                            />
+                                        </div>
+                                        <div className="confirm-and-cancelEditProfile">
+                                            <div className="confirmEditProfile">
+                                                <button className="button" onClick={handleSubmit}>บันทึก</button>
+                                            </div>
+                                            <div className="cancelEditProfile">
+                                                <button className="button" onClick={CancelUpdate}>ยกเลิก</button>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                    {/* <div className='Like'>
+                                </div>
+                            ) :
+
+                            (
+                                //ข้อมูลปกติ
+
+                                <div>
+                                    <div className="box-text-profile">
+                                        <h1> ประวัติส่วนตัว</h1>
+                                        
+                                        <div className="coin">
+
+                                            <p><i class="fas fa-coins"></i> เหรียญของฉัน : {allInform.coin}   
+                                            <span className="ka">
+                                            <Button 
+                                                className="addcoin"
+                                                href="/pay-coin"
+                                            >
+                                                 
+                                                เติมเหรียญ
+                                                 <i class="fa fa-piggy-bank"></i>
+                                            </Button>
+                                            </span>
+                                            </p>
+                                            
+                                        </div>
+                                        <div className="textinforuser">
+                                            <p><span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span></p>
+                                            <p>{allInform.name}</p>
+                                        </div>
+                                        <div className="textinforuser">
+                                        <p><span> <i className="fas fa-phone"> </i> เบอร์โทรศัพท์</span></p>
+                                            <p>{allInform.phone}</p>
+                                        </div>
+                                        <div className="textinforuser">
+                                        <p><span> <i className="fas fa-address-card"> </i> ที่อยู่</span></p>
+                                            <p>{allInform.address}</p>
+                                        </div>
+                                        <div className="textinforuser">
+                                        <p><span> <i className="fas fa-envelope"> </i> อีเมล</span></p>
+                                            <p>{allInform.email}</p>
+                                        </div>
+                                        <div className="grid-container1">
+                                            <div className="EditProfile">
+                                                <button className="button" onClick={handleEditProfile}>แก้ไข</button>
+                                            </div>
+
+                                            {/* <div className='Like'>
                                              <Link to="/myfav" className="button1" >โพสที่ถูกใจ</Link>
                                         </div> */}
                     <div className="Like">
@@ -410,22 +397,8 @@ function Profile({ classes, ...props }) {
                         โพสที่ถูกใจ
                       </button>
                     </div>
-                  </div>{" "}
-                  <div className="coin">
-                    <p>
-                      <div>
-                        <i class="fas fa-coins"></i> เหรียญของฉัน :&nbsp;
-                        <span>{allInform.coin || 0}</span>
-                      </div>
-
-                      <span className="kuy">
-                        <Button className="addcoin" href="/pay-coin">
-                          เติมเหรียญ
-                          <i class="fa fa-piggy-bank"></i>
-                        </Button>
-                      </span>
-                    </p>
                   </div>
+                 
                 </div>
               </div>
             )}

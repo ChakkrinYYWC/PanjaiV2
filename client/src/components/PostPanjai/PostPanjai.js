@@ -41,6 +41,11 @@ const user_id = localStorage.getItem('currentUser_id')
 var once = false
 
 const styles = (theme) => ({
+  MuiContainerRoot: {
+    paddingLeft: '24px',
+    paddingRight: '24px',
+    height: '5000px'
+},
   paper: {
     margin: theme.spacing(3),
     padding: theme.spacing(2),
@@ -48,13 +53,18 @@ const styles = (theme) => ({
   smMargin: {
     "&:hover": {
       backgroundColor: "rgba(85, 52, 4, 0.925)",
+      
+      
     },
     margin: theme.spacing(1),
     background: "rgba(187, 130, 44, 0.925)",
+    
+    
   },
   smMargin1: {
     "&:hover": {
       backgroundColor: "rgba(85, 52, 4, 0.925)",
+      
     },
     margin: theme.spacing(1),
     background: "#a13800",
@@ -102,6 +112,8 @@ const styles = (theme) => ({
   },
   bg1: {
     backgroundColor: "rgba(187, 130, 44, 0.925)",
+    
+    
   },
 });
 
