@@ -42,6 +42,8 @@ const Form = ({ ...props }) => {
     const [money, setMoney] = useState(props.money);
     var newcoin = 0;
 
+    console.log(user_coin)
+
     const onSuccess = () => {
         ButterToast.raise({
             content: <Cinnamon.Crisp title="มูลนิธิ"
@@ -64,10 +66,14 @@ const Form = ({ ...props }) => {
 
             if (window.confirm('คุณต้องการที่จะบริจาค ' + coin + ' เหรียญ ใช่หรือไม่?')) {
 
-                if (newcoin <= 0) {
+                if (newcoin < 0) {
+
                     if (window.confirm('เหรียญของคุณไม่เพียงพอ กรุณาเติมเหรียญ')) {
                         window.location.href = "/pay-coin"
+                    } else {
+                        window.location.href = "/Foundation/" + props.category + "/" + props._id
                     }
+
                 } else {
                     console.log(newcoin)
                     console.log(post_id)

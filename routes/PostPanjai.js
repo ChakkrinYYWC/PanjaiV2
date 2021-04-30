@@ -5,29 +5,12 @@ const fs = require('fs')
 const multer = require('multer')
 const path = require('path')
 const mongoose = require("mongoose");
-// const middleware = require('../middleware/index');
 
 var { PostPanjai } = require('../model/postPanjai')
 const user = require('../model/user');
 const noti = require('../model/notification');
 const recieve = require('../model/recieve');
-
-const storage = multer.diskStorage({
-    destination: './public/uploads/Too-Panjai',
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
-
-const imageFilter = function (req, file, cb) {
-    var ext = path.extname(file.originalname);
-    if (ext !== '.png' && ext !== '.gif' && ext !== '.jpg' && ext !== '.jpeg') {
-        return cb(new Error('Only image is allowed'), false)
-    }
-    cb(null, true);
-};
-
-const upload = multer({ storage: storage, fileFilter: imageFilter });
+const fileUploader = require('./cloudinary');
 
 router.get('/', (req, res) => {
     PostPanjai.find({}, (err, docs) => {
@@ -37,20 +20,19 @@ router.get('/', (req, res) => {
             console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
     })
 })
-        
-router.post('/', upload.array('image'), (req, res) => {
-    var Photo_name = [];
-    for (let i = 0; i < req.files.length; i++) {
-        Photo_name.push(req.files[i].filename)
-    }
-    console.log(Photo_name)
+
+router.post('/', fileUploader.array('image'), (req, res) => {
+
+    const urls = []
+    req.files.forEach(file => urls.push(file.path))
+
     var newRecord = new PostPanjai({
         title: req.body.title,
         message: req.body.message,
         contect: req.body.contect,
         location: req.body.location,
-        image: Photo_name,
-        creator : req.body.creator
+        image: urls,
+        creator: req.body.creator
     })
     console.log(newRecord)
     newRecord.save((err, docs) => {
@@ -93,140 +75,115 @@ router.delete('/:id', (req, res) => {
 })
 
 router.post('/addFav/:id', (req, res) => {
-    console.log("Post_id: "+req.params.id)
-    console.log("currentuser_id: "+req.body.currentUser_id)
+    console.log("Post_id: " + req.params.id)
+    console.log("currentuser_id: " + req.body.currentUser_id)
 
-    user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { favorite: req.params.id } }, function(error,update){
-        if(error){
+    user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { favorite: req.params.id } }, function (error, update) {
+        if (error) {
             console.log(error)
         }
     })
 })
 
-router.post('/addRequest/:id',async function(req, res){
-    console.log("Post_id: "+req.params.id)
-    console.log("currentuser_id: "+req.body.currentUser_id)
+router.post('/addRequest/:id', async function (req, res) {
+    console.log("Post_id: " + req.params.id)
+    console.log("currentuser_id: " + req.body.currentUser_id)
 
-    user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { request: req.params.id } },await function(error,update){
-        if(error){
+    user.findByIdAndUpdate(req.body.currentUser_id, { $addToSet: { request: req.params.id } }, await function (error, update) {
+        if (error) {
             console.log(error)
         }
     })
-
-    // const Post = PostPanjai.findById(req.params.id,await function(error,done){
-    //     if(error){
-    //         console.log(error)
-    //     }else{
-    //         //console.log(done)
-    //     }
-    // })
     let post = await PostPanjai.aggregate([
         {
             $match: {
-                _id : mongoose.Types.ObjectId(req.params.id)
+                _id: mongoose.Types.ObjectId(req.params.id)
             }
         },
     ])
-    //console.log(post)
     let owner_id = await user.aggregate([
         {
             $match: {
-                username : post[0].creator
+                username: post[0].creator
             }
         },
     ])
     console.log(owner_id)
     noti.create({
-        owner : owner_id[0].username,
-        requester : req.body.currentUser,
-        notification : post[0].title,
+        owner: owner_id[0].username,
+        requester: req.body.currentUser,
+        notification: post[0].title,
     })
 })
 
-router.post('/notifications/:id',async function(req, res){
-    //console.log("Id:"+req.params.id)
+router.post('/notifications/:id', async function (req, res) {
     let find = await user.aggregate([
         {
             $match: {
-                _id : mongoose.Types.ObjectId(req.params.id)
+                _id: mongoose.Types.ObjectId(req.params.id)
             }
         }
     ])
-    //console.log(find)
     let result = await noti.aggregate([
         {
             $match: {
-                "owner" : find[0].username
+                "owner": find[0].username
             }
         }
     ])
-    //const result2 = [result[0].owner[0].username, result[0].requester[0].username, result[0].notification[0].title]
-    //console.log(result)
     res.send(result)
 })
 
-router.post('/recieveAccept',async function(req, res){
+router.post('/recieveAccept', async function (req, res) {
     let owner_id = await user.aggregate([
         {
             $match: {
-                username : req.body.username
+                username: req.body.username
             }
         },
     ])
-
-    //console.log(owner_id)
     recieve.create({
-        to : req.body.sendTo,
-        owner : owner_id[0].username,
-        owner_contact : owner_id[0].phone,
-        item : req.body.item,
+        to: req.body.sendTo,
+        owner: owner_id[0].username,
+        owner_contact: owner_id[0].phone,
+        item: req.body.item,
     })
-    // recieve.createIndex( { "createdAt": 1 }, { expireAfterSeconds: 3600 } )
-
-    // noti.findByIdAndDelete(req.body.notiId, function(error,remove){
-    //     if(error){
-    //         console.log(error)
-    //     }
-    // })
 })
 
-router.post('/recieveDeny',async function(req, res){
-    noti.findByIdAndDelete(req.body.notiId, function(error,remove){
-        if(error){
+router.post('/recieveDeny', async function (req, res) {
+    noti.findByIdAndDelete(req.body.notiId, function (error, remove) {
+        if (error) {
             console.log(error)
         }
     })
 })
 
-router.post('/deleteRecieve',async function(req, res){
+router.post('/deleteRecieve', async function (req, res) {
     console.log("12345")
-    await recieve.findByIdAndDelete(req.body.recieveId, function(error,remove){
-        if(error){
+    await recieve.findByIdAndDelete(req.body.recieveId, function (error, remove) {
+        if (error) {
             console.log(error)
         }
     })
     res.status(200).send("ok")
 })
 
-router.post('/findRecieve/:id',async function(req, res){
-    //console.log("Id:"+req.params.id)
+router.post('/findRecieve/:id', async function (req, res) {
     let find = await user.aggregate([
         {
             $match: {
-                _id : mongoose.Types.ObjectId(req.params.id)
+                _id: mongoose.Types.ObjectId(req.params.id)
             }
         }
     ])
-    //console.log(find)
     let result = await recieve.aggregate([
         {
             $match: {
-                "to" : find[0].username
+                "to": find[0].username
             }
         }
     ])
-    //const result2 = [result[0].owner[0].username, result[0].requester[0].username, result[0].notification[0].title]
-    //console.log(result)
+
     res.send(result)
 })
 

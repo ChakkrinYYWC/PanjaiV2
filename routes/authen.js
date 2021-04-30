@@ -86,7 +86,7 @@ server.post("/login", async function (req, res, next) {
                             res.send(error)
                         } else {
                             //console.log("User logged in");
-                            const data = [token, Userdata.username, Userdata._id, Userdata.email, Userdata.address, Userdata.phone, Userdata.name]
+                            const data = [token, Userdata.username, Userdata._id, Userdata.email, Userdata.address, Userdata.phone, Userdata.name, Userdata.coin]
                             //console.log(data)
                             res.send(data)
                         }

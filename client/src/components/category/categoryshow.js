@@ -303,7 +303,7 @@ function Categoryshow({ classes, ...props }) {
                                                 <div className="infor">ที่อยู่ : {record.address}</div>
                                                 <div className="infor">เบอร์โทรศัพท์ : {record.phone} </div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
-                                                <div className="infor">วันสิ้นสุดโครงการ : {record.endtime}</div>
+                                                <div className="infor">วันสิ้นสุดโครงการ : {moment(record.endtime).calendar()}</div> 
                                                 {/* <div className="infor">วันที่สิ้นสุดโครงการ : {record.endtime}</div> */}
 
                                             </div>
@@ -432,7 +432,7 @@ function Categoryshow({ classes, ...props }) {
                                                 <div className="infor">เบอร์โทรศัพท์ : {record.phone} </div>
                                                 <div className="infor">วันที่ลง : {moment(record.Timestamp).calendar()}</div>
                                                 {/* <div className="infor">วันสิ้นสุดโครงการ : {moment(record.endtime).calendar()}</div> */}
-                                                <div className="infor">วันสิ้นสุดโครงการ : {record.endtime}</div>
+                                                <div className="infor">วันสิ้นสุดโครงการ : {moment(record.endtime).calendar()}</div>
                                             </div>
                                             <center >
 

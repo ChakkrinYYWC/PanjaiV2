@@ -280,34 +280,47 @@ const PostPanjai = ({ classes, ...props }) => {
                       <div className={classes.frontpost}>
                         ข้อมูล : {record.message}
                       </div>
-
-                      {
+                      
+                      <Grid container justify="center">
+                        <SlideShow className="imageslide"
+                          images={record.image}
+                          width="400px"
+                          imagesWidth="400px"
+                          imagesHeight="200px"
+                          imagesHeightMobile="56vw"
+                          thumbnailsWidth="520px"
+                          thumbnailsHeight="12vw"
+                          className={classes.picture}
+                          indicators thumbnails fixedImagesHeight
+                        />
+                      </Grid>
+                      {/* {
                         ((Array_image = []),
-                          record.image.map((image, index) => {
-                            Array_image.push(
-                              "http://localhost:3001/image/" + image
-                            );
-                          }),
-                          (
-                            <Grid container justify="center">
-                              <SlideShow className="imageslide"
-                                images={Array_image}
-                                // width="0px"
-                                imagesWidth="400px"
-                                imagesHeight="200px"
-                                imagesHeightMobile="56vw"
-                                thumbnailsWidth="520px"
-                                thumbnailsHeight="12vw"
-                                className={classes.picture}
-                                indicators thumbnails fixedImagesHeight
-                              />
-                            </Grid>
-                          ))
-                      }
+                        record.image.map((image, index) => {
+                          Array_image.push(
+                            "http://localhost:3001/image/" + image
+                          );
+                        }),
+                        (
+                          <Grid container justify="center">
+                            <SlideShow className="imageslide"
+                              images={Array_image}
+                              width="400px"
+                              imagesWidth="400px"
+                              imagesHeight="200px"
+                              imagesHeightMobile="56vw"
+                              thumbnailsWidth="520px"
+                              thumbnailsHeight="12vw"
+                              className={classes.picture}
+                              indicators thumbnails fixedImagesHeight
+                            />
+                          </Grid>
+                        ))
+                      } */}
 
-                      <div className={`${classes.color1} ${classes.frontpost}`}>
+                      {/* <div className={`${classes.color1} ${classes.frontpost}`}>
                         โทร : {record.contect}
-                      </div>
+                      </div> */}
                       <div className={`${classes.color1} ${classes.frontpost}`}>
                         จังหวัด : {record.location}
                       </div>

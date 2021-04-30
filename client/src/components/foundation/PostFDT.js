@@ -248,23 +248,6 @@ const PostFDT = ({ classes, ...props }) => {
         setMulti_image(multi_image.filter(url_old => url_old !== url))
     }
 
-    // console.log(multi_image)
-
-    // const showPreview = e => {
-    //     if (e.target.files && e.target.files[0]) {
-    //         setFile(e.target.files[0]);
-    //         console.log(file);
-    //         setImg({
-    //             src: URL.createObjectURL(e.target.files[0]),
-    //             alt: e.target.files[0].name
-    //         });
-    //     }
-    //     else {
-    //         let pic = defaultImageSrc
-    //         setFile(pic)
-    //     }
-    // }
-
     const handleSubmit = e => {
         e.preventDefault()
         const onSuccess = () => {
@@ -280,9 +263,6 @@ const PostFDT = ({ classes, ...props }) => {
         }
         console.log(validate())
         console.log(props.current)
-        setValues({
-            promptpay: 0
-        })
         if (validate() && props.current == 0) {
             if (props.current == 0) {
                 console.log('***')
@@ -303,7 +283,7 @@ const PostFDT = ({ classes, ...props }) => {
                 formData.append('category', values.category);
                 // formData.append('category', category);
                 // formData.append('promptpay', values.promptpay);
-                formData.append('endtime', selectedDate);
+                formData.append('endtime', values.endtime);
                 formData.append('lat', values.lat);
                 formData.append('lng', values.lng);
 
@@ -311,7 +291,7 @@ const PostFDT = ({ classes, ...props }) => {
             }
         } else if (props.current != 0) {
             console.log(values)
-            //props.updatePostFDT(props.current, values, onSuccess)
+            props.updatePostFDT(props.current, values, onSuccess)
         }
 
     }
@@ -319,12 +299,15 @@ const PostFDT = ({ classes, ...props }) => {
     const handleChange = e => {
         setCategory(e.target.value);
     };
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2021-04-30T21:11:54'));
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
+        values.endtime = date
         console.log(date);
     };
+
+    //console.log(values)
 
     const handleChangeDate = e => {
         console.log(e.target)
@@ -637,7 +620,6 @@ const PostFDT = ({ classes, ...props }) => {
                         </Grid>
                     </MuiPickersUtilsProvider>
                     <div className=''>{renderPhotos(multi_image)}</div>
-
                     <input
                         accept="image/*"
                         className={classes.input}
