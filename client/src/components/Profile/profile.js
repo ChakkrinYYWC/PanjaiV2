@@ -23,7 +23,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import MaskedInput from 'react-text-mask';
-
+import SlideShow from "react-image-show";
 var once = false;
 
 const initialFieldValues = {
@@ -138,6 +138,7 @@ function Profile({ classes, ...props }) {
     //ข้อมูลโปรไฟล์
     const [myPost, setMyPost] = useState([])
     const route = useHistory()
+    var Array_image = [];
 
     async function onetime() {
         if (once == false) {
@@ -317,22 +318,22 @@ function Profile({ classes, ...props }) {
                                 <div>
                                     <div className="box-text-profile">
                                         <h1> ประวัติส่วนตัว</h1>
-                                        
+
                                         <div className="coin">
 
-                                            <p><i class="fas fa-coins"></i> เหรียญของฉัน : {allInform.coin}   
-                                            <span className="ka">
-                                            <Button 
-                                                className="addcoin"
-                                                href="/pay-coin"
-                                            >
-                                                 
-                                                เติมเหรียญ
+                                            <p><i class="fas fa-coins"></i> เหรียญของฉัน : {allInform.coin}
+                                                <span className="ka">
+                                                    <Button
+                                                        className="addcoin"
+                                                        href="/pay-coin"
+                                                    >
+
+                                                        เติมเหรียญ
                                                  <i class="fa fa-piggy-bank"></i>
-                                            </Button>
-                                            </span>
+                                                    </Button>
+                                                </span>
                                             </p>
-                                            
+
                                         </div>
                                         <div className="textinforuser">
                                             <span> <i className="fa fa-user"> </i> ชื่อ-นามสกุล </span>
@@ -403,10 +404,29 @@ function Profile({ classes, ...props }) {
                                                             ข้อมูล : {record.message}
                                                         </div>
                                                         <Grid container justify="center">
-                                                            <div className={classes.frampicture} >
-                                                                {console.log(record)}
-                                                                <img src={'http://localhost:3001/image/' + record.image} alt={record.message} className={classes.picture} />
-                                                            </div>
+                                                            {
+                                                                ((Array_image = []),
+                                                                    record.image.map((image, index) => {
+                                                                        Array_image.push(
+                                                                            "http://localhost:3001/image/" + image
+                                                                        );
+                                                                    }),
+                                                                    (
+                                                                        <Grid container justify="center">
+                                                                            <SlideShow className="imageslide"
+                                                                                images={Array_image}
+                                                                                width="400px"
+                                                                                imagesWidth="300px"
+                                                                                imagesHeight="180px"
+                                                                                imagesHeightMobile="56vw"
+                                                                                thumbnailsWidth="350px"
+                                                                                thumbnailsHeight="12vw"
+                                                                                className={classes.picture}
+                                                                                indicators thumbnails fixedImagesHeight
+                                                                            />
+                                                                        </Grid>
+                                                                    ))
+                                                            }
                                                         </Grid>
                                                         <div className={`${classes.color1} ${classes.frontpost}`}>
                                                             เวลาที่ลง : {moment(record.Timestamp).calendar()}

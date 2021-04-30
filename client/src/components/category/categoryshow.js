@@ -205,7 +205,7 @@ function Categoryshow({ classes, ...props }) {
                                                         <Button href="/Foundation/อื่นๆ">อื่นๆ</Button>
                                                     </ButtonGroup>
                                                 </div>
-                                                
+
                                             </center>
                                             <div className="Tt">{record.title}</div>
                                             <center>
@@ -296,7 +296,7 @@ function Categoryshow({ classes, ...props }) {
                                                 </div>
                                             </Dialog>
                                             <div className="info">{record.message}</div>
-                                            <center><h1>ยอดเงินบริจาค : {new Intl.NumberFormat().format(record.money)}</h1> </center>
+                                            <center><h1 className="totaldonate">ยอดเงินบริจาค : {new Intl.NumberFormat().format(record.money)} บาท </h1> </center>
                                             <div className="bx">
                                                 <div className="logo" ><i className="fab fa-gratipay"></i></div>
                                                 <div className="infor">สิ่งของที่ต้องการ : {record.item} </div>
@@ -318,20 +318,23 @@ function Categoryshow({ classes, ...props }) {
                                                 onClose={handleClose}
                                                 aria-labelledby="responsive-dialog-title"
                                             >
-                                                <DialogTitle id="responsive-dialog-title">บริจาคให้กับ {record.title}</DialogTitle>
+                                                <div className="popupdonate">
+                                                    <div className="namefdt">
+                                                        <DialogTitle id="responsive-dialog-title">บริจาคให้กับ {record.title}</DialogTitle>
+                                                    </div>
+                                                    <DialogContent>
+                                                        <DialogContentText>
+                                                            <Form {...record} />
+                                                            <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
+                                                        </DialogContentText>
+                                                    </DialogContent>
 
-                                                <DialogContent>
-                                                    <DialogContentText>
-                                                        <Form {...record} />
-                                                        <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
-                                                    </DialogContentText>
-                                                </DialogContent>
-
-                                                <DialogActions>
-                                                    <Button onClick={handleClose} color="primary">
-                                                        ยกเลิก
+                                                    <DialogActions>
+                                                        <Button onClick={handleClose} color="primary">
+                                                            ยกเลิก
                                                     </Button>
-                                                </DialogActions>
+                                                    </DialogActions>
+                                                </div>
                                             </Dialog>
                                         </div>
                                     </Then>
@@ -346,7 +349,7 @@ function Categoryshow({ classes, ...props }) {
 
                                     <Else>
                                         <div className="box-box">
-                                            
+
                                             <center>
                                                 <div className="btcate">
 
@@ -359,9 +362,9 @@ function Categoryshow({ classes, ...props }) {
                                                         <Button href="/Foundation/อื่นๆ">อื่นๆ</Button>
                                                     </ButtonGroup>
                                                 </div>
-                                                
-                                                </center>
-                                              
+
+                                            </center>
+
                                             <div className="Tt">{record.title}</div>
 
                                             <center>
@@ -427,11 +430,11 @@ function Categoryshow({ classes, ...props }) {
                                                     </DialogActions>
                                                 </div>
                                             </Dialog>
-                                            
+
                                             <div className="info">{record.message}</div>
-                                            <center><h1>ยอดเงินบริจาค : {new Intl.NumberFormat().format(record.money)}</h1> </center>
+                                            <center><h1 className="totaldonate">ยอดเงินบริจาค : {new Intl.NumberFormat().format(record.money)} บาท</h1> </center>
                                             <div className="bx">
-                                                
+
                                                 <div className="logo" ><i className="fab fa-gratipay"></i></div>
                                                 <div className="infor">สิ่งของที่ต้องการ : {record.item}</div>
                                                 <div className="infor">จำนวน : {record.n_item} บาท</div>
@@ -455,20 +458,23 @@ function Categoryshow({ classes, ...props }) {
                                                 onClose={handleClose}
                                                 aria-labelledby="responsive-dialog-title"
                                             >
-                                                <DialogTitle id="responsive-dialog-title">บริจาคให้กับ {record.title}</DialogTitle>
+                                                <div className="popupdonate">
+                                                    <div classname="namefdt">
+                                                        <DialogTitle id="responsive-dialog-title">บริจาคให้กับ {record.title}</DialogTitle>
+                                                    </div>
+                                                    <DialogContent>
+                                                        <DialogContentText>
+                                                            <Form {...record} />
+                                                            <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
+                                                        </DialogContentText>
+                                                    </DialogContent>
 
-                                                <DialogContent>
-                                                    <DialogContentText>
-                                                        <Form {...record} />
-                                                        <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
-                                                    </DialogContentText>
-                                                </DialogContent>
-
-                                                <DialogActions>
-                                                    <Button onClick={handleClose} color="primary">
-                                                        ยกเลิก
+                                                    <DialogActions>
+                                                        <Button onClick={handleClose} color="primary">
+                                                            ยกเลิก
                                                     </Button>
-                                                </DialogActions>
+                                                    </DialogActions>
+                                                </div>
                                             </Dialog>
                                         </div>
                                     </Else>

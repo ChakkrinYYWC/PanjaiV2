@@ -312,10 +312,10 @@ const PostPanjai = ({ classes, ...props }) => {
                             <SlideShow className="imageslide"
                               images={Array_image}
                               width="400px"
-                              imagesWidth="400px"
-                              imagesHeight="200px"
+                              imagesWidth="300px"
+                              imagesHeight="180px"
                               imagesHeightMobile="56vw"
-                              thumbnailsWidth="520px"
+                              thumbnailsWidth="350px"
                               thumbnailsHeight="12vw"
                               className={classes.picture}
                               indicators thumbnails fixedImagesHeight
