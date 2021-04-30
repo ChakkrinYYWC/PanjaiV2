@@ -22,7 +22,7 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
 import { DeleteSweep } from "@material-ui/icons";
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router'
 import GoogleMapReact from 'google-map-react';
 import Axios from 'axios';
@@ -128,7 +128,7 @@ function Categoryshow({ classes, ...props }) {
         }
         if (window.confirm('ต้องการลบโพสนี้ใช่หรือไม่?')) {
             props.deletePostMessage(id, onSuccess)
-            window.location.href = "http://localhost:3000/Foundation/" + props.currentId.match.params.name
+            window.location.href = "/Foundation/" + props.currentId.match.params.name
         }
     }
 
@@ -205,7 +205,7 @@ function Categoryshow({ classes, ...props }) {
                                                         <Button href="/Foundation/อื่นๆ">อื่นๆ</Button>
                                                     </ButtonGroup>
                                                 </div>
-                                                <h1>ยอดเงินบริจาค : {new Intl.NumberFormat().format(record.money)}</h1> 
+                                                <h1>ยอดเงินบริจาค : {new Intl.NumberFormat().format(record.money)}</h1>
                                             </center>
                                             <div className="Tt">{record.title}</div>
                                             <center>
