@@ -173,7 +173,7 @@ ul.card-stacks {
 
 ul.card-stacks li.stack {
   position: absolute;
-  left: 0px;
+  left: -100px;
   transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.02);
 }
 
@@ -212,11 +212,11 @@ ul.card-stacks li.stack ul.cards-down li.card.card-2 {
 
 
 ul.card-stacks.transition li.stack.stack-2 {
-  left: 250px;
+  left: 180px;
 }
 
 ul.card-stacks.transition li.stack.stack-3 {
-  left: 510px;
+  left: 460px;
 }
 
 ul.card-stacks.transition li.stack ul.cards-down li.card {
@@ -536,6 +536,11 @@ h2 {
   width: 500px;
   margin: 0 auto;
 }
+ul.card-stacks li.stack {
+  position: absolute;
+  left: -80px;
+  transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.02);
+}
 }
 
 @media only screen and (max-width: 768px) {
@@ -598,6 +603,11 @@ h3 {
 
  }
 
+ ul.card-stacks li.stack {
+  position: absolute;
+  left: 80px;
+  transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.02);
+}
 ul.card-stacks {
 
   margin: 0px 20px 0px 60px;
@@ -685,7 +695,7 @@ ul.card-stacks li.stack ul.cards-down li.card div.content {
 }
 .tupanjai img {
   vertical-align: middle;
-  width: 375px;
+  width: 360px;
   height: 350px;
 }
 .tupanjai p {
