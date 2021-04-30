@@ -87,7 +87,7 @@ server.post("/login", async function (req, res, next) {
                             res.send(error)
                         } else {
                             const data = [token, Userdata.username, Userdata._id, Userdata.email, Userdata.address, Userdata.phone, Userdata.name, Userdata.coin]
-                           
+
                             //console.log(data)
                             res.send(data)
                         }
@@ -348,7 +348,7 @@ server.post('/mycoin/:id', async (req, res) => {
 })
 /*-------------------------------------------------------------------------------*/
 server.post('/getdashboard/:id', async (req, res) => {
-    console.log(req.params.id)
+    //console.log(req.params.id)
     const wantee = new Date()
     let check = await dashboard.aggregate([
         {
@@ -383,7 +383,7 @@ server.post('/getdashboard/:id', async (req, res) => {
     ])
     //console.log(find)
     const DATA = [find[0].number, find[1].number, find[2].number, find[3].number, find[4].number, find[5].number, find[6].number, find[7].number, find[8].number, find[9].number, find[10].number, find[11].number]
-    console.log(DATA)
+    //console.log(DATA)
     res.send(DATA)
 })
 /*-------------------------------------------------------------------------------*/
