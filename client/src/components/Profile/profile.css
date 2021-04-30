@@ -171,7 +171,7 @@ text-align: left;
   border-radius: 20px;
 }
 
-.kuy .addcoin{
+.ka .addcoin{
   font-size: 10px;
   color: #cca844;
 }
@@ -393,10 +393,11 @@ text-align: left;
     color: rgba(85, 52, 4, 0.925);
     line-height: 30px;
     letter-spacing: 0.25px;
-    /* margin-bottom: 15px; */
+    margin-bottom: 5px;
+    margin-top: 5px;
     /* font-family: 'Mali', cursive; */
     font-size: 12px;
-    width: 180px;
+    width: 250px;
   }
   
   .box-text-profile span {

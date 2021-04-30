@@ -7,7 +7,7 @@ import uuid from "uuid";
 import axios from 'axios';
 import ButterToast, { Cinnamon } from "butter-toast";
 import { AssignmentTurnedIn } from "@material-ui/icons";
-
+import './Form.css'
 
 const fdt_coin = [
     {
@@ -94,12 +94,12 @@ const Form = ({ ...props }) => {
     }
 
     return (
-        <div align="center">
-            <h1>เหรียญของฉัน : {mycoin}</h1>
+        <div className="coindonate" align="center">
+            <h1><i class="fas fa-coins"></i> เหรียญของฉัน : {mycoin}</h1>
             {
                 fdt_coin.map(c => (
                     <>
-                        <Button
+                        <Button className="btcoindonate"
                             onClick={() => handleSubmit(c.coin)}
                             color="primary"
                         >

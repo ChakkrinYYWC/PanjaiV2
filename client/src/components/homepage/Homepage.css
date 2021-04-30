@@ -210,20 +210,13 @@ ul.card-stacks li.stack ul.cards-down li.card.card-2 {
   transform: rotateZ(-7deg);
 }
 
-  ul.card-stacks.transition li.stack.stack-2 {
-    left: 270px;
-  }
-
-  ul.card-stacks.transition li.stack.stack-3 {
-    left: 540px;
-  }
 
 ul.card-stacks.transition li.stack.stack-2 {
-  left: 220px;
+  left: 250px;
 }
 
 ul.card-stacks.transition li.stack.stack-3 {
-  left: 440px;
+  left: 510px;
 }
 
 ul.card-stacks.transition li.stack ul.cards-down li.card {
