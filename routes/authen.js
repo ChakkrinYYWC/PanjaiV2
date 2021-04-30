@@ -19,21 +19,22 @@ const jwtConfig = require("../config/jwtConfig");
 const user = require('../model/user');
 const dashboard = require('../model/dashboard');
 var { PostFDT } = require('../model/postFDT')
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('./cloudinary');
 
-const storage = multer.diskStorage({
-    destination: './public/uploads/IDcard',
+const storage = new CloudinaryStorage({
+    cloudinary,
+    allowedFormats: ['jpg', 'png'],
+    params: {
+        folder: 'ID_Card',
+    },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        cb(null, file.originalname);
     }
+
 });
-const imageFilter = function (req, file, cb) {
-    var ext = path.extname(file.originalname);
-    if (ext !== '.png' && ext !== '.gif' && ext !== '.jpg' && ext !== '.jpeg') {
-        return cb(new Error('Only image is allowed'), false)
-    }
-    cb(null, true);
-};
-const upload = multer({ storage: storage, fileFilter: imageFilter });
+
+const uploadCloud = multer({ storage: storage });
 
 /*-------------------------------------------------------------------------------*/
 // server.post('/isLogin',async (req, res)=>{
@@ -189,7 +190,7 @@ server.get('/register', (req, res) => {
             console.log('Error #1 : ' + JSON.stringify(err, undefined, 2))
     })
 })
-server.post("/register", upload.single('IDcard'), function (req, res) {
+server.post("/register", uploadCloud.single('IDcard'), function (req, res) {
     console.log('filename: ' + req.file.filename)
     user.register(new user({ name: req.body.name, username: req.body.username, idcard: req.file.filename, email: req.body.email, address: req.body.address, phone: req.body.phone, coin: 0, accessToken: null, isbaned: "no", month: req.body.month, year: req.body.year, piece_available: 4 }), req.body.password, function (error, user) {
         if (error) {
