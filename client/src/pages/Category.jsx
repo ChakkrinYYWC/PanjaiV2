@@ -12,33 +12,37 @@ import PageFoundation from '../components/foundation/foundation'
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import PostPanjaiForm from '../components/PostPanjai/PostPanjaiForm';
 
+import User from '../components/admin/User'
+import Noti_report from '../components/admin/Noti'
+import Black from '../components/admin/Blacklist'
+
 
 
 const styles = theme => ({
     root: {
         margin: 0,
         padding: theme.spacing(2),
-  
+
     },
     closeButton: {
         position: 'absolute',
         right: theme.spacing(1),
         top: theme.spacing(1),
         color: theme.palette.grey[500],
-  
+
     },
     margin: {
         margin: theme.spacing(1),
-      
+
     },
     extendedIcon: {
         marginRight: theme.spacing(1),
-        
+
     },
     button: {
         background: 'red',
         color: ' rgba(141, 90, 18, 0.925)',
-      
+
     }
 });
 
@@ -58,18 +62,18 @@ const DialogTitle = withStyles(styles)((props) => {
 
 
 
-    const mystyle = {
-      color: "white",
-      backgroundColor: "rgb(172, 115, 57)",
-      padding: "10px",
-      fontFamily: "Arial",
-      padding: "22px",
-      float: "right", 
-      margin: "25% 10% 0px 0px"
-    };
+const mystyle = {
+    color: "white",
+    backgroundColor: "rgb(172, 115, 57)",
+    padding: "10px",
+    fontFamily: "Arial",
+    padding: "22px",
+    float: "right",
+    margin: "25% 10% 0px 0px"
+};
 
 function Catego({ classes, ...props }) {
-    
+
     const [current, setCurrent] = useState(0)
     const [open, setOpen] = React.useState(false);
     const [currentId, setCurrentId] = useState(props)
@@ -82,8 +86,8 @@ function Catego({ classes, ...props }) {
         setOpen(false);
     };
 
-  
-        
+
+
     return (
 
         <>
@@ -91,7 +95,7 @@ function Catego({ classes, ...props }) {
                 <Then>
                     <Provider store={store} >
                         <Category {...{ currentId, setCurrentId }} />
-                       
+
                         <Fab style={mystyle} size="small" aria-label="add" onClick={handleClickOpen} >
                             <AddIcon />
                         </Fab>
@@ -105,18 +109,24 @@ function Catego({ classes, ...props }) {
                         </Dialog>
 
 
-                        
+
 
                     </Provider>
-                    
+
                 </Then>
                 <Else>
                     <Provider store={store}>
                         <Category {...{ currentId, setCurrentId }} />
                     </Provider>
-                    
+
                 </Else>
             </If>
+            <Black />
+            <User />
+            <Provider store={store}>
+                <Noti_report />
+                <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
+            </Provider>
         </>
 
     );
