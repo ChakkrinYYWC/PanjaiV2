@@ -422,7 +422,7 @@ function Profile({ classes, ...props }) {
                                                                                 thumbnailsWidth="350px"
                                                                                 thumbnailsHeight="12vw"
                                                                                 className={classes.picture}
-                                                                                indicators thumbnails fixedImagesHeight
+                                                                                indicators  fixedImagesHeight
                                                                             />
                                                                         </Grid>
                                                                     ))
