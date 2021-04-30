@@ -313,16 +313,16 @@ const PostPanjai = ({ classes, ...props }) => {
                       </div>
                       
                       <Grid container justify="center">
-                        <SlideShow className="imageslide"
+                        <SlideShow 
                           images={record.image}
                           width="400px"
-                          imagesWidth="400px"
+                          imagesWidth="300px"
                           imagesHeight="200px"
-                          imagesHeightMobile="56vw"
+                          imagesHeightMobile="36vw"
                           thumbnailsWidth="520px"
                           thumbnailsHeight="12vw"
                           className={classes.picture}
-                          indicators thumbnails fixedImagesHeight
+                          indicators  fixedImagesHeight
                         />
                       </Grid>
                       {/* {

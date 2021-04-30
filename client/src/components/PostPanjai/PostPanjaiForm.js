@@ -316,12 +316,12 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
                         <TextField
                             name="message"
-                            variant="filled"
+                            
                             InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                             label="ข้อมูลสิ่งของ"
                             fullWidth
                             size="small"
-
+                            
                             // rows={4}
                             value={values.message}
                             onChange={handleInputChange}
@@ -337,7 +337,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         <TextField
                             type='number'
                             name="contect"
-                            variant="filled"
+                            
                             InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                             label="เบอร์โทรศัพท์"
                             fullWidth
@@ -426,7 +426,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
                         // style={{backgroundColor:'white', marginBottom:'1rem', marginTop:'1rem'}}
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         name="title"
-                        variant="filled"
+                    
                         label="ชื่อสิ่งของ"
                         fullWidth
                         className={classes.paper}
@@ -445,7 +445,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
                     <TextField
                         name="message"
-                        variant="filled"
+                        
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="ข้อมูล"
                         fullWidth
@@ -464,7 +464,7 @@ const PostPanjaiForm = ({ classes, ...props }) => {
 
                     <TextField
                         name="contect"
-                        variant="filled"
+                        
                         InputProps={{ style: { border: '3px', margin: '1rem 0 1rem 0', fontFamily: 'mali', height: '40px' } }}
                         label="เบอร์โทรศัพท์"
                         fullWidth
