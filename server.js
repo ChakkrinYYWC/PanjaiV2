@@ -8,7 +8,9 @@ const express = require("express"),
     cors = require('cors'),
     logger = require('morgan'),
     axios = require('axios');
-    path = require('path')
+path = require('path')
+
+const PORT = process.env.PORT || 3001;
 
 const user = require('./model/user');
 var postPanjaiRoutes = require('./routes/PostPanjai')
@@ -23,7 +25,7 @@ const { profile } = require("console");
 const app = express();
 
 app.use(express.static(__dirname + '/public'))
-app.use(cors({ origin: 'http://localhost:3000' }))
+app.use(cors({ origin: 'https://panjai.herokuapp.com' }))
 app.use(bodyParser.json())
 app.use(methodOverride("_method"));
 app.use(passport.initialize())
@@ -49,10 +51,10 @@ passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
 
 app.get('/image/:image', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './public/uploads/Too-Panjai/'+ req.params.image))
+    res.sendFile(path.resolve(__dirname, './public/uploads/Too-Panjai/' + req.params.image))
 })
 app.get('/Foundation/:image', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './public/uploads/Foundation/'+ req.params.image))
+    res.sendFile(path.resolve(__dirname, './public/uploads/Foundation/' + req.params.image))
 })
 app.use('/authenticate', authenticate)
 app.use('/Too-Panjai', postPanjaiRoutes)
@@ -81,6 +83,6 @@ app.use('/pay-coin', paymentRoute)
 
 
 // dew is hear
-app.listen(3001, function (req, res) {
+app.listen(PORT, function (req, res) {
     console.log('Panjai has started!');
 });
