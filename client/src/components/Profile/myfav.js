@@ -155,7 +155,7 @@ function Myfav({ classes }) {
                           (
                             <Grid container justify="center">
                               <SlideShow className="imageslide"
-                                images={Array_image}
+                                images={record.image}
                                 width="400px"
                                 imagesWidth="300px"
                                 imagesHeight="180px"

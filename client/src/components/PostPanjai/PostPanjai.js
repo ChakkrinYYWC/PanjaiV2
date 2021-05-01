@@ -117,6 +117,9 @@ const styles = (theme) => ({
     
     
   },
+  reportpost: {
+    color:" rgb(151, 117, 49)"
+  }
 });
 
 // const options = [
@@ -285,16 +288,16 @@ const PostPanjai = ({ classes, ...props }) => {
                             >
                               <MoreVertIcon />
                             </IconButton> */}
-                            <DropdownButton id="dropdown-item-button" title="">
-                              <span className="lover">
+                            <div className="reportpost-button">
+                            <DropdownButton id="dropdown-item-button " title="" >
+                              <span className="reportpost">
                                 <Dropdown.Item as="button">
-                                  {/* <div onClick={() => this.BlackListOn()} className="love">
-                                    <a>Blacklist</a>
-                                  </div> */}
-                                  <div
+                                  
+                                  <div className="reportpost-button1"
                                     onClick={() =>
                                       reportItem(record._id)
                                       //console.log(record._id)
+                                      
                                     }
                                   >
                                     รายงานโพสต์
@@ -302,6 +305,7 @@ const PostPanjai = ({ classes, ...props }) => {
                                 </Dropdown.Item>
                               </span>
                             </DropdownButton>
+                            </div>
                             {/* <Menu
                               id="long-menu"
                               anchorEl={anchorEl}
