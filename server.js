@@ -25,7 +25,7 @@ const { profile } = require("console");
 const app = express();
 
 app.use(express.static(__dirname + '/public'))
-app.use(cors({ origin: 'http://localhost:3000' }))
+app.use(cors({ origin: 'https://panjai.herokuapp.com' }))
 app.use(bodyParser.json())
 app.use(methodOverride("_method"));
 app.use(passport.initialize())
